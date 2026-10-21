@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fractions K–6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2333; --ink2:#4a5468; --ink3:#6d778a; --line:#e2e5ec; --bg:#f6f7fa; --card:#ffffff;
+  --navy:#1f2a44; --accent:#c8553d; --accent-soft:#fbeee9;
+  --es1:#d1603d; --es1-soft:#fcece6;
+  --s1:#c88a12; --s1-soft:#fbf3e1;
+  --s2:#23897d; --s2-soft:#e3f3f1;
+  --s3:#4b5bbf; --s3-soft:#e9ebf8;
+  --good:#2e7d4f; --good-soft:#e6f4ec; --bad:#b3372a; --bad-soft:#fbe9e7;
+  --r:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:16px}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+h1,h2,h3,h4{line-height:1.25;margin:0}
+p{margin:0 0 12px}
+a{color:var(--s3)}
+
+/* ---------- header ---------- */
+.top{background:var(--navy);color:#fff;padding:18px 24px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
+.top .brand{flex:1 1 320px}
+.top .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75;font-weight:600}
+.top h1{font-size:24px;font-weight:800;margin-top:2px}
+.prog{flex:0 1 260px;min-width:200px}
+.prog .lab{font-size:13px;opacity:.85;display:flex;justify-content:space-between}
+.prog .bar{height:8px;background:rgba(255,255,255,.18);border-radius:8px;overflow:hidden;margin-top:6px}
+.prog .fill{height:100%;background:#f2b33d;width:0;transition:width .4s}
+
+/* ---------- layout ---------- */
+.wrap{display:flex;min-height:calc(100vh - 80px);background:linear-gradient(to right,#fff 236px,var(--bg) 236px)}
+@media (max-width:820px){.wrap{background:var(--bg)}}
+nav.side{flex:0 0 236px;background:#fff;border-right:1px solid var(--line);padding:16px 10px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side .grp{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin:14px 10px 6px}
+nav.side button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;background:none;padding:8px 10px;border-radius:8px;color:var(--ink2);font-size:14.5px;font-weight:500}
+nav.side button:hover{background:var(--bg)}
+nav.side button.on{background:var(--accent-soft);color:var(--ink);font-weight:700}
+nav.side .dot{flex:0 0 18px;height:18px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:11px;color:#fff}
+nav.side .dot.done{background:var(--good);border-color:var(--good)}
+nav.side .dot.done::after{content:"✓"}
+.mobnav{display:none}
+main{flex:1;min-width:0;padding:28px 32px 60px}
+.page{max-width:900px;margin:0 auto}
+
+@media (max-width:820px){
+  nav.side{display:none}
+  .mobnav{display:block;padding:12px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  .mobnav select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--line);font-family:inherit;font-size:15px;background:#fff}
+  main{padding:20px 16px 48px}
+  .top{padding:16px}
+  .top h1{font-size:20px}
+}
+
+/* ---------- common blocks ---------- */
+.hero{border-radius:var(--r);padding:22px 24px;margin-bottom:22px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--accent)}
+.hero .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:8px}
+.hero h2{font-size:26px;font-weight:800;margin-bottom:8px}
+.hero p{color:var(--ink2);font-size:16.5px;margin:0}
+section.blk{margin:26px 0}
+section.blk>h3{font-size:19px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+section.blk>h3 .n{font-size:12px;font-weight:700;background:var(--navy);color:#fff;border-radius:6px;padding:2px 8px}
+.lead{color:var(--ink2);margin-bottom:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px;background:var(--bg);color:var(--ink2);border:1px solid var(--line)}
+.src-nesa{background:#eef2fb;color:#34408a;border-color:#d5dcf2}
+.src-add{background:#fff6e6;color:#8a5a00;border-color:#f2deb4}
+.src-dio{background:#eaf5ff;color:#0b5a8f;border-color:#c5e1f5}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:#fff;border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:14px}
+.note{font-size:14px;color:var(--ink3)}
+.btn{border:0;background:var(--navy);color:#fff;padding:10px 18px;border-radius:9px;font-weight:600}
+.btn:hover{filter:brightness(1.15)}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.small{padding:6px 12px;font-size:14px}
+.btn:disabled{opacity:.4;cursor:default;filter:none}
+.done-bar{margin-top:36px;padding:18px 20px;border-radius:var(--r);background:#fff;border:1px dashed #c9ced9;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.done-bar.is-done{border-style:solid;border-color:var(--good);background:var(--good-soft)}
+.nextprev{display:flex;flex-wrap:wrap;gap:10px}
+.tool select{max-width:100%}
+ul.tight{margin:0;padding-left:20px}
+ul.tight li{margin:4px 0}
+
+/* outcomes */
+.outc{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
+.outc code{font-family:inherit;font-weight:700;font-size:13px;padding:3px 8px;border-radius:6px;white-space:nowrap;color:#fff}
+
+/* accordion */
+.acc{border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:8px;overflow:hidden}
+.acc>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;border:0;background:#fff;padding:13px 16px;font-weight:600;color:var(--ink)}
+.acc>button .ch{transition:transform .2s;color:var(--ink3);flex:0 0 auto}
+.acc.open>button .ch{transform:rotate(90deg)}
+.acc .body{display:none;padding:0 16px 14px 16px;color:var(--ink2)}
+.acc.open .body{display:block}
+.acc .part{font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px;margin-right:8px;color:#fff;vertical-align:1px}
+
+/* knowledge cards */
+.kcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;border-top:4px solid var(--line)}
+.kcard h4{font-size:16px;margin-bottom:6px}
+.kcard p{color:var(--ink2);font-size:15px;margin:0}
+
+/* flip cards */
+.flips{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.flip{perspective:1200px;min-height:196px;border:0;background:none;padding:0;text-align:left}
+.flip .in{position:relative;width:100%;height:100%;min-height:196px;transition:transform .55s;transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;overflow:auto}
+.flip .f{background:#fff;border:1px solid var(--line)}
+.flip .b{background:var(--navy);color:#fff;transform:rotateY(180deg)}
+.flip .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;opacity:.7;margin-bottom:6px}
+.flip .f .say{font-size:16.5px;font-weight:600;flex:1;color:var(--ink)}
+.flip .f .hint{font-size:13px;color:var(--ink3);margin-top:10px}
+.flip .b h4{font-size:16px;margin-bottom:8px}
+.flip .b p{font-size:14px;margin:0 0 8px;opacity:.92}
+.flip .b .pill{align-self:flex-start;margin-top:auto}
+
+/* working mathematically */
+.wmel{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.wmel div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--ink2)}
+.wmel b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:2px}
+.wtag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:5px;background:#eef2fb;color:#34408a;white-space:nowrap}
+.tagrow{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:start;padding:10px 14px;border-top:1px solid var(--line);font-size:14.5px}
+.tagrow:first-child{border-top:0}
+.tagrow .sl{font-weight:700;font-size:12.5px;padding:3px 8px;border-radius:6px;color:#fff;text-align:center}
+@media (max-width:620px){.tagrow{grid-template-columns:1fr}.tagrow .sl{justify-self:start}}
+.mk{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:720px){.mk{grid-template-columns:1fr}}
+.mk .side{border-radius:var(--r);padding:18px 20px;border:2px solid}
+.mk .before{background:#fdf6f5;border-color:#efc9c3}
+.mk .after{background:#f2faf6;border-color:#a9d9bf}
+.mk .lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;margin-bottom:10px}
+.mk .before .lbl{color:var(--bad)}
+.mk .after .lbl{color:var(--good)}
+.mk .task{background:#fff;border:1px solid var(--line);border-radius:9px;padding:14px 16px;font-size:15.5px;margin-bottom:12px}
+.mk .task.closed{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14.5px}
+.mk ul{margin:0;padding-left:20px;font-size:14.5px;color:var(--ink2)}
+.mk ul li{margin:3px 0}
+.mk .hidden-after{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;min-height:220px;color:var(--ink2)}
+.mk .think{font-size:15px;max-width:320px}
+.mk .think textarea{width:100%;min-height:70px;margin-top:8px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:inherit;font-size:14.5px}
+.diff{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px}
+.diff div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14.5px;color:var(--ink2)}
+.diff b{display:block;color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.wmchips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.wmchips span{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:20px;background:var(--good-soft);color:#1d5236;border:1px solid #bfe3cd}
+.moves{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.moves button{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:7px 14px;font-weight:600;font-size:14px;color:var(--ink2)}
+.moves button.on{background:var(--good);border-color:var(--good);color:#fff}
+
+/* quiz */
+.quiz .q{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin-bottom:12px}
+.quiz .q h4{font-size:16px;margin-bottom:12px;font-weight:600}
+.quiz .opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:10px 14px;margin-bottom:8px;color:var(--ink)}
+.quiz .opt:hover:not(:disabled){border-color:#aab2c3}
+.quiz .opt.right{border-color:var(--good);background:var(--good-soft)}
+.quiz .opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.quiz .opt:disabled{cursor:default}
+.quiz .fb{display:none;margin-top:6px;padding:10px 14px;border-radius:9px;font-size:15px}
+.quiz .fb.show{display:block}
+.quiz .fb.ok{background:var(--good-soft);color:#1d5236}
+.quiz .fb.no{background:var(--bad-soft);color:#7a2219}
+
+/* quick check */
+.qc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+.qc ol{margin:0;padding-left:22px}
+.qc li{margin:8px 0;color:var(--ink2)}
+.qc li b{color:var(--ink)}
+
+/* tool box */
+.tool{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.tool .tt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink3);margin-bottom:4px}
+.tool h4{font-size:18px;margin-bottom:6px}
+.tool .ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.tool select,.tool input[type=number]{font-family:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.tool input[type=number]{width:90px}
+.fbline{margin-top:12px;padding:10px 14px;border-radius:9px;font-size:15px;display:none}
+.fbline.show{display:block}
+.fbline.ok{background:var(--good-soft);color:#1d5236}
+.fbline.no{background:var(--bad-soft);color:#7a2219}
+.fbline.info{background:var(--bg);color:var(--ink2)}
+
+/* shared */
+.readout{font-size:20px;font-weight:700;margin-top:14px}
+.readout small{display:block;font-size:14px;font-weight:500;color:var(--ink3);margin-top:2px}
+
+/* progression explorer */
+.aspects{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.aspects button{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:7px 14px;font-weight:600;font-size:14px;color:var(--ink2)}
+.aspects button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.pcols{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;position:relative}
+.pcol{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.pcol .ph{padding:10px 14px;color:#fff;font-weight:700}
+.pcol .ph small{display:block;font-weight:500;opacity:.85;font-size:12.5px}
+.pcol .pb{padding:12px 14px;font-size:14.5px;color:var(--ink2);flex:1}
+.pcol .pb b{color:var(--ink)}
+.shifts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.shift{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14.5px;color:var(--ink2)}
+.shift .arr{font-weight:700;color:var(--ink);font-size:13px;margin-bottom:4px}
+@media (max-width:820px){.pcols{grid-template-columns:1fr 1fr}.shifts{grid-template-columns:1fr}}
+@media (max-width:480px){.pcols{grid-template-columns:1fr}}
+
+/* big ideas */
+.ideas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.idea{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px;text-align:left;color:var(--ink);transition:box-shadow .2s,border-color .2s}
+.idea:hover{border-color:#b9c0cf;box-shadow:0 4px 14px rgba(20,30,60,.06)}
+.idea .num{font-size:30px;font-weight:800;color:var(--accent);line-height:1}
+.idea h4{font-size:17px;margin:8px 0 6px}
+.idea p{font-size:14.5px;color:var(--ink2);margin:0}
+.idea.on{border-color:var(--navy);box-shadow:0 0 0 2px var(--navy)}
+.ideadetail{margin-top:14px}
+.srow{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.srow:first-of-type{border-top:0}
+.srow .sl{font-weight:700;font-size:13px;padding:3px 8px;border-radius:6px;color:#fff;align-self:start;text-align:center}
+
+/* models grid */
+.mgrid{display:grid;grid-template-columns:minmax(170px,1.3fr) repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.mgrid .mh{padding:10px 8px;font-weight:700;font-size:13px;text-align:center;border-bottom:1px solid var(--line);color:#fff}
+.mgrid .mh.first{text-align:left;color:var(--ink);background:#fff;padding-left:14px}
+.mrow{display:contents}
+.mrow>.mn{grid-column:1;padding:9px 14px;border-top:1px solid var(--line);font-weight:600;font-size:14.5px;cursor:pointer;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;color:var(--ink)}
+.mrow>.mn small{display:block;font-weight:400;color:var(--ink3);font-size:12.5px}
+.mrow .mc{border-top:1px solid var(--line);border-left:1px solid var(--line);position:relative}
+.mbar{position:relative;z-index:1;align-self:center;height:18px;border-radius:9px;margin:0 8px;cursor:pointer}
+.mrow.sel>.mn{background:var(--accent-soft)}
+.mdetail{margin-top:14px}
+@media (max-width:620px){.mgrid{grid-template-columns:minmax(120px,1.4fr) repeat(4,1fr)}.mgrid .mh{font-size:11px;padding:8px 2px}}
+
+/* sorter */
+.sorter .scn{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.sorter .quote{font-size:19px;font-weight:600;border-left:4px solid var(--accent);padding:4px 0 4px 14px;margin:8px 0 18px}
+.roots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.roots button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;text-align:left;font-weight:600;color:var(--ink)}
+.roots button:hover:not(:disabled){border-color:#9aa3b5}
+.roots button.right{border-color:var(--good);background:var(--good-soft)}
+.roots button.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.roots button:disabled{cursor:default}
+@media (max-width:560px){.roots{grid-template-columns:1fr}}
+.score{font-size:14px;color:var(--ink3)}
+
+/* reflection */
+.rq{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:12px}
+.rq label{font-weight:600;display:block;margin-bottom:8px}
+.rq textarea{width:100%;min-height:84px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:inherit;font-size:15px;resize:vertical}
+.rq textarea:focus{outline:2px solid var(--s3);border-color:transparent}
+.todo label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line);cursor:pointer}
+.todo label:first-child{border-top:0}
+.todo input{margin-top:5px;width:17px;height:17px;accent-color:var(--good)}
+.saved{font-size:13px;color:var(--good);margin-left:8px}
+
+table.simple{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;font-size:15px}
+table.simple th,table.simple td{padding:10px 12px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+table.simple th{background:var(--bg);font-size:13px;color:var(--ink2);border-top:0}
+footer{font-size:13px;color:var(--ink3);text-align:center;padding:20px 16px 30px;border-top:1px solid var(--line);background:#fff}
+:focus-visible{outline:3px solid #f2b33d;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+<style>
+/* ES1 ribbon */
+.ribwrap{margin-top:14px;max-width:640px}
+.rib{position:relative;display:flex;height:34px;border-radius:4px;overflow:visible}
+.ribA{background:var(--es1);height:100%;border-radius:4px 0 0 4px}
+.ribB{background:var(--s2);height:100%;border-radius:0 4px 4px 0}
+.cut{position:absolute;top:-26px;transform:translateX(-50%);font-size:20px;pointer-events:none}
+.cut::after{content:"";position:absolute;left:50%;top:24px;height:42px;border-left:2px dashed var(--ink)}
+.hpt{position:absolute;left:50%;top:44px;transform:translateX(-50%);text-align:center;font-size:12px;font-weight:700;color:var(--ink)}
+.hpt::before{content:"";display:block;width:12px;height:12px;border-radius:50%;background:var(--ink);margin:0 auto 2px}
+.ribwrap input[type=range]{width:100%;margin-top:58px}
+.foldcmp{display:flex;flex-direction:column;gap:6px;max-width:640px;margin-top:10px}
+.foldcmp .fp{height:22px;border-radius:4px}
+
+/* S1 repeated halving */
+.hstrip{display:flex;height:54px;border:2px solid var(--ink);border-radius:6px;overflow:hidden;margin-top:12px;max-width:680px}
+.hp{border-right:2px solid var(--ink);display:flex;align-items:center;justify-content:center;transition:width .3s}
+.hp:last-child{border-right:0}
+.hp span{font-size:12px;font-weight:700;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 2px}
+.hcoll{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.dt{width:14px;height:14px;border-radius:50%;display:inline-block}
+.hg{display:flex;flex-wrap:wrap;gap:4px;padding:8px;border:2px dashed var(--s1);border-radius:10px;max-width:120px}
+
+/* S2 strips */
+.fspic{margin-top:10px}
+.fspic svg{width:100%;height:auto;display:block}
+.fr{display:inline-flex;align-items:center;font-variant-numeric:tabular-nums}
+
+/* S3 tape */
+.tppic{margin-top:14px;max-width:700px}
+.tape{display:grid;border:2px solid var(--ink);border-radius:6px;overflow:hidden}
+.tc{padding:14px 4px;text-align:center;font-weight:800;border-right:1.5px solid var(--ink);background:#fff}
+.tc:last-child{border-right:0}
+.tc.sh{background:var(--s3-soft);color:var(--s3)}
+.tc.over{background:repeating-linear-gradient(45deg,#fff 0 6px,#eef0fb 6px 12px)}
+.tc.sh.over{background:repeating-linear-gradient(45deg,var(--s3-soft) 0 6px,#d9ddf5 6px 12px)}
+.tapebrace{border-top:2px solid var(--s3);margin-top:8px;text-align:center;font-weight:700;color:var(--s3);font-size:14px;padding-top:4px}
+.tapeline{display:grid;margin-top:6px;font-size:12.5px;color:var(--ink3);text-align:right}
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="eyebrow">NSW Mathematics K–10 (2022) · Partitioned fractions to Representing quantity fractions</div>
+    <h1>Fractions K–6</h1>
+  </div>
+  <div class="prog" aria-live="polite">
+    <div class="lab"><span>Your progress</span><span id="progTxt">0 of 0</span></div>
+    <div class="bar"><div class="fill" id="progFill"></div></div>
+  </div>
+</header>
+
+<div class="mobnav"><label class="note" for="mobSel">Go to section</label><select id="mobSel"></select></div>
+
+<div class="wrap">
+  <nav class="side" id="side" aria-label="Module sections"></nav>
+  <main><div class="page" id="page"></div></main>
+</div>
+
+<footer id="foot"></footer>
+
+<script>
+/* ---------------- module config ---------------- */
+var M = {
+ key:"fr-k6-module-v1",
+ title:"Fractions K–6",
+ dlName:"fractions-reflections.txt",
+ welcomeH2:"How students learn fractions, K to 6",
+ welcomeP:"This module follows fractions across four stages: the foundations in Geometric measure and Forming groups (Early Stage 1 and Stage 1), Partitioned fractions (Stage 2) and Representing quantity fractions (Stage 3). It covers how the outcomes build, the maths you need to teach it, the misconceptions to look for, and what the NESA teaching advice and the diocesan PL slides recommend.",
+ tryText:"a model for each stage: half a length, repeated halving, fraction strips on a number line, and tape diagrams.",
+ namesH3:"Where fractions live in the syllabus",
+ namesP:"There are no fractions outcomes in Early Stage 1 and Stage 1. The foundations are built through halving lengths in Geometric measure and sharing collections in Forming groups. Fractions become a focus area in Stage 2 (Partitioned fractions) and Stage 3 (Representing quantity fractions). All content also addresses the Working mathematically outcome, MAO-WM-01.",
+ ideasP:"NESA describes many students finding fractions, and especially fraction magnitudes, “one of the most challenging concepts in learning mathematics”. The diocesan slides call fractions “a complex, intensive property of number”. Six ideas carry the journey from half a ribbon to fractions as numbers. Select an idea to see how it develops.",
+ ideasNote:"These ideas connect to Multiplicative relations (fractions as division and the multiplicative relationship between part and whole) and to Representing numbers (tenths and hundredths as decimals, and benchmark percentages).",
+ progP:"Fractions move from partitioning things (a ribbon, a strip, a collection) to fractions as numbers with a place on the number line. In Stage 2 the whole is the particular length being partitioned. In Stage 3 the whole is always the number 1.",
+ shifts:[
+  ["es1","Early Stage 1 → Stage 1","From one half to repeated halving: quarters and eighths of lengths and of collections. Students learn to re-create the whole from a half."],
+  ["s1","Stage 1 → Stage 2","From halving to making thirds and fifths, which can’t start with halving. Fraction strips are mapped to number lines, fractions go beyond one, and equivalence is shown as equal lengths."],
+  ["s2","Stage 2 → Stage 3","From partitioned fractions, where the whole depends on the context, to quantity fractions, where the whole is 1. Fractions become divisions, and students add, subtract and find fractions of quantities."]
+ ],
+ modelsH2:"Linear models first; the number line carries fractions from Stage 2",
+ modelsP:"The bars show the stages where the syllabus, the NESA teaching advice or the diocesan PL slides name or use each model. Select a model for more detail.",
+ modelTips:[
+  ["Linear before area.","NESA advises introducing the continuous linear model first, with one-directional folds. The area model comes once students understand area."],
+  ["Show the part alongside the whole.","Shading parts inside a shape lets students see a ‘1’ and a ‘3’. Placing the part next to the whole shows the relationship (diocesan slides)."],
+  ["Use strips like a ruler.","Lay fraction strips along a number line so labels move from naming pieces to naming positions."],
+  ["Be careful with collections.","Discrete models can suggest a fraction is two counts. NESA notes they are generally not helpful for understanding the size of fractions."]
+ ],
+ sorterP:"Most fraction misconceptions come from four roots, and each root reappears in a new form from halving a ribbon to adding fractions. Read each student response and choose its root.",
+ rootRows:[
+  ["Counting parts instead of comparing to the whole","A piece cut from the end called “my half” <span class=\"pill src-add\">Add.</span>","Unequal folds called quarters","Fraction as the number of shaded parts","Adding parts: 1/5 + 2/5 = 3/10 <span class=\"pill src-add\">Add.</span>"],
+  ["The whole is ignored","Halfway point confused with half a length","“Half is always the same size”","Comparing fractions of unequal wholes; ¼ placed wrongly on a 0–2 line","Fractions of different cakes compared as if the wholes were equal"],
+  ["A fraction read as two whole numbers","—","Pieces labelled 1, 2, 3 instead of eighths","‘2 over 3’; 1/8 thought bigger than 1/3","4/5 + 11/12 estimated as 15 or 17"],
+  ["Reasoning only from whole to part","—","Can’t re-create the whole from a half","Can’t rebuild the strip from a quarter; complement not seen","Can’t find the whole from three-fifths; 1 − ⅓ needs a rule"]
+ ],
+ sorterNote:"In a study of 52 000 Year 7 students, more than half estimated 4/5 + 11/12 as 15 or 17 (Gould 2014), treating the numerators or denominators as whole numbers.",
+ notesTitle:"Fractions K–6: my reflections",
+ footer:"Built from the NESA <i>Mathematics K–10 Syllabus (2022)</i> outcomes and content (Early Stage 1 to Stage 3), the NESA syllabus support teaching advice, the NESA additional teaching advice <i>Stage 2 – Partitioned fractions A (Language and vocabulary)</i>, and the Catholic Education Diocese of Wollongong PL slides on fractions. Items marked <span class=\"pill src-dio\">Diocesan PL slides</span> come from those slides; items marked <span class=\"pill src-add\">Additional commentary</span> are common classroom observations, not NESA or diocesan examples. Your progress and notes are saved only in this browser."
+};
+
+/* ---------------- data ---------------- */
+var STAGES = {
+ es1:{short:"ES1", name:"Early Stage 1", years:"Kindergarten", fa:"Foundations: half a length (Geometric measure)", col:"var(--es1)", soft:"var(--es1-soft)"},
+ s1:{short:"S1", name:"Stage 1", years:"Years 1–2", fa:"Foundations: halves, quarters and eighths (Geometric measure and Forming groups)", col:"var(--s1)", soft:"var(--s1-soft)"},
+ s2:{short:"S2", name:"Stage 2", years:"Years 3–4", fa:"Partitioned fractions A and B", col:"var(--s2)", soft:"var(--s2-soft)"},
+ s3:{short:"S3", name:"Stage 3", years:"Years 5–6", fa:"Representing quantity fractions A and B", col:"var(--s3)", soft:"var(--s3-soft)"}
+};
+var ORDER = ["es1","s1","s2","s3"];
+
+var STAGE_CONTENT = {
+es1:{
+ lead:"There are no fractions outcomes in Kindergarten, but the idea of a fraction starts here. In Geometric measure, students divide a length into two equal parts and tell the halfway point from half a length. NESA introduces fractions through length so that a fraction is based on division, not counting parts.",
+ outcomes:[["MAE-GM-03","identifies half the length and the halfway point (Geometric measure)"],["MAE-FG-02","forms equal groups by sharing and counting collections of objects (Forming groups)"]],
+ content:[
+  ["","Geometric measure — Length: Create half a length",["Divide a length into two equal parts, such as cutting a piece of ribbon into halves (Reasons about relations)","Distinguish between the halfway point and half a length","Describe positions as ‘about halfway’, ‘more than halfway’ or ‘less than halfway’"]],
+  ["","Forming groups — Investigate and form equal groups by sharing",["Distribute a group of objects into smaller groups and recognise whether the number in each group is equal or not","Group and share concrete materials by distributing objects one by one or another way"]]
+ ],
+ know:[
+  ["Fractions start with division","NESA: “The concept of a fraction is based on the process of division, rather than counting parts.” Fractions are introduced through equal sharing, with continuous (length) and discrete (collection) models."],
+  ["Two meanings of half","Half can mean dividing one whole into two equal pieces (continuous), or dividing a collection into two equal groups (discrete)."],
+  ["Halfway point or half a length?","The halfway point is a position, built on the equality of two lengths. Half a length is one of the two equal lengths. Model the language of two equal lengths, and give non-examples where the lengths aren’t equal."],
+  ["Extending students","Students who understand half a length can find other fractions of lengths, such as repeatedly halving to find quarters, or exploring folding to make thirds."],
+  ["Supporting access","For students with visual perception or fine motor difficulties, use stickers to mark start and end points, bold outlines and strong colour contrast."]
+ ],
+ misc:[
+  {see:"Asked for half the ribbon, cuts a small piece off the end and says, “This is my half.”",name:"A half is any piece",resp:"Lay the two pieces side by side. Are they the same length? Model the language of two equal lengths.",src:"a"},
+  {see:"Asked to show the halfway point of a path, cuts the path drawing in two and points to one piece.",name:"Halfway point confused with half a length",resp:"Distinguish the position (halfway point) from the length (half). NESA highlights this distinction.",src:"n"},
+  {see:"Shares 9 crackers between two friends as 5 and 4, and says each friend has “half”.",name:"Halving a collection without equal groups",resp:"Ask, “Is it fair? Does each friend have the same number?” Discuss what to do with the one left over.",src:"a"},
+  {see:"Says a longer ribbon is “bigger” when meaning “longer”.",name:"General words for specific attributes",resp:"NESA notes young students use ‘big’ for ‘long’ or ‘tall’. Model specific length words.",src:"n"}
+ ],
+ advice:["Model and reinforce the language of two equal lengths when describing halfway, and provide non-examples where the lengths are not equal.","Introduce half through both continuous (one length) and discrete (a collection shared between two) models.","Extend students by repeatedly halving to find quarters, or by exploring folding to make thirds.","See Forming groups for discrete models of fractions, and equal sharing linked with division."],
+ vocab:["half","halves","about halfway","more than halfway","less than halfway","equal","length","share"],
+ check:{title:"Quick check (built from the syllabus examples)",steps:["Give the student a strip of paper or ribbon. Ask, <i>Can you cut this so you and a friend get half each? How do you know?</i>","Draw a path. Ask, <i>Show me the halfway point. Is that the same as half the path?</i>","Mark a point on a length. Ask, <i>Is this about halfway, more than halfway or less than halfway?</i>"]},
+ tool:"half",
+ quiz:[
+  {q:"What is the difference between the halfway point and half a length?",o:["There is no difference","The halfway point is a position; half a length is one of two equal lengths","Half a length is a position; the halfway point is a length","The halfway point is only used with collections"],a:1,why:"NESA notes the halfway point builds on the equality of two lengths and introduces subdividing a length, which underpins measuring."},
+  {q:"According to NESA, the concept of a fraction is based on…",o:["counting the shaded parts","the process of division","reading fraction symbols","comparing numerators"],a:1,why:"The syllabus introduces fractions through equal sharing, laying foundations for fractions as division and as numbers."}
+ ]
+},
+s1:{
+ lead:"In Years 1 and 2, students use repeated halving to make quarters and eighths of a length, and find halves, quarters and eighths of collections. NESA emphasises that the size of each part depends on the size of the whole. Fraction symbols aren’t needed yet.",
+ outcomes:[["MA1-GM-03","creates and recognises halves, quarters and eighths as part measures of a whole length (Geometric measure)"],["MA1-FG-01","uses the structure of equal groups to solve multiplication problems, and shares or groups to solve division problems (Forming groups)"]],
+ content:[
+  ["A","Geometric measure — Length: Subdivide lengths to find halves and quarters",["Model half and quarters of a whole length, highlighting the length: halve a paper strip, then halve again","Identify two equal parts and the relationship of the parts to the whole length, linking words and images","Recognise when lengths have or have not been divided into halves and quarters (a strip folded in half, then one half folded again)"]],
+  ["A","Forming groups — Recognise and represent division",["Model a half of a collection and show the relation between the half and the whole"]],
+  ["B","Geometric measure — Length: Repeatedly halve lengths to form eighths",["Model an eighth of a whole length, highlighting the length: compare halving a strip 3 times with halving one-half of a half","Recognise when a length is divided into eight equal parts (What fraction of the whole is the arrow pointing to?)"]],
+  ["B","Forming groups — Model doubling and halving with fractions",["Model doubling and halving and the relation between them (double 4 is 8, so half of 8 is 4)","Re-create the whole given half (if half is 3 marbles, how many altogether?)","Model a half, a quarter or an eighth of a collection and explain their thinking (quarters of 12)"]]
+ ],
+ know:[
+  ["Division, not counting parts","NESA: in Stage 1, fractions are formed by division. Halves, quarters and eighths are formed as equal parts of a whole length, and as equal quantities of a linear arrangement of a collection."],
+  ["The whole decides the size","With repeated halving, emphasise that the size of the part depends on the size of the original whole length or collection."],
+  ["Three models, in order","Continuous linear (one-directional folds, highlight the long edge) first. Continuous area (multi-directional folds) once area is understood in Stage 2. Discrete (separate items in a collection)."],
+  ["No symbols needed yet","It isn’t necessary for Stage 1 students to use ½ or ¼. Use the words: one-half, one-quarter, one-eighth."],
+  ["Strips to number lines","On a fraction strip each piece is one-eighth. On a number line, one-eighth is a single position: one-eighth of a unit from 0. Watch for this shift in labelling as students move to Stage 2. <span class=\"pill src-dio\">Diocesan PL slides</span>"],
+  ["What Stage 1 should leave students able to do","Use repeated halving for halves, quarters and eighths; distinguish the halfway point from half a length; re-create the whole given half; model fractions of collections; relate doubling and halving. <span class=\"pill src-dio\">Diocesan PL slides</span>"]
+ ],
+ misc:[
+  {see:"Folds a strip in half, then folds just one half again, and says the strip is now in quarters.",name:"Any parts are quarters",resp:"Unfold and compare the pieces. Are they all the same length? The syllabus asks students to recognise when lengths have not been divided into quarters.",src:"n"},
+  {see:"Says “half is always the same size”, so half of a short strip equals half of a long one.",name:"The whole is ignored",resp:"Halve two strips of different lengths and compare. NESA stresses that the size of the part depends on the whole.",src:"n"},
+  {see:"Labels the pieces of an eighths strip 1, 2, 3 … 8, and later can’t say where one-eighth sits on a number line.",name:"Naming pieces, not positions",resp:"Lay the strip along a number line like a ruler and name positions: one-eighth, two-eighths … eight-eighths is one whole.",src:"d"},
+  {see:"Told that half is 3 marbles, says there are 3 altogether.",name:"Not re-creating the whole from the half",resp:"Model with two equal groups: “This is one half. What would the other half look like?”",src:"a"},
+  {see:"Finds a quarter of 12 counters by taking any 3, but can’t say why they are a quarter.",name:"Fraction of a collection without equal groups",resp:"Share the 12 into 4 equal groups and point to one group. Relate quarters to halving and halving again.",src:"a"}
+ ],
+ advice:["Introduce the continuous linear model first, using one-directional cuts or folds and highlighting the long edge to focus on length.","Use a length of 10 connecting cubes as a measuring device; half of it links measurement to simple fractions.","Compare halving a strip three times with halving one-half of a half.","Ask, ‘If half is 3 marbles, how many altogether?’ to build reversible thinking from the start.","<span class=\"pill src-dio\">Diocesan PL slides</span> Use fraction strips like a ruler as students move to number lines, and notice the shift from naming pieces to naming positions."],
+ vocab:["half","halves","quarter","eighth","equal parts","whole","halve","double","one-half","one-quarter","one-eighth"],
+ check:{title:"Quick checks (NESA key progress point and syllabus examples)",steps:["<b>NESA (Geometric measure A).</b> Draw an equilateral triangle. Say, <i>An ant crawls around the outside of this triangle. Can you show where the ant will be when it is half of the way around from the start?</i> Starting from the base shows whether the student halves the distance, not the triangle.","Ask, <i>If half is 3 marbles, how many altogether?</i>","Show a strip divided into eighths with an arrow at one part. Ask, <i>What fraction of the whole is the arrow pointing to?</i>","Show a strip folded in half with one half folded again. Ask, <i>Is this divided into quarters? How do you know?</i>"]},
+ tool:"halving",
+ quiz:[
+  {q:"Which model of fractions does NESA advise introducing first?",o:["The area model, shading parts of a circle","The continuous linear model, with one-directional folds","The discrete model, with collections","Fraction symbols"],a:1,why:"Linear folds compare parts by length. The area model comes once students understand area in Stage 2."},
+  {q:"Do Stage 1 students need to use the symbols ½ and ¼?",o:["Yes, from the start of Stage 1","No, it isn’t necessary in Stage 1","Only for eighths","Only with collections"],a:1,why:"NESA notes it isn’t necessary for Stage 1 students to use the symbols; the words carry the meaning."},
+  {q:"When repeatedly halving, what should teachers emphasise about the size of the part?",o:["It is always the same","It depends on the size of the original whole","It depends on how many folds","It doesn’t matter"],a:1,why:"The same fraction of different wholes gives different sizes, which matters later for comparing fractions."}
+ ]
+},
+s2:{
+ lead:"In Years 3 and 4, students make thirds and fifths without halving, map fraction strips to number lines, show equivalence as equal lengths, and go beyond one whole. NESA describes fractions here as partitioned lengths that become numbers once they are placed on a number line.",
+ outcomes:[["MA2-PF-01","represents and compares halves, quarters, thirds and fifths as lengths on a number line and their related fractions formed by halving (eighths, sixths and tenths)"]],
+ content:[
+  ["A","Create fractional parts of a length using techniques other than repeated halving",["Make thirds of a length (creating fraction strips for thirds)","Create fifths of a length"]],
+  ["A","Model and represent unit fractions, and their multiples, to a complete whole on a number line",["Model halves, quarters, eighths and thirds with fraction strips and diagrams","Describe fraction families with the same denominator (thirds: one-third, two-thirds)","Determine the complement needed to complete one whole (Reasons about relations)","Recreate the whole from ½, ¼, ⅓ and ⅛ (Reversible reasoning): if this is a quarter of the strip, how big is the whole strip?"]],
+  ["B","Model equivalent fractions as lengths",["Represent equivalence with related denominators as lengths: 4 eighths is one half; 4 tenths is 2 fifths","Recognise the need for equal wholes to compare (a quarter of one length of timber can be more than a quarter of another) (Reasoning about relations)","Use same-size wholes to compare (2, 4 and 8; 3 and 6; 5 and 10): which is larger, ⅓ or ⅜?"]],
+  ["B","Represent fractional quantities equal to and greater than one",["Rename 2 halves, 3 thirds, 4 quarters, 5 fifths, 6 sixths, 8 eighths and 10 tenths as one whole","Regroup fractional parts beyond one (draw a piece of chocolate four-thirds the size)","Represent totals of halves, thirds, quarters and fifths beyond one on a number line","Locate one-quarter and one-half when a number line extends beyond one"]]
+ ],
+ know:[
+  ["Two ways of thinking about fractions","Fractions describe partitions of an object or collection, and they denote numbers (½ is midway between 0 and 1). Stage 2 moves from the first to the second by mapping partitioned lengths to number lines."],
+  ["Discrete models have limits","With a collection, it’s easier to see 1 red dot and 3 black dots than one red dot as one of 4. Discrete models can suggest a fraction is two counts, and don’t show the size of fractions well."],
+  ["A multiplicative relationship","Learning fractions means coordinating units in a multiplicative relationship (Hackenberg et al. 2016). Counting parts leads students to see fractions as two whole numbers, and the whole as an additive sum of parts."],
+  ["Compare only with equal wholes","Half of a 6 m length of timber is more than two-thirds of a 3 m length. Change the length of the unit ‘1’ on number lines so students see that fractions refer to a whole."],
+  ["Say ‘two-thirds’, not ‘2 over 3’","Reading a fraction as two numbers (‘2 out of 3’, ‘2 over 3’) is a barrier to seeing it as one number (Way and Bobis 2011). The words numerator and denominator can wait until Stage 3. In Japanese, ¾ is said ‘of four parts, three’."],
+  ["Number lines matter","The number line plays a causal role in fraction magnitude understanding and is more beneficial than area models (Hamdan and Gunderson 2017). <span class=\"pill src-dio\">Diocesan PL slides</span>"]
+ ],
+ misc:[
+  {see:"Shown a circle with 3 of 4 parts shaded, says the fraction is “3 and 1”.",name:"A fraction as two counts",resp:"Show the part alongside the whole on a strip, not shaded inside it. Ask how many quarters make the whole.",src:"d"},
+  {see:"Says one-quarter of a long plank and one-quarter of a short plank are the same amount.",name:"Comparing fractions of unequal wholes",resp:"Compare only with equal wholes. Ask students to explain why a quarter of one length of timber can be more than a quarter of another.",src:"n"},
+  {see:"Tries to make thirds by folding in half, then half again.",name:"Every fraction comes from halving",resp:"Thirds and fifths can’t start with halving. Practise folding strips into thirds, adjusting and refolding until the parts are equal.",src:"n"},
+  {see:"On a number line from 0 to 2, places ¼ a quarter of the way along the whole line.",name:"The whole is the whole line",resp:"Find 1 first. A quarter is a quarter of the distance from 0 to 1, wherever the line ends.",src:"n"},
+  {see:"Says ⅛ is bigger than ⅓ “because 8 is bigger than 3”.",name:"Bigger denominator, bigger fraction",resp:"Align strips for thirds and eighths with the same whole. More parts means smaller parts.",src:"a"},
+  {see:"Counts “one quarter, two quarters, three quarters, four quarters, five quarters” but can’t say 4 quarters is one whole.",name:"Counting fractions without seeing the whole",resp:"NESA notes fractions aren’t counting numbers. Iterate quarter-lengths and rename 4 quarters as 1 when the whole is complete.",src:"n"}
+ ],
+ advice:["Use fraction strips to subdivide a whole length, then use the number line like a ruler to show benchmark fractions such as ½ and ¼.","Record fraction strips as tape diagrams, which help students move from partitioned shapes to fractions as numbers (Spencer and Fielding 2015).","Practise folding paper strips, drawing and virtual fraction bars to make thirds and fifths. Adjusting to form equal parts emphasises that parts are equal and together form the whole.","Develop the fraction concept as a comparison of part to whole before formal symbols. How many quarters recreate the whole?","Use different-length units for ‘1’ on number lines, and units of measure (4 quarter litres make 1 litre) when going beyond the whole.","Students can complete Frayer models in their own words for terms such as two-thirds (NESA additional advice).","Use word origins to support fraction families: numerator comes from Latin for ‘counter or numberer’, and denominator from ‘that which gives a name’. Fractions with the same denominator belong to the same family (NESA additional advice)."],
+ vocab:["whole","part","equal parts","fractional part","half","quarter","eighth","third","sixth","fifth","tenth","one-third","one-fifth","fraction","whole number","number line","is equal to","equivalent fractions"],
+ check:{title:"Quick checks (NESA key progress point and diocesan slides)",steps:["<b>NESA (Mitchell 2011).</b> Show a bar beside a row of pencils of equal length, where the bar is a whole number of pencils plus part of one. Ask, <i>How long is this bar in pencils?</i> If the student gives a whole number, prompt, <i>Is it exactly three? How did you work that out?</i>","Ask, <i>Position two-thirds on a number line with endpoints 0 and 2.</i> <span class=\"pill src-dio\">Diocesan PL slides</span>","Show a strip. Say, <i>This is a quarter of the whole strip. How big is the whole strip?</i>","Ask, <i>Which is larger, one-third or three-eighths? Show me with strips.</i> Try the fraction strip tool below."]},
+ tool:"strips",
+ quiz:[
+  {q:"How does NESA’s additional advice suggest reading ⅔?",o:["‘2 over 3’","‘2 out of 3’","‘Two-thirds’","‘2 divided by 3’ only"],a:2,why:"Reading the numerator and denominator as two separate numbers creates a barrier to seeing the fraction as a single number (Way and Bobis 2011)."},
+  {q:"Why is half of a 6 m length of timber more than two-thirds of a 3 m length?",o:["Halves are always bigger than thirds","The wholes are different, so the fractions can’t be compared directly","Two-thirds is less than one-half","Timber can’t be partitioned evenly"],a:1,why:"Fractional parts can only be compared when the relation between the wholes is known."},
+  {q:"Why do students find thirds and fifths harder to make than quarters and eighths?",o:["The numbers are bigger","They can’t begin with halving","They aren’t in the syllabus until Stage 3","They need a calculator"],a:1,why:"Quarters and eighths come from repeated halving; thirds and fifths need other techniques, such as folding and adjusting."}
+ ]
+},
+s3:{
+ lead:"In Years 5 and 6, fractions become numbers with the whole always ‘1’. Students compare and order fractions, add and subtract with the same and related denominators, see fractions as division, rebuild the whole from a non-unit fraction, and find fractions of quantities.",
+ outcomes:[["MA3-RQF-01","compares and orders fractions with denominators of 2, 3, 4, 5, 6, 8 and 10"],["MA3-RQF-02","determines ½, ¼, ⅕ and ⅒ of measures and quantities"]],
+ content:[
+  ["A","Recognise the role of the number 1 as representing the whole",["Compare halves and quarters of different sized wholes (Jake ate ¼ of a cake and Kate ate ½ of a different cake; how could Jake have eaten more?)","Justify the need for fractions to refer to the number 1 as the common whole (Reasons about quantity)"]],
+  ["A","Compare and order common unit fractions",["Compare unit fractions to the benchmark ½ (is ⅕ smaller or larger than ½?)","Order unit fractions with denominators of 2, 3, 4, 5, 6, 8 and 10 on a number line"]],
+  ["A","Add and subtract fractions with the same denominator",["Represent sums, recreating the whole, where the result may exceed one (⅘ + ⅗ = 7/5)","Find and interpret differences (7/8 − 2/8 = 5/8 is more than one-half)","Solve word problems (I eat ⅕ of a block of chocolate and you eat ⅗)","Subtract a unit fraction from a whole number, including 1, using the complement principle (1 − ⅓ = ⅔)"]],
+  ["B","Recognise that a fraction can represent a division",["¾ represents 3 divided by 4"]],
+  ["B","Compare common fractions with related denominators",["Order on number lines: halves, quarters and eighths; thirds and sixths; fifths and tenths","Subdivide a rectangle by length and width to show sixths, thirds and halves","Compare fractions of a whole shape (area model) and a collection (discrete model)","Create equivalent fractions for half in quarters, eighths, sixths and tenths (a fraction wall)","Record equivalences in diagrams, words and notation (6/8 = ¾)"]],
+  ["B","Build up to the whole from a given fractional part",["Generate the whole from non-unit fractions (given three-fifths of a length of tape, find the whole) (Reversible reasoning)"]],
+  ["B","Use equivalence to add and subtract fractional quantities",["Solve word problems with related denominators (Jake ate ⅛ and Kath ate ¼ of the cake: what fraction remains?)","Represent fractions with the same or related denominators to add and subtract (how much more is ¾ than ⅜?) (Reasons about relations)"]],
+  ["B","Find fractional quantities of whole numbers",["Find quarters and fifths of multiples of the denominator with a tape diagram (⅖ of 30)","Solve word problems (share 7 chocolate fingers equally between 4 people)","Find ½, ¼, ⅕ and ⅒ of collections, expressing remainders as decimals"]]
+ ],
+ know:[
+  ["A fraction is one number","More than half of 52 000 Year 7 students estimated 4/5 + 11/12 as 15 or 17 (Gould 2014). The syllabus develops ⅓ as the number made by dividing a unit whole by 3, not as ‘a numerator of 1 and a denominator of 3’."],
+  ["The unit whole is 1","For partitioned fractions the whole is specific to the context, and it disappears once the ribbon is cut. For quantity fractions the whole is always implied: it is the number 1."],
+  ["Fractions as division","12 lamingtons shared between 24 people is easier than ‘12 ÷ 24’, where students often answer 2. Tape diagrams with a changing quantity link division and fractions (24 ÷ 4 = 6; 1 ÷ 4 = ¼). 2 shared between 5 is ⅖."],
+  ["The complement","The complement of a proper fraction completes the whole: the complement of ¼ is ¾. Recognising ⅕ and ⅘ as complements simplifies ⅘ + ⅗."],
+  ["Reversible reasoning","Finding the whole from three-fifths means dividing three-fifths into 3 equal parts to get one-fifth, then building five-fifths. Reverse tasks need deeper understanding than the original task (Tunc-Pekkan 2015)."],
+  ["Area models build equivalence","Subdividing a rectangle by length and width (thirds, then halve each third to make sixths) shows how equivalent fractions and common denominators are made, better than counting shaded parts in given diagrams."]
+ ],
+ misc:[
+  {see:"Estimates 4/5 + 11/12 as 15 or 17.",name:"Fractions as two whole numbers",resp:"Compare each fraction to the benchmarks 0, ½ and 1. Both are close to 1, so the sum is close to 2.",src:"n"},
+  {see:"For “12 lamingtons shared equally between 24 people”, answers 2.",name:"Dividing the larger number by the smaller",resp:"Use the words and a tape diagram before the symbols: each person gets less than one lamington, 12/24 or ½.",src:"n"},
+  {see:"Says Jake can’t have eaten more cake than Kate because ¼ is less than ½.",name:"Ignoring different wholes",resp:"Discuss different-sized cakes. Fractions as numbers refer to the common whole, 1.",src:"n"},
+  {see:"Writes ⅕ + ⅖ = 3/10.",name:"Adding numerators and denominators",resp:"Use strips: one-fifth and two-fifths of the same whole is three-fifths. The size of the parts doesn’t change.",src:"a"},
+  {see:"Given three-fifths of a tape, adds two more pieces the same size as the whole three-fifths.",name:"Building the whole from the wrong unit",resp:"Split three-fifths into 3 equal parts to find one-fifth first, then build five-fifths.",src:"n"},
+  {see:"Can’t find 2 − ⅝ without a written procedure.",name:"No intuitive sense of fraction size",resp:"Empson and Levi suggest that students without intuitive strategies (⅝ is ⅜ away from 1, so 1⅜) aren’t ready for standard procedures.",src:"n"}
+ ],
+ advice:["Present some fraction problems in words before symbols, because notation gives few clues to meaning as division.","Use tape diagrams to connect fractions with the four operations and to make sense of the unit fraction. Pay attention to the size of the units in word problems (Xiaobo and Harrington 2022).","Use the measurement model: the distance from 0 to 1 divided into any number of lengths, then subdivided for related denominators.","Let students actively explore dividing areas, subdividing rectangles by both length and width.","Use the term ‘fraction bar’ for the line between numerator and denominator.","<span class=\"pill src-dio\">Diocesan PL slides</span> Use bar models for complements (1 − ⅝) and fractions of quantities (⅔ of 6), tape diagrams for ⅗ of 30, and area models for related denominators (⅕ + ⅒ = 3/10)."],
+ vocab:["fraction","numerator","denominator","fraction bar","whole","whole number","equal parts","half","third","quarter","fifth","sixth","eighth","tenth","equivalent","is equal to","ascending order","descending order","number line"],
+ check:{title:"Quick checks (NESA key progress point and diocesan slides)",steps:["<b>NESA (Empson and Levi 2011).</b> Pose problems such as <b>1 − ⅓</b> and <b>2 − ⅝</b>, in words or as practical tasks. Students without intuitive strategies aren’t yet ready for standard procedures for adding and subtracting fractions.","Ask, <i>Find four-thirds of 60.</i> One-third of 60 is 20, so four-thirds is 80. <span class=\"pill src-dio\">Diocesan PL slides</span>","Ask, <i>How much cake does each person get if 2 cakes are shared between 3 people?</i> The answer is in the question: ⅔ of a cake. <span class=\"pill src-dio\">Diocesan PL slides</span>","Ask, <i>If you are given three-fifths of a length of tape, how can you find the whole length?</i> Try the tape diagram below."]},
+ tool:"tape",
+ quiz:[
+  {q:"More than half of 52 000 Year 7 students estimated 4/5 + 11/12 as 15 or 17. What does this show?",o:["Weak addition facts","Treating fractions as two whole numbers (numerators or denominators)","Not knowing benchmark fractions","Rushing"],a:1,why:"Both fractions are close to 1, so the sum is close to 2. Developing fractions as numbers on a number line addresses this."},
+  {q:"Given three-fifths of a length, what is the first step to find the whole?",o:["Multiply the length by 5","Split the three-fifths into 3 equal parts to find one-fifth","Add two more pieces the same as the three-fifths","Divide by 5"],a:1,why:"Finding one-fifth first lets students build the whole as five-fifths."},
+  {q:"12 lamingtons are shared equally between 24 people. As a fraction, how much does each person get?",o:["2","12/24, or one-half","24/12","1/12"],a:1,why:"A fraction can represent division: 12 ÷ 24 = 12/24 = ½. Words make the meaning clearer than the symbols."}
+ ]
+}
+};
+
+var IDEAS = [
+ {t:"A fraction comes from dividing into equal parts",d:"Fractions are based on division, not on counting parts.",s:{es1:"Cutting a ribbon into two equal parts; sharing a collection between two.",s1:"Repeated halving for quarters and eighths; halves and quarters of collections.",s2:"Making thirds and fifths without halving.",s3:"Fractions as division: ¾ is 3 ÷ 4; 2 cakes shared between 3."}},
+ {t:"The whole matters",d:"A fraction always refers to a whole, and you can only compare fractions of equal wholes.",s:{es1:"Halfway along a particular length.",s1:"The size of a part depends on the size of the whole.",s2:"Equal wholes to compare; where ¼ sits depends on where 1 is.",s3:"The number 1 as the common whole."}},
+ {t:"A fraction is a number",d:"Each fraction has one position on the number line.",s:{es1:"About halfway, more than halfway, less than halfway.",s1:"Eighths named on a strip, ready to become positions.",s2:"Fraction strips mapped to number lines; going beyond one.",s3:"Comparing and ordering on a number line; the benchmark ½."}},
+ {t:"Equivalence: same number, different names",d:"Re-dividing the whole gives equivalent fractions.",s:{es1:"Two halves make the whole.",s1:"Half of a half is a quarter.",s2:"4 eighths is one half; 4 tenths is 2 fifths; 4 quarters is 1.",s3:"Half as quarters, eighths, sixths and tenths; 6/8 = ¾; area models."}},
+ {t:"From the part back to the whole",d:"Reversible reasoning and the complement build part-whole understanding both ways.",s:{es1:"Two equal parts put back together make the whole.",s1:"Re-create the whole given half.",s2:"The complement to one whole; rebuild the whole from a unit fraction.",s3:"Rebuild the whole from three-fifths; 1 − ⅓ = ⅔."}},
+ {t:"Fractions as quantities to operate on",d:"Fractions can be added, subtracted and taken of quantities.",s:{es1:"Sharing a collection fairly between two.",s1:"Halves, quarters and eighths of collections; doubling and halving.",s2:"Totals beyond one; renaming 4 quarters as 1.",s3:"Adding and subtracting same and related denominators; ⅖ of 30."}}
+];
+
+var ASPECTS = [
+ {k:"o",l:"Outcomes",v:{es1:"No fractions outcomes. Foundations: <b>MAE-GM-03</b> identifies half the length and the halfway point",s1:"No fractions outcomes. Foundations: <b>MA1-GM-03</b> creates and recognises halves, quarters and eighths as part measures of a whole length; fractions of collections in <b>MA1-FG-01</b>",s2:"<b>MA2-PF-01</b> represents and compares halves, quarters, thirds and fifths as lengths on a number line and their related fractions formed by halving (eighths, sixths and tenths)",s3:"<b>MA3-RQF-01</b> compares and orders fractions with denominators of 2, 3, 4, 5, 6, 8 and 10<br><br><b>MA3-RQF-02</b> determines ½, ¼, ⅕ and ⅒ of measures and quantities"}},
+ {k:"f",l:"Fractions involved",v:{es1:"Half",s1:"Halves, quarters, eighths",s2:"Halves, quarters, eighths, thirds, sixths, fifths, tenths; beyond one",s3:"Denominators 2, 3, 4, 5, 6, 8 and 10; ½, ¼, ⅕ and ⅒ of quantities"}},
+ {k:"m",l:"Main models",v:{es1:"Lengths (ribbon, paper); sharing collections",s1:"Folded strips; linear arrangements of collections",s2:"Fraction strips mapped to number lines; tape diagrams",s3:"Number lines, area models, tape and bar diagrams, collections"}},
+ {k:"w",l:"The whole",v:{es1:"A particular length or collection",s1:"The original strip or collection: its size decides the size of the parts",s2:"Equal wholes are needed to compare; where is 1 on the line?",s3:"Always the number 1"}},
+ {k:"l",l:"Language and symbols",v:{es1:"half, halves, halfway",s1:"half, quarter, eighth in words; symbols not needed",s2:"‘two-thirds’, not ‘2 over 3’; fraction families; numerator and denominator can wait",s3:"numerator, denominator, fraction bar, equivalent"}}
+];
+
+var MODELS = [
+ {n:"Lengths: ribbon and paper strips",w:"halving by cutting and folding",s:0,e:1,d:"Half a length in Early Stage 1; repeated halving for quarters and eighths in Stage 1, highlighting the long edge. NESA advises introducing this continuous linear model first."},
+ {n:"Collections shared fairly",w:"half, quarter and eighth of a group",s:0,e:1,d:"Sharing between two (Early Stage 1) and halves, quarters and eighths of collections arranged in a line (Stage 1). Discrete models are revisited in Stage 3 alongside area models."},
+ {n:"Fraction strips",w:"partitioning a whole length",s:1,e:2,d:"Strips labelled in eighths in Stage 1; thirds and fifths, fraction families and equivalence in Stage 2. Used like a ruler against a number line."},
+ {n:"Number line",w:"fractions as numbers with a position",s:2,e:3,hi:true,d:"Fraction strips mapped onto number lines in Stage 2, including beyond one; comparing and ordering fractions in Stage 3. The diocesan slides note it plays a causal role in fraction magnitude understanding (Hamdan and Gunderson 2017)."},
+ {n:"Tape diagrams and bar models",w:"part-whole and fractions of quantities",s:2,e:3,d:"Fraction strips recorded as tape diagrams in Stage 2; fractions as division, complements and fractions of quantities (⅖ of 30) in Stage 3."},
+ {n:"Units of measure",w:"4 quarter litres make 1 litre",s:2,e:2,d:"Having a unit of measure makes the whole easier to describe when fractions exceed one."},
+ {n:"Frayer models",w:"vocabulary such as two-thirds",s:2,e:2,d:"Students complete Frayer models in their own words (NESA additional advice, Partitioned fractions A)."},
+ {n:"Area model",w:"subdividing rectangles both ways",s:3,e:3,d:"Divide the length into thirds, then halve each third to make sixths. Shows how equivalent fractions and common denominators are created."},
+ {n:"Fraction wall",w:"one-half in many names",s:3,e:3,d:"Show one-half as quarters, eighths, sixths and tenths."}
+];
+
+var ROOTS = ["Counting parts instead of comparing to the whole","The whole is ignored","A fraction read as two whole numbers","Reasoning only from whole to part"];
+var SCENARIOS = [
+ {st:"es1",q:"Asked for half the ribbon, Ava cuts a small piece off the end and says, “This is my half.”",a:0,why:"Ava treats any piece as a half. Lay the two pieces side by side and talk about two equal lengths."},
+ {st:"s1",q:"Mia folds a strip in half, then folds one half again, and says the strip is in quarters.",a:0,why:"Mia counts four sections (or folds) without checking that the parts are equal."},
+ {st:"s1",q:"Josh says half of a short strip is the same as half of a long strip, “because half is half”.",a:1,why:"The size of the part depends on the whole. Halve two different strips and compare."},
+ {st:"s2",q:"Ella says ⅛ is bigger than ⅓ “because 8 is bigger than 3”.",a:2,why:"Ella reads the denominator as a whole number. Aligned strips with the same whole show more parts means smaller parts."},
+ {st:"s2",q:"On a number line from 0 to 2, Ben places ¼ a quarter of the way along the whole line.",a:1,why:"Ben uses the whole line as the unit. A quarter is a quarter of the distance from 0 to 1."},
+ {st:"s2",q:"Given a strip and told it is one-quarter of the whole, Zoe can’t draw the whole strip.",a:3,why:"Zoe can go from whole to part but not back. The syllabus asks students to recreate the whole from a unit fraction (reversible reasoning)."},
+ {st:"s2",q:"Shown a circle with 3 of 4 parts shaded, Noah says “3 and 1”.",a:0,why:"Shading inside the shape lets Noah count parts instead of relating the part to the whole. Show the part alongside the whole."},
+ {st:"s3",q:"Estimating 4/5 + 11/12, Sam chooses 15.",a:2,why:"Sam added numerators. Both fractions are close to 1, so the sum is close to 2."},
+ {st:"s3",q:"Ruby says Jake can’t have eaten more cake than Kate, because Jake ate ¼ and Kate ate ½ (of a different cake).",a:1,why:"Ruby ignores that the cakes are different wholes. Fractions as numbers use the common whole, 1."},
+ {st:"s3",q:"Kai writes ⅕ + ⅖ = 3/10.",a:2,why:"Kai adds numerators and denominators as whole numbers. The parts are still fifths."},
+ {st:"s3",q:"Asked for 1 − ⅓, Lily says she needs a rule before she can start.",a:3,why:"Lily doesn’t yet see ⅔ as the complement of ⅓. Use a strip: take one-third from the whole."}
+];
+
+var PROMPTS = [
+ ["Looking across the progression","Which of the six big ideas does your stage depend on most? Which earlier stage is it built on?"],
+ ["Looking across the progression","How often do your students meet fractions as lengths on a number line, compared with shaded shapes?"],
+ ["Looking across the progression","The diocesan slides ask why ‘an equal part of a whole’ might be an insufficient understanding of a fraction. What is your answer?"],
+ ["Your students","Run the quick check for your stage with three students: one secure, one you’re unsure of and one who is struggling. What did you learn that you didn’t expect?"],
+ ["Your students","Which root misconception do you see most often? Where in the earlier stages might it have started?"],
+ ["Your students","Can your students rebuild the whole from a part? Which students go only from whole to part?"],
+ ["Your practice","How do you read ⅔ aloud? Do you say ‘two-thirds’, ‘2 out of 3’ or ‘2 over 3’?"],
+ ["Your practice","How much of your fractions teaching uses shading inside shapes? What could you use instead?"],
+ ["Your practice","How do you recognise students’ home languages and cultural knowledge (such as sharing within kinship systems) when teaching fractions?"]
+];
+var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+var WM_ELEMENTS = [
+ ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],
+ ["Exploring and connecting","Students explore ideas and connect concepts and representations."],
+ ["Choosing and applying techniques","Students choose and apply mathematical techniques to solve problems."],
+ ["Communicating","Students communicate their thinking clearly and coherently."],
+ ["Reasoning","Students reason about and justify their thinking."]
+];
+
+var WM = {
+ es1:{
+  tagsLead:"Every content point addresses MAO-WM-01. In this stage, the fraction foundations are in Geometric measure, where the syllabus tags this point as reasoning:",
+  tags:[["Divide a length into two equal parts (Geometric measure)","Reasons about relations"]],
+  before:{task:"Colour half of the rectangle.<br><br>▭",lim:["The ‘shading approach’ shows the part inside the whole (diocesan slides)","One correct response, no explanation","Doesn’t ask whether the parts are equal"]},
+  after:{task:"“Here is a ribbon. Cut it so that you and a friend get half each. How do you know it’s fair?”<br><br>“Now show me the halfway point of this path. Is that the same as half the path?”",enable:"Fold a paper strip end to end and compare the two pieces.",extend:"“Can you find half of half the ribbon? What would you call that piece?”",listen:"Placing the pieces side by side; ‘the same length’; telling a position (halfway point) from a length (half).",el:["Understanding and fluency","Exploring and connecting","Communicating","Reasoning"]}
+ },
+ s1:{
+  tagsLead:"Every content point addresses MAO-WM-01. The syllabus doesn’t tag Stage 1 fractions content as reasoning, but these points invite it:",
+  tags:[["Recognise when lengths have or have not been divided into halves and quarters (Geometric measure)","Invites reasoning"],["Re-create the whole given half (Forming groups)","Invites reasoning"],["Model a half, a quarter or an eighth of a collection, and explain their thinking (Forming groups)","Invites reasoning"]],
+  before:{task:"Shade one quarter of the square.<br><br>□",lim:["The area model, which NESA places after the linear model","Shading invites counting parts","No need to show the parts are equal"]},
+  after:{task:"“Fold a strip to show quarters. Now fold another strip in half, and fold just one half in half again. Are these quarters too? Convince me.”",enable:"Start with halves: fold and compare the two pieces.",extend:"“Make eighths. How many eighths are in one quarter? How do you know?”",listen:"Checking equal lengths; ‘a quarter is half of a half’; noticing that the size of the parts depends on the strip.",el:["Understanding and fluency","Exploring and connecting","Communicating","Reasoning"]}
+ },
+ s2:{
+  tags:[["Determine the complementary fractional part needed to complete one whole","Reasons about relations"],["Recreate the whole unit from a fractional part (½, ¼, ⅓ and ⅛)","Reversible reasoning"],["Recognise the need to have equal wholes to compare partitioned fractions","Reasoning about relations"]],
+  before:{task:"What fraction is shaded?<br><br>◕ (3 of 4 parts shaded)",lim:["Counting shaded parts can be done without seeing the fraction as a number","The part overlaps the whole (diocesan slides)","No comparison, no reasoning"]},
+  after:{task:"“Position two-thirds on a number line from 0 to 2. Then position it on a line from 0 to 1. Why does it look different but stay the same number?” (diocesan slides)",enable:"Lay a thirds fraction strip along a number line from 0 to 1.",extend:"“Where would four-thirds go on each line? Explain how you know.”",listen:"Finding 1 first; dividing the distance from 0 to 1 into three equal parts; ‘two-thirds is one third less than one whole’.",el:["Exploring and connecting","Choosing and applying techniques","Communicating","Reasoning"]}
+ },
+ s3:{
+  tags:[["Justify the need for fractions to refer to the number 1 as the common whole","Reasons about quantity"],["Generate the whole quantity from non-unit fractional parts","Reversible reasoning"],["Represent fractional quantities with the same or related denominators to add and subtract","Reasons about relations"]],
+  before:{task:"Find ⅖ of 30.<br><br>Answer: ____",lim:["Can be done by a memorised rule (divide by the bottom, times by the top)","No representation of the relationship","Only works from whole to part"]},
+  after:{task:"“Bella says ⅖ of 30 is 12. Jack says it’s 2 × 30 ÷ 5. Use a tape diagram to show whether they agree.”<br><br>“Now: 12 is ⅖ of a number. What is the number?”",enable:"Start with ⅕ of 30 on a tape diagram.",extend:"“Find four-thirds of 60. Is it more or less than 60? Why?” (diocesan slides)",listen:"Each fifth is 6; two-fifths is 12; reversing: 12 is two-fifths, so one-fifth is 6 and the whole is 30.",el:["Understanding and fluency","Exploring and connecting","Communicating","Reasoning"]}
+ }
+};
+
+var CLOSED = [
+ {st:"s1",task:"Colour half of the shape.",moves:[
+  {m:"Who is correct?",t:"“Ari folded the paper corner to corner. Bella folded it edge to edge. Who made halves? How do you know?”",el:["Reasoning","Communicating"]},
+  {m:"Same and different",t:"“What is the same and what is different about half of a ribbon, half of 8 counters and the halfway point of a path?”",el:["Exploring and connecting","Communicating"]},
+  {m:"Always, sometimes, never",t:"“Half of something is bigger than a quarter of something else. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
+  {m:"Open it up",t:"“Show half of this strip in as many different ways as you can.”",el:["Choosing and applying techniques","Reasoning"]},
+  {m:"Convince me",t:"“Convince me that these two pieces are halves.”",el:["Understanding and fluency","Communicating"]}
+ ]},
+ {st:"s2",task:"Shade ¾ of the rectangle.",moves:[
+  {m:"Who is correct?",t:"“Tom says ⅜ is bigger than ⅓. Mei says it’s smaller. Use fraction strips with the same whole to decide.”",el:["Reasoning","Communicating"]},
+  {m:"Same and different",t:"“What is the same and what is different about ¾, 6/8 and ⅜ on a number line?”",el:["Exploring and connecting","Communicating"]},
+  {m:"Always, sometimes, never",t:"“A fraction with a bigger denominator is smaller. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
+  {m:"Open it up",t:"“Find as many fractions as you can between one-half and one whole, using the fraction families you know.”",el:["Choosing and applying techniques","Reasoning"]},
+  {m:"Convince me",t:"“Convince me that 4 quarters is the same as one whole, using a number line.”",el:["Understanding and fluency","Communicating"]}
+ ]},
+ {st:"s3",task:"¼ + ⅛ = ____",moves:[
+  {m:"Who is correct?",t:"“Kai says ¼ + ⅛ = 2/12. Jess says it’s ⅜. Who is correct? Use a fraction wall to prove it.”",el:["Reasoning","Communicating"]},
+  {m:"Same and different",t:"“What is the same and what is different about ¼ + ⅛, 2/8 + ⅛ and 3 ÷ 8?”",el:["Exploring and connecting","Communicating"]},
+  {m:"Always, sometimes, never",t:"“When you add two fractions, the answer is bigger than both of them. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
+  {m:"Open it up",t:"“Jake ate ⅛ of a cake and Kath ate ¼. What fraction remains? Write a similar problem where exactly half the cake remains.”",el:["Choosing and applying techniques","Reasoning"]},
+  {m:"Convince me",t:"“Convince me that ¼ + ⅛ is less than one-half without working out the exact answer.”",el:["Understanding and fluency","Communicating"]}
+ ]}
+];
+
+</script>
+<script>
+var FNAME={2:["half","halves"],3:["third","thirds"],4:["quarter","quarters"],5:["fifth","fifths"],6:["sixth","sixths"],8:["eighth","eighths"],10:["tenth","tenths"]};
+var NUMW=["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"];
+function fword(k,d){ return NUMW[k]+"-"+(k===1?FNAME[d][0]:FNAME[d][1]); }
+function frac(k,d){ return '<span class="fr"><sup>'+k+'</sup>⁄<sub>'+d+'</sub></span>'; }
+
+function toolHTML(t){
+ if(t==="half") return '<div class="tool"><div class="tt">Model</div><h4>Cut the ribbon in half</h4><p class="note">Drag the scissors to where you would cut. Then fold to check whether the two pieces are equal.</p><div class="ribwrap"><div class="rib" id="hfRib"><div class="ribA" id="hfA"></div><div class="ribB" id="hfB"></div><div class="cut" id="hfCut">✂</div></div><input type="range" id="hfPos" min="5" max="95" value="38" aria-label="Where to cut"></div><div class="ctrl"><button class="btn small" id="hfFold">Fold to check</button><button class="btn ghost small" id="hfPoint">Show the halfway point</button></div><div id="hfFoldPic"></div><div class="readout" id="hfRead"></div></div>';
+ if(t==="halving") return '<div class="tool"><div class="tt">Model</div><h4>Repeated halving</h4><p class="note">Halve the whole strip again and again, or keep halving just one piece. Compare the results, as the syllabus suggests.</p><div class="moves" id="hvMode" style="margin-top:0"><button data-m="all" class="on">Halve every piece</button><button data-m="one">Halve one piece only</button></div><div class="ctrl"><button class="btn small" id="hvGo">Halve</button><button class="btn ghost small" id="hvReset">Start again</button><label for="hvN">Collection</label><select id="hvN"><option>8</option><option selected>16</option><option>24</option></select></div><div class="hstrip" id="hvStrip"></div><div class="hcoll" id="hvColl"></div><div class="readout" id="hvRead"></div></div>';
+ if(t==="strips") return '<div class="tool"><div class="tt">Model</div><h4>Fraction strips on a number line</h4><p class="note">Choose a fraction family and how many parts. The strip sits on a number line like a ruler. Change where the line ends to see that ¼ is always a quarter of the way from 0 to 1.</p><div class="ctrl"><label for="fsD">Family</label><select id="fsD"><option value="2">halves</option><option value="3">thirds</option><option value="4" selected>quarters</option><option value="5">fifths</option><option value="6">sixths</option><option value="8">eighths</option><option value="10">tenths</option></select><label for="fsK">Parts</label><input type="range" id="fsK" min="0" max="8" value="3" style="width:160px"><label for="fsE">Line ends at</label><select id="fsE"><option value="1">1</option><option value="2" selected>2</option></select><label for="fsC">Compare with</label><select id="fsC"><option value="">nothing</option><option value="1/2">one-half</option><option value="1/3">one-third</option><option value="3/8">three-eighths</option><option value="2/5">two-fifths</option><option value="4/8">four-eighths</option></select></div><div id="fsPic" class="fspic"></div><div class="readout" id="fsRead"></div></div>';
+ if(t==="tape") return '<div class="tool"><div class="tt">Model</div><h4>Tape diagram</h4><p class="note">Find a fraction of a quantity, or work backwards from a part to the whole.</p><div class="moves" id="tpMode" style="margin-top:0"><button data-m="of" class="on">Fraction of a quantity</button><button data-m="whole">Find the whole</button></div><div class="ctrl"><input type="number" id="tpA" value="2" min="1" max="20" style="width:64px"><span>/</span><select id="tpB"><option>2</option><option>3</option><option>4</option><option selected>5</option><option>6</option><option>8</option><option>10</option></select><span id="tpLab">of</span><input type="number" id="tpN" value="30" min="1" max="1000" style="width:90px"><button class="btn small" id="tpGo">Show</button><span class="note">Try ⅖ of 30, ¾ of 24, 4/3 of 60, or “⅗ is 18”</span></div><div id="tpPic" class="tppic"></div><div class="readout" id="tpRead"></div></div>';
+ return "";
+}
+
+/* ES1 half a length */
+function wireHalf(){
+ var pos=38, showPt=false;
+ function draw(){
+  $("#hfA").style.width=pos+"%"; $("#hfB").style.width=(100-pos)+"%"; $("#hfCut").style.left=pos+"%";
+  var d=pos-50, where=Math.abs(d)<=3?"about halfway":(d<0?"less than halfway":"more than halfway");
+  $("#hfRead").innerHTML='The cut is '+where+'<small>'+(Math.abs(d)<=3?'The two pieces look the same length. Fold to check that they match exactly.':'One piece is longer than the other, so they are not halves.')+'</small>';
+  var r=$("#hfRib"), p=$("#hfPt"); if(p) p.remove();
+  if(showPt){ var el=document.createElement("div"); el.id="hfPt"; el.className="hpt"; el.innerHTML='<span>halfway point</span>'; r.appendChild(el); }
+  $("#hfFoldPic").innerHTML="";
+ }
+ $("#hfPos").oninput=function(){pos=+this.value;draw();};
+ $("#hfPoint").onclick=function(){showPt=!showPt;this.textContent=showPt?"Hide the halfway point":"Show the halfway point";draw();};
+ $("#hfFold").onclick=function(){
+  var a=pos, b=100-pos, eq=Math.abs(a-b)<=6;
+  $("#hfFoldPic").innerHTML='<div class="foldcmp"><div class="fp" style="width:'+a+'%;background:var(--es1)"></div><div class="fp" style="width:'+b+'%;background:var(--s2)"></div></div><p class="note" style="margin:6px 0 0">'+(eq?'The pieces match: two equal lengths, so each is half the ribbon.':'Laid side by side, the pieces don’t match. Move the scissors and try again.')+'</p>';
+ };
+ draw();
+}
+
+/* S1 repeated halving */
+function wireHalving(){
+ var mode="all", level=0, N=16;
+ function pieces(){ if(mode==="all"){var n=Math.pow(2,level),p=[];for(var i=0;i<n;i++)p.push(n);return p;} var q=[];for(var j=1;j<=level;j++) q.push(Math.pow(2,j)); if(level>0) q.push(Math.pow(2,level)); else q=[1]; return q; }
+ function draw(){
+  var P=pieces(), names={1:"one whole",2:"one-half",4:"one-quarter",8:"one-eighth"};
+  $("#hvStrip").innerHTML=P.map(function(d,i){return '<div class="hp" style="width:'+(100/d)+'%;background:'+(i%2?"var(--s1-soft)":"#f6dfae")+'"><span>'+(d===1?"whole":names[d])+'</span></div>';}).join("");
+  if(mode==="all"){
+   var n=Math.pow(2,level), per=N/n, h="";
+   for(var g=0;g<n;g++){ var dots=""; for(var k=0;k<per;k++) dots+='<span class="dt" style="background:var(--s1)"></span>'; h+='<div class="hg">'+dots+'</div>'; }
+   $("#hvColl").innerHTML=h;
+   var nm={1:"",2:"halves",4:"quarters",8:"eighths"}[n];
+   $("#hvRead").innerHTML=(n===1?'One whole strip':'The strip is in '+n+' equal parts: '+nm)+'<small>'+(n===1?'Halve it to make two equal parts.':'Each part is '+names[n]+'. '+(n>1?'In the collection of '+N+', '+names[n]+' is '+per+'.':'')+(n===8?' Halving three times makes eighths.':''))+'</small>';
+  } else {
+   $("#hvColl").innerHTML="";
+   var smallest=Math.pow(2,level);
+   $("#hvRead").innerHTML=(level===0?'One whole strip':'Pieces: '+P.map(function(d){return names[d];}).join(", "))+'<small>'+(level===0?'Halve one piece at a time.':'Halving one-half of a half makes a quarter, and halving again makes an eighth. The pieces are different sizes, so the strip is not in quarters or eighths, even though one piece is '+names[smallest]+'.')+'</small>';
+  }
+  $("#hvGo").disabled=level>=3;
+ }
+ $$("#hvMode button").forEach(function(b){b.onclick=function(){mode=b.dataset.m;level=0;$$("#hvMode button").forEach(function(x){x.classList.toggle("on",x===b);});draw();};});
+ $("#hvGo").onclick=function(){if(level<3){level++;draw();}};
+ $("#hvReset").onclick=function(){level=0;draw();};
+ $("#hvN").onchange=function(){N=+this.value;draw();};
+ draw();
+}
+
+/* S2 fraction strips on a number line */
+function wireStrips(){
+ function draw(){
+  var d=+$("#fsD").value, E=+$("#fsE").value, K=$("#fsK"); K.max=d*E; var k=Math.min(+K.value,d*E); K.value=k;
+  var L=30, R=670, X=function(v){return L+v/E*(R-L);}, s='<svg viewBox="0 0 700 '+($("#fsC").value?250:190)+'" role="img" aria-label="Fraction strip on a number line">';
+  // strip(s)
+  for(var w=0;w<E;w++){ for(var i=0;i<d;i++){ var idx=w*d+i, x1=X(w+i/d), x2=X(w+(i+1)/d); s+='<rect x="'+x1+'" y="30" width="'+(x2-x1)+'" height="44" fill="'+(idx<k?"#23897d":"#fff")+'" fill-opacity="'+(idx<k?0.85:1)+'" stroke="#1b2333" stroke-width="1.5"/>'; } }
+  // number line
+  s+='<line x1="'+(L-10)+'" y1="110" x2="'+(R+10)+'" y2="110" stroke="#1b2333" stroke-width="2"/>';
+  for(var j=0;j<=d*E;j++){ var v=j/d, x=X(v), whole=j%d===0; s+='<line x1="'+x+'" y1="'+(whole?98:103)+'" x2="'+x+'" y2="'+(whole?122:117)+'" stroke="#1b2333" stroke-width="'+(whole?2.5:1.5)+'"/>';
+   if(whole) s+='<text x="'+x+'" y="148" text-anchor="middle" font-size="18" font-weight="800" fill="#1b2333">'+(j/d)+'</text>';
+   else if(d<=6||j===k) s+='<text x="'+x+'" y="140" text-anchor="middle" font-size="13" fill="#4a5468">'+j+'/'+d+'</text>'; }
+  if(k>0){ s+='<circle cx="'+X(k/d)+'" cy="110" r="7" fill="#c8553d"/><text x="'+X(k/d)+'" y="20" text-anchor="middle" font-size="15" font-weight="800" fill="#c8553d">'+k+'/'+d+'</text>'; }
+  var c=$("#fsC").value;
+  if(c){ var p=c.split("/"), ck=+p[0], cd=+p[1];
+   for(i=0;i<cd;i++){ x1=X(i/cd); x2=X((i+1)/cd); s+='<rect x="'+x1+'" y="170" width="'+(x2-x1)+'" height="40" fill="'+(i<ck?"#c88a12":"#fff")+'" fill-opacity="'+(i<ck?0.8:1)+'" stroke="#1b2333" stroke-width="1.5"/>'; }
+   s+='<text x="'+X(ck/cd)+'" y="232" text-anchor="middle" font-size="14" font-weight="700" fill="#a06b00">'+ck+'/'+cd+'</text>';
+   s+='<line x1="'+X(ck/cd)+'" y1="168" x2="'+X(ck/cd)+'" y2="110" stroke="#c88a12" stroke-dasharray="4 4" stroke-width="1.5"/>'; }
+  $("#fsPic").innerHTML=s+'</svg>';
+  var w1=Math.floor(k/d), r=k%d, txt=fword(k,d);
+  var extra = k===0?'Choose how many parts.' : (k===d?'That is one whole: '+d+' '+FNAME[d][1]+' make 1.' : (k>d?'That is '+(r===0?NUMW[w1]+' wholes':NUMW[w1]+' and '+fword(r,d))+'.' : 'The complement to make one whole is '+fword(d-k,d)+'.'));
+  var cmp="";
+  if(c){ var cv=ck/cd, kv=k/d; cmp=' Compared with '+fword(ck,cd)+': '+(Math.abs(cv-kv)<1e-9?'they are equivalent (the same position).':(kv>cv?fword(k,d)+' is larger.':fword(ck,cd)+' is larger.')); }
+  $("#fsRead").innerHTML=txt+'<small>'+extra+cmp+(E===2?' The line runs to 2, so 1 is halfway along it.':'')+'</small>';
+ }
+ ["#fsD","#fsE","#fsC"].forEach(function(id){$(id).onchange=draw;}); $("#fsK").oninput=draw;
+ draw();
+}
+
+/* S3 tape diagram */
+function wireTape(){
+ var mode="of";
+ function draw(){
+  var a=Math.round(+$("#tpA").value), b=+$("#tpB").value, N=Math.round(+$("#tpN").value);
+  $("#tpLab").textContent=mode==="of"?"of":"is";
+  if(!(a>=1&&N>=1)){ $("#tpRead").innerHTML='<small>Enter whole numbers.</small>'; $("#tpPic").innerHTML=""; return; }
+  var unit, whole;
+  if(mode==="of"){ if(N%b){ $("#tpRead").innerHTML='<small>Choose a quantity that is a multiple of '+b+', so each '+FNAME[b][0]+' is a whole number.</small>'; $("#tpPic").innerHTML=""; return; } unit=N/b; whole=N; }
+  else { if(N%a){ $("#tpRead").innerHTML='<small>Choose a part that can be split into '+a+' equal pieces.</small>'; $("#tpPic").innerHTML=""; return; } unit=N/a; whole=unit*b; }
+  var cells=Math.max(a,b), h='<div class="tape" style="grid-template-columns:repeat('+cells+',1fr)">';
+  for(var i=0;i<cells;i++){ var inW=i<b, sh=i<a; h+='<div class="tc'+(sh?" sh":"")+(inW?"":" over")+'">'+unit+'</div>'; }
+  h+='</div><div class="tapebrace" style="width:'+(100*b/cells)+'%"><span>whole = '+whole+'</span></div>';
+  h+='<div class="tapeline" style="grid-template-columns:repeat('+cells+',1fr)">';
+  for(i=1;i<=cells;i++) h+='<span>'+i+'/'+b+'</span>';
+  $("#tpPic").innerHTML=h+'</div>';
+  if(mode==="of") $("#tpRead").innerHTML=a+'/'+b+' of '+N+' = '+(unit*a)+'<small>Split '+N+' into '+b+' equal parts: each '+FNAME[b][0]+' is '+unit+'. '+(function(t){return t.charAt(0).toUpperCase()+t.slice(1);})(a<=20?fword(a,b):a+' '+FNAME[b][1])+' is '+a+' × '+unit+' = '+(unit*a)+'.'+(a>b?' More than one whole, so the answer is more than '+N+'.':'')+'</small>';
+  else $("#tpRead").innerHTML='The whole is '+whole+'<small>'+a+'/'+b+' is '+N+', so split '+N+' into '+a+' equal parts: one '+FNAME[b][0]+' is '+unit+'. The whole is '+b+' '+FNAME[b][1]+': '+b+' × '+unit+' = '+whole+'.</small>';
+ }
+ $$("#tpMode button").forEach(function(btn){btn.onclick=function(){mode=btn.dataset.m;$$("#tpMode button").forEach(function(x){x.classList.toggle("on",x===btn);}); if(mode==="whole"){$("#tpA").value=3;$("#tpB").value="5";$("#tpN").value=18;} else {$("#tpA").value=2;$("#tpB").value="5";$("#tpN").value=30;} draw();};});
+ $("#tpGo").onclick=draw; $("#tpB").onchange=draw;
+ $("#tpA").onkeydown=$("#tpN").onkeydown=function(e){if(e.key==="Enter") draw();};
+ draw();
+}
+
+function wireTool(t){
+ if(t==="half") wireHalf();
+ if(t==="halving") wireHalving();
+ if(t==="strips") wireStrips();
+ if(t==="tape") wireTape();
+}
+
+</script>
+<script>
+/* Professional learning module engine.
+   Shared by every module. Each module page loads, in order:
+   content.js (M config + data), tools.js (toolHTML + wireTool), then this file. */
+"use strict";
+/* ---------------- storage (safe) ---------------- */
+var KEY = M.key;
+var mem = {done:{}, notes:{}, todo:{}};
+try { var raw = window.localStorage.getItem(KEY); if (raw) { var p = JSON.parse(raw); mem.done = p.done||{}; mem.notes = p.notes||{}; mem.todo = p.todo||{}; } } catch(e) {}
+function save(){ try { window.localStorage.setItem(KEY, JSON.stringify(mem)); } catch(e) {} }
+
+/* ---------------- sections ---------------- */
+var SECTIONS = [
+ {id:"welcome",label:"Welcome",grp:"Start here",r:renderWelcome},
+ {id:"ideas",label:"The big ideas",grp:"Start here",r:renderIdeas},
+ {id:"prog",label:"Progression explorer",grp:"Start here",r:renderProg},
+ {id:"wm",label:"Working mathematically",grp:"Start here",r:renderWM},
+ {id:"es1",label:"Early Stage 1",grp:"Stage by stage",r:function(){return renderStage("es1");},stage:"es1"},
+ {id:"s1",label:"Stage 1",grp:"Stage by stage",r:function(){return renderStage("s1");},stage:"s1"},
+ {id:"s2",label:"Stage 2",grp:"Stage by stage",r:function(){return renderStage("s2");},stage:"s2"},
+ {id:"s3",label:"Stage 3",grp:"Stage by stage",r:function(){return renderStage("s3");},stage:"s3"},
+ {id:"models",label:"Models across K–6",grp:"Pull it together",r:renderModels},
+ {id:"sorter",label:"Misconception sorter",grp:"Pull it together",r:renderSorter},
+ {id:"reflect",label:"Reflect and plan",grp:"Pull it together",r:renderReflect}
+];
+var current = 0;
+
+function $(s,el){return (el||document).querySelector(s);}
+function $$(s,el){return Array.prototype.slice.call((el||document).querySelectorAll(s));}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+
+function buildNav(){
+ var side=$("#side"), h="", g="";
+ SECTIONS.forEach(function(s,i){
+  if(s.grp!==g){g=s.grp;h+='<div class="grp">'+g+'</div>';}
+  var dotStyle = s.stage && !mem.done[s.id] ? ' style="border-color:'+STAGES[s.stage].col+'"' : '';
+  h+='<button data-i="'+i+'" class="'+(i===current?"on":"")+'" aria-current="'+(i===current?"page":"false")+'"><span class="dot'+(mem.done[s.id]?" done":"")+'"'+dotStyle+'></span>'+s.label+'</button>';
+ });
+ side.innerHTML=h;
+ $$("button",side).forEach(function(b){b.onclick=function(){go(+b.dataset.i);};});
+ var sel=$("#mobSel");
+ sel.innerHTML=SECTIONS.map(function(s,i){return '<option value="'+i+'"'+(i===current?" selected":"")+'>'+(mem.done[s.id]?"✓ ":"")+s.label+'</option>';}).join("");
+ sel.onchange=function(){go(+sel.value);};
+ var n=SECTIONS.filter(function(s){return mem.done[s.id];}).length;
+ $("#progTxt").textContent=n+" of "+SECTIONS.length+" sections";
+ $("#progFill").style.width=(100*n/SECTIONS.length)+"%";
+}
+
+function go(i){
+ current=i; buildNav();
+ var s=SECTIONS[i], pg=$("#page");
+ pg.innerHTML=s.r()+doneBar(s,i);
+ wire(s.id);
+ var db=$("#doneBtn"); if(db) db.onclick=function(){mem.done[s.id]=!mem.done[s.id];save();go(i);};
+ var nx=$("#nextBtn"); if(nx) nx.onclick=function(){if(!mem.done[s.id]){mem.done[s.id]=true;save();} go(i+1);};
+ var pv=$("#prevBtn"); if(pv) pv.onclick=function(){go(i-1);};
+ try{window.scrollTo(0,0);}catch(e){}
+ var m=document.querySelector("main"); if(m) m.scrollTop=0;
+}
+
+function doneBar(s,i){
+ var d=!!mem.done[s.id];
+ return '<div class="done-bar'+(d?" is-done":"")+'"><div><b>'+(d?"Section complete ✓":"Finished this section?")+'</b><div class="note">'+(d?"You can come back at any time.":"Mark it complete to track your progress.")+'</div></div><div class="nextprev">'+
+ (i>0?'<button class="btn ghost" id="prevBtn">← Back</button>':'')+
+ '<button class="btn ghost" id="doneBtn">'+(d?"Mark as not done":"Mark complete")+'</button>'+
+ (i<SECTIONS.length-1?'<button class="btn" id="nextBtn">Next: '+SECTIONS[i+1].label+' →</button>':'')+'</div></div>';
+}
+
+/* ---------------- renderers ---------------- */
+function renderWelcome(){
+ var rows=ORDER.map(function(k){var S=STAGES[k],C=STAGE_CONTENT[k];return '<tr><td><span class="pill" style="background:'+S.col+';color:#fff;border-color:'+S.col+'">'+S.name+'</span><div class="note" style="margin-top:4px">'+S.years+'</div></td><td>'+S.fa+'</td><td>'+C.outcomes.map(function(o){return o[0];}).join(", ")+'</td></tr>';}).join("");
+ return '<div class="hero" style="border-left-color:var(--accent)"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Welcome</span><h2>'+M.welcomeH2+'</h2><p>'+M.welcomeP+'</p></div>'+
+ '<section class="blk"><h3>What you’ll do</h3><div class="grid3">'+
+ card("Explore","the six big ideas and how each one grows from Kindergarten to Year 6.")+
+ card("Diagnose","misconceptions with flip cards, short quizzes and a misconception sorter.")+
+ card("Rework","closed tasks into rich ones that embed Working mathematically, with one makeover for each stage.")+
+ card("Try",M.tryText)+
+ card("Reflect","on your own students and plan next steps. Your notes save in this browser.")+
+ '</div></section>'+
+ '<section class="blk"><h3>'+M.namesH3+'</h3><p class="lead">'+M.namesP+'</p><table class="simple"><thead><tr><th>Stage</th><th>Focus area name</th><th>Outcomes</th></tr></thead><tbody>'+rows+'</tbody></table></section>'+
+ '<section class="blk"><h3>Suggested pathways</h3><div class="grid2"><div class="card"><h4 style="margin-bottom:6px">On your own (about 45 minutes)</h4><ul class="tight"><li>Big ideas and the progression explorer</li><li>Your stage, plus the stage before it</li><li>The misconception sorter</li><li>Reflect and plan</li></ul></div><div class="card"><h4 style="margin-bottom:6px">As a staff or PLC session (about 60 minutes)</h4><ul class="tight"><li>Whole staff: big ideas and progression (15 min)</li><li>Stage teams: their stage section and tool (25 min)</li><li>Whole staff: misconception sorter (10 min)</li><li>Reflection prompts and next steps (10 min)</li></ul></div></div><p class="note" style="margin-top:12px">Tip: most difficulties in a stage begin in the stage before it, so look one stage back as well as at your own.</p></section>';
+}
+function card(t,d){return '<div class="card"><b>'+t+'</b> <span style="color:var(--ink2)">'+d+'</span></div>';}
+
+function renderIdeas(){
+ return '<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Big ideas</span><h2>Six ideas run from K to 6</h2><p>'+M.ideasP+'</p></div>'+
+ '<div class="ideas">'+IDEAS.map(function(d,i){return '<button class="idea" data-i="'+i+'"><div class="num">'+(i+1)+'</div><h4>'+d.t+'</h4><p>'+d.d+'</p></button>';}).join("")+'</div>'+
+ '<div class="ideadetail card" id="ideaDetail"><p class="note" style="margin:0">Select an idea above to see what it looks like at each stage.</p></div>'+
+ '<p class="note" style="margin-top:14px">'+M.ideasNote+'</p>';
+}
+function showIdea(i){
+ var d=IDEAS[i];
+ $$(".idea").forEach(function(b){b.classList.toggle("on",+b.dataset.i===i);});
+ $("#ideaDetail").innerHTML='<h4 style="font-size:18px;margin-bottom:10px">'+(i+1)+'. '+d.t+' — at each stage</h4>'+ORDER.map(function(k){return '<div class="srow"><span class="sl" style="background:'+STAGES[k].col+'">'+STAGES[k].name+'</span><span>'+d.s[k]+'</span></div>';}).join("");
+}
+
+function renderProg(){
+ return '<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Progression</span><h2>How the focus area grows</h2><p>'+M.progP+'</p></div>'+
+ '<div class="aspects" role="tablist">'+ASPECTS.map(function(a,i){return '<button role="tab" data-k="'+i+'" class="'+(i===0?"on":"")+'">'+a.l+'</button>';}).join("")+'</div>'+
+ '<div class="pcols" id="pcols"></div>'+
+ '<section class="blk"><h3>What changes between stages</h3><div class="shifts">'+
+ M.shifts.map(function(x){return '<div class="shift"><div class="arr" style="color:'+STAGES[x[0]].col+'">'+x[1]+'</div>'+x[2]+'</div>';}).join("")+
+ '</div></section>';
+}
+function showAspect(i){
+ var a=ASPECTS[i];
+ $$(".aspects button").forEach(function(b){b.classList.toggle("on",+b.dataset.k===i);});
+ $("#pcols").innerHTML=ORDER.map(function(k){var S=STAGES[k];return '<div class="pcol"><div class="ph" style="background:'+S.col+'">'+S.name+'<small>'+S.years+'</small></div><div class="pb">'+a.v[k]+'</div></div>';}).join("");
+}
+
+function renderStage(k){
+ var S=STAGES[k], C=STAGE_CONTENT[k];
+ var h='<div class="hero" style="border-left-color:'+S.col+'"><span class="tag" style="background:'+S.soft+';color:'+S.col+'">'+S.name+' · '+S.years+'</span><h2>'+S.fa+'</h2><p>'+C.lead+'</p></div>';
+ h+='<section class="blk"><h3><span class="n">1</span>Outcomes</h3>'+C.outcomes.map(function(o){return '<div class="outc"><code style="background:'+S.col+'">'+o[0]+'</code><span>'+o[1]+'</span></div>';}).join("")+'</section>';
+ h+='<section class="blk"><h3><span class="n">2</span>Content at a glance</h3><p class="lead">Select a content heading to see its content points.</p>'+C.content.map(function(c){return '<div class="acc"><button aria-expanded="false"><span>'+(c[0]?'<span class="part" style="background:'+S.col+'">'+c[0]+'</span>':'')+c[1]+'</span><span class="ch">›</span></button><div class="body"><ul class="tight">'+c[2].map(function(p){return '<li>'+p+'</li>';}).join("")+'</ul></div></div>';}).join("")+'</section>';
+ h+='<section class="blk"><h3><span class="n">3</span>What teachers need to know</h3><div class="grid2">'+C.know.map(function(x){return '<div class="kcard" style="border-top-color:'+S.col+'"><h4>'+x[0]+'</h4><p>'+x[1]+'</p></div>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3><span class="n">4</span>Misconceptions: what you might see</h3><p class="lead">Read what the student does, think about what’s behind it, then select the card to check.</p><div class="flips">'+C.misc.map(function(m){return '<button class="flip" aria-pressed="false"><div class="in"><div class="f"><div class="k">What you might see</div><div class="say">'+m.see+'</div><div class="hint">What’s behind this? Select to reveal ↻</div></div><div class="b"><div class="k">Misconception</div><h4>'+m.name+'</h4><p><b>Respond:</b> '+m.resp+'</p><span class="pill '+({n:"src-nesa",d:"src-dio",a:"src-add"})[m.src]+'">'+({n:"NESA",d:"Diocesan PL slides",a:"Additional commentary"})[m.src]+'</span></div></div></button>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3><span class="n">5</span>Try it</h3>'+toolHTML(C.tool)+'</section>';
+ h+='<section class="blk"><h3><span class="n">6</span>Working mathematically: task makeover</h3>'+makeoverHTML(k)+'</section>';
+ h+='<section class="blk"><h3><span class="n">7</span>Teaching advice</h3><div class="card"><ul class="tight">'+C.advice.map(function(a){return '<li>'+a+'</li>';}).join("")+'</ul></div></section>';
+ h+='<section class="blk"><h3><span class="n">8</span>Vocabulary</h3><div class="chips">'+C.vocab.map(function(v){return '<span>'+v+'</span>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3><span class="n">9</span>'+C.check.title+'</h3><div class="qc" style="border-left:5px solid '+S.col+'"><ol>'+C.check.steps.map(function(s){return '<li>'+s+'</li>';}).join("")+'</ol></div></section>';
+ h+='<section class="blk quiz"><h3><span class="n">10</span>Check your understanding</h3>'+C.quiz.map(function(q,qi){return '<div class="q" data-q="'+qi+'"><h4>'+(qi+1)+'. '+q.q+'</h4>'+q.o.map(function(o,oi){return '<button class="opt" data-o="'+oi+'">'+o+'</button>';}).join("")+'<div class="fb"></div></div>';}).join("")+'</section>';
+ return h;
+}
+
+
+function makeoverHTML(k){
+ var W=WM[k], S=STAGES[k];
+ var h='<p class="lead">'+(W.tagsLead||'Every content point addresses MAO-WM-01. In this stage, the syllabus tags these points as reasoning:')+'</p>';
+ if(W.tags.length) h+='<div class="card" style="padding:4px 0;margin-bottom:16px">'+W.tags.map(function(t){return '<div class="tagrow" style="grid-template-columns:1fr auto"><span>'+t[0]+'</span><span class="wtag">'+t[1]+'</span></div>';}).join("")+'</div>';
+ h+='<p class="lead"><b>Try it yourself.</b> Read the closed task. How would you change it so students reason and communicate? Jot your idea, then reveal the makeover.</p>';
+ h+='<div class="mk"><div class="side before"><div class="lbl">Before: closed task</div><div class="task closed">'+W.before.task+'</div><b style="font-size:14px">Limitations</b><ul>'+W.before.lim.map(function(l){return '<li>'+l+'</li>';}).join("")+'</ul></div>';
+ h+='<div class="side after" id="mkAfter"><div class="hidden-after"><div class="think">How would you rework this task?<textarea id="mkIdea" placeholder="My idea…"></textarea></div><button class="btn" id="mkReveal" style="background:var(--good)">Reveal the makeover</button></div></div></div>';
+ h+='<p class="note" style="margin-top:10px">Example tasks are additional commentary, built on the syllabus content points and examples. They are not NESA tasks.</p>';
+ return h;
+}
+function afterHTML(k){
+ var A=WM[k].after;
+ return '<div class="lbl">After: rich task</div><div class="task">'+A.task+'</div><div class="wmchips">'+A.el.map(function(e){return '<span>'+e+'</span>';}).join("")+'</div>'+
+ '<div class="diff"><div><b>Enabling prompt</b>'+A.enable+'</div><div><b>Extending prompt</b>'+A.extend+'</div><div><b>Listen for</b>'+A.listen+'</div></div>'+
+ '<button class="btn ghost small" id="mkHide" style="margin-top:12px">Hide again</button>';
+}
+
+function renderWM(){
+ var h='<div class="hero" style="border-left-color:var(--good)"><span class="tag" style="background:var(--good-soft);color:var(--good)">Working mathematically</span><h2>Working mathematically is built into every content point</h2><p>The Working mathematically outcome, MAO-WM-01, applies to all content in every stage. It isn’t a separate strand to teach on its own. It shapes how students learn the content in this focus area.</p></div>';
+ h+='<section class="blk"><h3>The outcome</h3><div class="outc"><code style="background:var(--good)">MAO-WM-01</code><span>develops understanding and fluency in mathematics through exploring and connecting mathematical concepts, choosing and applying mathematical techniques to solve problems, and communicating their thinking and reasoning coherently and clearly</span></div><p class="lead" style="margin-top:12px">The outcome names five things students do. This module uses them to describe what a task asks of students.</p><div class="wmel">'+WM_ELEMENTS.map(function(e){return '<div><b>'+e[0]+'</b>'+e[1]+'</div>';}).join("")+'</div></section>';
+ var rows="";
+ ORDER.forEach(function(k){WM[k].tags.forEach(function(t){rows+='<div class="tagrow"><span class="sl" style="background:'+STAGES[k].col+'">'+STAGES[k].name+'</span><span>'+t[0]+'</span><span class="wtag">'+t[1]+'</span></div>';});});
+ h+='<section class="blk"><h3>Where the syllabus flags reasoning</h3><p class="lead">In the content, some points are tagged with a type of reasoning. These are good places to plan for discussion, justification and multiple representations.</p><div class="card" style="padding:4px 0">'+rows+'</div></section>';
+ h+='<section class="blk"><h3>Makeover practice</h3><p class="lead">Choose a closed task, then try each move. Each move turns the same content into a task that asks students to reason and communicate.</p><div class="tool"><div class="ctrl" style="margin-top:0"><label for="ctSel">Closed task</label><select id="ctSel">'+CLOSED.map(function(c,i){return '<option value="'+i+'">'+STAGES[c.st].name+': '+c.task+'</option>';}).join("")+'</select></div><div class="mk" style="grid-template-columns:1fr"><div class="side before"><div class="lbl">Closed task</div><div class="task closed" id="ctTask"></div></div></div><div class="moves" id="ctMoves"></div><div id="ctOut"></div></div><p class="note" style="margin-top:10px">These moves and example tasks are additional commentary, not NESA material.</p></section>';
+ h+='<section class="blk"><h3>Questions that invite reasoning</h3><div class="grid2">'+
+  card("“How do you know?”","Ask after correct answers too, not only after errors.")+
+  card("“Is there another way?”","Ask for a second representation: materials, a number line, words.")+
+  card("“Convince me.”","Ask students to persuade a sceptical partner, using a model as evidence.")+
+  card("“What would change if…?”","Change one number or condition and ask students to predict before they calculate.")+
+ '</div></section>';
+ return h;
+}
+function showClosed(i){
+ var c=CLOSED[i];
+ $("#ctTask").textContent=c.task;
+ $("#ctMoves").innerHTML=c.moves.map(function(m,j){return '<button data-j="'+j+'">'+m.m+'</button>';}).join("");
+ $("#ctOut").innerHTML='<p class="note">Select a move above.</p>';
+ $$("#ctMoves button").forEach(function(b){b.onclick=function(){
+  var m=c.moves[+b.dataset.j];
+  $$("#ctMoves button").forEach(function(x){x.classList.toggle("on",x===b);});
+  $("#ctOut").innerHTML='<div class="mk" style="grid-template-columns:1fr"><div class="side after"><div class="lbl">After: '+m.m+'</div><div class="task">'+m.t+'</div><div class="wmchips">'+m.el.map(function(e){return '<span>'+e+'</span>';}).join("")+'</div></div></div>';
+ };});
+}
+
+function renderModels(){
+ var h='<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Models</span><h2>'+M.modelsH2+'</h2><p>'+M.modelsP+'</p></div>';
+ h+='<div class="mgrid" role="table"><div class="mh first" style="grid-row:1;grid-column:1">Model</div>'+ORDER.map(function(k,ki){return '<div class="mh" style="grid-row:1;grid-column:'+(ki+2)+';background:'+STAGES[k].col+'">'+STAGES[k].name+'</div>';}).join("");
+ MODELS.forEach(function(m,i){
+  h+='<div class="mrow" data-i="'+i+'"><button class="mn" data-i="'+i+'" style="grid-row:'+(i+2)+'">'+m.n+'<small>'+m.w+'</small></button>';
+  var cells="";
+  for(var c=0;c<4;c++) cells+='<div class="mc" style="grid-column:'+(c+2)+';grid-row:'+(i+2)+'"></div>';
+  var g1=m.s+2, g2=m.e+3;
+  var col = m.hi ? "var(--navy)" : STAGES[ORDER[m.s]].col;
+  cells+='<div class="mbar" data-i="'+i+'" style="grid-column:'+g1+'/'+g2+';grid-row:'+(i+2)+';background:'+col+';opacity:'+(m.hi?1:.75)+'" title="'+esc(m.n)+'"></div>';
+  h+=cells+'</div>';
+ });
+ h+='</div><div class="mdetail card" id="mDetail"><p class="note" style="margin:0">Select a model to read how it’s used.</p></div>';
+ h+='<section class="blk"><h3>Using models well</h3><div class="grid2">'+
+  M.modelTips.map(function(x){return card(x[0],x[1]);}).join("")+
+ '</div></section>';
+ return h;
+}
+function showModel(i){
+ var m=MODELS[i];
+ $$(".mrow").forEach(function(r){r.classList.toggle("sel",+r.dataset.i===i);});
+ var st=ORDER.slice(m.s,m.e+1).map(function(k){return STAGES[k].name;}).join(", ");
+ $("#mDetail").innerHTML='<h4 style="font-size:18px;margin-bottom:4px">'+m.n+'</h4><div class="note" style="margin-bottom:8px">'+st+'</div><p style="margin:0;color:var(--ink2)">'+m.d+'</p>';
+}
+
+function renderSorter(){
+ return '<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Misconception sorter</span><h2>Find the root</h2><p>'+M.sorterP+'</p></div>'+
+ '<div class="sorter"><div class="scn" id="scn"></div></div>'+
+ '<section class="blk"><h3>The four roots across the stages</h3><div style="overflow-x:auto"><table class="simple" style="min-width:640px"><thead><tr><th>Root</th>'+ORDER.map(function(k){return '<th style="color:'+STAGES[k].col+'">'+STAGES[k].name+'</th>';}).join("")+'</tr></thead><tbody>'+
+ M.rootRows.map(function(r){return '<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td><td>'+r[4]+'</td></tr>';}).join("")+
+ '</tbody></table></div><p class="note" style="margin-top:10px">'+M.sorterNote+'</p></section>';
+}
+var sortIdx=0, sortScore=0, sortDone=0;
+function showScenario(){
+ var el=$("#scn");
+ if(sortIdx>=SCENARIOS.length){
+  el.innerHTML='<h4 style="font-size:20px;margin-bottom:8px">You matched '+sortScore+' of '+SCENARIOS.length+' on the first try.</h4><p class="lead">For discussion: which root do you see most in your classroom? Which stage do you think it starts in?</p><button class="btn" id="sortAgain">Start again</button>';
+  $("#sortAgain").onclick=function(){sortIdx=0;sortScore=0;sortDone=0;showScenario();};
+  return;
+ }
+ var s=SCENARIOS[sortIdx], S=STAGES[s.st], tried=false;
+ el.innerHTML='<div class="score">Scenario '+(sortIdx+1)+' of '+SCENARIOS.length+' · <span style="color:'+S.col+';font-weight:700">'+S.name+'</span></div><div class="quote">'+s.q+'</div><div class="roots">'+ROOTS.map(function(r,i){return '<button data-r="'+i+'">'+r+'</button>';}).join("")+'</div><div class="fbline" id="sortFb"></div><div class="ctrl"><button class="btn" id="sortNext" style="display:none">Next scenario →</button></div>';
+ $$(".roots button",el).forEach(function(b){b.onclick=function(){
+  var r=+b.dataset.r, fb=$("#sortFb");
+  if(r===s.a){
+   if(!tried) sortScore++;
+   b.classList.add("right");
+   $$(".roots button",el).forEach(function(x){x.disabled=true;});
+   fb.className="fbline show ok"; fb.innerHTML="<b>Yes, "+ROOTS[s.a].toLowerCase()+".</b> "+s.why;
+   $("#sortNext").style.display="inline-block";
+  } else {
+   tried=true; b.classList.add("wrong"); b.disabled=true;
+   fb.className="fbline show no"; fb.innerHTML="Not quite. Think about what the student is paying attention to. Try another root.";
+  }
+ };});
+ $("#sortNext").onclick=function(){sortIdx++;showScenario();};
+}
+
+function renderReflect(){
+ var h='<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Reflect and plan</span><h2>Connect the progression to your students</h2><p>Write your thinking below. Notes save automatically in this browser. Use <b>Copy my notes</b> to paste them into a document or email.</p></div>';
+ var g="";
+ PROMPTS.forEach(function(p,i){
+  if(p[0]!==g){g=p[0];h+='<h3 style="font-size:17px;margin:22px 0 10px">'+g+'</h3>';}
+  h+='<div class="rq"><label for="rq'+i+'">'+(i+1)+'. '+p[1]+'</label><textarea id="rq'+i+'" data-i="'+i+'" placeholder="Your thoughts…">'+esc(mem.notes[i]||"")+'</textarea></div>';
+ });
+ h+='<h3 style="font-size:17px;margin:22px 0 10px">Next steps</h3><div class="card todo">'+TODOS.map(function(t,i){return '<label><input type="checkbox" data-t="'+i+'"'+(mem.todo[i]?" checked":"")+'><span>'+t+'</span></label>';}).join("")+'</div>';
+ h+='<div class="ctrl" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center"><button class="btn" id="copyNotes">Copy my notes</button><button class="btn ghost" id="dlNotes">Download as text</button><span class="saved" id="savedMsg"></span></div><textarea id="copyBuf" aria-hidden="true" style="position:absolute;left:-9999px;top:0"></textarea>';
+ return h;
+}
+function notesText(){
+ var t=M.notesTitle+"\n\n";
+ PROMPTS.forEach(function(p,i){t+=(i+1)+". "+p[1]+"\n"+(mem.notes[i]||"(no response)")+"\n\n";});
+ var mk=ORDER.filter(function(k){return mem.notes["mk-"+k];});
+ if(mk.length){ t+="My task makeover ideas\n"; mk.forEach(function(k){t+=STAGES[k].name+": "+mem.notes["mk-"+k]+"\n";}); t+="\n"; }
+ t+="Next steps\n"; TODOS.forEach(function(x,i){t+=(mem.todo[i]?"[x] ":"[ ] ")+x+"\n";});
+ return t;
+}
+
+/* ---------------- wiring ---------------- */
+function wire(id){
+ if(id==="ideas"){ $$(".idea").forEach(function(b){b.onclick=function(){showIdea(+b.dataset.i);};}); }
+ if(id==="prog"){ $$(".aspects button").forEach(function(b){b.onclick=function(){showAspect(+b.dataset.k);};}); showAspect(0); }
+ if(id==="models"){ $$(".mn,.mbar").forEach(function(b){b.onclick=function(){showModel(+b.dataset.i);};}); }
+ if(id==="sorter"){ sortIdx=0; sortScore=0; showScenario(); }
+ if(id==="wm"){ $("#ctSel").onchange=function(){showClosed(+this.value);}; showClosed(0); }
+ if(id==="reflect"){
+  var msg=$("#savedMsg"), tmr;
+  $$(".rq textarea").forEach(function(ta){ta.oninput=function(){mem.notes[ta.dataset.i]=ta.value;save();msg.textContent="Saved";clearTimeout(tmr);tmr=setTimeout(function(){msg.textContent="";},1500);};});
+  $$(".todo input").forEach(function(cb){cb.onchange=function(){mem.todo[cb.dataset.t]=cb.checked;save();};});
+  $("#copyNotes").onclick=function(){
+   var txt=notesText(), ok=false;
+   var buf=$("#copyBuf"); buf.value=txt; buf.select();
+   try{ok=document.execCommand("copy");}catch(e){}
+   if(!ok && navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){msg.textContent="Copied";},function(){msg.textContent="Copy blocked: select the text in each box instead";}); return; }
+   msg.textContent=ok?"Copied to clipboard":"Copy blocked: select the text in each box instead";
+  };
+  $("#dlNotes").onclick=function(){
+   try{ var a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([notesText()],{type:"text/plain"})); a.download=M.dlName; document.body.appendChild(a); a.click(); a.remove(); }
+   catch(e){ msg.textContent="Download blocked here: use Copy my notes instead"; }
+  };
+ }
+ var st=SECTIONS.filter(function(s){return s.id===id;})[0];
+ if(st && st.stage){
+  var C=STAGE_CONTENT[st.stage];
+  $$(".acc>button").forEach(function(b){b.onclick=function(){var a=b.parentNode;a.classList.toggle("open");b.setAttribute("aria-expanded",a.classList.contains("open"));};});
+  $$(".flip").forEach(function(f){f.onclick=function(){f.classList.toggle("on");f.setAttribute("aria-pressed",f.classList.contains("on"));};});
+  $$(".quiz .q").forEach(function(qd){
+   var q=C.quiz[+qd.dataset.q], fb=$(".fb",qd);
+   $$(".opt",qd).forEach(function(b){b.onclick=function(){
+    var o=+b.dataset.o;
+    if(o===q.a){ b.classList.add("right"); $$(".opt",qd).forEach(function(x){x.disabled=true;}); fb.className="fb show ok"; fb.innerHTML="<b>Correct.</b> "+q.why; }
+    else { b.classList.add("wrong"); b.disabled=true; fb.className="fb show no"; fb.innerHTML="Not quite. Have another go."; }
+   };});
+  });
+  wireMakeover(st.stage);
+  if(typeof wireTool==="function") wireTool(C.tool);
+ }
+}
+
+/* makeover reveal */
+function wireMakeover(k){
+ var box=$("#mkAfter"), key="mk-"+k;
+ function closed(){
+  box.innerHTML='<div class="hidden-after"><div class="think">How would you rework this task?<textarea id="mkIdea" placeholder="My idea…"></textarea></div><button class="btn" id="mkReveal" style="background:var(--good)">Reveal the makeover</button></div>';
+  var ta=$("#mkIdea"); ta.value=mem.notes[key]||""; ta.oninput=function(){mem.notes[key]=ta.value;save();};
+  $("#mkReveal").onclick=open;
+ }
+ function open(){ box.innerHTML=afterHTML(k)+(mem.notes[key]?'<div class="note" style="margin-top:10px"><b>Your idea:</b> '+esc(mem.notes[key])+'</div>':''); $("#mkHide").onclick=closed; }
+ closed();
+}
+
+/* ---------------- start ---------------- */
+document.getElementById("foot").innerHTML=M.footer;
+go(0);
+
+</script>
+</body>
+</html>
