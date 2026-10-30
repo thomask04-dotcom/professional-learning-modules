@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three-dimensional Spatial Structure K–6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2333; --ink2:#4a5468; --ink3:#6d778a; --line:#e2e5ec; --bg:#f6f7fa; --card:#ffffff;
+  --navy:#1f2a44; --accent:#c8553d; --accent-soft:#fbeee9;
+  --es1:#d1603d; --es1-soft:#fcece6;
+  --s1:#c88a12; --s1-soft:#fbf3e1;
+  --s2:#23897d; --s2-soft:#e3f3f1;
+  --s3:#4b5bbf; --s3-soft:#e9ebf8;
+  --good:#2e7d4f; --good-soft:#e6f4ec; --bad:#b3372a; --bad-soft:#fbe9e7;
+  --r:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:16px}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+h1,h2,h3,h4{line-height:1.25;margin:0}
+p{margin:0 0 12px}
+a{color:var(--s3)}
+
+/* ---------- header ---------- */
+.top{background:var(--navy);color:#fff;padding:18px 24px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
+.top .brand{flex:1 1 320px}
+.top .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75;font-weight:600}
+.top h1{font-size:24px;font-weight:800;margin-top:2px}
+.prog{flex:0 1 260px;min-width:200px}
+.prog .lab{font-size:13px;opacity:.85;display:flex;justify-content:space-between}
+.prog .bar{height:8px;background:rgba(255,255,255,.18);border-radius:8px;overflow:hidden;margin-top:6px}
+.prog .fill{height:100%;background:#f2b33d;width:0;transition:width .4s}
+
+/* ---------- layout ---------- */
+.wrap{display:flex;min-height:calc(100vh - 80px);background:linear-gradient(to right,#fff 236px,var(--bg) 236px)}
+@media (max-width:820px){.wrap{background:var(--bg)}}
+nav.side{flex:0 0 236px;background:#fff;border-right:1px solid var(--line);padding:16px 10px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side .grp{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin:14px 10px 6px}
+nav.side button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;background:none;padding:8px 10px;border-radius:8px;color:var(--ink2);font-size:14.5px;font-weight:500}
+nav.side button:hover{background:var(--bg)}
+nav.side button.on{background:var(--accent-soft);color:var(--ink);font-weight:700}
+nav.side .dot{flex:0 0 18px;height:18px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:11px;color:#fff}
+nav.side .dot.done{background:var(--good);border-color:var(--good)}
+nav.side .dot.done::after{content:"✓"}
+.mobnav{display:none}
+main{flex:1;min-width:0;padding:28px 32px 60px}
+.page{max-width:900px;margin:0 auto}
+
+@media (max-width:820px){
+  nav.side{display:none}
+  .mobnav{display:block;padding:12px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  .mobnav select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--line);font-family:inherit;font-size:15px;background:#fff}
+  main{padding:20px 16px 48px}
+  .top{padding:16px}
+  .top h1{font-size:20px}
+}
+
+/* ---------- common blocks ---------- */
+.hero{border-radius:var(--r);padding:22px 24px;margin-bottom:22px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--accent)}
+.hero .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:8px}
+.hero h2{font-size:26px;font-weight:800;margin-bottom:8px}
+.hero p{color:var(--ink2);font-size:16.5px;margin:0}
+section.blk{margin:26px 0}
+section.blk>h3{font-size:19px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+section.blk>h3 .n{font-size:12px;font-weight:700;background:var(--navy);color:#fff;border-radius:6px;padding:2px 8px}
+.lead{color:var(--ink2);margin-bottom:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px;background:var(--bg);color:var(--ink2);border:1px solid var(--line)}
+.src-nesa{background:#eef2fb;color:#34408a;border-color:#d5dcf2}
+.src-add{background:#fff6e6;color:#8a5a00;border-color:#f2deb4}
+.src-dio{background:#eaf5ff;color:#0b5a8f;border-color:#c5e1f5}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:#fff;border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:14px}
+.note{font-size:14px;color:var(--ink3)}
+.btn{border:0;background:var(--navy);color:#fff;padding:10px 18px;border-radius:9px;font-weight:600}
+.btn:hover{filter:brightness(1.15)}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.small{padding:6px 12px;font-size:14px}
+.btn:disabled{opacity:.4;cursor:default;filter:none}
+.done-bar{margin-top:36px;padding:18px 20px;border-radius:var(--r);background:#fff;border:1px dashed #c9ced9;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.done-bar.is-done{border-style:solid;border-color:var(--good);background:var(--good-soft)}
+.nextprev{display:flex;flex-wrap:wrap;gap:10px}
+.tool select{max-width:100%}
+ul.tight{margin:0;padding-left:20px}
+ul.tight li{margin:4px 0}
+
+/* outcomes */
+.outc{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
+.outc code{font-family:inherit;font-weight:700;font-size:13px;padding:3px 8px;border-radius:6px;white-space:nowrap;color:#fff}
+
+/* accordion */
+.acc{border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:8px;overflow:hidden}
+.acc>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;border:0;background:#fff;padding:13px 16px;font-weight:600;color:var(--ink)}
+.acc>button .ch{transition:transform .2s;color:var(--ink3);flex:0 0 auto}
+.acc.open>button .ch{transform:rotate(90deg)}
+.acc .body{display:none;padding:0 16px 14px 16px;color:var(--ink2)}
+.acc.open .body{display:block}
+.acc .part{font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px;margin-right:8px;color:#fff;vertical-align:1px}
+
+/* knowledge cards */
+.kcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;border-top:4px solid var(--line)}
+.kcard h4{font-size:16px;margin-bottom:6px}
+.kcard p{color:var(--ink2);font-size:15px;margin:0}
+
+/* flip cards */
+.flips{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.flip{perspective:1200px;min-height:196px;border:0;background:none;padding:0;text-align:left}
+.flip .in{position:relative;width:100%;height:100%;min-height:196px;transition:transform .55s;transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;overflow:auto}
+.flip .f{background:#fff;border:1px solid var(--line)}
+.flip .b{background:var(--navy);color:#fff;transform:rotateY(180deg)}
+.flip .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;opacity:.7;margin-bottom:6px}
+.flip .f .say{font-size:16.5px;font-weight:600;flex:1;color:var(--ink)}
+.flip .f .hint{font-size:13px;color:var(--ink3);margin-top:10px}
+.flip .b h4{font-size:16px;margin-bottom:8px}
+.flip .b p{font-size:14px;margin:0 0 8px;opacity:.92}
+.flip .b .pill{align-self:flex-start;margin-top:auto}
+
+/* working mathematically */
+.wmel{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.wmel div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--ink2)}
+.wmel b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:2px}
+.wtag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:5px;background:#eef2fb;color:#34408a;white-space:nowrap}
+.tagrow{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:start;padding:10px 14px;border-top:1px solid var(--line);font-size:14.5px}
+.tagrow:first-child{border-top:0}
+.tagrow .sl{font-weight:700;font-size:12.5px;padding:3px 8px;border-radius:6px;color:#fff;text-align:center}
+@media (max-width:620px){.tagrow{grid-template-columns:1fr}.tagrow .sl{justify-self:start}}
+.mk{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:720px){.mk{grid-template-columns:1fr}}
+.mk .side{border-radius:var(--r);padding:18px 20px;border:2px solid}
+.mk .before{background:#fdf6f5;border-color:#efc9c3}
+.mk .after{background:#f2faf6;border-color:#a9d9bf}
+.mk .lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;margin-bottom:10px}
+.mk .before .lbl{color:var(--bad)}
+.mk .after .lbl{color:var(--good)}
+.mk .task{background:#fff;border:1px solid var(--line);border-radius:9px;padding:14px 16px;font-size:15.5px;margin-bottom:12px}
+.mk .task.closed{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14.5px}
+.mk ul{margin:0;padding-left:20px;font-size:14.5px;color:var(--ink2)}
+.mk ul li{margin:3px 0}
+.mk .hidden-after{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;min-height:220px;color:var(--ink2)}
+.mk .think{font-size:15px;max-width:320px}
+.mk .think textarea{width:100%;min-height:70px;margin-top:8px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:inherit;font-size:14.5px}
+.diff{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px}
+.diff div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14.5px;color:var(--ink2)}
+.diff b{display:block;color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.wmchips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.wmchips span{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:20px;background:var(--good-soft);color:#1d5236;border:1px solid #bfe3cd}
+.moves{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.moves button{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:7px 14px;font-weight:600;font-size:14px;color:var(--ink2)}
+.moves button.on{background:var(--good);border-color:var(--good);color:#fff}
+
+/* quiz */
+.quiz .q{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin-bottom:12px}
+.quiz .q h4{font-size:16px;margin-bottom:12px;font-weight:600}
+.quiz .opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:10px 14px;margin-bottom:8px;color:var(--ink)}
+.quiz .opt:hover:not(:disabled){border-color:#aab2c3}
+.quiz .opt.right{border-color:var(--good);background:var(--good-soft)}
+.quiz .opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.quiz .opt:disabled{cursor:default}
+.quiz .fb{display:none;margin-top:6px;padding:10px 14px;border-radius:9px;font-size:15px}
+.quiz .fb.show{display:block}
+.quiz .fb.ok{background:var(--good-soft);color:#1d5236}
+.quiz .fb.no{background:var(--bad-soft);color:#7a2219}
+
+/* quick check */
+.qc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+.qc ol{margin:0;padding-left:22px}
+.qc li{margin:8px 0;color:var(--ink2)}
+.qc li b{color:var(--ink)}
+
+/* tool box */
+.tool{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.tool .tt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink3);margin-bottom:4px}
+.tool h4{font-size:18px;margin-bottom:6px}
+.tool .ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.tool select,.tool input[type=number]{font-family:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.tool input[type=number]{width:90px}
+.fbline{margin-top:12px;padding:10px 14px;border-radius:9px;font-size:15px;display:none}
+.fbline.show{display:block}
+.fbline.ok{background:var(--good-soft);color:#1d5236}
+.fbline.no{background:var(--bad-soft);color:#7a2219}
+.fbline.info{background:var(--bg);color:var(--ink2)}
+
+/* shared */
+.readout{font-size:20px;font-weight:700;margin-top:14px}
+.readout small{display:block;font-size:14px;font-weight:500;color:var(--ink3);margin-top:2px}
+
+/* progression explorer */
+.aspects{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.aspects button{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:7px 14px;font-weight:600;font-size:14px;color:var(--ink2)}
+.aspects button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.pcols{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;position:relative}
+.pcol{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.pcol .ph{padding:10px 14px;color:#fff;font-weight:700}
+.pcol .ph small{display:block;font-weight:500;opacity:.85;font-size:12.5px}
+.pcol .pb{padding:12px 14px;font-size:14.5px;color:var(--ink2);flex:1}
+.pcol .pb b{color:var(--ink)}
+.shifts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.shift{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14.5px;color:var(--ink2)}
+.shift .arr{font-weight:700;color:var(--ink);font-size:13px;margin-bottom:4px}
+@media (max-width:820px){.pcols{grid-template-columns:1fr 1fr}.shifts{grid-template-columns:1fr}}
+@media (max-width:480px){.pcols{grid-template-columns:1fr}}
+
+/* big ideas */
+.ideas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.idea{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px;text-align:left;color:var(--ink);transition:box-shadow .2s,border-color .2s}
+.idea:hover{border-color:#b9c0cf;box-shadow:0 4px 14px rgba(20,30,60,.06)}
+.idea .num{font-size:30px;font-weight:800;color:var(--accent);line-height:1}
+.idea h4{font-size:17px;margin:8px 0 6px}
+.idea p{font-size:14.5px;color:var(--ink2);margin:0}
+.idea.on{border-color:var(--navy);box-shadow:0 0 0 2px var(--navy)}
+.ideadetail{margin-top:14px}
+.srow{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.srow:first-of-type{border-top:0}
+.srow .sl{font-weight:700;font-size:13px;padding:3px 8px;border-radius:6px;color:#fff;align-self:start;text-align:center}
+
+/* models grid */
+.mgrid{display:grid;grid-template-columns:minmax(170px,1.3fr) repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.mgrid .mh{padding:10px 8px;font-weight:700;font-size:13px;text-align:center;border-bottom:1px solid var(--line);color:#fff}
+.mgrid .mh.first{text-align:left;color:var(--ink);background:#fff;padding-left:14px}
+.mrow{display:contents}
+.mrow>.mn{grid-column:1;padding:9px 14px;border-top:1px solid var(--line);font-weight:600;font-size:14.5px;cursor:pointer;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;color:var(--ink)}
+.mrow>.mn small{display:block;font-weight:400;color:var(--ink3);font-size:12.5px}
+.mrow .mc{border-top:1px solid var(--line);border-left:1px solid var(--line);position:relative}
+.mbar{position:relative;z-index:1;align-self:center;height:18px;border-radius:9px;margin:0 8px;cursor:pointer}
+.mrow.sel>.mn{background:var(--accent-soft)}
+.mdetail{margin-top:14px}
+@media (max-width:620px){.mgrid{grid-template-columns:minmax(120px,1.4fr) repeat(4,1fr)}.mgrid .mh{font-size:11px;padding:8px 2px}}
+
+/* sorter */
+.sorter .scn{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.sorter .quote{font-size:19px;font-weight:600;border-left:4px solid var(--accent);padding:4px 0 4px 14px;margin:8px 0 18px}
+.roots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.roots button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;text-align:left;font-weight:600;color:var(--ink)}
+.roots button:hover:not(:disabled){border-color:#9aa3b5}
+.roots button.right{border-color:var(--good);background:var(--good-soft)}
+.roots button.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.roots button:disabled{cursor:default}
+@media (max-width:560px){.roots{grid-template-columns:1fr}}
+.score{font-size:14px;color:var(--ink3)}
+
+/* reflection */
+.rq{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:12px}
+.rq label{font-weight:600;display:block;margin-bottom:8px}
+.rq textarea{width:100%;min-height:84px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:inherit;font-size:15px;resize:vertical}
+.rq textarea:focus{outline:2px solid var(--s3);border-color:transparent}
+.todo label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line);cursor:pointer}
+.todo label:first-child{border-top:0}
+.todo input{margin-top:5px;width:17px;height:17px;accent-color:var(--good)}
+.saved{font-size:13px;color:var(--good);margin-left:8px}
+
+table.simple{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;font-size:15px}
+table.simple th,table.simple td{padding:10px 12px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+table.simple th{background:var(--bg);font-size:13px;color:var(--ink2);border-top:0}
+footer{font-size:13px;color:var(--ink3);text-align:center;padding:20px 16px 30px;border-top:1px solid var(--line);background:#fff}
+:focus-visible{outline:3px solid #f2b33d;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* knowledge and confidence check */
+.chk{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;border-top:4px solid var(--accent)}
+.chk h3{margin:8px 0 6px}
+.chktime{font-size:13px;font-weight:600;color:var(--ink3);margin-left:4px}
+.chkq{margin-top:16px}
+.chkq select,.chkq textarea{display:block;margin-top:6px;max-width:100%;font-family:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:8px}
+.chkq textarea{width:100%;min-height:70px}
+.chkrate{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}
+.chkrate>span:first-child{flex:1;min-width:220px}
+.chkopts{display:flex;gap:6px}
+.chkopts label,.chkmc label{cursor:pointer}
+.chkopts input,.chkmc input{position:absolute;opacity:0;pointer-events:none}
+.chkopts span{display:inline-block;width:38px;height:38px;line-height:36px;text-align:center;border:1.5px solid var(--line);border-radius:50%;font-weight:700;color:var(--ink2);background:#fff}
+.chkopts input:checked+span{background:var(--navy);border-color:var(--navy);color:#fff}
+.chkopts input:focus-visible+span,.chkmc input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.chkmc{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.chkmc span{display:block;border:1.5px solid var(--line);border-radius:9px;padding:8px 12px;background:#fff;font-size:15px}
+.chkmc input:checked+span{border-color:var(--navy);background:#eef0f7;font-weight:600}
+.linkbtn{background:none;border:0;padding:0;color:var(--navy);text-decoration:underline;font:inherit;cursor:pointer}
+.chkres{margin-top:12px}
+.chkres h4{margin:0 0 8px}
+.chkres table{margin-bottom:10px}
+.chkd{font-size:12px;font-weight:700;padding:1px 6px;border-radius:5px;margin-left:4px}
+.chkd.up{background:var(--good-soft);color:#1d5236}
+.chkd.down{background:var(--bad-soft);color:#7a2219}
+.chkscn{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+
+</style>
+<style>
+/* ES1 containers */
+.ctpic{margin-top:10px}
+.ctpic svg{width:100%;height:auto;display:block;background:#fff;border:1px solid var(--line);border-radius:10px}
+
+/* S1 and S3 isometric cubes */
+.cbpic{margin-top:12px;display:flex;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}
+.cbpic svg{width:100%;height:auto;max-height:320px}
+
+/* S2 nets */
+.ntpic{margin-top:12px;display:flex;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}
+.ntpic svg{width:100%;height:auto;max-height:280px}
+
+/* S3 prism list */
+.pmlist{display:flex;flex-wrap:wrap;gap:6px}
+.pmlist button{border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:5px 10px;font-weight:600;font-size:14px;color:var(--ink2)}
+.pmlist button.on{background:var(--s3);border-color:var(--s3);color:#fff}
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="eyebrow">NSW Mathematics K–10 (2022) · Objects, volume and capacity</div>
+    <h1>Three-dimensional Spatial Structure K–6</h1>
+  </div>
+  <div class="prog" aria-live="polite">
+    <div class="lab"><span>Your progress</span><span id="progTxt">0 of 0</span></div>
+    <div class="bar"><div class="fill" id="progFill"></div></div>
+  </div>
+</header>
+
+<div class="mobnav"><label class="note" for="mobSel">Go to section</label><select id="mobSel"></select></div>
+
+<div class="wrap">
+  <nav class="side" id="side" aria-label="Module sections"></nav>
+  <main><div class="page" id="page"></div></main>
+</div>
+
+<footer id="foot"></footer>
+
+<script>
+/* ---------------- module config ---------------- */
+var M = {
+ key:"3ds-k6-module-v1",
+ title:"Three-dimensional Spatial Structure K–6",
+ dlName:"three-dimensional-spatial-structure-reflections.txt",
+ welcomeH2:"How students learn about objects, volume and capacity, K to 6",
+ welcomeP:"This module follows Three-dimensional spatial structure across four stages in two strands: 3D objects (from describing familiar objects as ‘flat’, ‘round’ or ‘curved’ to naming prisms and pyramids, sketching views and working with nets) and volume (from filling and packing to litres, millilitres and the layer structure of cubic units). It covers how the outcomes build, the maths you need to teach it, the misconceptions to look for, and what the NESA teaching advice recommends.",
+ tryText:"a model for each stage: which container holds more, counting the cubes you can’t see, which nets fold into a cube, and prisms with the same volume.",
+ namesH3:"One focus area, two strands",
+ namesP:"Three-dimensional spatial structure has the same name in every stage, with parts A and B from Stage 1. Each stage has a 3D objects strand and a volume strand (which includes capacity, or internal volume). All content also addresses the Working mathematically outcome, MAO-WM-01.",
+ ideasP:"NESA explains that three-dimensional spatial structure is foundational for position and location, perspective and directions, and that volume relates to three-dimensional space in the same way that area relates to two-dimensional space. Manipulating objects and observing them from different viewpoints builds visual imagery, language and the ability to identify structural features. Six ideas run through the focus area. Select an idea to see how it develops.",
+ ideasNote:"Three-dimensional spatial structure connects to Two-dimensional spatial structure (faces as 2D shapes; the row and column structure of area), Multiplicative relations (layers × cubes in a layer), Representing numbers (decimal notation for litres and millilitres) and Geometric measure (length, width and height as dimensions).",
+ progP:"Objects move from being described by everyday features to being classified by their faces, edges, vertices and cross-sections, and connected to 2D views and nets. Volume moves from direct comparison, to informal units, to litres, millilitres and cubic centimetres, to the layer structure of cubic units.",
+ shifts:[
+  ["es1","Early Stage 1 → Stage 1","From describing objects as flat, round or curved to naming cubes, cylinders, spheres and rectangular prisms by their surfaces and faces. Volume moves from direct comparison to counting uniform informal units, including stacking cubes in layers."],
+  ["s1","Stage 1 → Stage 2","From describing objects to making models and nets of prisms and pyramids, and sketching views on isometric grids. Capacity moves to litres and millilitres, and volume to cubic centimetres in layers."],
+  ["s2","Stage 2 → Stage 3","From families of objects to naming prisms and pyramids by their base and uniform cross-section, and visualising nets and views. Volume is calculated as cubes in one layer × number of layers, with cubic metres, displacement and decimal capacities."]
+ ],
+ modelsH2:"Each stage adds models; cubes carry volume from Stage 1 to Stage 3",
+ modelsP:"The bars show the stages where the syllabus or the NESA teaching advice names or uses each model. Select a model for more detail.",
+ modelTips:[
+  ["Compare all five kinds of container.","Shorter and holds more; taller and holds less; shorter and holds less; taller and holds more; short and holds the same as a tall one."],
+  ["Build, then draw.","Building prisms from cubes gives a context for face and edge; drawing links stacking to diagrams. Some cubes will always be hidden."],
+  ["Predict before building.","Ask students to predict how many cubes fit from the net of an open box. Predictions refine mental models (Battista 1999)."],
+  ["Feel, don’t just look.","Explore objects in a bag or behind a screen so mental images focus on structure, not appearance."]
+ ],
+ sorterP:"Most misconceptions in this focus area come from four roots, and each root reappears in a new form as students move from filling containers to calculating volumes. Read each student response and choose its root.",
+ rootRows:[
+  ["Judging volume or capacity by one dimension or appearance","Thinks the taller container always holds more","Thinks containers of different shapes can’t hold the same amount","Thinks one-litre containers all look the same","Thinks prisms with the same volume must look the same"],
+  ["Counting only what can be seen","—","Counts only the cubes visible in a model","Counts the faces of cubes rather than the cubes","Multiplies the numbers on the visible faces without the layer structure"],
+  ["Confusing 3D objects with 2D shapes and representations","Calls a ball a ‘circle’ or a box a ‘square’ <span class=\"pill src-add\">Add.</span>","Calls the curved surface of a cylinder a face","Thinks any arrangement of 6 squares folds into a cube","Thinks the base of a prism is the face it rests on"],
+  ["Ignoring the size of the unit","—","Says the model with more blocks is bigger, whatever the block size","Thinks 1250 mL is more than 2 L because 1250 is bigger <span class=\"pill src-add\">Add.</span>","Reads 0.375 L as 375 L or 3.75 L; says ‘centimetres cubed’"]
+ ],
+ sorterNote:"NESA notes that early experiences often lead students to conclude that taller containers hold more, and that volume is harder to visualise than length or area because some units are hidden by the layer structure.",
+ notesTitle:"Three-dimensional Spatial Structure K–6: my reflections",
+ footer:"Built from the NESA <i>Mathematics K–10 Syllabus (2022)</i> outcomes and content (Early Stage 1 to Stage 3) and the NESA syllabus support teaching advice. Items marked <span class=\"pill src-add\">Additional commentary</span> are common classroom observations, not NESA examples. Your progress and notes are saved only in this browser."
+};
+
+/* ---------------- data ---------------- */
+var STAGES = {
+ es1:{short:"ES1", name:"Early Stage 1", years:"Kindergarten", fa:"Three-dimensional spatial structure", col:"var(--es1)", soft:"var(--es1-soft)"},
+ s1:{short:"S1", name:"Stage 1", years:"Years 1–2", fa:"Three-dimensional spatial structure A and B", col:"var(--s1)", soft:"var(--s1-soft)"},
+ s2:{short:"S2", name:"Stage 2", years:"Years 3–4", fa:"Three-dimensional spatial structure A and B", col:"var(--s2)", soft:"var(--s2-soft)"},
+ s3:{short:"S3", name:"Stage 3", years:"Years 5–6", fa:"Three-dimensional spatial structure A and B", col:"var(--s3)", soft:"var(--s3-soft)"}
+};
+var ORDER = ["es1","s1","s2","s3"];
+
+var STAGE_CONTENT = {
+es1:{
+ lead:"In Kindergarten, students manipulate, describe and sort familiar objects, predict which objects will stack, and compare volumes and capacities directly by filling, pouring, packing and building. NESA stresses comparing containers that challenge the idea that taller always holds more.",
+ outcomes:[["MAE-3DS-01","manipulates, describes and sorts three-dimensional objects"],["MAE-3DS-02","describes and compares volumes"]],
+ content:[
+  ["","3D objects: Explore familiar three-dimensional objects",["Describe the features of familiar objects: ‘flat’, ‘round’, ‘curved’","Sort objects and identify the attribute used: ‘size’, ‘shape’, ‘function’","Make and describe a variety of three-dimensional models (a robot from a ball and some blocks)","Predict the stacking capabilities of various three-dimensional objects (Reasons about spatial relations)"]],
+  ["","Volume: Compare internal volume by filling and packing",["Fill and empty containers using materials such as water or sand","Use the terms ‘full’, ‘empty’ and ‘about half full’","Compare the capacities of two containers directly by filling one and pouring into the other","Compare indirectly by pouring both into two identical containers and observing the levels","Establish that containers of different shapes may hold the same amount (a tall narrow container and a short wide container)","Stack and pack blocks into defined spaces"]],
+  ["","Volume: Compare volume by building",["Identify volume as the amount of space an object or substance occupies","Compare the volumes of two objects made from blocks by deconstructing one and using its parts to build a copy of the other","Use comparative language: ‘takes up more space’"]]
+ ],
+ know:[
+  ["Volume and capacity","Volume is the amount of space occupied by an object or substance. Internal volume (capacity) is used only for containers and usually refers to liquids. Students aren’t expected to know these definitions yet."],
+  ["Taller isn’t always more","Early experiences lead many students to conclude that taller containers hold more. Students need to compare containers that are shorter and hold more, taller and hold less, shorter and hold less, taller and hold more, and short and hold the same as a tall one."],
+  ["Direct and indirect comparison","Direct: fill one container and pour into the other. Indirect: pour each into one of two identical containers and compare the levels."],
+  ["Stacking and rolling","Predicting whether objects will stack, roll or slide draws attention to flat and curved surfaces, preparing for sorting and naming objects."],
+  ["Use a range of objects","Use objects of different sizes; some students need larger objects to manipulate. Everyday moments such as packing up toys and storing objects are rich opportunities."],
+  ["The word ‘container’","Students often need meaningful practice using the general word ‘container’ for bottles, jars and tubs."]
+ ],
+ misc:[
+  {see:"Says the tall thin bottle holds more because it is taller.",name:"Taller holds more",resp:"Pour from one into the other. Compare all five kinds of pair NESA lists, including short containers that hold more. Try the tool below.",src:"n"},
+  {see:"Says the water in the short wide jug became more when it was poured into a tall glass.",name:"The level shows the amount",resp:"Pour it back. Ask, <i>Did we add any? Did we take any away?</i>",src:"a"},
+  {see:"Predicts a ball will stack on top of a cylinder lying on its side.",name:"Not attending to flat and curved surfaces",resp:"Try it, then ask which surfaces touch when objects stack. Sort objects into ‘stack’, ‘roll’ and ‘both’.",src:"a"},
+  {see:"Calls a ball a ‘circle’ and a box a ‘square’.",name:"2D names for 3D objects",resp:"Model ‘object’ for things we can hold and ‘shape’ for flat figures. Trace a face of the box to find the square.",src:"a"}
+ ],
+ advice:["Use a range of objects of different sizes; some students may need larger objects to manipulate.","Encourage students to describe objects as ‘flat’, ‘round’ or ‘curved’, preparing them to sort by size, shape or function.","Have students predict the stacking capabilities of objects, then test.","Compare containers that are shorter and hold more, taller and hold less, shorter and hold less, taller and hold more, and short but hold the same as a tall container.","Extend students who understand volume by exploring different ways of stacking 24 cubes (3 by 2 by 4, or 6 by 2 by 2)."],
+ vocab:["object","shape","size","curved","flat","pointy","round","roll","slide","stack","container","liquid","empty","full","about half full","volume","space","has more","has less","will hold more","will hold less","takes up more space"],
+ check:{title:"Quick check (built from the syllabus and NESA advice)",steps:["Show a tall narrow container and a short wide container that hold the same amount. Ask, <i>Which holds more? How could we check?</i> Try the tool below.","Ask the student to pour from one into the other and describe what happened, using ‘full’, ‘empty’ or ‘about half full’.","Give a set of objects. Ask, <i>Which of these will stack? Which will roll? Why?</i>","Build two models from blocks. Ask, <i>Which takes up more space? How do you know?</i>"]},
+ tool:"containers",
+ quiz:[
+  {q:"Which comparison does NESA suggest to move students beyond ‘taller holds more’?",o:["Only containers of the same height","Containers that are shorter and hold more, taller and hold less, and short but hold the same as a tall one","Only measuring in litres","Using pictures of containers"],a:1,why:"Students need direct comparisons that contradict the belief that height alone decides capacity."},
+  {q:"How can students compare the capacities of two containers indirectly?",o:["Look at them closely","Pour the contents of each into one of two identical containers and compare the levels","Weigh them","Measure their heights"],a:1,why:"Identical containers make the levels directly comparable."}
+ ]
+},
+s1:{
+ lead:"In Years 1 and 2, students name and describe cubes, cylinders, spheres and rectangular prisms using surface, face, edge and vertex, and measure capacity and volume with uniform informal units, including stacking cubes in layers to build rectangular prisms.",
+ outcomes:[["MA1-3DS-01","recognises, describes and represents familiar three-dimensional objects"],["MA1-3DS-02","measures, records, compares and estimates internal volumes (capacities) and volumes using uniform informal units"]],
+ content:[
+  ["A","3D objects: Recognise familiar three-dimensional objects",["Use the term ‘three-dimensional’ for objects in the classroom, landforms and outdoor spaces","Distinguish objects (3D, a sculpture) from shapes (2D, a photograph)","Identify and name cubes, cylinders, spheres and rectangular prisms"]],
+  ["A","3D objects: Sort and describe three-dimensional objects",["Manipulate and describe familiar objects: blocks, yidaki, clapsticks, soccer balls, tissue boxes","Use the term ‘surface’: a cylinder has a curved surface and two flat surfaces","Sort objects by obvious features (objects with curved surfaces)","Use ‘face’ for the flat surfaces of objects with straight edges","Select and name an object from a description: find an object with six square faces"]],
+  ["A","Volume: Measure internal volumes of containers by filling",["Count how many times a smaller container can be filled and emptied into the container being measured","Select appropriate units: cups rather than teaspoons to fill a bucket","Explain the relationship between unit size and the number of units: more cups than ice-cream containers (Reasons about relations)","Explain why containers of different shapes may have the same internal volume (Reasons about relations)","Estimate by referring to the number and type of unit, and check"]],
+  ["A","Volume: Measure internal volume by packing",["Pack cubic units into rectangular containers with no gaps","Recognise that cubes pack better than other objects (Reasons about spatial structure)","Estimate and measure by counting the units used (the number of blocks a box holds)","Explain that gaps affect the accuracy of the measurement"]],
+  ["A","Volume: Construct volumes using cubes",["Explore different rectangular prisms made from a given number of cubes","Devise and explain strategies for stacking and counting units: make layers with no gaps (Reasons about spatial structure)","Record volumes by number and type of unit (a prism 2 cubes high, 2 wide and 4 long)"]],
+  ["B","3D objects: Describe the features of three-dimensional objects",["Describe prisms using ‘face’, ‘edge’ and ‘vertex’","Make simple models (a sphere from plasticine)","Recognise flat surfaces as 2D shapes: the faces of a cube are all squares"]],
+  ["B","Volume: Compare containers by filling and packing",["Make and use a device calibrated in informal units: mark a bottle as each cup of water is added","Compare, order and record the capacities of two or more containers","Estimate by referring to the number and type of unit"]],
+  ["B","Volume: Compare volumes using uniform informal units",["Estimate the volumes of models and check by counting the blocks","Compare models with different appearances, recognising when they have the same volume (Reasons about spatial structure)","Record comparisons with drawings, numerals and words, naming the units","Explain that models with the same number of units may have different volumes, depending on the size of the units (Reasons about spatial relations)"]]
+ ],
+ know:[
+  ["Faces and surfaces","A face is a flat surface with only straight edges, as in prisms and pyramids: a cube has six faces. Curved surfaces (cones, cylinders, spheres) are not faces, and nor are flat surfaces with curved boundaries, such as the circular ends of a cylinder."],
+  ["Edges and vertices","An edge is the interval where two faces meet. A vertex (plural vertices) is where three or more faces meet, or where two straight sides of a 2D shape meet. Teach these with examples and non-examples."],
+  ["Continuous and discrete","Students need experience filling containers with continuous materials, such as water, and discrete objects, such as marbles."],
+  ["Hidden units","Volume is harder to visualise than length or area because some units are hidden by the layer structure. The row and column structure of area helps students understand three-dimensional packing."],
+  ["Length, width, height … or depth?","The labels depend on orientation and context: the depth of a pool, the height of a building. For a block, ‘height’ depends on how it is positioned. Introduce the terms with rectangular prisms."],
+  ["Capacity and internal volume","Use ‘capacity’ and ‘internal volume’ interchangeably. Capacity isn’t taught as a separate concept from volume until Stage 4."]
+ ],
+ misc:[
+  {see:"Counts 12 cubes in a 3 by 2 by 3 prism: only the cubes that can be seen.",name:"Ignoring hidden cubes",resp:"Build it, then take it apart layer by layer. Count the cubes in one layer and the number of layers. Try the tool below.",src:"n"},
+  {see:"Says a cylinder has three faces.",name:"Curved and flat surfaces called faces",resp:"A face is a flat surface with only straight edges. A cylinder has one curved surface and two flat surfaces.",src:"n"},
+  {see:"Says the model made of 20 small cubes is bigger than one made of 12 large blocks.",name:"Ignoring the size of the unit",resp:"Compare the models directly. Record the type of unit as well as the number. This is a Stage 1 B reasoning point.",src:"n"},
+  {see:"Packs marbles into a box and says it holds 40, ignoring the gaps.",name:"Using units that don’t pack",resp:"Pack the same box with cubes. Cubes pack better than other objects in rectangular containers.",src:"n"},
+  {see:"Says a tall model and a flat model can’t have the same volume because they look different.",name:"Judging volume by appearance",resp:"Rebuild one model into the other using the same blocks.",src:"n"},
+  {see:"Uses a teaspoon to fill a bucket and loses count.",name:"Choosing an inappropriate unit",resp:"Discuss which unit suits the container: cups rather than teaspoons to fill a bucket.",src:"n"}
+ ],
+ advice:["Give students experience filling containers with continuous materials, such as water, and discrete objects, such as marbles.","Use building rectangular prisms from cubes as a context for using face and edge; drawing helps link stacking to diagrams and plans.","Construct and draw different prisms made from a fixed number of cubes, such as 24, to build familiarity with the layer structure.","Emphasise systematic packing: counting the blocks in a row, the rows in a layer, then the layers.","Use examples and non-examples to teach edge and vertex.","Introduce length, width and height when students work with rectangular prisms."],
+ vocab:["object","three-dimensional","cube","cylinder","sphere","rectangular prism","surface","flat surface","curved surface","face","edge","vertex","prism","internal volume","capacity","has more","has less","layer","row","measure","estimate"],
+ check:{title:"Quick checks (built from the syllabus examples)",steps:["Show a prism of cubes 2 high, 2 wide and 4 long. Ask, <i>How many cubes? How did you count them?</i> Try the tool below with other prisms.","Ask, <i>Find an object with six square faces.</i> Then, <i>How many faces does a cylinder have?</i>","Give two containers of different shapes that hold the same amount. Ask, <i>Could these hold the same amount? How could we check?</i>","Ask, <i>Would you need more cups or more ice-cream containers to fill this bucket? Why?</i>"]},
+ tool:"cubes",
+ quiz:[
+  {q:"Which of these is a face, as NESA defines it?",o:["The curved surface of a cylinder","The circular end of a cylinder","A square surface of a cube","The surface of a sphere"],a:2,why:"A face is a flat surface with only straight edges. Curved surfaces and flat surfaces with curved boundaries aren’t faces."},
+  {q:"Why is volume harder to visualise than length or area?",o:["It uses bigger numbers","Some units are hidden by the layer structure","It needs a ruler","Cubes are hard to count"],a:1,why:"In a model or drawing, inside and back cubes can’t be seen, so students need the layer structure."},
+  {q:"What prior knowledge helps students understand 3D packing?",o:["Counting by ones","The row and column structure of area","Telling time","Naming 2D shapes"],a:1,why:"Rows × columns gives a layer; layers stack to make the prism."}
+ ]
+},
+s2:{
+ lead:"In Years 3 and 4, students make models and nets of prisms, pyramids and cylinders, sketch objects showing depth and from different views, and use isometric grids. Capacity is measured in litres and millilitres, and volume in cubic centimetres described in layers.",
+ outcomes:[["MA2-3DS-01","makes and sketches models and nets of three-dimensional objects including prisms and pyramids"],["MA2-3DS-02","estimates, measures and compares capacities (internal volumes) using litres, millilitres and volumes using cubic centimetres"]],
+ content:[
+  ["A","3D objects: Make models to compare and describe key features",["Identify differences between prisms (including cubes), pyramids and cylinders: a pyramid has triangular faces and a cube does not","Construct models with plasticine, connecting cubes, magnetic shapes or online tools, identifying features","Deconstruct everyday packages that are prisms to create nets (cut up tissue boxes)","Investigate the variety of nets that make a particular prism, including nets that do and don’t make a cube"]],
+  ["A","Volume: Measure and order containers using litres",["Recognise the need for formal units","Measure to the nearest litre","Relate the litre to everyday containers (milk cartons)","Recognise that one-litre containers can be a variety of shapes: milk cartons, dilly bags, ice-cream containers (Reasons about spatial structure)","Record using L; estimate using one litre as a benchmark and check"]],
+  ["A","Volume: Compare objects using familiar metric units of volume",["Construct rectangular prisms from cubic-centimetre blocks and describe them in layers (2 layers of 10)","Record in numerals and words (6 cubic centimetres)","Compare volumes by counting blocks or using the row, column, layer structure"]],
+  ["B","3D objects: Connect objects and two-dimensional representations",["Identify faces, vertices and edges of prisms and pyramids, and the surfaces and boundaries of cylinders, from images","Sketch rectangular prisms and pyramids showing depth","Sketch objects from top, front and side views (Reasons about spatial relations)","Draw views of connecting-cube models on isometric grids","Interpret drawings to make models from connecting cubes (Reasons about spatial visualisation)"]],
+  ["B","Volume: Use scaled instruments to measure capacities",["Recognise the need for a unit smaller than the litre","Relate 1000 millilitres to one litre","Relate benchmarks to containers: 250 mL juice containers; a teaspoon is about 5 mL","Calibrate a container in 100 mL increments","Record using mL and L: 1250 mL = 1 litre 250 millilitres","Compare, order and estimate capacities, using benchmarks such as 250 mL"]]
+ ],
+ know:[
+  ["Nets","A net is a diagram in which the edges of a polyhedron are shown. A cube has 11 distinct nets and a regular tetrahedron has 2. Spheres, cylinders and cones aren’t polyhedra and don’t have nets in this sense."],
+  ["Families, not names","Prisms and pyramids are treated as classes in Stage 2. Formal names such as ‘triangular prism’ and ‘square pyramid’ are introduced in Stage 3."],
+  ["Isometric drawings","Isometric (Greek: equal measure) grids help students draw 3D objects. A cube’s square faces are drawn as rhombuses: as they appear, not as we know them to be. Photographing a cube from different angles and finger-tracing the shapes helps."],
+  ["Volume and capacity","Volume is the space an object or substance occupies, usually in cubic units. Capacity is the amount a container can hold, in mL, L and kL. We talk about the capacity of a dam and the volume of water in it."],
+  ["Estimate, then refine","After an initial estimate, let students adjust it after adding one cup of liquid. One cup is about a quarter of a litre (250 mL). Avoid images of containers that aren’t to scale."],
+  ["Recording units","Record cubic centimetres in words or informal abbreviations (cc) in Stage 2; cm³ is introduced in Stage 3."]
+ ],
+ misc:[
+  {see:"Thinks any arrangement of six squares will fold into a cube.",name:"Every six-square shape is a net",resp:"Cut out and fold several arrangements. Sort them into those that make a cube and those that don’t. Try the nets tool below.",src:"n"},
+  {see:"Draws a cube on isometric paper and says the faces are wrong because they aren’t squares.",name:"Drawing what we know, not what we see",resp:"Photograph a cube from different angles and finger-trace the faces. Faces are drawn as they appear.",src:"n"},
+  {see:"Says a 1 L milk carton and a 1 L ice-cream container can’t hold the same amount.",name:"Capacity judged by shape",resp:"Pour one into the other. One-litre containers can be a variety of shapes (a Stage 2 A reasoning point).",src:"n"},
+  {see:"Says 1250 mL is more than 2 L because 1250 is a bigger number.",name:"Ignoring the size of the unit",resp:"Convert to the same unit: 1250 mL = 1 litre 250 millilitres; 2 L = 2000 mL.",src:"a"},
+  {see:"Calls a square pyramid a ‘triangle’ because its sides are triangles.",name:"Naming objects by one face",resp:"Contrast the object with the 2D shape. A pyramid has a base and triangular faces meeting at an apex.",src:"a"},
+  {see:"Draws only the front face when asked for the top view of a model.",name:"Views not distinguished",resp:"Look from directly above, in front and to the side, or photograph each view, then sketch.",src:"n"}
+ ],
+ advice:["Investigate the variety of nets of a cube by cutting up packages and folding arrangements of six squares.","Use digital technologies for students who can’t access physical manipulatives to construct models.","Have students take photos of a cube from different angles and finger-trace the faces before drawing on isometric grids.","Use one cup as a benchmark of a quarter of a litre (250 mL), and let students adjust estimates after adding one cup.","Avoid images of containers that aren’t to scale.","Treat prisms and pyramids as classes; formal names come in Stage 3."],
+ vocab:["object","2D shape","3D object","cone","cube","cylinder","prism","pyramid","sphere","surface","flat surface","curved surface","curved boundary","face","edge","vertex","vertices","net","top view","front view","side view","isometric grid paper","isometric drawing","depth","capacity","container","litre","millilitre","volume","layers","cubic centimetre","estimate","measure"],
+ check:{title:"Quick checks (built from the syllabus examples and NESA advice)",steps:["Show several arrangements of six squares. Ask, <i>Which will fold to make a cube? How do you know?</i> Try the nets tool below.","Show a connecting-cube model. Ask the student to sketch the top, front and side views.","Show a 1 L milk carton and a 1 L ice-cream container. Ask, <i>Which holds more?</i>","Ask, <i>About how many cups would fill this 1 L bottle? How many millilitres in each cup?</i>"]},
+ tool:"nets",
+ quiz:[
+  {q:"How many distinct nets does a cube have?",o:["6","8","11","24"],a:2,why:"There are 11 distinct nets of a cube (and 2 of a regular tetrahedron)."},
+  {q:"Why does a cube look like it has rhombus faces in an isometric drawing?",o:["Isometric drawings are inaccurate","Faces are drawn as they appear to the eye, not as we know them to be","The cube is stretched","It isn’t a cube"],a:1,why:"NESA suggests photographing and finger-tracing to help students understand this."},
+  {q:"When are formal names such as ‘triangular prism’ introduced?",o:["Early Stage 1","Stage 1","Stage 2","Stage 3"],a:3,why:"In Stage 2, prisms and pyramids are treated as classes; specific names come in Stage 3."}
+ ]
+},
+s3:{
+ lead:"In Years 5 and 6, students name prisms and pyramids by their base, recognise uniform cross-sections, visualise views and nets, and construct skeletal models. Volume is calculated as the number of cubes in one layer × the number of layers, in cm³ and m³, with displacement and decimal capacities.",
+ outcomes:[["MA3-3DS-01","visualises, sketches and constructs three-dimensional objects, including prisms and pyramids, making connections to two-dimensional representations"],["MA3-3DS-02","selects and uses the appropriate unit to estimate, measure and calculate volumes and capacities"]],
+ content:[
+  ["A","3D objects: Compare, describe and name prisms and pyramids",["Compare properties: prisms have a uniform cross-section parallel to the base and pyramids do not","Prisms have 2 identical bases; pyramids have a base and an apex","Name prisms and pyramids by the shape of their base (rectangular prism, square pyramid)"]],
+  ["A","3D objects: Connect objects with two-dimensional representations",["Visualise and sketch objects from top, front and side views (Reasons about spatial orientation)","Examine a diagram to decide whether it is the net of a closed object","Visualise and sketch nets for given objects","Visualise and name prisms and pyramids from their nets (Reasons about spatial visualisation)"]],
+  ["A","Volume: Capacity, displacement and decimals",["Select appropriate units: millilitres for a glass, litres for a bucket","Observe the change in water level when an object is placed in water; compare volumes by marking the change","Recognise equivalence: 375 mL is the same as 0.375 L; 8.7 L is 8 litres and 700 millilitres","Record measurements to 3 decimal places (1.275 L)"]],
+  ["B","3D objects: Construct prisms and pyramids",["Create skeletal models with toothpicks and modelling clay, or straws and tape","Construct models from drawings of different views"]],
+  ["B","Volume: Use cubic metres",["Recognise the need for a unit larger than the cubic centimetre","Construct and use the cubic metre; estimate and measure the size of the classroom"]],
+  ["B","Volume: Recognise the multiplicative structure for finding volume",["Describe length, width and height as the dimensions of a rectangular prism","Describe arrangements in layers: 5 layers of 8 cubes, each layer 4 rows of 2","Establish the relationship between the number of cubes in one layer and the number of layers (Reasons about spatial structure)"]],
+  ["B","Volume: Find volumes of rectangular prisms in cm³ and m³",["Construct prisms from cubic-centimetre blocks and determine their volumes","Explain that objects with the same volume may be different shapes (Reasons about spatial structure)","Record in words: volume = number of cubes in one layer × number of layers","Recognise that prisms with the same volume may have different dimensions: volumes of 24 cubes (Reasons about spatial structure)","Calculate volumes in cm³ and m³"]]
+ ],
+ know:[
+  ["Base and cross-section","Prisms have two bases of the same shape and size. The base is the shape of the uniform cross-section, not necessarily the face it rests on. Pyramids have one base and triangular faces meeting at the apex, and no uniform cross-section."],
+  ["Right and oblique prisms","In a right prism, the joining faces are rectangles; in an oblique prism, they are parallelograms. Spheres, cones and cylinders are neither prisms nor pyramids. A triangular pyramid is also called a tetrahedron."],
+  ["Schematic, not pictorial","Schematic representations, like the plan of a house, encode spatial relations and are associated with success in problem solving; detailed pictorial images are not (Hegarty and Kozhevnikov 1999)."],
+  ["Visualising isn’t only visual","Mental images can be formed by touch or sound. Exploring objects in a bag or behind a screen builds images that focus on structure. Spatial imagination among people who are blind relies on tactile and auditory activity (Healy and Fernandes 2014)."],
+  ["Row × column × layer","Finding the volume of prisms relies on the row by column structure of each layer, multiplied by the number of layers. Predicting from the net of an open box before building refines students’ mental models (Battista 1999)."],
+  ["Reading units","Read m³ as ‘cubic metres’ and cm³ as ‘cubic centimetres’, not ‘metres cubed’. ‘cc’ isn’t internationally accepted; cm³ is. Relate the cubic metre to the metre and the square metre."]
+ ],
+ misc:[
+  {see:"Says the base of a triangular prism lying on a rectangular face is a rectangle.",name:"The base is the bottom face",resp:"The base is the shape of the uniform cross-section. Slice (or imagine slicing) parallel to the triangular ends.",src:"n"},
+  {see:"Finds the volume of a prism by counting the squares on the visible faces.",name:"Counting surface squares",resp:"Build the prism and take it apart in layers. Volume counts cubes, not faces.",src:"a"},
+  {see:"Says two prisms of 24 cubes can’t have the same volume because one is long and flat and the other is a tower.",name:"Same volume, same shape",resp:"Build both from the same 24 cubes. Prisms with the same volume can have different dimensions. Try the tool below.",src:"n"},
+  {see:"Writes 375 mL as 3.75 L.",name:"Decimal places in metric units",resp:"1 L = 1000 mL, so 375 mL is 375 thousandths of a litre: 0.375 L. Use a place value chart.",src:"a"},
+  {see:"Uses length × width × height but can’t explain why.",name:"A formula without the layer structure",resp:"Record in words: cubes in one layer × number of layers. Link length × width to the area of the base layer.",src:"n"},
+  {see:"Reads 12 m³ as “12 metres cubed”.",name:"Reading volume units",resp:"NESA advises reading m³ as ‘cubic metres’ and cm³ as ‘cubic centimetres’.",src:"n"}
+ ],
+ advice:["Let students explore objects with their hands, without looking (in a bag or behind a screen), to build mental images focused on structure.","Model prisms by stacking uniform objects, and pyramids by stacking seriated shapes, to explore cross-sections.","Use skeletal models to focus on edges and vertices, and nets to focus on faces.","Ask students to predict the number of cubes that will fit in an open box from its net before building it.","Relate the cubic metre to the metre and the square metre; construct one and estimate the classroom’s volume.","Use digital technologies for students who can’t access physical manipulatives."],
+ vocab:["apex","base","cube","depth","edge","face","vertex","vertices","net","prism","pyramid","rectangular prism","triangular prism","square pyramid","tetrahedron","uniform cross-section","top view","front view","side view","capacity","container","cubic centimetre","cubic metre","dimensions","length","width","height","layers","litre","millilitre","volume","displacement"],
+ check:{title:"Quick checks (built from the syllabus examples and NESA advice)",steps:["Show the net of an open box 4 by 3 with sides 2 high. Ask, <i>How many cubes will fit? How do you know?</i> Then build it.","Ask, <i>Make as many different rectangular prisms as you can with 24 cubes. Describe each in layers.</i> Try the tool below.","Show a triangular prism resting on a rectangular face. Ask, <i>What is the base of this prism? Why?</i>","Ask, <i>Write 375 mL in litres. Read 1.275 L aloud.</i>"]},
+ tool:"prisms",
+ quiz:[
+  {q:"What is the base of a prism?",o:["The face it rests on","The shape of the uniform cross-section","The largest face","Always a rectangle"],a:1,why:"The base is the shape of the uniform cross-section, not necessarily the face on which it is resting."},
+  {q:"How does NESA suggest recording the method for the volume of a rectangular prism in Stage 3?",o:["V = l × w × h","In words: number of cubes in one layer × number of layers","Count every cube","Length + width + height"],a:1,why:"Methods are recorded in words; algebraic formulas come in Stage 4."},
+  {q:"Which kind of representation is associated with success in mathematical problem solving?",o:["Detailed pictorial images","Schematic representations that encode spatial relations","Colourful drawings","Photographs"],a:1,why:"Hegarty and Kozhevnikov (1999) found schematic representations were associated with success; pictorial ones were negatively correlated."}
+ ]
+}
+};
+
+var IDEAS = [
+ {t:"Objects are described by their surfaces",d:"Flat and curved surfaces, faces, edges and vertices describe and classify objects.",s:{es1:"Flat, round and curved; which objects stack or roll.",s1:"Surface, face, edge and vertex; a cube has six square faces.",s2:"Prisms, pyramids and cylinders compared by their features.",s3:"Prisms and pyramids named by their base; uniform cross-sections."}},
+ {t:"3D objects connect to 2D representations",d:"Faces, nets, views and drawings represent objects in two dimensions.",s:{es1:"Making and describing models.",s1:"Flat surfaces recognised as 2D shapes.",s2:"Nets from packages; isometric drawings; top, front and side views.",s3:"Visualising nets and views; deciding whether a diagram is a net."}},
+ {t:"Volume is the space an object occupies",d:"Volume and capacity are compared before they are measured.",s:{es1:"‘Takes up more space’; direct comparison by building.",s1:"Uniform informal units; cubes pack without gaps.",s2:"Cubic centimetres described in layers.",s3:"Cubic metres; displacement shows volume takes up space."}},
+ {t:"Shape doesn’t decide volume",d:"Containers and objects of different shapes can hold or occupy the same amount.",s:{es1:"Tall narrow and short wide containers holding the same amount.",s1:"Models with different appearances and the same volume.",s2:"One-litre containers come in a variety of shapes.",s3:"Prisms with the same volume and different dimensions."}},
+ {t:"Volume has a layer structure",d:"Rows and columns make a layer; layers stack to make a prism.",s:{es1:"Stacking and packing blocks.",s1:"Make layers with no gaps; count the hidden cubes.",s2:"Row, column and layer structure in cubic centimetres.",s3:"Cubes in one layer × number of layers."}},
+ {t:"The size of the unit matters",d:"Bigger units mean fewer of them; formal units allow accurate communication.",s:{es1:"Full, empty, about half full.",s1:"More cups than ice-cream containers; block size affects volume.",s2:"Litres and millilitres; 1000 mL = 1 L; benchmarks.",s3:"Choosing units; decimals to 3 places (0.375 L)."}}
+];
+
+var ASPECTS = [
+ {k:"o",l:"Outcomes",v:{es1:"<b>MAE-3DS-01</b> manipulates, describes and sorts 3D objects<br><b>MAE-3DS-02</b> describes and compares volumes",s1:"<b>MA1-3DS-01</b> recognises, describes and represents familiar 3D objects<br><b>MA1-3DS-02</b> measures, records, compares and estimates capacities and volumes using uniform informal units",s2:"<b>MA2-3DS-01</b> makes and sketches models and nets of 3D objects including prisms and pyramids<br><b>MA2-3DS-02</b> estimates, measures and compares capacities using L and mL, and volumes using cubic centimetres",s3:"<b>MA3-3DS-01</b> visualises, sketches and constructs 3D objects, making connections to 2D representations<br><b>MA3-3DS-02</b> selects and uses the appropriate unit to estimate, measure and calculate volumes and capacities"}},
+ {k:"s",l:"Objects",v:{es1:"Familiar objects described as flat, round, curved",s1:"Cubes, cylinders, spheres, rectangular prisms",s2:"Prisms, pyramids, cylinders (as families)",s3:"Named prisms and pyramids (by base)"}},
+ {k:"r",l:"Representations",v:{es1:"Models",s1:"Simple models; faces as 2D shapes",s2:"Nets; sketches showing depth; views; isometric grids",s3:"Visualised nets and views; skeletal models; models from drawings"}},
+ {k:"v",l:"Volume and capacity",v:{es1:"Direct and indirect comparison by filling, packing, building",s1:"Uniform informal units; calibrated bottles; prisms of cubes",s2:"L and mL; cubic centimetres in layers",s3:"cm³ and m³; layer × layers; displacement; decimals"}},
+ {k:"l",l:"Language",v:{es1:"flat, curved, stack, roll, full, empty, about half full, takes up more space",s1:"surface, face, edge, vertex, capacity, internal volume, layer",s2:"prism, pyramid, net, top/front/side view, litre, millilitre, ‘cc’ in words",s3:"base, apex, uniform cross-section, dimensions; cm³ and m³ read as ‘cubic …’"}}
+];
+
+var MODELS = [
+ {n:"Everyday objects and packages",w:"blocks, balls, tissue boxes, yidaki",s:0,e:2,d:"Familiar objects to manipulate, describe and sort; packages deconstructed into nets in Stage 2."},
+ {n:"Water, sand and containers",w:"pouring, filling, emptying",s:0,e:3,d:"Direct and indirect comparison in Early Stage 1; informal units in Stage 1; litres and millilitres in Stage 2; displacement in Stage 3."},
+ {n:"Blocks and connecting cubes",w:"stacking, packing and layers",s:0,e:3,hi:true,d:"Building and comparing models, packing boxes, constructing prisms in layers and calculating volume."},
+ {n:"Calibrated containers",w:"marked bottles and jugs",s:1,e:2,d:"Marking a bottle as each cup is added in Stage 1; calibrating in 100 mL increments in Stage 2."},
+ {n:"Plasticine and modelling materials",w:"simple models",s:1,e:2,d:"Making spheres and other objects; constructing prisms and pyramids."},
+ {n:"Nets",w:"from packages and paper",s:2,e:3,d:"Cutting up packages; investigating the 11 nets of a cube; visualising nets and predicting volumes from nets of open boxes."},
+ {n:"Isometric grids and digital tools",w:"drawings and views",s:2,e:3,d:"Drawing views of cube models; digital tools for students who can’t access physical manipulatives."},
+ {n:"Cubic-centimetre blocks",w:"formal units of volume",s:2,e:3,d:"Prisms described in layers in Stage 2; volume calculated in Stage 3."},
+ {n:"Skeletal models",w:"toothpicks and clay, straws and tape",s:3,e:3,d:"Focus attention on edges and vertices, while nets emphasise faces."},
+ {n:"Feely bags and screens",w:"exploring by touch",s:3,e:3,d:"Building mental images of structure rather than appearance."},
+ {n:"A constructed cubic metre",w:"for large volumes",s:3,e:3,d:"Estimating and measuring large volumes such as the classroom."},
+ {n:"Stacked and seriated shapes",w:"modelling prisms and pyramids",s:3,e:3,d:"Uniform stacks model prisms; stacks of decreasing size model pyramids and show non-uniform cross-sections."}
+];
+
+var ROOTS = ["Judging volume or capacity by one dimension or appearance","Counting only what can be seen","Confusing 3D objects with 2D shapes and representations","Ignoring the size of the unit"];
+var SCENARIOS = [
+ {st:"es1",q:"Noah says the tall thin bottle holds more water than the wide bowl because it is taller.",a:0,why:"Noah judges capacity by height. Pour one into the other."},
+ {st:"es1",q:"Isla calls the ball a circle.",a:2,why:"Isla uses a 2D name for a 3D object. Model ‘object’ and ‘shape’."},
+ {st:"s1",q:"Tom counts 12 cubes in a 3 by 2 by 3 prism.",a:1,why:"Tom counts only the visible cubes. Take the prism apart in layers."},
+ {st:"s1",q:"Grace says her 20-block model is bigger than Sam’s 12-block model, but Sam used larger blocks.",a:3,why:"Grace ignores the size of the unit. Compare the models directly."},
+ {st:"s1",q:"Leo says a cylinder has three faces.",a:2,why:"Curved surfaces and flat surfaces with curved boundaries aren’t faces."},
+ {st:"s2",q:"Maya says every shape made of six squares folds into a cube.",a:2,why:"Only 11 arrangements are nets of a cube. Fold and test."},
+ {st:"s2",q:"Ari says the 1 L milk carton holds more than the 1 L ice-cream container because it is taller.",a:0,why:"One-litre containers can be a variety of shapes."},
+ {st:"s2",q:"Zara says 1250 mL is more than 2 L.",a:3,why:"Zara compares numbers without the units. 2 L = 2000 mL."},
+ {st:"s3",q:"Eli counts the squares on the faces he can see to find the volume of a prism.",a:1,why:"Volume counts cubes, including hidden ones: cubes in one layer × number of layers."},
+ {st:"s3",q:"Ruby says a long, flat prism of 24 cubes has less volume than a tower of 24 cubes.",a:0,why:"Prisms with the same volume can have different dimensions."},
+ {st:"s3",q:"Jai says the base of a triangular prism lying on its side is a rectangle.",a:2,why:"The base is the shape of the uniform cross-section, not the face it rests on."},
+ {st:"s3",q:"Sophie writes 375 mL as 3.75 L.",a:3,why:"1 L = 1000 mL, so 375 mL = 0.375 L."}
+];
+
+var PROMPTS = [
+ ["Looking across the progression","Which of the six big ideas does your stage depend on most? Which earlier stage is it built on?"],
+ ["Looking across the progression","How does the row and column structure of area, taught in Two-dimensional spatial structure, set up the layer structure of volume in your school?"],
+ ["Looking across the progression","Where do your students meet containers that challenge ‘taller holds more’? Is it only in Kindergarten?"],
+ ["Your students","Run the quick check for your stage with three students: one secure, one you’re unsure of and one who is struggling. What did you learn that you didn’t expect?"],
+ ["Your students","Which root misconception do you see most often? Where in the earlier stages might it have started?"],
+ ["Your students","NESA notes that visualising isn’t only visual. How could you include students with vision impairment in visualising tasks?"],
+ ["Your practice","How often do students build and handle objects, rather than looking at pictures of them?"],
+ ["Your practice","Do you use schematic representations, like plans and nets, as well as pictures? How could you use them more?"],
+ ["Your practice","How consistently do you and your colleagues use ‘face’, ‘surface’, ‘capacity’ and ‘volume’?"]
+];
+var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+var WM_ELEMENTS = [
+ ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],
+ ["Exploring and connecting","Students explore ideas and connect concepts and representations."],
+ ["Choosing and applying techniques","Students choose and apply mathematical techniques to solve problems."],
+ ["Communicating","Students communicate their thinking clearly and coherently."],
+ ["Reasoning","Students reason about and justify their thinking."]
+];
+
+var WM = {
+ es1:{
+  tags:[["Predict the stacking capabilities of various three-dimensional objects","Reasons about spatial relations"]],
+  before:{task:"Colour the container that holds more.<br><br>(a picture of a big bucket and a small cup)",lim:["The answer is obvious from size","Pictures, not real containers","No pouring, predicting or explaining"]},
+  after:{task:"“Here are a tall thin bottle and a short wide jug. Which do you think holds more? How could we find out?” Students predict, pour and explain.",enable:"Use containers that are clearly different first, then closer ones.",extend:"“Find a container that is shorter than the bottle but holds more.”",listen:"‘Taller doesn’t always mean more’; pouring one into the other; ‘it overflowed, so…’; ‘full’, ‘empty’, ‘about half full’.",el:["Exploring and connecting","Choosing and applying techniques","Communicating","Reasoning"]}
+ },
+ s1:{
+  tags:[["Recognise and explain the relationship between the size of a unit and the number of units needed","Reasons about relations"],["Recognise and explain why containers of different shapes may have the same internal volume","Reasons about relations"],["Recognise that cubes pack better than other objects in rectangular containers","Reasons about spatial structure"],["Devise and explain strategies for stacking and counting units to form a rectangular prism","Reasons about spatial structure"],["Compare models with different appearances, recognising when they have the same volume","Reasons about spatial structure"],["Explain that models made of the same number of units may have different volumes depending on the size of the units","Reasons about spatial relations"]],
+  before:{task:"How many cubes?<br><br>(a picture of a 2 by 2 by 2 cube model)",lim:["One answer","Hidden cubes may not be considered","No building or comparing"]},
+  after:{task:"“Build as many different rectangular prisms as you can with 12 cubes. Record each one and explain how you counted.”",enable:"Start with 6 cubes; build a layer first.",extend:"“Which prisms could you also make with 24 cubes? What changes?”",listen:"‘Make a layer, then stack’; counting a layer and adding layers; ‘it looks different but has the same number of cubes’.",el:["Exploring and connecting","Choosing and applying techniques","Communicating","Reasoning"]}
+ },
+ s2:{
+  tags:[["Recognise that one-litre containers can be a variety of shapes","Reasons about spatial structure"],["Create sketches of three-dimensional objects from different views, including top, front and side views","Reasons about spatial relations"],["Interpret given drawings to make models of three-dimensional objects using connecting cubes","Reasons about spatial visualisation"]],
+  before:{task:"Is this a net of a cube? Yes / No<br><br>(one cross-shaped net)",lim:["One net, one expected answer","No investigation of other nets","No reasoning about why"]},
+  after:{task:"“How many different arrangements of six squares can you find that fold into a cube? How do you know you’ve found them all?”",enable:"Give students a cube to roll across paper, tracing each face.",extend:"“Which arrangements don’t work? What do they have in common?”",listen:"‘Four in a row with one on each side’; ‘two squares would overlap’; checking for repeats by turning or flipping.",el:["Exploring and connecting","Choosing and applying techniques","Communicating","Reasoning"]}
+ },
+ s3:{
+  tags:[["Visualise and sketch three-dimensional objects from different views, including top, front and side views","Reasons about spatial orientation"],["Visualise and name prisms and pyramids, given representations of their nets","Reasons about spatial visualisation"],["Establish the relationship between the number of cubes in one layer and the number of layers to find the volume of a rectangular prism","Reasons about spatial structure"],["Explain that objects with the same volume may be different shapes","Reasons about spatial structure"],["Recognise that rectangular prisms with the same volume may have different dimensions","Reasons about spatial structure"]],
+  before:{task:"Find the volume.<br><br>Length 4 cm, width 3 cm, height 2 cm.<br>V = ____",lim:["A procedure without the layer structure","One prism, one answer","No reasoning or comparison"]},
+  after:{task:"“A box holds exactly 24 centimetre cubes. What could its dimensions be? Find them all and describe each in layers.”",enable:"Build with cubes, one layer at a time.",extend:"“Which box needs the least cardboard? Explain.”",listen:"‘6 in a layer, 4 layers’; factors of 24; ‘same volume, different shapes’; systematic listing.",el:["Exploring and connecting","Choosing and applying techniques","Communicating","Reasoning"]}
+ }
+};
+
+var CLOSED = [
+ {st:"s1",task:"How many faces does a cube have?",moves:[
+  {m:"Who is correct?",t:"“Ali says a cylinder has three faces. Bea says it has none. Who is correct? Why?”",el:["Reasoning","Communicating"]},
+  {m:"Same and different",t:"“What is the same and what is different about a cube and a rectangular prism?”",el:["Exploring and connecting","Communicating"]},
+  {m:"Always, sometimes, never",t:"“The faces of a rectangular prism are squares. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
+  {m:"Open it up",t:"“Find objects in the classroom with 6 faces. Are they all the same kind of object?”",el:["Choosing and applying techniques","Reasoning"]},
+  {m:"Convince me",t:"“Convince me that a cube has 6 faces, 12 edges and 8 vertices.”",el:["Understanding and fluency","Communicating"]}
+ ]},
+ {st:"s2",task:"How many millilitres in 1 litre?",moves:[
+  {m:"Who is correct?",t:"“Kai says 1250 mL is more than 2 L. Mia says 2 L is more. Who is correct? Show how you know.”",el:["Reasoning","Communicating"]},
+  {m:"Same and different",t:"“What is the same and what is different about a 1 L milk carton, a 1 L jug and a 1 L ice-cream container?”",el:["Exploring and connecting","Communicating"]},
+  {m:"Always, sometimes, never",t:"“A taller container holds more. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
+  {m:"Open it up",t:"“Find containers that together hold about 1 litre. Check by pouring.”",el:["Choosing and applying techniques","Reasoning"]},
+  {m:"Convince me",t:"“Convince me that 4 cups of 250 mL fill a 1 L bottle.”",el:["Understanding and fluency","Communicating"]}
+ ]},
+ {st:"s3",task:"Find the volume of a rectangular prism 5 cm by 4 cm by 3 cm.",moves:[
+  {m:"Who is correct?",t:"“Jo says the volume is 5 + 4 + 3 = 12 cm³. Sam says it is 20 × 3 = 60 cm³. Who is correct? Explain using layers.”",el:["Reasoning","Communicating"]},
+  {m:"Same and different",t:"“What is the same and what is different about prisms 5 by 4 by 3, 10 by 2 by 3 and 6 by 10 by 1?”",el:["Exploring and connecting","Communicating"]},
+  {m:"Always, sometimes, never",t:"“If you double the length of a rectangular prism, you double its volume. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
+  {m:"Open it up",t:"“Find rectangular prisms with a volume of 60 cm³. How many can you find?”",el:["Choosing and applying techniques","Reasoning"]},
+  {m:"Convince me",t:"“Convince me that this prism has 3 layers of 20 cubes.”",el:["Understanding and fluency","Communicating"]}
+ ]}
+];
+
+</script>
+<script>
+function toolHTML(t){
+ if(t==="containers") return '<div class="tool"><div class="tt">Diagnostic</div><h4>Which container holds more?</h4><p class="note">Both containers are the same depth, front to back. Decide which holds more, then pour the left container into the right to check. The pairs cycle through the five kinds of comparison NESA recommends.</p><div class="ctpic" id="ctPic"></div><div class="ctrl"><button class="btn small" data-c="a">Left holds more</button><button class="btn small" data-c="b">Right holds more</button><button class="btn small" data-c="s">They hold the same</button><button class="btn ghost small" id="ctNew" disabled>New pair</button></div><div class="fbline" id="ctFb"></div><div class="score" id="ctScore"></div></div>';
+ if(t==="cubes") return '<div class="tool"><div class="tt">Diagnostic</div><h4>How many cubes?</h4><p class="note">Assume the model is solid, with no gaps. Some cubes are hidden, so think in layers. Type your answer, then check.</p><div class="cbpic" id="cbPic"></div><div class="ctrl"><label for="cbIn">Number of cubes</label><input type="number" id="cbIn" min="1" max="200" style="width:90px"><button class="btn small" id="cbGo">Check</button><button class="btn ghost small" id="cbNew">New model</button></div><div class="fbline" id="cbFb"></div><div class="score" id="cbScore"></div></div>';
+ if(t==="nets") return '<div class="tool"><div class="tt">Diagnostic</div><h4>Will it fold into a cube?</h4><p class="note">A cube has 11 distinct nets. Visualise folding the arrangement of six squares, then check. The check labels where each square ends up when the shaded square is the base.</p><div class="ntpic" id="ntPic"></div><div class="ctrl"><button class="btn small" data-c="y">It makes a cube</button><button class="btn small" data-c="n">It doesn’t</button><button class="btn ghost small" id="ntNew" disabled>Next arrangement</button></div><div class="fbline" id="ntFb"></div><div class="score" id="ntScore"></div></div>';
+ if(t==="prisms") return '<div class="tool"><div class="tt">Model</div><h4>Same volume, different prisms</h4><p class="note">Choose a number of cubes to see every rectangular prism it can make. Select a prism to see it in layers.</p><div class="ctrl" style="margin-top:0"><label for="pmV">Volume (cubes)</label><input type="number" id="pmV" value="24" min="1" max="72" style="width:80px"><button class="btn small" id="pmGo">Show</button><label><input type="checkbox" id="pmX"> Separate the layers</label></div><div class="pmlist" id="pmList"></div><div class="cbpic" id="pmPic"></div><div class="readout" id="pmRead"></div></div>';
+ return "";
+}
+
+/* shared: isometric drawing of an L × W × H prism of cubes */
+function isoPrism(L,W,H,opt){
+ opt=opt||{}; var s=opt.s||22, c=Math.cos(Math.PI/6), gap=opt.explode?1.1:0;
+ function shade(hex,k){ var n=parseInt(hex.slice(1),16), r=n>>16, g=(n>>8)&255, b=n&255; return 'rgb('+[r,g,b].map(function(v){return Math.min(255,Math.round(k>1?v+(255-v)*(k-1)*1.6:v*k));}).join(',')+')'; }
+ var cols=["#4b5bbf","#2f7f6f","#c8553d","#b07a1a","#8a3f8f","#3b7fae"];
+ function P(x,y,z){ return [(x-y)*c*s,(x+y)*0.5*s-z*s]; }
+ var cubes=[]; for(var z=0;z<H;z++) for(var y=0;y<W;y++) for(var x=0;x<L;x++) cubes.push([x,y,z]);
+ cubes.sort(function(a,b){return ((a[0]+a[1]+a[2])-(b[0]+b[1]+b[2]))||(a[2]-b[2]);});
+ var polys=[], minX=1e9,maxX=-1e9,minY=1e9,maxY=-1e9;
+ cubes.forEach(function(q){
+  var x=q[0],y=q[1],z=q[2]+q[2]*gap, col=opt.layers?cols[q[2]%cols.length]:(opt.col||"#4b5bbf");
+  var faces=[
+   [[x,y,z+1],[x+1,y,z+1],[x+1,y+1,z+1],[x,y+1,z+1],1.12],
+   [[x+1,y,z],[x+1,y+1,z],[x+1,y+1,z+1],[x+1,y,z+1],0.86],
+   [[x,y+1,z],[x+1,y+1,z],[x+1,y+1,z+1],[x,y+1,z+1],0.66]
+  ];
+  faces.forEach(function(f){
+   var pts=f.slice(0,4).map(function(v){var p=P(v[0],v[1],v[2]); minX=Math.min(minX,p[0]);maxX=Math.max(maxX,p[0]);minY=Math.min(minY,p[1]);maxY=Math.max(maxY,p[1]); return p;});
+   polys.push('<polygon points="'+pts.map(function(p){return p[0].toFixed(1)+","+p[1].toFixed(1);}).join(" ")+'" fill="'+shade(col,f[4])+'" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/>');
+  });
+ });
+ var pad=6, w=maxX-minX+pad*2, h=maxY-minY+pad*2;
+ return '<svg viewBox="'+(minX-pad).toFixed(1)+' '+(minY-pad).toFixed(1)+' '+w.toFixed(1)+' '+h.toFixed(1)+'" style="max-width:'+Math.round(w)+'px" role="img" aria-label="'+L+' by '+W+' by '+H+' prism of cubes">'+polys.join("")+'</svg>';
+}
+
+/* ES1 containers */
+var CT_PAIRS=[
+ {a:[110,80],b:[52,150],k:"The left container is shorter but holds more."},
+ {a:[42,150],b:[96,90],k:"The left container is taller but holds less."},
+ {a:[62,80],b:[70,135],k:"The left container is shorter and holds less."},
+ {a:[72,150],b:[84,92],k:"The left container is taller and holds more."},
+ {a:[100,72],b:[45,160],k:"The short wide container holds the same as the tall narrow one."}
+];
+function wireContainers(){
+ var order, i=-1, score=0, round=0, A, B, swap;
+ function cont(x,w,h,level,over,lab,col){
+  var base=190, top=base-h, s='';
+  if(level>0) s+='<rect x="'+x+'" y="'+(base-level)+'" width="'+w+'" height="'+level+'" fill="'+col+'" fill-opacity=".75"/>';
+  if(over) s+='<path d="M'+(x+w)+' '+top+' q 14 4 18 30 q 4 40 14 '+(h-30)+' l -18 0 q -8 -50 -10 -'+(h-40)+'Z" fill="'+col+'" fill-opacity=".55"/><ellipse cx="'+(x+w+18)+'" cy="'+(base+4)+'" rx="26" ry="5" fill="'+col+'" fill-opacity=".5"/>';
+  s+='<path d="M'+x+' '+top+' V'+base+' H'+(x+w)+' V'+top+'" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/>';
+  s+='<text x="'+(x+w/2)+'" y="214" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink2)">'+lab+'</text>';
+  return s;
+ }
+ function draw(poured){
+  var col="#3b7fae", la=A[1], lb=0, over=false, capA=A[0]*A[1], capB=B[0]*B[1];
+  if(poured){ la=0; lb=Math.min(B[1],capA/B[0]); over=capA>capB+1; }
+  var xB=90+A[0]+80;
+  $("#ctPic").innerHTML='<svg viewBox="0 0 '+(xB+B[0]+70)+' 222" style="max-width:'+(xB+B[0]+70)+'px">'+cont(60,A[0],A[1],la,false,"Left",col)+cont(xB,B[0],B[1],lb,over,"Right",col)+'</svg>';
+ }
+ function newPair(){
+  if(i<0||i>=order.length-1){ order=CT_PAIRS.slice().sort(function(){return Math.random()-.5;}); i=0; } else i++;
+  round++; var p=order[i]; swap=false; A=p.a; B=p.b;
+  draw(false); $("#ctFb").className="fbline";
+  $$(".tool [data-c]").forEach(function(x){x.disabled=false;}); $("#ctNew").disabled=true;
+ }
+ $$(".tool [data-c]").forEach(function(btn){btn.onclick=function(){
+  var capA=A[0]*A[1], capB=B[0]*B[1], right=Math.abs(capA-capB)<=1?"s":(capA>capB?"a":"b"), ok=btn.dataset.c===right; if(ok) score++;
+  draw(true);
+  var what=right==="s"?"The water from the left exactly fills the right container, so they hold the same amount.":right==="a"?"The water from the left overflows the right container, so the left holds more.":"The water from the left doesn’t fill the right container, so the right holds more.";
+  $("#ctFb").className="fbline show "+(ok?"ok":"no");
+  $("#ctFb").innerHTML=(ok?"<b>Yes.</b> ":"<b>Not this time.</b> ")+what+" "+order[i].k+" Height alone doesn’t decide which holds more.";
+  $$(".tool [data-c]").forEach(function(x){x.disabled=true;}); $("#ctNew").disabled=false;
+  $("#ctScore").textContent=score+" of "+round+" correct";
+ };});
+ $("#ctNew").onclick=newPair;
+ newPair();
+}
+
+/* S1 count the cubes */
+function wireCubes(){
+ var D, score=0, round=0, last="";
+ function newModel(){
+  var k; do{ D=[2+Math.floor(Math.random()*3),2+Math.floor(Math.random()*3),2+Math.floor(Math.random()*3)]; k=D.join(); }while(k===last); last=k;
+  $("#cbPic").innerHTML=isoPrism(D[0],D[1],D[2],{s:26});
+  $("#cbIn").value=""; $("#cbFb").className="fbline"; $("#cbGo").disabled=false;
+ }
+ function check(){
+  var n=Math.round(+$("#cbIn").value); if(!n) return;
+  var L=D[0],W=D[1],H=D[2], V=L*W*H, faces=L*W+L*H+W*H, visible=V-(L-1)*(W-1)*(H-1), ok=n===V;
+  round++; if(ok) score++;
+  var why;
+  if(ok) why="Each layer is "+W+" rows of "+L+" cubes, which is "+(L*W)+" cubes, and there are "+H+" layers: "+H+" × "+(L*W)+" = "+V+" cubes.";
+  else if(n===faces) why="You may have counted the squares you can see on the outside. That counts faces, and some cubes are counted more than once. ";
+  else if(n===visible) why="You may have counted only the cubes you can see. "+(V-visible)+" cube"+(V-visible===1?" is":"s are")+" hidden inside or at the back. ";
+  else why="";
+  if(!ok) why+="There are "+V+" cubes: "+H+" layers of "+(L*W)+" (each layer is "+W+" rows of "+L+").";
+  $("#cbPic").innerHTML=isoPrism(L,W,H,{s:26,explode:true,layers:true});
+  $("#cbFb").className="fbline show "+(ok?"ok":"no");
+  $("#cbFb").innerHTML=(ok?"<b>Yes.</b> ":"<b>Not this time.</b> ")+why;
+  $("#cbGo").disabled=true; $("#cbScore").textContent=score+" of "+round+" correct";
+ }
+ $("#cbGo").onclick=check; $("#cbIn").onkeydown=function(e){if(e.key==="Enter") check();};
+ $("#cbNew").onclick=newModel;
+ newModel();
+}
+
+/* S2 nets of a cube */
+var NETS=[
+ [[1,0],[1,1],[1,2],[1,3],[0,0],[2,0]],
+ [[1,0],[1,1],[1,2],[1,3],[0,0],[2,1]],
+ [[1,0],[1,1],[1,2],[1,3],[0,0],[2,2]],
+ [[1,0],[1,1],[1,2],[1,3],[0,0],[2,3]],
+ [[1,0],[1,1],[1,2],[1,3],[0,1],[2,1]],
+ [[1,0],[1,1],[1,2],[1,3],[0,1],[2,2]],
+ [[0,0],[0,1],[1,1],[1,2],[1,3],[2,1]],
+ [[0,0],[0,1],[1,1],[1,2],[1,3],[2,2]],
+ [[0,0],[0,1],[1,1],[1,2],[1,3],[2,3]],
+ [[0,0],[0,1],[1,1],[1,2],[2,2],[2,3]],
+ [[0,0],[0,1],[0,2],[1,2],[1,3],[1,4]],
+ [[0,0],[0,1],[0,2],[0,3],[0,4],[0,5]],
+ [[0,0],[0,1],[0,2],[1,0],[1,1],[1,2]],
+ [[1,0],[1,1],[1,2],[1,3],[1,4],[0,0]],
+ [[0,0],[0,1],[1,0],[1,1],[1,2],[1,3]],
+ [[1,0],[1,1],[1,2],[1,3],[0,1],[0,2]],
+ [[0,0],[0,1],[0,2],[0,3],[1,1],[1,2]],
+ [[0,1],[1,0],[1,1],[1,2],[2,1],[2,2]],
+ [[0,0],[0,1],[0,2],[1,2],[1,3],[2,3]]
+];
+/* fold by rolling a cube: returns the face each square lands on */
+function foldNet(cells){
+ var key=function(r,c){return r+","+c;}, set={}; cells.forEach(function(p){set[key(p[0],p[1])]=1;});
+ var start=cells[0], st={}, res={};
+ st[key(start[0],start[1])]={D:"Base",U:"Top",N:"Back",S:"Front",E:"Right",W:"Left"};
+ var q=[start];
+ while(q.length){
+  var p=q.shift(), o=st[key(p[0],p[1])]; res[key(p[0],p[1])]=o.D;
+  [[-1,0,"N"],[1,0,"S"],[0,1,"E"],[0,-1,"W"]].forEach(function(d){
+   var r=p[0]+d[0], c=p[1]+d[1], k=key(r,c); if(!set[k]||st[k]) return;
+   var n={};
+   if(d[2]==="E") n={D:o.E,E:o.U,U:o.W,W:o.D,N:o.N,S:o.S};
+   if(d[2]==="W") n={D:o.W,W:o.U,U:o.E,E:o.D,N:o.N,S:o.S};
+   if(d[2]==="S") n={D:o.S,S:o.U,U:o.N,N:o.D,E:o.E,W:o.W};
+   if(d[2]==="N") n={D:o.N,N:o.U,U:o.S,S:o.D,E:o.E,W:o.W};
+   st[k]=n; q.push([r,c]);
+  });
+ }
+ return res;
+}
+function transformCells(cells,rot,flip){
+ var out=cells.map(function(p){var r=p[0],c=p[1]; if(flip) c=-c; for(var i=0;i<rot;i++){var t=r; r=c; c=-t;} return [r,c];});
+ var mr=Math.min.apply(null,out.map(function(p){return p[0];})), mc=Math.min.apply(null,out.map(function(p){return p[1];}));
+ return out.map(function(p){return [p[0]-mr,p[1]-mc];});
+}
+function wireNets(){
+ var order, i, score=0, round=0, cells;
+ function draw(labels){
+  var u=44, R=1+Math.max.apply(null,cells.map(function(p){return p[0];})), C=1+Math.max.apply(null,cells.map(function(p){return p[1];}));
+  var w=C*u+8, h=R*u+8, s='<svg viewBox="0 0 '+w+' '+h+'" style="max-width:'+w+'px">', cnt={};
+  if(labels) cells.forEach(function(p){var f=labels[p[0]+","+p[1]]; cnt[f]=(cnt[f]||0)+1;});
+  cells.forEach(function(p,j){
+   var f=labels?labels[p[0]+","+p[1]]:"", dup=labels&&cnt[f]>1;
+   s+='<rect x="'+(4+p[1]*u)+'" y="'+(4+p[0]*u)+'" width="'+u+'" height="'+u+'" fill="'+(dup?(j===0?"#eaa79a":"#f6c9bf"):(j===0?"#c9d0f0":"#eef0fb"))+'" stroke="'+(dup?"var(--accent)":"var(--s2)")+'" stroke-width="2"/>';
+   if(labels) s+='<text x="'+(4+p[1]*u+u/2)+'" y="'+(4+p[0]*u+u/2+4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="'+(dup?"#7a2219":"var(--ink)")+'">'+f+'</text>';
+  });
+  $("#ntPic").innerHTML=s+'</svg>';
+  return cnt;
+ }
+ function start(){ order=NETS.slice().sort(function(){return Math.random()-.5;}); i=0; show(); }
+ function show(){
+  cells=transformCells(order[i],Math.floor(Math.random()*4),Math.random()<.5);
+  draw(null); $("#ntFb").className="fbline";
+  $$(".tool [data-c]").forEach(function(x){x.disabled=false;}); $("#ntNew").disabled=true; $("#ntNew").textContent="Next arrangement";
+ }
+ $$(".tool [data-c]").forEach(function(btn){btn.onclick=function(){
+  var lab=foldNet(cells), cnt=draw(lab), dups=Object.keys(cnt).filter(function(k){return cnt[k]>1;}), isNet=dups.length===0, ok=(btn.dataset.c==="y")===isNet;
+  round++; if(ok) score++;
+  $("#ntFb").className="fbline show "+(ok?"ok":"no");
+  $("#ntFb").innerHTML=(ok?"<b>Yes.</b> ":"<b>Not this time.</b> ")+(isNet?"Every square lands on a different face, so this is a net of a cube.":"When folded, two squares overlap on the same face ("+dups.join(", ").toLowerCase()+"), so one face of the cube is left open. This isn’t a net of a cube.");
+  $$(".tool [data-c]").forEach(function(x){x.disabled=true;}); $("#ntNew").disabled=false;
+  if(i===order.length-1) $("#ntNew").textContent="Start again";
+  $("#ntScore").textContent=score+" of "+round+" correct";
+ };});
+ $("#ntNew").onclick=function(){ if(i===order.length-1) start(); else { i++; show(); } };
+ start();
+}
+
+/* S3 same volume, different prisms */
+function wirePrisms(){
+ var list=[], sel=0;
+ function build(){
+  var V=Math.round(+$("#pmV").value); list=[];
+  if(!(V>=1&&V<=72)){ $("#pmList").innerHTML=""; $("#pmPic").innerHTML=""; $("#pmRead").innerHTML='<small>Choose a number of cubes from 1 to 72.</small>'; return; }
+  for(var h=1;h<=V;h++) if(V%h===0) for(var w=1;w<=V/h;w++) if((V/h)%w===0){ var l=V/h/w; if(l>=w&&w>=h) list.push([l,w,h]); }
+  sel=0;
+  for(var j=1;j<list.length;j++){ if(list[j][0]<list[sel][0]) sel=j; }
+  $("#pmList").innerHTML=list.map(function(d,j){return '<button data-j="'+j+'" class="'+(j===sel?"on":"")+'">'+d[0]+' × '+d[1]+' × '+d[2]+'</button>';}).join("");
+  $$("#pmList button").forEach(function(b){b.onclick=function(){sel=+b.dataset.j;$$("#pmList button").forEach(function(x){x.classList.toggle("on",x===b);});draw();};});
+  draw();
+ }
+ function draw(){
+  if(!list.length) return;
+  var d=list[sel], L=d[0],W=d[1],H=d[2], V=L*W*H, big=Math.max(L,W,H), s=big>12?12:big>8?16:22;
+  $("#pmPic").innerHTML=isoPrism(L,W,H,{s:s,explode:$("#pmX").checked,layers:true});
+  $("#pmRead").innerHTML=(L*W)+' cubes in one layer × '+H+' layer'+(H>1?'s':'')+' = '+V+' cubic centimetres<small>Each layer is '+W+' row'+(W>1?'s':'')+' of '+L+'. '+list.length+' different rectangular prism'+(list.length>1?'s':'')+' can be made from '+V+' cubes: the same volume with different dimensions. (Each prism is listed once, whichever way it is turned.)</small>';
+ }
+ $("#pmGo").onclick=build; $("#pmV").onkeydown=function(e){if(e.key==="Enter") build();};
+ $("#pmX").onchange=draw;
+ build();
+}
+
+function wireTool(t){
+ if(t==="containers") wireContainers();
+ if(t==="cubes") wireCubes();
+ if(t==="nets") wireNets();
+ if(t==="prisms") wirePrisms();
+}
+
+</script>
+<script>
+/* Professional learning module engine.
+   Shared by every module. Each module page loads, in order:
+   content.js (M config + data), tools.js (toolHTML + wireTool), then this file. */
+"use strict";
+/* ---------------- storage (safe) ---------------- */
+var KEY = M.key;
+var mem = {done:{}, notes:{}, todo:{}, chk:{}};
+try { var raw = window.localStorage.getItem(KEY); if (raw) { var p = JSON.parse(raw); mem.done = p.done||{}; mem.notes = p.notes||{}; mem.todo = p.todo||{}; mem.chk = p.chk||{}; } } catch(e) {}
+function save(){ try { window.localStorage.setItem(KEY, JSON.stringify(mem)); } catch(e) {} }
+
+/* ---------------- sections ---------------- */
+var SECTIONS = [
+ {id:"welcome",label:"Welcome",grp:"Start here",r:renderWelcome},
+ {id:"ideas",label:"The big ideas",grp:"Start here",r:renderIdeas},
+ {id:"prog",label:"Progression explorer",grp:"Start here",r:renderProg},
+ {id:"wm",label:"Working mathematically",grp:"Start here",r:renderWM},
+ {id:"es1",label:"Early Stage 1",grp:"Stage by stage",r:function(){return renderStage("es1");},stage:"es1"},
+ {id:"s1",label:"Stage 1",grp:"Stage by stage",r:function(){return renderStage("s1");},stage:"s1"},
+ {id:"s2",label:"Stage 2",grp:"Stage by stage",r:function(){return renderStage("s2");},stage:"s2"},
+ {id:"s3",label:"Stage 3",grp:"Stage by stage",r:function(){return renderStage("s3");},stage:"s3"},
+ {id:"models",label:"Models across K–6",grp:"Pull it together",r:renderModels},
+ {id:"sorter",label:"Misconception sorter",grp:"Pull it together",r:renderSorter},
+ {id:"reflect",label:"Reflect and plan",grp:"Pull it together",r:renderReflect}
+];
+var current = 0;
+
+function $(s,el){return (el||document).querySelector(s);}
+function $$(s,el){return Array.prototype.slice.call((el||document).querySelectorAll(s));}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+
+function buildNav(){
+ var side=$("#side"), h="", g="";
+ SECTIONS.forEach(function(s,i){
+  if(s.grp!==g){g=s.grp;h+='<div class="grp">'+g+'</div>';}
+  var dotStyle = s.stage && !mem.done[s.id] ? ' style="border-color:'+STAGES[s.stage].col+'"' : '';
+  h+='<button data-i="'+i+'" class="'+(i===current?"on":"")+'" aria-current="'+(i===current?"page":"false")+'"><span class="dot'+(mem.done[s.id]?" done":"")+'"'+dotStyle+'></span>'+s.label+'</button>';
+ });
+ side.innerHTML=h;
+ $$("button",side).forEach(function(b){b.onclick=function(){go(+b.dataset.i);};});
+ var sel=$("#mobSel");
+ sel.innerHTML=SECTIONS.map(function(s,i){return '<option value="'+i+'"'+(i===current?" selected":"")+'>'+(mem.done[s.id]?"✓ ":"")+s.label+'</option>';}).join("");
+ sel.onchange=function(){go(+sel.value);};
+ var n=SECTIONS.filter(function(s){return mem.done[s.id];}).length;
+ $("#progTxt").textContent=n+" of "+SECTIONS.length+" sections";
+ $("#progFill").style.width=(100*n/SECTIONS.length)+"%";
+}
+
+function go(i){
+ current=i; buildNav();
+ var s=SECTIONS[i], pg=$("#page");
+ pg.innerHTML=s.r()+doneBar(s,i);
+ wire(s.id);
+ var db=$("#doneBtn"); if(db) db.onclick=function(){mem.done[s.id]=!mem.done[s.id];save();go(i);};
+ var nx=$("#nextBtn"); if(nx) nx.onclick=function(){if(!mem.done[s.id]){mem.done[s.id]=true;save();} go(i+1);};
+ var pv=$("#prevBtn"); if(pv) pv.onclick=function(){go(i-1);};
+ try{window.scrollTo(0,0);}catch(e){}
+ var m=document.querySelector("main"); if(m) m.scrollTop=0;
+}
+
+function doneBar(s,i){
+ var d=!!mem.done[s.id];
+ return '<div class="done-bar'+(d?" is-done":"")+'"><div><b>'+(d?"Section complete ✓":"Finished this section?")+'</b><div class="note">'+(d?"You can come back at any time.":"Mark it complete to track your progress.")+'</div></div><div class="nextprev">'+
+ (i>0?'<button class="btn ghost" id="prevBtn">← Back</button>':'')+
+ '<button class="btn ghost" id="doneBtn">'+(d?"Mark as not done":"Mark complete")+'</button>'+
+ (i<SECTIONS.length-1?'<button class="btn" id="nextBtn">Next: '+SECTIONS[i+1].label+' →</button>':'')+'</div></div>';
+}
+
+/* ---------------- renderers ---------------- */
+function renderWelcome(){
+ var rows=ORDER.map(function(k){var S=STAGES[k],C=STAGE_CONTENT[k];return '<tr><td><span class="pill" style="background:'+S.col+';color:#fff;border-color:'+S.col+'">'+S.name+'</span><div class="note" style="margin-top:4px">'+S.years+'</div></td><td>'+S.fa+'</td><td>'+C.outcomes.map(function(o){return o[0];}).join(", ")+'</td></tr>';}).join("");
+ return '<div class="hero" style="border-left-color:var(--accent)"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Welcome</span><h2>'+M.welcomeH2+'</h2><p>'+M.welcomeP+'</p></div>'+
+ '<section class="blk"><h3>What you’ll do</h3><div class="grid3">'+
+ card("Explore","the six big ideas and how each one grows from Kindergarten to Year 6.")+
+ card("Diagnose","misconceptions with flip cards, short quizzes and a misconception sorter.")+
+ card("Rework","closed tasks into rich ones that embed Working mathematically, with one makeover for each stage.")+
+ card("Try",M.tryText)+
+ card("Reflect","on your own students and plan next steps. Your notes save in this browser.")+
+ '</div></section>'+
+ '<section class="blk"><h3>'+M.namesH3+'</h3><p class="lead">'+M.namesP+'</p><table class="simple"><thead><tr><th>Stage</th><th>Focus area name</th><th>Outcomes</th></tr></thead><tbody>'+rows+'</tbody></table></section>'+
+ '<section class="blk"><h3>Suggested pathways</h3><div class="grid2"><div class="card"><h4 style="margin-bottom:6px">On your own (about 45 minutes)</h4><ul class="tight"><li>Big ideas and the progression explorer</li><li>Your stage, plus the stage before it</li><li>The misconception sorter</li><li>Reflect and plan</li></ul></div><div class="card"><h4 style="margin-bottom:6px">As a staff or PLC session (about 60 minutes)</h4><ul class="tight"><li>Whole staff: big ideas and progression (15 min)</li><li>Stage teams: their stage section and tool (25 min)</li><li>Whole staff: misconception sorter (10 min)</li><li>Reflection prompts and next steps (10 min)</li></ul></div></div><p class="note" style="margin-top:12px">Tip: most difficulties in a stage begin in the stage before it, so look one stage back as well as at your own.</p></section>'+
+ checkHTML("pre");
+}
+function card(t,d){return '<div class="card"><b>'+t+'</b> <span style="color:var(--ink2)">'+d+'</span></div>';}
+
+function renderIdeas(){
+ return '<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Big ideas</span><h2>Six ideas run from K to 6</h2><p>'+M.ideasP+'</p></div>'+
+ '<div class="ideas">'+IDEAS.map(function(d,i){return '<button class="idea" data-i="'+i+'"><div class="num">'+(i+1)+'</div><h4>'+d.t+'</h4><p>'+d.d+'</p></button>';}).join("")+'</div>'+
+ '<div class="ideadetail card" id="ideaDetail"><p class="note" style="margin:0">Select an idea above to see what it looks like at each stage.</p></div>'+
+ '<p class="note" style="margin-top:14px">'+M.ideasNote+'</p>';
+}
+function showIdea(i){
+ var d=IDEAS[i];
+ $$(".idea").forEach(function(b){b.classList.toggle("on",+b.dataset.i===i);});
+ $("#ideaDetail").innerHTML='<h4 style="font-size:18px;margin-bottom:10px">'+(i+1)+'. '+d.t+' — at each stage</h4>'+ORDER.map(function(k){return '<div class="srow"><span class="sl" style="background:'+STAGES[k].col+'">'+STAGES[k].name+'</span><span>'+d.s[k]+'</span></div>';}).join("");
+}
+
+function renderProg(){
+ return '<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Progression</span><h2>How the focus area grows</h2><p>'+M.progP+'</p></div>'+
+ '<div class="aspects" role="tablist">'+ASPECTS.map(function(a,i){return '<button role="tab" data-k="'+i+'" class="'+(i===0?"on":"")+'">'+a.l+'</button>';}).join("")+'</div>'+
+ '<div class="pcols" id="pcols"></div>'+
+ '<section class="blk"><h3>What changes between stages</h3><div class="shifts">'+
+ M.shifts.map(function(x){return '<div class="shift"><div class="arr" style="color:'+STAGES[x[0]].col+'">'+x[1]+'</div>'+x[2]+'</div>';}).join("")+
+ '</div></section>';
+}
+function showAspect(i){
+ var a=ASPECTS[i];
+ $$(".aspects button").forEach(function(b){b.classList.toggle("on",+b.dataset.k===i);});
+ $("#pcols").innerHTML=ORDER.map(function(k){var S=STAGES[k];return '<div class="pcol"><div class="ph" style="background:'+S.col+'">'+S.name+'<small>'+S.years+'</small></div><div class="pb">'+a.v[k]+'</div></div>';}).join("");
+}
+
+function renderStage(k){
+ var S=STAGES[k], C=STAGE_CONTENT[k];
+ var h='<div class="hero" style="border-left-color:'+S.col+'"><span class="tag" style="background:'+S.soft+';color:'+S.col+'">'+S.name+' · '+S.years+'</span><h2>'+S.fa+'</h2><p>'+C.lead+'</p></div>';
+ h+='<section class="blk"><h3><span class="n">1</span>Outcomes</h3>'+C.outcomes.map(function(o){return '<div class="outc"><code style="background:'+S.col+'">'+o[0]+'</code><span>'+o[1]+'</span></div>';}).join("")+'</section>';
+ h+='<section class="blk"><h3><span class="n">2</span>Content at a glance</h3><p class="lead">Select a content heading to see its content points.</p>'+C.content.map(function(c){return '<div class="acc"><button aria-expanded="false"><span>'+(c[0]?'<span class="part" style="background:'+S.col+'">'+c[0]+'</span>':'')+c[1]+'</span><span class="ch">›</span></button><div class="body"><ul class="tight">'+c[2].map(function(p){return '<li>'+p+'</li>';}).join("")+'</ul></div></div>';}).join("")+'</section>';
+ h+='<section class="blk"><h3><span class="n">3</span>What teachers need to know</h3><div class="grid2">'+C.know.map(function(x){return '<div class="kcard" style="border-top-color:'+S.col+'"><h4>'+x[0]+'</h4><p>'+x[1]+'</p></div>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3><span class="n">4</span>Misconceptions: what you might see</h3><p class="lead">Read what the student does, think about what’s behind it, then select the card to check.</p><div class="flips">'+C.misc.map(function(m){return '<button class="flip" aria-pressed="false"><div class="in"><div class="f"><div class="k">What you might see</div><div class="say">'+m.see+'</div><div class="hint">What’s behind this? Select to reveal ↻</div></div><div class="b"><div class="k">Misconception</div><h4>'+m.name+'</h4><p><b>Respond:</b> '+m.resp+'</p><span class="pill '+({n:"src-nesa",d:"src-dio",a:"src-add"})[m.src]+'">'+({n:"NESA",d:"Diocesan PL slides",a:"Additional commentary"})[m.src]+'</span></div></div></button>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3><span class="n">5</span>Try it</h3>'+toolHTML(C.tool)+'</section>';
+ h+='<section class="blk"><h3><span class="n">6</span>Working mathematically: task makeover</h3>'+makeoverHTML(k)+'</section>';
+ h+='<section class="blk"><h3><span class="n">7</span>Teaching advice</h3><div class="card"><ul class="tight">'+C.advice.map(function(a){return '<li>'+a+'</li>';}).join("")+'</ul></div></section>';
+ h+='<section class="blk"><h3><span class="n">8</span>Vocabulary</h3><div class="chips">'+C.vocab.map(function(v){return '<span>'+v+'</span>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3><span class="n">9</span>'+C.check.title+'</h3><div class="qc" style="border-left:5px solid '+S.col+'"><ol>'+C.check.steps.map(function(s){return '<li>'+s+'</li>';}).join("")+'</ol></div></section>';
+ h+='<section class="blk quiz"><h3><span class="n">10</span>Check your understanding</h3>'+C.quiz.map(function(q,qi){return '<div class="q" data-q="'+qi+'"><h4>'+(qi+1)+'. '+q.q+'</h4>'+q.o.map(function(o,oi){return '<button class="opt" data-o="'+oi+'">'+o+'</button>';}).join("")+'<div class="fb"></div></div>';}).join("")+'</section>';
+ return h;
+}
+
+
+function makeoverHTML(k){
+ var W=WM[k], S=STAGES[k];
+ var h='<p class="lead">'+(W.tagsLead||'Every content point addresses MAO-WM-01. In this stage, the syllabus tags these points as reasoning:')+'</p>';
+ if(W.tags.length) h+='<div class="card" style="padding:4px 0;margin-bottom:16px">'+W.tags.map(function(t){return '<div class="tagrow" style="grid-template-columns:1fr auto"><span>'+t[0]+'</span><span class="wtag">'+t[1]+'</span></div>';}).join("")+'</div>';
+ h+='<p class="lead"><b>Try it yourself.</b> Read the closed task. How would you change it so students reason and communicate? Jot your idea, then reveal the makeover.</p>';
+ h+='<div class="mk"><div class="side before"><div class="lbl">Before: closed task</div><div class="task closed">'+W.before.task+'</div><b style="font-size:14px">Limitations</b><ul>'+W.before.lim.map(function(l){return '<li>'+l+'</li>';}).join("")+'</ul></div>';
+ h+='<div class="side after" id="mkAfter"><div class="hidden-after"><div class="think">How would you rework this task?<textarea id="mkIdea" placeholder="My idea…"></textarea></div><button class="btn" id="mkReveal" style="background:var(--good)">Reveal the makeover</button></div></div></div>';
+ h+='<p class="note" style="margin-top:10px">Example tasks are additional commentary, built on the syllabus content points and examples. They are not NESA tasks.</p>';
+ return h;
+}
+function afterHTML(k){
+ var A=WM[k].after;
+ return '<div class="lbl">After: rich task</div><div class="task">'+A.task+'</div><div class="wmchips">'+A.el.map(function(e){return '<span>'+e+'</span>';}).join("")+'</div>'+
+ '<div class="diff"><div><b>Enabling prompt</b>'+A.enable+'</div><div><b>Extending prompt</b>'+A.extend+'</div><div><b>Listen for</b>'+A.listen+'</div></div>'+
+ '<button class="btn ghost small" id="mkHide" style="margin-top:12px">Hide again</button>';
+}
+
+function renderWM(){
+ var h='<div class="hero" style="border-left-color:var(--good)"><span class="tag" style="background:var(--good-soft);color:var(--good)">Working mathematically</span><h2>Working mathematically is built into every content point</h2><p>The Working mathematically outcome, MAO-WM-01, applies to all content in every stage. It isn’t a separate strand to teach on its own. It shapes how students learn the content in this focus area.</p></div>';
+ h+='<section class="blk"><h3>The outcome</h3><div class="outc"><code style="background:var(--good)">MAO-WM-01</code><span>develops understanding and fluency in mathematics through exploring and connecting mathematical concepts, choosing and applying mathematical techniques to solve problems, and communicating their thinking and reasoning coherently and clearly</span></div><p class="lead" style="margin-top:12px">The outcome names five things students do. This module uses them to describe what a task asks of students.</p><div class="wmel">'+WM_ELEMENTS.map(function(e){return '<div><b>'+e[0]+'</b>'+e[1]+'</div>';}).join("")+'</div></section>';
+ var rows="";
+ ORDER.forEach(function(k){WM[k].tags.forEach(function(t){rows+='<div class="tagrow"><span class="sl" style="background:'+STAGES[k].col+'">'+STAGES[k].name+'</span><span>'+t[0]+'</span><span class="wtag">'+t[1]+'</span></div>';});});
+ h+='<section class="blk"><h3>Where the syllabus flags reasoning</h3><p class="lead">In the content, some points are tagged with a type of reasoning. These are good places to plan for discussion, justification and multiple representations.</p><div class="card" style="padding:4px 0">'+rows+'</div></section>';
+ h+='<section class="blk"><h3>Makeover practice</h3><p class="lead">Choose a closed task, then try each move. Each move turns the same content into a task that asks students to reason and communicate.</p><div class="tool"><div class="ctrl" style="margin-top:0"><label for="ctSel">Closed task</label><select id="ctSel">'+CLOSED.map(function(c,i){return '<option value="'+i+'">'+STAGES[c.st].name+': '+c.task+'</option>';}).join("")+'</select></div><div class="mk" style="grid-template-columns:1fr"><div class="side before"><div class="lbl">Closed task</div><div class="task closed" id="ctTask"></div></div></div><div class="moves" id="ctMoves"></div><div id="ctOut"></div></div><p class="note" style="margin-top:10px">These moves and example tasks are additional commentary, not NESA material.</p></section>';
+ h+='<section class="blk"><h3>Questions that invite reasoning</h3><div class="grid2">'+
+  card("“How do you know?”","Ask after correct answers too, not only after errors.")+
+  card("“Is there another way?”","Ask for a second representation: materials, a number line, words.")+
+  card("“Convince me.”","Ask students to persuade a sceptical partner, using a model as evidence.")+
+  card("“What would change if…?”","Change one number or condition and ask students to predict before they calculate.")+
+ '</div></section>';
+ return h;
+}
+function showClosed(i){
+ var c=CLOSED[i];
+ $("#ctTask").textContent=c.task;
+ $("#ctMoves").innerHTML=c.moves.map(function(m,j){return '<button data-j="'+j+'">'+m.m+'</button>';}).join("");
+ $("#ctOut").innerHTML='<p class="note">Select a move above.</p>';
+ $$("#ctMoves button").forEach(function(b){b.onclick=function(){
+  var m=c.moves[+b.dataset.j];
+  $$("#ctMoves button").forEach(function(x){x.classList.toggle("on",x===b);});
+  $("#ctOut").innerHTML='<div class="mk" style="grid-template-columns:1fr"><div class="side after"><div class="lbl">After: '+m.m+'</div><div class="task">'+m.t+'</div><div class="wmchips">'+m.el.map(function(e){return '<span>'+e+'</span>';}).join("")+'</div></div></div>';
+ };});
+}
+
+function renderModels(){
+ var h='<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Models</span><h2>'+M.modelsH2+'</h2><p>'+M.modelsP+'</p></div>';
+ h+='<div class="mgrid" role="table"><div class="mh first" style="grid-row:1;grid-column:1">Model</div>'+ORDER.map(function(k,ki){return '<div class="mh" style="grid-row:1;grid-column:'+(ki+2)+';background:'+STAGES[k].col+'">'+STAGES[k].name+'</div>';}).join("");
+ MODELS.forEach(function(m,i){
+  h+='<div class="mrow" data-i="'+i+'"><button class="mn" data-i="'+i+'" style="grid-row:'+(i+2)+'">'+m.n+'<small>'+m.w+'</small></button>';
+  var cells="";
+  for(var c=0;c<4;c++) cells+='<div class="mc" style="grid-column:'+(c+2)+';grid-row:'+(i+2)+'"></div>';
+  var g1=m.s+2, g2=m.e+3;
+  var col = m.hi ? "var(--navy)" : STAGES[ORDER[m.s]].col;
+  cells+='<div class="mbar" data-i="'+i+'" style="grid-column:'+g1+'/'+g2+';grid-row:'+(i+2)+';background:'+col+';opacity:'+(m.hi?1:.75)+'" title="'+esc(m.n)+'"></div>';
+  h+=cells+'</div>';
+ });
+ h+='</div><div class="mdetail card" id="mDetail"><p class="note" style="margin:0">Select a model to read how it’s used.</p></div>';
+ h+='<section class="blk"><h3>Using models well</h3><div class="grid2">'+
+  M.modelTips.map(function(x){return card(x[0],x[1]);}).join("")+
+ '</div></section>';
+ return h;
+}
+function showModel(i){
+ var m=MODELS[i];
+ $$(".mrow").forEach(function(r){r.classList.toggle("sel",+r.dataset.i===i);});
+ var st=ORDER.slice(m.s,m.e+1).map(function(k){return STAGES[k].name;}).join(", ");
+ $("#mDetail").innerHTML='<h4 style="font-size:18px;margin-bottom:4px">'+m.n+'</h4><div class="note" style="margin-bottom:8px">'+st+'</div><p style="margin:0;color:var(--ink2)">'+m.d+'</p>';
+}
+
+function renderSorter(){
+ return '<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Misconception sorter</span><h2>Find the root</h2><p>'+M.sorterP+'</p></div>'+
+ '<div class="sorter"><div class="scn" id="scn"></div></div>'+
+ '<section class="blk"><h3>The four roots across the stages</h3><div style="overflow-x:auto"><table class="simple" style="min-width:640px"><thead><tr><th>Root</th>'+ORDER.map(function(k){return '<th style="color:'+STAGES[k].col+'">'+STAGES[k].name+'</th>';}).join("")+'</tr></thead><tbody>'+
+ M.rootRows.map(function(r){return '<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td><td>'+r[4]+'</td></tr>';}).join("")+
+ '</tbody></table></div><p class="note" style="margin-top:10px">'+M.sorterNote+'</p></section>';
+}
+var sortIdx=0, sortScore=0, sortDone=0;
+function showScenario(){
+ var el=$("#scn");
+ if(sortIdx>=SCENARIOS.length){
+  el.innerHTML='<h4 style="font-size:20px;margin-bottom:8px">You matched '+sortScore+' of '+SCENARIOS.length+' on the first try.</h4><p class="lead">For discussion: which root do you see most in your classroom? Which stage do you think it starts in?</p><button class="btn" id="sortAgain">Start again</button>';
+  $("#sortAgain").onclick=function(){sortIdx=0;sortScore=0;sortDone=0;showScenario();};
+  return;
+ }
+ var s=SCENARIOS[sortIdx], S=STAGES[s.st], tried=false;
+ el.innerHTML='<div class="score">Scenario '+(sortIdx+1)+' of '+SCENARIOS.length+' · <span style="color:'+S.col+';font-weight:700">'+S.name+'</span></div><div class="quote">'+s.q+'</div><div class="roots">'+ROOTS.map(function(r,i){return '<button data-r="'+i+'">'+r+'</button>';}).join("")+'</div><div class="fbline" id="sortFb"></div><div class="ctrl"><button class="btn" id="sortNext" style="display:none">Next scenario →</button></div>';
+ $$(".roots button",el).forEach(function(b){b.onclick=function(){
+  var r=+b.dataset.r, fb=$("#sortFb");
+  if(r===s.a){
+   if(!tried) sortScore++;
+   b.classList.add("right");
+   $$(".roots button",el).forEach(function(x){x.disabled=true;});
+   fb.className="fbline show ok"; fb.innerHTML="<b>Yes, "+ROOTS[s.a].toLowerCase()+".</b> "+s.why;
+   $("#sortNext").style.display="inline-block";
+  } else {
+   tried=true; b.classList.add("wrong"); b.disabled=true;
+   fb.className="fbline show no"; fb.innerHTML="Not quite. Think about what the student is paying attention to. Try another root.";
+  }
+ };});
+ $("#sortNext").onclick=function(){sortIdx++;showScenario();};
+}
+
+function renderReflect(){
+ var h='<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Reflect and plan</span><h2>Connect the progression to your students</h2><p>Write your thinking below. Notes save automatically in this browser. Use <b>Copy my notes</b> to paste them into a document or email.</p></div>';
+ var g="";
+ PROMPTS.forEach(function(p,i){
+  if(p[0]!==g){g=p[0];h+='<h3 style="font-size:17px;margin:22px 0 10px">'+g+'</h3>';}
+  h+='<div class="rq"><label for="rq'+i+'">'+(i+1)+'. '+p[1]+'</label><textarea id="rq'+i+'" data-i="'+i+'" placeholder="Your thoughts…">'+esc(mem.notes[i]||"")+'</textarea></div>';
+ });
+ h+='<h3 style="font-size:17px;margin:22px 0 10px">Next steps</h3><div class="card todo">'+TODOS.map(function(t,i){return '<label><input type="checkbox" data-t="'+i+'"'+(mem.todo[i]?" checked":"")+'><span>'+t+'</span></label>';}).join("")+'</div>';
+ h+=checkHTML("post");
+ h+='<div class="ctrl" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center"><button class="btn" id="copyNotes">Copy my notes</button><button class="btn ghost" id="dlNotes">Download as text</button><span class="saved" id="savedMsg"></span></div><textarea id="copyBuf" aria-hidden="true" style="position:absolute;left:-9999px;top:0"></textarea>';
+ return h;
+}
+function notesText(){
+ var t=M.notesTitle+"\n\n";
+ PROMPTS.forEach(function(p,i){t+=(i+1)+". "+p[1]+"\n"+(mem.notes[i]||"(no response)")+"\n\n";});
+ var mk=ORDER.filter(function(k){return mem.notes["mk-"+k];});
+ if(mk.length){ t+="My task makeover ideas\n"; mk.forEach(function(k){t+=STAGES[k].name+": "+mem.notes["mk-"+k]+"\n";}); t+="\n"; }
+ t+=chkText();
+ t+="Next steps\n"; TODOS.forEach(function(x,i){t+=(mem.todo[i]?"[x] ":"[ ] ")+x+"\n";});
+ return t;
+}
+
+
+/* ---------------- knowledge and confidence self-check (private, saved in this browser) ---------------- */
+var FA_NAME = M.title.replace(/\s*K–6\s*$/,"");
+var CHK_CONF = [
+ "I understand how "+FA_NAME+" develops from Kindergarten to Year 6.",
+ "I can identify common misconceptions in "+FA_NAME+" and respond to them.",
+ "I can plan "+FA_NAME+" lessons that embed Working mathematically."
+];
+var CHK_SHORT = ["The K–6 progression","Misconceptions","Working mathematically"];
+function chkItems(){
+ var a=SCENARIOS.filter(function(s){return s.st==="s2";})[0]||SCENARIOS[0], b=SCENARIOS.filter(function(s){return s.st==="s3";})[0]||SCENARIOS[SCENARIOS.length-1];
+ return [a,b];
+}
+function chkAnsText(v){ return v>=0?ROOTS[v]:"Not sure"; }
+function chkOk(x){ return x&&x.conf&&x.ans?x:null; }
+function chkCompare(){
+ var pre=chkOk(mem.chk.pre), post=mem.chk.post, items=chkItems();
+ var h='<div class="chkres"><h4>'+(pre?"Before and after":"Your answers")+'</h4><table class="simple"><thead><tr><th>Confidence (1–5)</th>'+(pre?'<th>Before</th>':'')+'<th>'+(pre?'After':'Now')+'</th></tr></thead><tbody>';
+ CHK_SHORT.forEach(function(t,i){ var d=pre?post.conf[i]-pre.conf[i]:0; h+='<tr><td>'+t+'</td>'+(pre?'<td>'+pre.conf[i]+'</td>':'')+'<td>'+post.conf[i]+(pre&&d?' <span class="chkd '+(d>0?'up':'down')+'">'+(d>0?'+':'')+d+'</span>':'')+'</td></tr>'; });
+ h+='</tbody></table>';
+ items.forEach(function(s,i){
+  var pa=pre?pre.ans[i]:null, qa=post.ans[i];
+  h+='<div class="chkscn"><b>Scenario '+(i+1)+'.</b> '+s.q+'<ul class="tight">'+(pre?'<li>Before: '+chkAnsText(pa)+' '+(pa===s.a?'✓':'✗')+'</li>':'')+'<li>'+(pre?'After':'Your answer')+': '+chkAnsText(qa)+' '+(qa===s.a?'✓':'✗')+'</li></ul><div class="note"><b>Most likely root:</b> '+ROOTS[s.a]+'. '+s.why+'</div></div>';
+ });
+ return h+'</div>';
+}
+function checkHTML(ph){
+ var pre=ph==="pre", done=chkOk(mem.chk[ph]);
+ var h='<section class="blk chk" id="chk-'+ph+'"><div class="chkhead"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">'+(pre?"Before you start":"After the module")+'</span><h3>'+(pre?"Quick self-check: before":"Quick self-check: after")+' <span class="chktime">about 2 minutes · optional · private</span></h3>'+
+  '<p class="note">'+(pre?"Answer before you work through the module, then again at the end in <b>Reflect and plan</b> to see what has changed.":"The same questions as at the start. Compare your answers to see what has changed.")+' Your answers are saved only in this browser, like your notes. Nothing is sent anywhere.</p></div>';
+ if(done){
+  if(pre) return h+'<div class="fbline show ok">Saved'+(done.t?' on '+done.t:'')+'. You’ll see the answers and compare them with your after check at the end, in <b>Reflect and plan</b>. <button class="linkbtn" id="chkRedo-'+ph+'">Answer again</button></div></section>';
+  return h+chkCompare()+'<div class="ctrl"><button class="linkbtn" id="chkRedo-'+ph+'">Answer the after check again</button></div></section>';
+ }
+ h+='<div class="chkq"><b>How confident are you?</b> <span class="note">1 = not confident, 5 = very confident</span>';
+ CHK_CONF.forEach(function(c,i){
+  h+='<div class="chkrate" role="radiogroup" aria-label="'+esc(c)+'"><span>'+c+'</span><span class="chkopts">'+[1,2,3,4,5].map(function(v){return '<label><input type="radio" name="chkc'+ph+i+'" value="'+v+'"><span>'+v+'</span></label>';}).join("")+'</span></div>';
+ });
+ h+='</div>';
+ chkItems().forEach(function(s,i){
+  h+='<div class="chkq"><b>Scenario '+(i+1)+' ('+STAGES[s.st].name+').</b> '+s.q+' <span class="note">Which is the most likely root of this response?</span><div class="chkmc">'+ROOTS.map(function(r,j){return '<label><input type="radio" name="chkk'+ph+i+'" value="'+j+'"><span>'+r+'</span></label>';}).join("")+'<label><input type="radio" name="chkk'+ph+i+'" value="-1"><span>I’m not sure</span></label></div></div>';
+ });
+ h+='<div class="ctrl"><button class="btn" id="chkSave-'+ph+'">'+(pre?"Save my answers":"Save and compare")+'</button><span class="note" id="chkMsg-'+ph+'"></span></div></section>';
+ return h;
+}
+function wireCheck(ph){
+ var redo=$("#chkRedo-"+ph); if(redo){ redo.onclick=function(){ delete mem.chk[ph]; save(); var el=$("#chk-"+ph); el.outerHTML=checkHTML(ph); wireCheck(ph); }; }
+ var btn=$("#chkSave-"+ph); if(!btn) return;
+ btn.onclick=function(){
+  var msg=$("#chkMsg-"+ph), val=function(n){var x=$('input[name="'+n+'"]:checked');return x?+x.value:null;};
+  var conf=CHK_CONF.map(function(c,i){return val("chkc"+ph+i);}), ans=chkItems().map(function(s,i){return val("chkk"+ph+i);});
+  if(conf.some(function(v){return v===null;})||ans.some(function(v){return v===null;})){ msg.textContent="Please answer the confidence ratings and both scenarios (“I’m not sure” is fine)."; return; }
+  mem.chk[ph]={conf:conf,ans:ans,t:new Date().toLocaleDateString("en-AU")}; save();
+  var el=$("#chk-"+ph); el.outerHTML=checkHTML(ph); wireCheck(ph);
+ };
+}
+function chkText(){
+ var pre=chkOk(mem.chk.pre), post=chkOk(mem.chk.post); if(!pre&&!post) return "";
+ var t="Quick self-check\n", items=chkItems();
+ CHK_SHORT.forEach(function(x,i){ t+=x+" (confidence 1-5): "+(pre?"before "+pre.conf[i]:"before -")+", "+(post?"after "+post.conf[i]:"after -")+"\n"; });
+ items.forEach(function(s,i){ t+="Scenario "+(i+1)+": "+(pre?"before "+(pre.ans[i]===s.a?"correct":"not yet"):"before -")+", "+(post?"after "+(post.ans[i]===s.a?"correct":"not yet"):"after -")+"\n"; });
+ return t+"\n";
+}
+
+/* ---------------- wiring ---------------- */
+function wire(id){
+ if(id==="welcome") wireCheck("pre");
+ if(id==="reflect") wireCheck("post");
+ if(id==="ideas"){ $$(".idea").forEach(function(b){b.onclick=function(){showIdea(+b.dataset.i);};}); }
+ if(id==="prog"){ $$(".aspects button").forEach(function(b){b.onclick=function(){showAspect(+b.dataset.k);};}); showAspect(0); }
+ if(id==="models"){ $$(".mn,.mbar").forEach(function(b){b.onclick=function(){showModel(+b.dataset.i);};}); }
+ if(id==="sorter"){ sortIdx=0; sortScore=0; showScenario(); }
+ if(id==="wm"){ $("#ctSel").onchange=function(){showClosed(+this.value);}; showClosed(0); }
+ if(id==="reflect"){
+  var msg=$("#savedMsg"), tmr;
+  $$(".rq textarea").forEach(function(ta){ta.oninput=function(){mem.notes[ta.dataset.i]=ta.value;save();msg.textContent="Saved";clearTimeout(tmr);tmr=setTimeout(function(){msg.textContent="";},1500);};});
+  $$(".todo input").forEach(function(cb){cb.onchange=function(){mem.todo[cb.dataset.t]=cb.checked;save();};});
+  $("#copyNotes").onclick=function(){
+   var txt=notesText(), ok=false;
+   var buf=$("#copyBuf"); buf.value=txt; buf.select();
+   try{ok=document.execCommand("copy");}catch(e){}
+   if(!ok && navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){msg.textContent="Copied";},function(){msg.textContent="Copy blocked: select the text in each box instead";}); return; }
+   msg.textContent=ok?"Copied to clipboard":"Copy blocked: select the text in each box instead";
+  };
+  $("#dlNotes").onclick=function(){
+   try{ var a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([notesText()],{type:"text/plain"})); a.download=M.dlName; document.body.appendChild(a); a.click(); a.remove(); }
+   catch(e){ msg.textContent="Download blocked here: use Copy my notes instead"; }
+  };
+ }
+ var st=SECTIONS.filter(function(s){return s.id===id;})[0];
+ if(st && st.stage){
+  var C=STAGE_CONTENT[st.stage];
+  $$(".acc>button").forEach(function(b){b.onclick=function(){var a=b.parentNode;a.classList.toggle("open");b.setAttribute("aria-expanded",a.classList.contains("open"));};});
+  $$(".flip").forEach(function(f){f.onclick=function(){f.classList.toggle("on");f.setAttribute("aria-pressed",f.classList.contains("on"));};});
+  $$(".quiz .q").forEach(function(qd){
+   var q=C.quiz[+qd.dataset.q], fb=$(".fb",qd);
+   $$(".opt",qd).forEach(function(b){b.onclick=function(){
+    var o=+b.dataset.o;
+    if(o===q.a){ b.classList.add("right"); $$(".opt",qd).forEach(function(x){x.disabled=true;}); fb.className="fb show ok"; fb.innerHTML="<b>Correct.</b> "+q.why; }
+    else { b.classList.add("wrong"); b.disabled=true; fb.className="fb show no"; fb.innerHTML="Not quite. Have another go."; }
+   };});
+  });
+  wireMakeover(st.stage);
+  if(typeof wireTool==="function") wireTool(C.tool);
+ }
+}
+
+/* makeover reveal */
+function wireMakeover(k){
+ var box=$("#mkAfter"), key="mk-"+k;
+ function closed(){
+  box.innerHTML='<div class="hidden-after"><div class="think">How would you rework this task?<textarea id="mkIdea" placeholder="My idea…"></textarea></div><button class="btn" id="mkReveal" style="background:var(--good)">Reveal the makeover</button></div>';
+  var ta=$("#mkIdea"); ta.value=mem.notes[key]||""; ta.oninput=function(){mem.notes[key]=ta.value;save();};
+  $("#mkReveal").onclick=open;
+ }
+ function open(){ box.innerHTML=afterHTML(k)+(mem.notes[key]?'<div class="note" style="margin-top:10px"><b>Your idea:</b> '+esc(mem.notes[key])+'</div>':''); $("#mkHide").onclick=closed; }
+ closed();
+}
+
+/* ---------------- start ---------------- */
+document.getElementById("foot").innerHTML=M.footer;
+var startId=""; try{ startId=decodeURIComponent((window.location.hash||"").slice(1)); }catch(e){}
+var startIdx=SECTIONS.map(function(s){return s.id;}).indexOf(startId);
+go(startIdx>=0?startIdx:0);
+
+</script>
+</body>
+</html>

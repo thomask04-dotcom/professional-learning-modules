@@ -1,0 +1,16 @@
+/* ES1 containers */
+.ctpic{margin-top:10px}
+.ctpic svg{width:100%;height:auto;display:block;background:#fff;border:1px solid var(--line);border-radius:10px}
+
+/* S1 and S3 isometric cubes */
+.cbpic{margin-top:12px;display:flex;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}
+.cbpic svg{width:100%;height:auto;max-height:320px}
+
+/* S2 nets */
+.ntpic{margin-top:12px;display:flex;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}
+.ntpic svg{width:100%;height:auto;max-height:280px}
+
+/* S3 prism list */
+.pmlist{display:flex;flex-wrap:wrap;gap:6px}
+.pmlist button{border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:5px 10px;font-weight:600;font-size:14px;color:var(--ink2)}
+.pmlist button.on{background:var(--s3);border-color:var(--s3);color:#fff}

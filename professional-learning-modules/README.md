@@ -22,7 +22,7 @@ The modules are designed to be embedded in a Google Site.
 ## How it's organised
 
 ```
-index.html                 Landing page linking every module
+index.html                 Module finder (search, stage and strand filters) linking every module
 engine/
   module.css               Shared design (all modules)
   module.js                Shared behaviour: navigation, progress, flip cards,
@@ -67,6 +67,18 @@ The published site is public to anyone with the link.
 Every module has an optional, private self-check. The "before" check is on the Welcome page and the "after" check is on Reflect and plan. It has three confidence ratings and two misconception scenarios.
 
 Answers are saved only in the teacher's browser and are never sent anywhere. After the second check, teachers see their before and after answers side by side, and the results are included when they copy or download their notes.
+
+## Module finder
+
+The main page (`index.html`) is a module finder. Teachers can:
+
+- search for a topic or misconception (it searches inside every module's big ideas, content, misconceptions, teacher knowledge, models and vocabulary)
+- filter by stage and strand
+- jump straight to the matching section of a module
+
+Any module can be opened at a section by adding its id to the address, for example `modules/data/#s3` (also `#ideas`, `#prog`, `#wm`, `#es1`, `#s1`, `#s2`, `#models`, `#sorter` or `#reflect`).
+
+If each module has its own Google Sites page, paste those addresses into `SITE_PAGES` near the top of the script in `index.html`. Finder links then open the Google Sites pages (in a new tab), so Google Sites analytics counts each module's views.
 
 ## Embedding in Google Sites
 
