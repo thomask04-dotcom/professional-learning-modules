@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Additive Relations K–6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2333; --ink2:#4a5468; --ink3:#6d778a; --line:#e2e5ec; --bg:#f6f7fa; --card:#ffffff;
+  --navy:#1f2a44; --accent:#c8553d; --accent-soft:#fbeee9;
+  --es1:#d1603d; --es1-soft:#fcece6;
+  --s1:#c88a12; --s1-soft:#fbf3e1;
+  --s2:#23897d; --s2-soft:#e3f3f1;
+  --s3:#4b5bbf; --s3-soft:#e9ebf8;
+  --good:#2e7d4f; --good-soft:#e6f4ec; --bad:#b3372a; --bad-soft:#fbe9e7;
+  --r:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:16px}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+h1,h2,h3,h4{line-height:1.25;margin:0}
+p{margin:0 0 12px}
+a{color:var(--s3)}
+
+/* ---------- header ---------- */
+.top{background:var(--navy);color:#fff;padding:18px 24px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
+.top .brand{flex:1 1 320px}
+.top .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75;font-weight:600}
+.top h1{font-size:24px;font-weight:800;margin-top:2px}
+.prog{flex:0 1 260px;min-width:200px}
+.prog .lab{font-size:13px;opacity:.85;display:flex;justify-content:space-between}
+.prog .bar{height:8px;background:rgba(255,255,255,.18);border-radius:8px;overflow:hidden;margin-top:6px}
+.prog .fill{height:100%;background:#f2b33d;width:0;transition:width .4s}
+
+/* ---------- layout ---------- */
+.wrap{display:flex;min-height:calc(100vh - 80px);background:linear-gradient(to right,#fff 236px,var(--bg) 236px)}
+@media (max-width:820px){.wrap{background:var(--bg)}}
+nav.side{flex:0 0 236px;background:#fff;border-right:1px solid var(--line);padding:16px 10px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side .grp{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin:14px 10px 6px}
+nav.side button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;background:none;padding:8px 10px;border-radius:8px;color:var(--ink2);font-size:14.5px;font-weight:500}
+nav.side button:hover{background:var(--bg)}
+nav.side button.on{background:var(--accent-soft);color:var(--ink);font-weight:700}
+nav.side .dot{flex:0 0 18px;height:18px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:11px;color:#fff}
+nav.side .dot.done{background:var(--good);border-color:var(--good)}
+nav.side .dot.done::after{content:"✓"}
+.mobnav{display:none}
+main{flex:1;min-width:0;padding:28px 32px 60px}
+.page{max-width:900px;margin:0 auto}
+
+@media (max-width:820px){
+  nav.side{display:none}
+  .mobnav{display:block;padding:12px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  .mobnav select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--line);font-family:inherit;font-size:15px;background:#fff}
+  main{padding:20px 16px 48px}
+  .top{padding:16px}
+  .top h1{font-size:20px}
+}
+
+/* ---------- common blocks ---------- */
+.hero{border-radius:var(--r);padding:22px 24px;margin-bottom:22px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--accent)}
+.hero .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:8px}
+.hero h2{font-size:26px;font-weight:800;margin-bottom:8px}
+.hero p{color:var(--ink2);font-size:16.5px;margin:0}
+section.blk{margin:26px 0}
+section.blk>h3{font-size:19px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+section.blk>h3 .n{font-size:12px;font-weight:700;background:var(--navy);color:#fff;border-radius:6px;padding:2px 8px}
+.lead{color:var(--ink2);margin-bottom:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px;background:var(--bg);color:var(--ink2);border:1px solid var(--line)}
+.src-nesa{background:#eef2fb;color:#34408a;border-color:#d5dcf2}
+.src-add{background:#fff6e6;color:#8a5a00;border-color:#f2deb4}
+.src-dio{background:#eaf5ff;color:#0b5a8f;border-color:#c5e1f5}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:#fff;border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:14px}
+.note{font-size:14px;color:var(--ink3)}
+.btn{border:0;background:var(--navy);color:#fff;padding:10px 18px;border-radius:9px;font-weight:600}
+.btn:hover{filter:brightness(1.15)}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.small{padding:6px 12px;font-size:14px}
+.btn:disabled{opacity:.4;cursor:default;filter:none}
+.done-bar{margin-top:36px;padding:18px 20px;border-radius:var(--r);background:#fff;border:1px dashed #c9ced9;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.done-bar.is-done{border-style:solid;border-color:var(--good);background:var(--good-soft)}
+.nextprev{display:flex;flex-wrap:wrap;gap:10px}
+.tool select{max-width:100%}
+ul.tight{margin:0;padding-left:20px}
+ul.tight li{margin:4px 0}
+
+/* outcomes */
+.outc{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
+.outc code{font-family:inherit;font-weight:700;font-size:13px;padding:3px 8px;border-radius:6px;white-space:nowrap;color:#fff}
+
+/* accordion */
+.acc{border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:8px;overflow:hidden}
+.acc>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;border:0;background:#fff;padding:13px 16px;font-weight:600;color:var(--ink)}
+.acc>button .ch{transition:transform .2s;color:var(--ink3);flex:0 0 auto}
+.acc.open>button .ch{transform:rotate(90deg)}
+.acc .body{display:none;padding:0 16px 14px 16px;color:var(--ink2)}
+.acc.open .body{display:block}
+.acc .part{font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px;margin-right:8px;color:#fff;vertical-align:1px}
+
+/* knowledge cards */
+.kcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;border-top:4px solid var(--line)}
+.kcard h4{font-size:16px;margin-bottom:6px}
+.kcard p{color:var(--ink2);font-size:15px;margin:0}
+
+/* flip cards */
+.flips{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.flip{perspective:1200px;min-height:196px;border:0;background:none;padding:0;text-align:left}
+.flip .in{position:relative;width:100%;height:100%;min-height:196px;transition:transform .55s;transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;overflow:auto}
+.flip .f{background:#fff;border:1px solid var(--line)}
+.flip .b{background:var(--navy);color:#fff;transform:rotateY(180deg)}
+.flip .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;opacity:.7;margin-bottom:6px}
+.flip .f .say{font-size:16.5px;font-weight:600;flex:1;color:var(--ink)}
+.flip .f .hint{font-size:13px;color:var(--ink3);margin-top:10px}
+.flip .b h4{font-size:16px;margin-bottom:8px}
+.flip .b p{font-size:14px;margin:0 0 8px;opacity:.92}
+.flip .b .pill{align-self:flex-start;margin-top:auto}
+
+/* working mathematically */
+.wmel{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.wmel div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--ink2)}
+.wmel b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:2px}
+.wtag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:5px;background:#eef2fb;color:#34408a;white-space:nowrap}
+.tagrow{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:start;padding:10px 14px;border-top:1px solid var(--line);font-size:14.5px}
+.tagrow:first-child{border-top:0}
+.tagrow .sl{font-weight:700;font-size:12.5px;padding:3px 8px;border-radius:6px;color:#fff;text-align:center}
+@media (max-width:620px){.tagrow{grid-template-columns:1fr}.tagrow .sl{justify-self:start}}
+.mk{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:720px){.mk{grid-template-columns:1fr}}
+.mk .side{border-radius:var(--r);padding:18px 20px;border:2px solid}
+.mk .before{background:#fdf6f5;border-color:#efc9c3}
+.mk .after{background:#f2faf6;border-color:#a9d9bf}
+.mk .lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;margin-bottom:10px}
+.mk .before .lbl{color:var(--bad)}
+.mk .after .lbl{color:var(--good)}
+.mk .task{background:#fff;border:1px solid var(--line);border-radius:9px;padding:14px 16px;font-size:15.5px;margin-bottom:12px}
+.mk .task.closed{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14.5px}
+.mk ul{margin:0;padding-left:20px;font-size:14.5px;color:var(--ink2)}
+.mk ul li{margin:3px 0}
+.mk .hidden-after{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;min-height:220px;color:var(--ink2)}
+.mk .think{font-size:15px;max-width:320px}
+.mk .think textarea{width:100%;min-height:70px;margin-top:8px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:inherit;font-size:14.5px}
+.diff{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px}
+.diff div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14.5px;color:var(--ink2)}
+.diff b{display:block;color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.wmchips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.wmchips span{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:20px;background:var(--good-soft);color:#1d5236;border:1px solid #bfe3cd}
+.moves{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.moves button{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:7px 14px;font-weight:600;font-size:14px;color:var(--ink2)}
+.moves button.on{background:var(--good);border-color:var(--good);color:#fff}
+
+/* quiz */
+.quiz .q{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin-bottom:12px}
+.quiz .q h4{font-size:16px;margin-bottom:12px;font-weight:600}
+.quiz .opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:10px 14px;margin-bottom:8px;color:var(--ink)}
+.quiz .opt:hover:not(:disabled){border-color:#aab2c3}
+.quiz .opt.right{border-color:var(--good);background:var(--good-soft)}
+.quiz .opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.quiz .opt:disabled{cursor:default}
+.quiz .fb{display:none;margin-top:6px;padding:10px 14px;border-radius:9px;font-size:15px}
+.quiz .fb.show{display:block}
+.quiz .fb.ok{background:var(--good-soft);color:#1d5236}
+.quiz .fb.no{background:var(--bad-soft);color:#7a2219}
+
+/* quick check */
+.qc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+.qc ol{margin:0;padding-left:22px}
+.qc li{margin:8px 0;color:var(--ink2)}
+.qc li b{color:var(--ink)}
+
+/* tool box */
+.tool{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.tool .tt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink3);margin-bottom:4px}
+.tool h4{font-size:18px;margin-bottom:6px}
+.tool .ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.tool select,.tool input[type=number]{font-family:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.tool input[type=number]{width:90px}
+.fbline{margin-top:12px;padding:10px 14px;border-radius:9px;font-size:15px;display:none}
+.fbline.show{display:block}
+.fbline.ok{background:var(--good-soft);color:#1d5236}
+.fbline.no{background:var(--bad-soft);color:#7a2219}
+.fbline.info{background:var(--bg);color:var(--ink2)}
+
+/* shared */
+.readout{font-size:20px;font-weight:700;margin-top:14px}
+.readout small{display:block;font-size:14px;font-weight:500;color:var(--ink3);margin-top:2px}
+
+/* progression explorer */
+.aspects{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.aspects button{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:7px 14px;font-weight:600;font-size:14px;color:var(--ink2)}
+.aspects button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.pcols{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;position:relative}
+.pcol{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.pcol .ph{padding:10px 14px;color:#fff;font-weight:700}
+.pcol .ph small{display:block;font-weight:500;opacity:.85;font-size:12.5px}
+.pcol .pb{padding:12px 14px;font-size:14.5px;color:var(--ink2);flex:1}
+.pcol .pb b{color:var(--ink)}
+.shifts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.shift{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14.5px;color:var(--ink2)}
+.shift .arr{font-weight:700;color:var(--ink);font-size:13px;margin-bottom:4px}
+@media (max-width:820px){.pcols{grid-template-columns:1fr 1fr}.shifts{grid-template-columns:1fr}}
+@media (max-width:480px){.pcols{grid-template-columns:1fr}}
+
+/* big ideas */
+.ideas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.idea{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px;text-align:left;color:var(--ink);transition:box-shadow .2s,border-color .2s}
+.idea:hover{border-color:#b9c0cf;box-shadow:0 4px 14px rgba(20,30,60,.06)}
+.idea .num{font-size:30px;font-weight:800;color:var(--accent);line-height:1}
+.idea h4{font-size:17px;margin:8px 0 6px}
+.idea p{font-size:14.5px;color:var(--ink2);margin:0}
+.idea.on{border-color:var(--navy);box-shadow:0 0 0 2px var(--navy)}
+.ideadetail{margin-top:14px}
+.srow{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.srow:first-of-type{border-top:0}
+.srow .sl{font-weight:700;font-size:13px;padding:3px 8px;border-radius:6px;color:#fff;align-self:start;text-align:center}
+
+/* models grid */
+.mgrid{display:grid;grid-template-columns:minmax(170px,1.3fr) repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.mgrid .mh{padding:10px 8px;font-weight:700;font-size:13px;text-align:center;border-bottom:1px solid var(--line);color:#fff}
+.mgrid .mh.first{text-align:left;color:var(--ink);background:#fff;padding-left:14px}
+.mrow{display:contents}
+.mrow>.mn{grid-column:1;padding:9px 14px;border-top:1px solid var(--line);font-weight:600;font-size:14.5px;cursor:pointer;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;color:var(--ink)}
+.mrow>.mn small{display:block;font-weight:400;color:var(--ink3);font-size:12.5px}
+.mrow .mc{border-top:1px solid var(--line);border-left:1px solid var(--line);position:relative}
+.mbar{position:relative;z-index:1;align-self:center;height:18px;border-radius:9px;margin:0 8px;cursor:pointer}
+.mrow.sel>.mn{background:var(--accent-soft)}
+.mdetail{margin-top:14px}
+@media (max-width:620px){.mgrid{grid-template-columns:minmax(120px,1.4fr) repeat(4,1fr)}.mgrid .mh{font-size:11px;padding:8px 2px}}
+
+/* sorter */
+.sorter .scn{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.sorter .quote{font-size:19px;font-weight:600;border-left:4px solid var(--accent);padding:4px 0 4px 14px;margin:8px 0 18px}
+.roots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.roots button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;text-align:left;font-weight:600;color:var(--ink)}
+.roots button:hover:not(:disabled){border-color:#9aa3b5}
+.roots button.right{border-color:var(--good);background:var(--good-soft)}
+.roots button.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.roots button:disabled{cursor:default}
+@media (max-width:560px){.roots{grid-template-columns:1fr}}
+.score{font-size:14px;color:var(--ink3)}
+
+/* reflection */
+.rq{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:12px}
+.rq label{font-weight:600;display:block;margin-bottom:8px}
+.rq textarea{width:100%;min-height:84px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:inherit;font-size:15px;resize:vertical}
+.rq textarea:focus{outline:2px solid var(--s3);border-color:transparent}
+.todo label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line);cursor:pointer}
+.todo label:first-child{border-top:0}
+.todo input{margin-top:5px;width:17px;height:17px;accent-color:var(--good)}
+.saved{font-size:13px;color:var(--good);margin-left:8px}
+
+table.simple{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;font-size:15px}
+table.simple th,table.simple td{padding:10px 12px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+table.simple th{background:var(--bg);font-size:13px;color:var(--ink2);border-top:0}
+footer{font-size:13px;color:var(--ink3);text-align:center;padding:20px 16px 30px;border-top:1px solid var(--line);background:#fff}
+:focus-visible{outline:3px solid #f2b33d;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* knowledge and confidence check */
+.chk{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;border-top:4px solid var(--accent)}
+.chk h3{margin:8px 0 6px}
+.chktime{font-size:13px;font-weight:600;color:var(--ink3);margin-left:4px}
+.chkq{margin-top:16px}
+.chkq select,.chkq textarea{display:block;margin-top:6px;max-width:100%;font-family:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:8px}
+.chkq textarea{width:100%;min-height:70px}
+.chkrate{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}
+.chkrate>span:first-child{flex:1;min-width:220px}
+.chkopts{display:flex;gap:6px}
+.chkopts label,.chkmc label{cursor:pointer}
+.chkopts input,.chkmc input{position:absolute;opacity:0;pointer-events:none}
+.chkopts span{display:inline-block;width:38px;height:38px;line-height:36px;text-align:center;border:1.5px solid var(--line);border-radius:50%;font-weight:700;color:var(--ink2);background:#fff}
+.chkopts input:checked+span{background:var(--navy);border-color:var(--navy);color:#fff}
+.chkopts input:focus-visible+span,.chkmc input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.chkmc{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.chkmc span{display:block;border:1.5px solid var(--line);border-radius:9px;padding:8px 12px;background:#fff;font-size:15px}
+.chkmc input:checked+span{border-color:var(--navy);background:#eef0f7;font-weight:600}
+.linkbtn{background:none;border:0;padding:0;color:var(--navy);text-decoration:underline;font:inherit;cursor:pointer}
+.chkres{margin-top:12px}
+.chkres h4{margin:0 0 8px}
+.chkres table{margin-bottom:10px}
+.chkd{font-size:12px;font-weight:700;padding:1px 6px;border-radius:5px;margin-left:4px}
+.chkd.up{background:var(--good-soft);color:#1d5236}
+.chkd.down{background:var(--bad-soft);color:#7a2219}
+.chkscn{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+
+</style>
+<style>
+/* ES1 part-part-whole ten frame */
+.tf{display:grid;grid-template-columns:repeat(5,52px);grid-template-rows:repeat(2,52px);border:2px solid var(--ink);border-radius:6px;width:max-content;margin-top:12px;background:#fff}
+.tf .cell{border-right:1.5px solid var(--ink3);border-bottom:1.5px solid var(--ink3);display:grid;place-items:center}
+.tf .cell:nth-child(5n){border-right:0}
+.tf .cell:nth-child(n+6){border-bottom:0}
+.tf .cn{width:34px;height:34px;border-radius:50%;box-shadow:inset 0 -3px 0 rgba(0,0,0,.15)}
+.combos{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.combos span{background:var(--es1-soft);border:1px solid #efc9bc;border-radius:8px;padding:4px 10px;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* S1 empty number line */
+.nlpic{margin-top:10px}
+.nlpic svg{width:100%;height:auto;display:block}
+.tool input[type=number]#nlA,.tool input[type=number]#nlB{width:80px}
+
+/* S3 spot the error */
+.work{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}
+.work pre{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:20px;line-height:1.35;background:#fffdf5;border:1px solid #eadfb8;border-radius:10px;padding:14px 22px;margin:0;min-width:180px}
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="eyebrow">NSW Mathematics K–10 (2022) · Combining and separating quantities to Additive relations</div>
+    <h1>Additive Relations K–6</h1>
+  </div>
+  <div class="prog" aria-live="polite">
+    <div class="lab"><span>Your progress</span><span id="progTxt">0 of 0</span></div>
+    <div class="bar"><div class="fill" id="progFill"></div></div>
+  </div>
+</header>
+
+<div class="mobnav"><label class="note" for="mobSel">Go to section</label><select id="mobSel"></select></div>
+
+<div class="wrap">
+  <nav class="side" id="side" aria-label="Module sections"></nav>
+  <main><div class="page" id="page"></div></main>
+</div>
+
+<footer id="foot"></footer>
+
+<script>
+/* ---------------- module config ---------------- */
+var M = {
+ key:"ar-k6-module-v1",
+ title:"Additive Relations K–6",
+ dlName:"additive-relations-reflections.txt",
+ welcomeH2:"How students learn to add and subtract, K to 6",
+ welcomeP:"This module follows one thread across four stages, from Combining and separating quantities in Early Stage 1 and Stage 1 to Additive relations in Stages 2 and 3. It covers how the outcomes build, the maths you need to teach it, the misconceptions to look for, and what the NESA teaching advice recommends.",
+ tryText:"a model for each stage: a part-part-whole ten frame, the empty number line, choosing a strategy, and spotting errors in students’ working.",
+ namesH3:"One thread, two focus areas",
+ namesP:"Combining and separating quantities (Early Stage 1 and Stage 1) leads into Additive relations (Stages 2 and 3). There are no Combining and separating quantities outcomes in Stages 2 and 3, and no Additive relations outcomes in Early Stage 1 and Stage 1. All content also addresses the Working mathematically outcome, MAO-WM-01.",
+ ideasP:"NESA describes addition and subtraction as progressing from counting, combining and separating objects to using numbers as replacements for completed counts, and then to strategies that use the structure of numbers. Six ideas carry that journey. Select an idea to see how it develops.",
+ ideasNote:"These ideas depend on Representing numbers (quantity value and place value) and support Multiplicative relations, where the distributive property splits a product into a sum.",
+ progP:"Two focus areas form one thread. Combining and separating quantities (K–2) builds part-whole thinking, number bonds and the meaning of the equals sign. Additive relations (3–6) builds flexible mental strategies, algorithms with understanding, and choosing the most efficient method for the numbers involved.",
+ shifts:[
+  ["es1","Early Stage 1 → Stage 1","From counting all to counting on and back, then to number bonds and bridging to ten. Symbols +, − and = are introduced, with = read as ‘is the same as’."],
+  ["s1","Stage 1 → Stage 2","From number bonds with two-digit numbers to a repertoire of strategies with three-digit numbers: compensation, levelling and constant difference. Bar models appear, and written algorithms are used with understanding."],
+  ["s2","Stage 2 → Stage 3","From learning strategies to choosing them. Students decide between mental methods, algorithms and calculators, estimate to check, solve multistep problems and extend strategies to decimals."]
+ ],
+ modelsH2:"Each stage adds models; the empty number line runs from Stage 1 to Stage 3",
+ modelsP:"The bars show the stages where the syllabus and NESA teaching advice name or use each model. Select a model for more detail.",
+ modelTips:[
+  ["Structure before recording.","Students need to know how a bead string shows groups of 5 before it can be linked to an empty number line."],
+  ["Materials only help if ten is a unit.","NESA notes base 10 blocks have little meaning for regrouping if a student doesn’t yet see 10 as both 10 ones and 1 ten."],
+  ["One picture for many problems.","A bar model shows students what picture to draw, and how to use what they know to solve the problem."],
+  ["Expanded before contracted.","Writing algorithms in expanded form shows the size of each exchange; the contracted form hides it."]
+ ],
+ sorterP:"Most misconceptions in this thread come from four roots, and each root reappears in a new form as students move from combining and separating to choosing strategies. Read each student response and choose its root.",
+ rootRows:[
+  ["Counting or procedures used instead of number structure","Counts all from one when combining 5 and 3 <span class=\"pill src-add\">Add.</span>","Knows 8 + 2 = 10 but counts on by ones for 28 + 7","Uses the algorithm for 527 + 399 or 500 − 498","Draws 183 marks to work out 183 − 96"],
+  ["The equals sign read as ‘the answer comes next’","—","Says 5 = 4 + 1 is ‘backwards’","8 + 4 = □ + 5 answered with 12 or 17","Can’t see that 5009 − 3997 = 5012 − 4000"],
+  ["Digits treated without their quantity value","—","Split strategy for 96 − 58 gives 42","543 − 289 = 346 (smaller from larger); a hundred traded as ‘10’","2.25 + 1.5 = 2.40; the traded ‘1’ seen as the same in + and −"],
+  ["Words and problem types misread","States the bigger number for ‘how many more?’; two tenses confuse","‘Difference’ and ‘left’ read with everyday meanings","Key words used to choose the operation; ‘total’ taken to mean add","‘More than’ always taken to mean add"]
+ ],
+ sorterNote:"NESA notes that the many ways of saying ‘9 minus 3’ show “the futility of trying to teach a key word approach” to word problems.",
+ notesTitle:"Additive Relations K–6: my reflections",
+ footer:"Built from the NESA <i>Mathematics K–10 Syllabus (2022)</i> outcomes and content (Early Stage 1 to Stage 3), the NESA syllabus support teaching advice, and the NESA additional teaching advice for <i>Stage 2 – Additive relations A (Strategies and vocabulary)</i> and <i>B (Language and vocabulary)</i>. Items marked <span class=\"pill src-add\">Additional commentary</span> are common classroom observations, not NESA examples. Your progress and notes are saved only in this browser."
+};
+
+/* ---------------- data ---------------- */
+var STAGES = {
+ es1:{short:"ES1", name:"Early Stage 1", years:"Kindergarten", fa:"Combining and separating quantities", col:"var(--es1)", soft:"var(--es1-soft)"},
+ s1:{short:"S1", name:"Stage 1", years:"Years 1–2", fa:"Combining and separating quantities A and B", col:"var(--s1)", soft:"var(--s1-soft)"},
+ s2:{short:"S2", name:"Stage 2", years:"Years 3–4", fa:"Additive relations A and B", col:"var(--s2)", soft:"var(--s2-soft)"},
+ s3:{short:"S3", name:"Stage 3", years:"Years 5–6", fa:"Additive relations A and B", col:"var(--s3)", soft:"var(--s3-soft)"}
+};
+var ORDER = ["es1","s1","s2","s3"];
+
+var STAGE_CONTENT = {
+es1:{
+ lead:"In Kindergarten, students combine, separate and compare collections, and see how the parts make up the whole for numbers up to 10. NESA explains that developing addition and subtraction together lays the foundation for understanding them as inverse operations.",
+ outcomes:[["MAE-CSQ-01","reasons about number relations to model addition and subtraction by combining and separating, and comparing collections"],["MAE-CSQ-02","represents the relations between the parts that form the whole, with numbers up to 10"]],
+ content:[
+  ["","Model additive relations and compare quantities",["Identify situations in which addition and subtraction may be applied","Combine two or more groups to model addition, identifying the relationship between the parts and the whole","Separate and take away part of a group to model subtraction","Use concrete materials or fingers to model and solve addition and subtraction, counting forwards or backwards by ones","Compare two groups of objects to determine how many more (Reasons about quantity)"]],
+  ["","Identify part–whole relationships in numbers up to 10",["Use visual representations to combine and separate quantities (ten as five and five on a ten frame, or two hands as ten)","Describe the actions of combining, separating and comparing (makes, joins, combines with, take away, altogether, how many more?)","Use five as a reference in forming numbers from six to ten (six is one more than five)","Create, model and recognise combinations for numbers up to ten (Reasons about relations)","Count by ones to find the total or difference","Use drawings, words and numerals to record addition and subtraction, and explain their thinking (Reasons about relations)"]]
+ ],
+ know:[
+  ["Subtraction has two meanings","Taking away from a group, and comparing two groups. Students first compare by matching one-to-one, then find how many more or fewer."],
+  ["Comparison is harder","“How many more?” is much harder than “Which has more?”. Students may just state the bigger number, partly because the question type is unfamiliar."],
+  ["Separate and recombine","Ten items split into 4 and 6 and pushed back together are still ten. Taking 4 away and putting them back shows that combining and separating are opposites."],
+  ["Order matters for subtraction","Students may know 5 + 4 and 4 + 5 are ‘turnarounds’ without knowing why. Investigate why order doesn’t matter for addition, and what happens when you try to take 5 from 3."],
+  ["Mathematics as storytelling","Stories help students conceptualise and communicate combining and separating, and can support the engagement of Aboriginal students and all students (Matthews 2008)."],
+  ["Two tenses in one problem","“I had six beans and took away four” mixes past and present. A real context helps: “…my brother took away four to give to our cousins.”"]
+ ],
+ misc:[
+  {see:"Asked “How many more does Sam have?” (8 counters and 5 counters), answers “8”.",name:"Stating the bigger number for ‘how many more?’",resp:"Match the two groups one-to-one and look at the extra ones. Ask comparison questions regularly so the question type becomes familiar.",src:"n"},
+  {see:"Hears “I had six beans and took away four. How many do I have now?” and answers 10.",name:"Confused by two tenses in one problem",resp:"Act out the story with a real context and objects, so the change from ‘had’ to ‘now’ is visible.",src:"n"},
+  {see:"Says you can take 5 counters from 3 counters by “turning it around”.",name:"Subtraction can be turned around like addition",resp:"Try it with real objects: there aren’t enough to take away 5. Compare with 3 + 5 and 5 + 3.",src:"n"},
+  {see:"To combine 5 and 3, counts every counter from one.",name:"Counting all instead of using a known amount",resp:"Use five as a reference on a ten frame: “Five and three more.” Hide the first group and count on.",src:"a"}
+ ],
+ advice:["Students need many experiences relating their knowledge to the vocabulary of mathematics: visualising, modelling, drawing and writing problems.","Compare groups by matching first, using one-to-one correspondence, before asking how many more or fewer.","Use storytelling to show the purpose of combining and separating in real contexts.","Some Aboriginal students may have well-developed understandings of quantitative relations and relationships through connections within Country, kinship systems or community structures.","Formal number sentences with +, − and = are introduced in Stage 1."],
+ vocab:["count forwards","count backwards","combines with","joins","take away","how many more","altogether","makes"],
+ check:{title:"Quick check (NESA key progress point)",steps:["Give the student a pile of 15 counters (adjust for a student with a lower counting range).","Ask, <i>Can you get me 8 counters from the pile? How do you know that is 8?</i>","Point to the 8 and the 7 left. Ask, <i>Are there more here or more there? How do you know?</i>","Ask, <i>If you put them all together, how many are there?</i> By the end of Early Stage 1, students typically count with one-to-one correspondence to find totals from 1 to 20."]},
+ tool:"parts",
+ quiz:[
+  {q:"Which two situations does subtraction cover in Early Stage 1?",o:["Taking away and sharing","Taking away from a group and comparing two groups","Counting back and skip counting","Adding and doubling"],a:1,why:"Subtraction covers taking away from a group and comparing two groups to find how many more or fewer."},
+  {q:"A student answers “8” when asked how many more counters 8 is than 5. According to NESA, why?",o:["They can’t count to 8","Comparison questions are harder and often unfamiliar, so students state the bigger number","They are subtracting incorrectly","They need to learn number bonds first"],a:1,why:"Comparison subtraction (“how many more?”) is much harder than “which is more?”, partly because students aren’t familiar with the question type."}
+ ]
+},
+s1:{
+ lead:"In Years 1 and 2, students move from counting on and back to using number bonds, bridging to ten and quantity values. They read the equals sign as ‘is the same as’ and use the relationship between addition and subtraction to solve problems.",
+ outcomes:[["MA1-CSQ-01","uses number bonds and the relationship between addition and subtraction to solve problems involving partitioning"]],
+ content:[
+  ["A","Use advanced count-by-one strategies to solve addition and subtraction problems",["Use the terms add, plus, equals, is equal to, is the same as, take away, minus and the difference between","Use the symbols +, − and =","Record number sentences using drawings, words, numerals and symbols, for example to represent a story","Fluently count on and count back to solve problems with one- and two-digit numbers (Reasons about relations)"]],
+  ["A","Recognise and recall number bonds up to ten",["Recall combinations of two numbers that bond to 10, using a ten frame or other structured models","Model and record all whole-number combinations for numbers up to ten: 5 + 0, 4 + 1, 3 + 2 … (Reasons about patterns)","Recall combinations for numbers less than 10 (two numbers add to 8: what could they be?)","Describe combinations using more than, less than and double: 5 as one more than four, or double two and one more (Reasons about relations)"]],
+  ["A","Use flexible strategies to solve addition and subtraction problems",["Use non-count-by-one strategies: near doubles (5 + 7 is double 5 and 2) and making ten (4 + 7 + 8 + 6 + 3)","Represent addition and subtraction with a bead string linked to an empty number line (8 + 5)","Partition using quantity value and bridging to 10: 3 bridges 17 to 20 (Reasons about relations)"]],
+  ["A","Represent equality",["Use = to mean ‘is the same as’, not as a signal to calculate: 5 + 2 = 3 + 4 (Reasons about relations)","Model the commutative property: 4 + 5 = 5 + 4 (Reasons about relations)","Recall related facts to at least 10: 8 = 5 + 3, so 8 − 3 = 5 and 8 − 5 = 3 (Reasons about relations)"]],
+  ["B","Represent and reason about additive relations",["Combinations of two numbers that add to 11 to 20","Create, model and solve word problems using number sentences","Represent the difference between two numbers with materials and diagrams (the difference between 4 and 7 as a jump of 3)","Represent a constant difference: 4 and 7 have the same difference as 5 and 8","Model addition and subtraction as inverse operations","Recall related facts to at least 20: 15 + 3 = 18, so 18 − 3 = 15 and 18 − 15 = 3"]],
+  ["B","Form multiples of ten when adding and subtracting two-digit numbers",["Add by building to multiples of ten: 38 + 25 ‘resting on 60’ or ‘resting on 40’","Add and subtract on an empty number line (jump strategy for 79 − 33)","Separate tens and ones for addition only: 37 + 45 is 70 + 12 = 82","Turn subtraction into addition: the shopkeeper’s method for $100 − $38 (Reasons about relations)"]],
+  ["B","Use knowledge of equality to solve related problems",["Use number bonds to find a missing number (8 + _ = 20)","Use related problems: 8 + 19 = 27 helps solve 8 + _ = 17 (Reasons about relations)","Write number sentences in different ways: 15 + _ = 18, _ = 8 + 3, 15 = _ + 6","Solve equality problems: 8 + _ = 10 + 5"]]
+ ],
+ know:[
+  ["The strategy progression","Count-by-one, then counting on and back, then number bonds and bridging across multiples of ten. Students may know their bonds but not use them (Graven and Venkat 2021), so model their use explicitly."],
+  ["Bridging to 10","28 + 7 is 28 + 2 + 5: partition 7 to reach the next ten. Bridging to and through ten are foundational strategies to revisit regularly."],
+  ["Quantity value","Mental strategies treat the 4 in 345 as forty, not ‘four in the tens column’. Quantity value is a different aspect of place value from column value."],
+  ["Split strategy: addition only","Separating tens and ones works for 37 + 45. For 96 − 58 it invites 90 − 50 and then 8 − 6, giving 42. NESA advises using it only for addition."],
+  ["Read = as ‘is the same amount as’","Students often read = as ‘do something’. Vary how number sentences are written (5 = 4 + 1) and gesture under each side to show the balance."],
+  ["Why key words fail","‘9 minus 3’ can be said a dozen ways: “By how much does 9 exceed 3?”, “How many added to 3 make 9?”, “Decrease 9 by 3”. ‘Difference’ and ‘left’ also have everyday meanings, and word order matters."]
+ ],
+ misc:[
+  {see:"Knows 8 + 2 = 10, but solves 28 + 7 by counting on 29, 30, 31… on their fingers.",name:"Knowing number bonds but not using them",resp:"Explicitly model bridging: 28 + 2 is 30, then 5 more. Link it to the bond they already know.",src:"n"},
+  {see:"Works out 96 − 58 by splitting: 90 − 50 = 40, 8 − 6 = 2, answer 42.",name:"The smaller-from-larger error",resp:"Use the split strategy for addition only. For subtraction, use the jump strategy or add up from 58.",src:"n"},
+  {see:"Says 5 = 4 + 1 is “backwards” and must be wrong.",name:"The equals sign means ‘the answer comes next’",resp:"Read = as ‘is the same amount as’, write number sentences both ways, and use true/false statements.",src:"n"},
+  {see:"Asked “What is the difference between 9 and 3?”, says “one is bigger”.",name:"Everyday meaning of ‘difference’",resp:"In number, difference means the distance between two numbers on a number line. Show it as a jump.",src:"n"},
+  {see:"Hears “Five children were in the room. Three went to lunch. How many were left?” and points left.",name:"‘Left’ as a direction",resp:"Discuss homographs explicitly, especially with students learning English as an additional language or dialect.",src:"n"},
+  {see:"Counts on from 3 to solve 3 + 8, getting lost along the way.",name:"Not starting from the larger number",resp:"Model counting on from the larger number, using the commutative property: 3 + 8 is the same as 8 + 3.",src:"a"}
+ ],
+ advice:["Use concrete materials and drawings to model and solve problems, explore and build concepts. Recording reduces the load on working memory.","Once students are confident with taking away, encourage counting on or back where differences are small: comparing 19 and 17 is easier by counting on from 17.","Students need to know how a bead string shows groups of 5 before linking it to an empty number line. On the number line, encourage jumps using multiples of 10 and number bonds.","Calculating with two-digit numbers doesn’t need to wait for full mastery of place value. Ask students to explain strategies and discuss which are practical and efficient.","Use gestures under each side of a number sentence: “I want to make this side equal to that side.”"],
+ vocab:["counting on/counting back","combine","plus","add","take away","minus","the difference between","total","increase","decrease","more than","less than","bridge","number bond","double","equals","is the same as","number sentence","strategy"],
+ check:{title:"Quick checks (NESA key progress points)",steps:["<b>Part A.</b> Say, <i>I have 13 cards and Kim gave me some more. Altogether, I now have 16 cards. How many cards did Kim give me?</i> A student who doesn’t count from 1 to form 13 is using its cardinal value.","<b>Bridging to the next ten.</b> Ask, <i>I have $23. How much more do I need to have $30?</i> and <i>I have $34. How much more do I need to have $40?</i>","<b>Bridging through ten.</b> Ask, <i>I have $44. How much more do I need to have $51? How did you work it out?</i> and the same for $25 to $32.","<b>Relating addition and subtraction.</b> Ask, <i>Can you use 27 + 13 = 40 to work out 40 − 13?</i> and <i>If 24 − 7 = 17, what is 24 − 17?</i>"]},
+ tool:"line",
+ quiz:[
+  {q:"Why does NESA warn against a key word approach to word problems?",o:["Key words are too hard to read","Subtraction can be expressed in many different ways, so key words don’t reliably signal the operation","Key words are only for Stage 3","Students should guess the operation"],a:1,why:"The many ways of saying ‘9 minus 3’ highlight “the futility of trying to teach a key word approach”."},
+  {q:"Why should the split strategy (separating tens and ones) be used only for addition?",o:["It is too slow for subtraction","For subtraction it leads to the smaller-from-larger error, such as 96 − 58 = 42","It only works with even numbers","Subtraction doesn’t use tens"],a:1,why:"Separating 96 − 58 gives 90 − 50 and then 6 − 8, which students often swap to 8 − 6, producing 42."},
+  {q:"How does NESA suggest reading the = symbol?",o:["‘Makes’","‘The answer is’","‘Is the same amount as’","‘Then’"],a:2,why:"Reading = as ‘is the same amount as’ supports relational thinking, the basis for algebra."}
+ ]
+},
+s2:{
+ lead:"In Years 3 and 4, students build a repertoire of mental strategies for 2- and 3-digit numbers, use bar models to show part-part-whole relationships, and learn written algorithms with understanding. Equality and the complement principle let them find missing values.",
+ outcomes:[["MA2-AR-01","selects and uses mental and written strategies for addition and subtraction involving 2- and 3-digit numbers"],["MA2-AR-02","completes number sentences involving addition and subtraction by finding missing values"]],
+ content:[
+  ["A","Use the principle of equality",["Recognise equal differences: 20 − 13 = 10 − 3","Use = to mean ‘the same as’: 32 − 13 = 30 − 11","Use the associative property to form multiples of 10: 22 + 13 + 8 = 30 + 13 = 43 (Reasons about relations)"]],
+  ["A","Recognise and explain the connection between addition and subtraction",["Use related problems: 27 + 13 = 40 solves 40 − 27 and 40 − 13 (Reasons about relations)","Show addition and subtraction as inverse operations with a bar model","Use the complement principle: if 64 − 17 = 47, what is 64 − 47? (Reasons about relations)","Check solutions with the inverse operation (spent $375, now have $158: how much at the start?)"]],
+  ["A","Select strategies flexibly for problems of up to 3 digits",["Bridge the decades (36 + 27: 36 + 4 = 40, plus 23 is 63) or use quantity values","Compensation: 28 + 35 is 30 + 35 − 2 = 63; 125 − 78 is 125 − 80 + 2 = 47 (Reasons about relations)","Levelling and constant difference: 28 + 35 = 30 + 33; 125 − 78 = 127 − 80 (Reasons about relations)","Represent solutions on an empty number line or bar model (237 people, 189 seats)","Compare strategies for efficiency: 179 + 49 by partitioning, rounding or levelling"]],
+  ["A","Represent money values in multiple ways",["$3 is the same as 300 cents","Make 70 cents in different ways","Calculate with money, including change ($4.50 lunch from $5)"]],
+  ["B","Partition, rearrange and regroup numbers to at least 1000",["Use quantity values and non-standard partitioning (527 + 83; 365 − 43)","Model addition and subtraction with and without regrouping, and record the method","Use an algorithm with understanding for 3-digit numbers (286 + 437 = 723)","Recognise that one of the hundreds becomes 10 tens, not simply 10 (528 − 43)","Recognise when mental strategies beat the algorithm: 900 − 3, 500 − 498 (Reasons about relations)","Solve subtractions with missing digits given the difference (Reasons about relations)"]],
+  ["B","Apply addition and subtraction to familiar contexts, including money and budgeting",["Estimate to check solutions ($5 for an apple at $1.25, a banana at 95c and an orange at $1.45)","Reflect on a chosen strategy and whether it can be improved","Interpret money problems as addition or subtraction (shopkeeper’s method for change)"]],
+  ["B","Complete number sentences to find unknown quantities",["Find missing numbers: □ − 15 = 19, 83 = 55 + □ (Algebraic reasoning)","Operations on both sides: 18 + 5 = □ + 16 (Algebraic reasoning)","Create word problems for number sentences (15 emu eggs: 15 − □ = 11)"]]
+ ],
+ know:[
+  ["Equality is a relationship","Use true/false statements (4 + 7 = 5 + 6; 11 = 11) and a balance analogy. Students initially read = as ‘the answer’; the relational meaning develops gradually (McNeil and Alibali 2005)."],
+  ["Bar models","Bar models and tape diagrams show part-part-whole relationships and reduce the load on working memory. They show students what picture to draw and how to use it, and lay a foundation for algebra."],
+  ["Commutativity, then the complement principle","3 + 4 = 7 implies 7 − 4 = 3. Commutativity develops first (Ching and Nunes 2017). The hardest step is seeing that a − b = c means a − c = b: 100 − 3 = 97, so 100 − 97 = 3."],
+  ["Three kinds of mental subtraction","Sequential (456 − 200 − 90 − 8), decomposition or adding up, and varying the question with constant difference (458 − 300). Constant difference suits numbers ending in 8 or 9; adding up suits small differences (713 − 695) (Hartnett 2007)."],
+  ["Why teach algorithms?","Not to supply a procedure, but to deepen understanding of the base-10 system. Expanded recording shows the size of each exchange. Base 10 blocks only help if 10 is already a composite unit."],
+  ["Mental first","After a year of algorithms, students often use them for 527 + 399 or 601 − 127 (Torbeyns and Verschaffel 2013). Don’t write single-digit additions or subtractions vertically."],
+  ["Holistic strategies","Compensation, constant difference and levelling attend to the size of both numbers. Compensation: 547 − 399 is 547 − 400 = 147, then add 1, so 148. Constant difference: add the same to both numbers and the difference stays the same (two bars shifted together). Levelling (‘give and take’): 87 + 24 = 90 + 21. <span class=\"pill src-nesa\">NESA additional advice</span>"],
+  ["Estimate first","Estimation is more than guesswork: it uses quantity values to set boundaries. 342 + 213 must be more than 300 + 200. An estimate is a rough and easy calculation; an approximation also says how close it is. Hide a digit to focus on place value: what could 52 − 3_ be? <span class=\"pill src-nesa\">NESA additional advice</span>"],
+  ["Flexible, fluent, efficient","Flexible: I have a range of strategies to choose from. Fluent: I can use my strategy with relative ease. Efficient: I solved it in a small number of steps. Strategy flexibility means choosing a strategy that responds to the numbers in the task. <span class=\"pill src-nesa\">NESA additional advice</span>"]
+ ],
+ misc:[
+  {see:"Writes 543 − 289 = 346.",name:"The smaller-from-larger error",resp:"Emphasise quantity value with number expanders, and estimate first: will the answer be more or less than 300?",src:"n"},
+  {see:"Answers 12 (or 17) for 8 + 4 = □ + 5.",name:"The equals sign as ‘the answer comes next’",resp:"Revisit true/false number sentences and the balance. Ask what makes both sides the same.",src:"n"},
+  {see:"Ignores the zero when subtracting 304 − 128 “because zero means nothing”.",name:"Zero means nothing, so it can be ignored",resp:"Build 304 in expanded form and show the hundred exchanged for 10 tens before the tens are used.",src:"n"},
+  {see:"Records a traded hundred in 528 − 43 as “10” in the tens column.",name:"A hundred becomes 10, not 10 tens",resp:"Use expanded recording (400 + 120 + 8) so the size of the exchange is visible.",src:"n"},
+  {see:"Sets out 500 − 498 as a vertical algorithm.",name:"Algorithm by default",resp:"Discuss which questions are better done mentally. Ask students to look at the numbers before choosing a method.",src:"n"},
+  {see:"Knows 64 − 17 = 47 but works out 64 − 47 from scratch.",name:"Not using the complement principle",resp:"Draw the bar model: 64 split into 47 and 17. Either part subtracted from the whole leaves the other.",src:"n"},
+  {see:"For “I have 18 apples. How many more do I need to have 30 apples in total?”, adds 18 and 30 to get 48.",name:"‘Total’ means add",resp:"‘Sum’ and ‘total’ can appear in subtraction problems. Draw a tape diagram: 30 is the whole, 18 is one part, the other part is unknown.",src:"n"},
+  {see:"For “I have 30 apples in a box and give away 12. How many apples do I have left in the box?”, isn’t sure what the 12 refers to.",name:"Missing words in the problem (ellipsis)",resp:"Say the omitted word aloud (‘give away 12 apples’) and retell the problem as a story with objects or a diagram.",src:"n"}
+ ],
+ advice:["Teach the two types of subtraction word problem and how to translate each into a calculation: take-away (30 apples, give away 12) and comparison (how many more to reach 30? how many more does Mary have?). Tape diagrams show both (Pongsakdi et al. 2020; NESA additional advice).","Use storytelling to help students conceptualise word problems and move from concrete to abstract. Mathematics as storytelling supports the engagement and achievement of Aboriginal students, and all students (Matthews 2008).","Money: 1c and 2c coins were withdrawn in 1990, so cash totals round to the nearest 5 cents ($5.36 and $5.37 round to $5.35; $5.38 to $5.42 round to $5.40). Some Aboriginal and Torres Strait Islander students may bring well-developed understanding of money from personal experience, Community and Cultural Knowledge (NESA additional advice).","Show true/false statements one at a time and ask, “How do you know?” Emphasise that = means ‘has the same value as’.","Use bar models consistently, so students know what kind of picture to create for a problem.","To work out 68 − 45, think: how much must be added to 45 to make 68?","Develop addition with trading before subtraction with regrouping. Sequence subtraction examples: exchanging tens for ones, then hundreds for tens, then both, then zeros in the answer and the top line.","Ask students to look at the numbers before choosing a method. Questions like 20 − 19 + 18 − 17 + … + 12 − 11 reward looking first.","Rekenreks or bead strings, Montessori number cards and place value arrow cards are all effective approaches to multidigit addition and subtraction (Fuson et al. 1997)."],
+ vocab:["add","addition","plus","subtract","subtraction","minus","sum","total","the difference between","make ten","increase","decrease","equals","is equal to","is the same as","number sentence","estimate","round to","empty number line","strategy","digit","dollars","cents","change (in money)","budget"],
+ check:{title:"Quick checks (built from the NESA advice and syllabus examples)",steps:["Show one at a time and ask true or false, and how they know: <b>8 + 2 = 10 + 4</b>, <b>7 + 4 = 15 − 4</b>, <b>7 = 3 + 4</b>, <b>8 = 8</b>.","Ask the student to find the missing number in <b>8 + 4 = □ + 5</b>. Watch for 12 or 17.","Ask, <i>If 64 − 17 = 47, what is 64 − 47?</i>","Show 543 − 289. Ask, <i>Will the answer be more or less than 300? Why?</i>","Ask which they would do mentally and which with an algorithm: <b>527 + 399</b>, <b>601 − 127</b>, <b>286 + 437</b>. Try the strategy chooser below.","Ask, <i>Estimate 342 + 213. What must the answer be more than?</i> Then show <b>52 − 3_</b> with a hidden digit and ask, <i>What could the answer be?</i> (NESA additional advice)"]},
+ tool:"strategies",
+ quiz:[
+  {q:"Students often answer 12 or 17 for 8 + 4 = □ + 5. What does this show?",o:["Weak number facts","Reading = as an instruction to calculate rather than as a statement of equality","Not knowing how to add 5","Confusion about place value"],a:1,why:"Understanding that both sides hold the same value is essential to algebra, and develops over a number of years."},
+  {q:"Which strategy does NESA suggest is most effective for 456 − 298?",o:["Sequential: 456 − 200 − 90 − 8","Constant difference: 458 − 300","A vertical algorithm","Counting back by ones"],a:1,why:"Varying the question with constant difference is most effective when the number being subtracted ends in 8 or 9."},
+  {q:"A student writes 543 − 289 = 346. What does NESA recommend?",o:["More practice of the same algorithm","Emphasising quantity value, using number expanders, and estimating first","Avoiding subtraction until Stage 3","Teaching a rhyme for borrowing"],a:1,why:"This is the smaller-from-larger error. Quantity value, number expanders and estimating (more or less than 300?) help."},
+  {q:"In NESA’s additional advice, what makes a student an efficient strategy user?",o:["They always use the algorithm","They solve a problem with a small number of steps","They know the most strategies","They work the fastest"],a:1,why:"Flexible means having a range of strategies; fluent means using one with ease; efficient means a small number of steps. Flexibility is choosing a strategy that fits the numbers."},
+  {q:"“I have 18 apples. How many more do I need to have 30 apples in total?” Which operation solves it?",o:["Addition, because it says ‘total’","Subtraction (or adding on from 18 to 30)","Multiplication","It can’t be solved"],a:1,why:"‘Sum’ and ‘total’ can appear in subtraction problems. This is a comparison problem: 30 − 18 = 12, or count on from 18."}
+ ]
+},
+s3:{
+ lead:"In Years 5 and 6, students choose efficient strategies for multidigit and decimal addition and subtraction, decide when to use mental methods, algorithms or a calculator, solve multistep problems and check their answers with estimation.",
+ outcomes:[["MA3-AR-01","selects and applies appropriate strategies to solve addition and subtraction problems"]],
+ content:[
+  ["A","Apply efficient mental and written strategies",["Solve word problems, including multistep problems (25 waratahs and 15 kangaroo paws; 5 picked)","Levelling (4988 + 955 → 5000 + 943), addition for subtraction (5009 − 3997), constant difference (5012 − 4000) and bridging (Reasons about relations)","Use place value to add or subtract 3 or more numbers with different numbers of digits (42 000 + 5123 + 246)","Decide when a calculator is more efficient (2300 + 467 + 4657 + 32 800 + 39 999)","Identify efficient and inefficient strategies: 9000 − 7 mentally, not with an algorithm"]],
+  ["A","Use estimation and place value to determine reasonableness",["Round appropriately to estimate: 1438 + 129 is about 1440 + 130","Use place value to check for errors in calculations","Use estimation to check: 1438 + 129 = 1567 should be above 1500, so it is reasonable"]],
+  ["B","Choose and use efficient strategies",["Solve multistep problems, including more than one operation (Newtown to Canberra via Wollongong; 16 cards with one person getting 4 more)","Compare, evaluate and communicate strategies"]],
+  ["B","Apply known strategies to add and subtract decimals",["Model decimal addition and subtraction to 3 decimal places (string number lines for 1.5 m + 2.25 m and 1.5 m − 0.75 m)","Solve decimal word problems (two identical bars overlap by 1.2 m for a total of 4.2 m)","Justify the strategy chosen: 2.14 m − 1.4 m by adding up 0.6 then 0.14 (Reasons about quantity)"]]
+ ],
+ know:[
+  ["Mental strategies still matter","8000 − 698 is easier mentally than with an algorithm. Recording jottings reduces the load on working memory. Some students switch languages when solving problems."],
+  ["Count up on an empty number line","8000 − 673: jump 7 to 680, 20 to 700, 300 to 1000, 7000 to 8000, so 7327. Or shift both numbers: 7999 − 672 needs no trading."],
+  ["Choice depends on the numbers","2003 − 1997 is easiest by adding up: 3 to 2000 and 3 more, so 6. Drawing 183 marks to find 183 − 96 is ‘counting from one three times’: slow and error-prone."],
+  ["Number problem strings","4 to 7 related calculations that build a target strategy, with helper questions first and a final question without help. Then name and discuss the strategy."],
+  ["Decimals need meaning first","Adding 3.428 + 1.1 relies on knowing equivalent decimals: 0.1 is 100 thousandths. That goes well beyond lining up decimal points. Measurement gives a sound context."],
+  ["‘More’ doesn’t mean add","“Kim has $3 more than Kerry” (add) and “How much more does Kerry have than Kim?” (subtract) both use ‘more’ and ‘than’. Some phrasings reverse the order of the numbers."]
+ ],
+ misc:[
+  {see:"Writes 2.25 + 1.5 = 2.40, or 2.25 − 1.5 = 2.10.",name:"Decimal parts treated as whole numbers",resp:"Ask students to explain why these are wrong. Use a metre ruler or number line and rename 1.5 as 1.50.",src:"n"},
+  {see:"Uses a vertical algorithm for 9000 − 7.",name:"Inefficient strategy choice",resp:"Discuss efficient and inefficient strategies, and ask students to look at the numbers first.",src:"n"},
+  {see:"Says the 1 traded in 259 + 38 and in 429 − 34 “both mean a ten”.",name:"Not knowing what the traded 1 represents",resp:"In addition, 10 ones become 1 ten. In subtraction, 1 hundred becomes 10 tens, so 10 tens are added to the 2 tens. Record in expanded form.",src:"n"},
+  {see:"For “Kerry has $5, Kim has $3; how much more does Kerry have?”, answers $8.",name:"‘More’ means add",resp:"Model both problem types with bar models and discuss which quantity is unknown.",src:"n"},
+  {see:"Writes 1438 + 129 = 2728 and doesn’t notice.",name:"Not checking reasonableness",resp:"Estimate first: about 1440 + 130. Ask, “Is the answer bigger than…? How do you know?”",src:"a"},
+  {see:"For a multistep distance problem, stops after the first calculation.",name:"Losing track in multistep problems",resp:"Write a few words before each equals sign (‘Newtown to Canberra via Wollongong = …’) and draw a bar model.",src:"a"}
+ ],
+ advice:["Continue to reinforce mental strategies, including students’ informal recordings. Compare approaches and decide which is most efficient.","Use rounding to test reasonableness: to the nearest hundred, 1438 + 129 is about 1500; to the nearest ten, about 1570.","Prompt with “Is the answer bigger than…?” and “How do you know?” to build the habit of checking.","Use number problem strings to develop a target strategy, such as constant difference for subtraction.","Address misconceptions by asking students to correct a response that shows it, for example why 2.25 − 1.5 is not 2.10.","Use related metric units and measurement as a context for operating with decimals."],
+ vocab:["add","addition","subtract","subtraction","sum","the difference between","increase","decrease","estimate","round to","strategy","operation","equals","is equal to","digit","budget","empty number line"],
+ check:{title:"Quick checks (NESA key progress point and syllabus examples)",steps:["<b>Trading (NESA).</b> Show 259 + 38 = 297 and 429 − 34 = 395, each with its traded 1. Ask, <i>Does the 1 in the working out represent the same amount in both?</i> and <i>Why is the 1 added to the 5 in the first, but 10 added to the 2 in the second?</i>","Ask the student to choose a method for each and explain: <b>9000 − 7</b>, <b>2003 − 1997</b>, <b>4988 + 955</b>, <b>2300 + 467 + 4657 + 32 800 + 39 999</b>.","Ask, <i>Why is 2.25 − 1.5 not 2.10?</i>","Ask, <i>16 cards are shared between 2 people. One gets 4 more than the other. How many does each get?</i> Try the error spotter below."]},
+ tool:"errors",
+ quiz:[
+  {q:"In 429 − 34, why is 10 added to the 2 in the tens column?",o:["Because a ten is traded for 10 ones","Because 1 hundred is exchanged for 10 tens","Because 4 − 3 = 1","It shouldn’t be; it should be 1"],a:1,why:"Even proficient students often can’t explain this. In subtraction, 1 hundred becomes 10 tens, unlike the traded 1 ten in addition."},
+  {q:"What is the most efficient way to find 2003 − 1997?",o:["A vertical algorithm","Adding up: 3 to 2000, then 3 more, so 6","Counting back by ones","Rounding both to the nearest thousand"],a:1,why:"Adding up uses the inverse relationship and is efficient when the difference is small."},
+  {q:"Before adding decimals such as 3.428 + 1.1, what do students need?",o:["A rule for lining up decimal points","A clear understanding of the meaning of decimals and equivalent decimals (0.1 is 100 thousandths)","A calculator","Knowledge of the order of operations"],a:1,why:"NESA notes this goes well beyond learning to line up decimal points in an algorithm."}
+ ]
+}
+};
+
+var IDEAS = [
+ {t:"Parts make the whole",d:"Every addition and subtraction is a relationship between two parts and a whole.",s:{es1:"Combinations to 10; ten as five and five.",s1:"Number bonds to 10 and 20; all combinations for a number.",s2:"Bar models: 64 split into 47 and 17.",s3:"Multistep problems drawn as bar models."}},
+ {t:"Addition and subtraction undo each other",d:"Knowing one fact gives you related facts, and addition can be used to subtract.",s:{es1:"Separate 10 into 4 and 6, then put them back together.",s1:"8 = 5 + 3, so 8 − 3 = 5; the shopkeeper’s method.",s2:"The complement principle; checking with the inverse.",s3:"Addition for subtraction: 2003 − 1997; counting up from 673 to 8000."}},
+ {t:"Equals means ‘is the same as’",d:"The equals sign states a relationship, not an instruction to calculate.",s:{es1:"‘Is the same as’ for equal groups.",s1:"5 + 2 = 3 + 4; 5 = 4 + 1; 8 + _ = 10 + 5.",s2:"True/false statements; 8 + 4 = □ + 5; 20 − 13 = 10 − 3.",s3:"Equivalent calculations: 5009 − 3997 = 5012 − 4000."}},
+ {t:"Subtraction is taking away and finding the difference",d:"Comparison problems ask for the distance between two numbers, not just what’s left.",s:{es1:"Take away, and ‘how many more?’",s1:"Difference as a jump on a number line; counting on when the difference is small.",s2:"Bar models for comparing; adding up for small differences.",s3:"Using addition to find a difference: 2.14 m and 1.4 m."}},
+ {t:"Strategies use the structure of numbers",d:"Number bonds, ten, place value and properties make calculation efficient.",s:{es1:"Five as a reference.",s1:"Doubles and near doubles, bridging to 10, quantity value.",s2:"Compensation, levelling, constant difference; algorithms with understanding.",s3:"Levelling and bridging with large numbers; decimals."}},
+ {t:"Choose, then check",d:"Students look at the numbers before choosing a method, and estimate to check.",s:{es1:"Explain thinking with drawings and words.",s1:"Discuss which strategies are practical and efficient.",s2:"Compare strategies; mental versus algorithm; estimate with money.",s3:"Mental, written or calculator? Round to estimate; use place value to find errors."}}
+];
+
+var ASPECTS = [
+ {k:"o1",l:"Main outcome",v:{es1:"<b>MAE-CSQ-01</b> reasons about number relations to model addition and subtraction by combining and separating, and comparing collections",s1:"<b>MA1-CSQ-01</b> uses number bonds and the relationship between addition and subtraction to solve problems involving partitioning",s2:"<b>MA2-AR-01</b> selects and uses mental and written strategies for addition and subtraction involving 2- and 3-digit numbers",s3:"<b>MA3-AR-01</b> selects and applies appropriate strategies to solve addition and subtraction problems"}},
+ {k:"o2",l:"Part-whole and number sentences",v:{es1:"<b>MAE-CSQ-02</b> represents the relations between the parts that form the whole, with numbers up to 10",s1:"Number sentences, related facts and missing numbers (within MA1-CSQ-01)",s2:"<b>MA2-AR-02</b> completes number sentences involving addition and subtraction by finding missing values",s3:"Equivalent calculations within strategies (within MA3-AR-01)"}},
+ {k:"n",l:"Numbers involved",v:{es1:"Combinations to 10; collections to 20",s1:"Facts to 20; one- and two-digit numbers",s2:"2- and 3-digit numbers to at least 1000; money",s3:"Multidigit whole numbers; decimals to 3 decimal places"}},
+ {k:"s",l:"Strategies",v:{es1:"Counting all, counting forwards and backwards by ones; five as a reference",s1:"Counting on and back; number bonds; near doubles; bridging to 10; jump; split (addition only); inverse",s2:"Compensation, levelling, constant difference, adding up; algorithms with understanding",s3:"Choosing between levelling, bridging, constant difference, addition for subtraction, algorithms and calculators"}},
+ {k:"m",l:"Models",v:{es1:"Objects, fingers, ten frames, stories",s1:"Ten frames, bead strings, empty number line",s2:"Empty number line, bar models, balance, arrow cards, base 10, expanded algorithms",s3:"Empty number line, bar models, string number lines for decimals"}},
+ {k:"l",l:"Language and symbols",v:{es1:"joins, take away, how many more, altogether; no symbols yet",s1:"+, − and = introduced; = read as ‘is the same as’; ‘difference’ and ‘left’",s2:"sum, difference, estimate, budget; true/false statements",s3:"Phrasings that reverse number order; ‘more than’ in both addition and subtraction"}}
+];
+
+var MODELS = [
+ {n:"Collections and fingers",w:"combining, separating, matching",s:0,e:1,d:"Students combine and separate real objects and fingers, and compare groups by matching one-to-one before finding how many more."},
+ {n:"Stories and acting out",w:"giving operations a purpose",s:0,e:1,d:"Mathematics as storytelling (Matthews 2008) helps students conceptualise combining and separating. In Stage 1, number sentences record a mathematical story."},
+ {n:"Ten frames",w:"five and ten as reference points",s:0,e:1,d:"Ten as five and five; numbers from six to ten built from five; number bonds to ten in Stage 1."},
+ {n:"Bead strings and rekenreks",w:"structured groups of 5 and 10",s:1,e:2,d:"Students need to know how colour shows groups of 5. Then a bead string (8 + 5) can be linked to an empty number line. Rekenreks support counting by tens with multidigit numbers in Stage 2."},
+ {n:"Empty number line",w:"recording jumps and bridging",s:1,e:3,hi:true,d:"The jump strategy and bridging to ten in Stage 1, recording strategies and word problems in Stage 2, and counting up for large subtractions such as 8000 − 673 in Stage 3."},
+ {n:"Balance",w:"equality as two equal sides",s:2,e:2,d:"A balance analogy (7 + 4 and 6 + 5) helps some students see = as a statement that both sides have the same value."},
+ {n:"Bar models and tape diagrams",w:"part-part-whole and comparison",s:2,e:3,d:"Introduced in Stage 2 to show part-part-whole relationships and the complement principle; used for multistep problems in Stage 3."},
+ {n:"Arrow cards and number cards",w:"partitioning for multidigit work",s:2,e:2,d:"Place value arrow cards and Montessori number cards support partitioning and regrouping in multidigit addition and subtraction."},
+ {n:"Base 10 and expanded algorithms",w:"showing the size of each exchange",s:2,e:3,d:"Expanded recording (400 + 120 + 8) shows that a hundred becomes 10 tens. NESA notes base 10 blocks only help if 10 is already a composite unit."},
+ {n:"Money",w:"equivalent amounts, change, budgeting",s:2,e:2,d:"Dollars and cents, equivalent amounts with different coins, change and budgeting provide familiar contexts in Stage 2."},
+ {n:"Number problem strings",w:"sequences that build a strategy",s:3,e:3,d:"4 to 7 related calculations with helper questions, building towards a target strategy such as constant difference."},
+ {n:"String number lines for decimals",w:"measuring decimal sums and differences",s:3,e:3,d:"String and metre lengths model 1.5 m + 2.25 m and 1.5 m − 0.75 m."}
+];
+
+var ROOTS = ["Counting or procedures used instead of number structure","The equals sign read as ‘the answer comes next’","Digits treated without their quantity value","Words and problem types misread"];
+var SCENARIOS = [
+ {st:"es1",q:"Sam has 8 counters and Lily has 5. Asked how many more Sam has, Lily says “8”.",a:3,why:"‘How many more?’ is a comparison question. Students often state the bigger number because the question type is unfamiliar."},
+ {st:"s1",q:"Josh knows 8 + 2 = 10, but works out 28 + 7 by counting on by ones.",a:0,why:"Many students don’t use the number bonds they know. Model bridging explicitly: 28 + 2 is 30, then 5 more."},
+ {st:"s1",q:"Mia splits 96 − 58 into 90 − 50 = 40 and 8 − 6 = 2, and answers 42.",a:2,why:"The split strategy invites the smaller-from-larger error in subtraction. NESA advises using it for addition only."},
+ {st:"s2",q:"Ari writes 12 in the box for 8 + 4 = □ + 5.",a:1,why:"Ari reads = as ‘the answer comes next’ and ignores the + 5. True/false statements and the balance help."},
+ {st:"s2",q:"Ben writes 543 − 289 = 346.",a:2,why:"Ben took the smaller digit from the larger in each column. Quantity value, number expanders and estimating first help."},
+ {st:"s1",q:"Ella says 5 = 4 + 1 is “backwards” and can’t be right.",a:1,why:"Ella sees = as a signal to calculate. Write number sentences both ways and read = as ‘is the same amount as’."},
+ {st:"s3",q:"Kerry has $5 and Kim has $3. Asked how much more money Kerry has, Tom answers $8.",a:3,why:"Tom treated ‘more’ as a cue to add. NESA shows both addition and subtraction problems can use ‘more’ and ‘than’."},
+ {st:"s3",q:"Zoe writes 2.25 + 1.5 = 2.40.",a:2,why:"Zoe added 15 hundredths instead of 5 tenths, treating the decimal parts as whole numbers. Rename 1.5 as 1.50."},
+ {st:"s2",q:"Sam sets out 500 − 498 as a vertical algorithm and makes errors with the zeros.",a:0,why:"Sam defaults to a procedure. Looking at the numbers first shows a difference of 2."},
+ {st:"s3",q:"To find 183 − 96, Jai draws 183 marks and crosses off 96.",a:0,why:"NESA calls this ‘counting from one three times’: slow and error-prone. Adding up from 96, or 183 − 100 + 4, is far quicker."},
+ {st:"s2",q:"“I have 18 apples. How many more do I need to have 30 apples in total?” Mia adds and answers 48.",a:3,why:"Mia treats ‘total’ as a cue to add. NESA’s additional advice notes ‘sum’ and ‘total’ appear in subtraction problems too. A tape diagram shows 30 as the whole."},
+ {st:"es1",q:"“I had six beans and took away four. How many do I have now?” Ava answers 10.",a:3,why:"Two tenses in one problem are confusing. A real context and acting it out help."}
+];
+
+var PROMPTS = [
+ ["Looking across the progression","Which of the six big ideas does your stage depend on most? Which earlier stage is it built on?"],
+ ["Looking across the progression","How do your students experience comparison subtraction (‘how many more?’) as well as taking away?"],
+ ["Looking across the progression","How could the empty number line and the bar model be used consistently from Stage 1 to Stage 3 in your school?"],
+ ["Your students","Run the quick check for your stage with three students: one secure, one you’re unsure of and one who is struggling. What did you learn that you didn’t expect?"],
+ ["Your students","Which root misconception do you see most often? Where in the earlier stages might it have started?"],
+ ["Your students","Do any students know their number bonds but still count by ones? What would you do next for them?"],
+ ["Your practice","How do you read the equals sign aloud? How often do students see number sentences written as 5 = 4 + 1?"],
+ ["Your practice","Do you teach key words for word problems? What could you do instead?"],
+ ["Your practice","When do students in your class choose a mental strategy over an algorithm? How do you encourage them to look at the numbers first?"]
+];
+var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+var WM_ELEMENTS = [
+ ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],
+ ["Exploring and connecting","Students explore ideas and connect concepts and representations."],
+ ["Choosing and applying techniques","Students choose and apply mathematical techniques to solve problems."],
+ ["Communicating","Students communicate their thinking clearly and coherently."],
+ ["Reasoning","Students reason about and justify their thinking."]
+];
+
+var WM = {
+ es1:{
+  tags:[["Compare two groups of objects to determine how many more","Reasons about quantity"],["Create, model and recognise combinations for numbers up to ten","Reasons about relations"],["Use drawings, words and numerals to record addition and subtraction, and explain their thinking","Reasons about relations"]],
+  before:{task:"Count the dots. Write the total.<br><br>●●●●● + ●●●&nbsp;&nbsp;=&nbsp;&nbsp;____",lim:["Can be done by counting every dot from one","Only one combination of the number is considered","No explaining or recording of thinking"]},
+  after:{task:"“I have 8 counters hidden in my two hands. How many could be in each hand? Find as many ways as you can.”<br><br>“How do you know you’ve found them all?”",enable:"Start with 5 counters and a ten frame.",extend:"“If one hand has 3, how many are in the other? How did you know without counting?”",listen:"Five as a reference (‘five and three’); ‘one more’ and ‘one less’ between combinations; noticing 3 and 5 and 5 and 3; a systematic list.",el:["Understanding and fluency","Exploring and connecting","Communicating","Reasoning"]}
+ },
+ s1:{
+  tags:[["Fluently use advanced count-by-one strategies, including counting on and counting back","Reasons about relations"],["Model and record patterns for individual numbers up to ten by making all possible whole-number combinations","Reasons about patterns"],["Describe combinations for numbers using words such as more than, less than and double","Reasons about relations"],["Partition numbers using quantity value and bridging to 10","Reasons about relations"],["Use the equals sign to mean ‘is the same as’","Reasons about relations"],["Model the commutative property for addition","Reasons about relations"],["Recall related addition and subtraction facts","Reasons about relations"],["Use an inverse strategy to turn a subtraction into an addition","Reasons about relations"],["Use number knowledge to solve related problems","Reasons about relations"]],
+  before:{task:"28 + 7 = ____",lim:["Can be done by counting on by ones","Doesn’t ask students to use the bonds they know","One answer, no recording of a strategy"]},
+  after:{task:"“Use what you know about 8 + 2 to solve 28 + 7. Show your thinking on an empty number line.”<br><br>“What other questions could you solve the same way?”",enable:"Start with 8 + 5 on a bead string.",extend:"“Write three questions where bridging to ten is the best strategy, and one where it isn’t. Explain why.”",listen:"Partitioning 7 into 2 and 5; landing on 30; generalising to 38 + 7 and 48 + 7; noticing when bridging doesn’t help (21 + 3).",el:["Understanding and fluency","Exploring and connecting","Choosing and applying techniques","Reasoning"]}
+ },
+ s2:{
+  tags:[["Apply the associative property of addition to forming multiples of 10","Reasons about relations"],["Use number relation principles to solve related problems","Reasons about relations"],["Use the complement principle of addition and subtraction","Reasons about relations"],["Use the compensation strategy to add and subtract","Reasons about relations"],["Apply the levelling and constant difference strategies","Reasons about relations"],["Recognise when mental strategies would be more efficient than a vertical algorithm","Reasons about relations"],["Solve subtraction questions with missing digits given the difference","Reasons about relations"],["Calculate missing numbers by completing number sentences","Algebraic reasoning"],["Find the missing number with operations on both sides of the equals sign","Algebraic reasoning"]],
+  before:{task:"Use the algorithm.<br><br>&nbsp;&nbsp;456<br>− 298<br>─────",lim:["The method is chosen for the student","The numbers invite a far easier mental strategy","No comparison of strategies or reasoning"]},
+  after:{task:"“Solve 456 − 298 in two different ways. Which way is more efficient for these numbers, and why?”<br><br>“Now write a subtraction where the algorithm would be the better choice.”",enable:"Start with 56 − 29.",extend:"“Change one number so that adding up becomes the best strategy.”",listen:"Constant difference (458 − 300); compensation (456 − 300 + 2); sequential jumps; reasons based on 298 being close to 300.",el:["Exploring and connecting","Choosing and applying techniques","Communicating","Reasoning"]}
+ },
+ s3:{
+  tags:[["Apply known strategies such as levelling, addition for subtraction, using constant difference, and bridging","Reasons about relations"],["Justify why the strategy used to solve addition and subtraction word problems is appropriate","Reasons about quantity"]],
+  before:{task:"Calculate 2.25 − 1.5.<br><br>Answer: ____",lim:["A procedure can hide whole-number thinking","No representation of the decimal quantities","No justification"]},
+  after:{task:"“Leila says 2.25 − 1.5 = 2.10. Is she right? Use a metre ruler or a number line to convince her.”<br><br>“What might Leila have been thinking?”",enable:"Start with 2.5 − 1.5 on a metre ruler.",extend:"“Write a decimal subtraction that someone with Leila’s thinking would get right by accident.”",listen:"1.5 renamed as 1.50; adding up from 1.5 to 2 (0.5) and on to 2.25 (0.25), so 0.75; estimating ‘a bit less than 1’.",el:["Understanding and fluency","Exploring and connecting","Communicating","Reasoning"]}
+ }
+};
+
+var CLOSED = [
+ {st:"s1",task:"9 − 3 = ____",moves:[
+  {m:"Who is correct?",t:"“Ari says 9 − 3 is the same as 3 − 9. Bella says they’re different. Who is correct? Show it with counters.”",el:["Reasoning","Communicating"]},
+  {m:"Same and different",t:"“What is the same and what is different about 9 − 3 = 6, 6 + 3 = 9 and 9 − 6 = 3?”",el:["Exploring and connecting","Communicating"]},
+  {m:"Always, sometimes, never",t:"“When you subtract, the answer is smaller than the number you started with. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
+  {m:"Open it up",t:"“The difference between two numbers is 6. What could the numbers be? How many pairs can you find?”",el:["Choosing and applying techniques","Reasoning"]},
+  {m:"Convince me",t:"“Convince me that 9 − 3 = 6 by counting up from 3 on a number line.”",el:["Understanding and fluency","Communicating"]}
+ ]},
+ {st:"s2",task:"125 − 78 = ____",moves:[
+  {m:"Who is correct?",t:"“Tom says 125 − 78 is the same as 127 − 80. Mei says it’s 125 − 80 + 2. Who is correct?”",el:["Reasoning","Communicating"]},
+  {m:"Same and different",t:"“What is the same and what is different about 125 − 78, 127 − 80 and 78 + □ = 125?”",el:["Exploring and connecting","Communicating"]},
+  {m:"Always, sometimes, never",t:"“Adding the same amount to both numbers in a subtraction doesn’t change the answer. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
+  {m:"Open it up",t:"“Find three subtractions with the same answer as 125 − 78. What do you notice?”",el:["Choosing and applying techniques","Reasoning"]},
+  {m:"Convince me",t:"“Convince me that 125 − 78 is about 50.”",el:["Understanding and fluency","Communicating"]}
+ ]},
+ {st:"s3",task:"4988 + 955 = ____",moves:[
+  {m:"Who is correct?",t:"“Kai levels the numbers to 5000 + 943. Jess uses the algorithm. Who has the more efficient method for these numbers, and why?”",el:["Reasoning","Communicating"]},
+  {m:"Same and different",t:"“What is the same and what is different about 4988 + 955, 4990 + 953 and 5000 + 943?”",el:["Exploring and connecting","Communicating"]},
+  {m:"Always, sometimes, never",t:"“A mental strategy is quicker than the algorithm. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
+  {m:"Open it up",t:"“Write an addition where levelling makes it easy, and one where levelling doesn’t help.”",el:["Choosing and applying techniques","Reasoning"]},
+  {m:"Convince me",t:"“Convince me that the answer is between 5900 and 6000 without calculating it exactly.”",el:["Understanding and fluency","Communicating"]}
+ ]}
+];
+
+</script>
+<script>
+function toolHTML(t){
+ if(t==="parts") return '<div class="tool"><div class="tt">Model</div><h4>Part-part-whole ten frame</h4><p class="note">Choose a whole, then move counters from one part to the other. The whole stays the same while the parts change.</p><div class="ctrl"><label for="ppW">Whole</label><select id="ppW"></select><button class="btn ghost small" id="ppL">◀ Move one</button><button class="btn ghost small" id="ppR">Move one ▶</button><button class="btn ghost small" id="ppAll">Show all the combinations</button></div><div class="tf" id="ppFrame"></div><div class="readout" id="ppRead"></div><div id="ppList"></div></div>';
+ if(t==="line") return '<div class="tool"><div class="tt">Model</div><h4>Empty number line</h4><p class="note">Choose a calculation and a strategy to see how the jumps are recorded. Try 28 + 7, 38 + 25, 79 − 33 and $100 − $38.</p><div class="ctrl"><input type="number" id="nlA" value="38" min="0" max="200"><select id="nlOp"><option value="+">+</option><option value="-">−</option></select><input type="number" id="nlB" value="25" min="0" max="200"><select id="nlS"></select><button class="btn small" id="nlGo">Show</button></div><div id="nlPic" class="nlpic"></div><div class="readout" id="nlRead"></div></div>';
+ if(t==="strategies") return '<div class="tool"><div class="tt">Strategy chooser</div><h4>Which strategy fits these numbers?</h4><p class="note">Choose a calculation, then try each strategy. Notice which is most efficient for those particular numbers: the fewest steps, used with ease.</p><div class="ctrl"><label for="stP">Calculation</label><select id="stP"></select></div><div class="moves" id="stM" style="margin-top:0"></div><div id="stOut"></div><div class="fbline show info" id="stTip"></div></div>';
+ if(t==="errors") return '<div class="tool"><div class="tt">Diagnostic</div><h4>Spot the error</h4><p class="note">Each piece of student work has an error that NESA or the syllabus describes. Estimate first, then diagnose what went wrong.</p><div class="score" id="erScore"></div><div class="work" id="erWork"></div><div class="roots" id="erOpts" style="margin-top:12px"></div><div class="fbline" id="erFb"></div><div class="ctrl"><button class="btn ghost small" id="erNext" disabled>Next piece of work →</button></div></div>';
+ return "";
+}
+
+/* ES1 part-part-whole */
+function wirePartsTool(){
+ var W=7,a=5;
+ $("#ppW").innerHTML=[3,4,5,6,7,8,9,10].map(function(x){return '<option'+(x===7?" selected":"")+'>'+x+'</option>';}).join("");
+ function draw(){
+  var h="";
+  for(var i=0;i<10;i++){ var c=i<a?"var(--es1)":(i<W?"var(--s2)":""); h+='<div class="cell">'+(c?'<span class="cn" style="background:'+c+'"></span>':'')+'</div>'; }
+  $("#ppFrame").innerHTML=h;
+  var b=W-a, extra="";
+  if(a===5&&b>0) extra="Five and "+b+" more."; else if(b===5&&a>0) extra="Five and "+a+" more.";
+  else if(a===b) extra="Double "+a+".";
+  else if(Math.abs(a-b)===1) extra="Near double: double "+Math.min(a,b)+" and one more.";
+  $("#ppRead").innerHTML=W+' is '+a+' and '+b+'<small>'+a+' + '+b+' = '+W+'. '+(extra?extra+' ':'')+'If we take '+b+' away, '+a+' are left.</small>';
+  $("#ppL").disabled=a<=0; $("#ppR").disabled=a>=W;
+ }
+ $("#ppW").onchange=function(){W=+this.value;a=Math.min(a,W);$("#ppList").innerHTML="";draw();};
+ $("#ppL").onclick=function(){if(a>0){a--;draw();}};
+ $("#ppR").onclick=function(){if(a<W){a++;draw();}};
+ $("#ppAll").onclick=function(){
+  var rows=[];for(var i=W;i>=0;i--) rows.push(i+' + '+(W-i)+' = '+W);
+  $("#ppList").innerHTML='<div class="combos">'+rows.map(function(r){return '<span>'+r+'</span>';}).join("")+'</div><p class="note">The pattern: as one part goes down by one, the other goes up by one. In Stage 1, students record all the combinations like this.</p>';
+ };
+ draw();
+}
+
+/* S1 empty number line */
+function wireLine(){
+ var S={"+":[["jump","Jump: tens, then ones"],["bridge","Bridge to the next ten"]],"-":[["back","Jump back: tens, then ones"],["up","Add up (shopkeeper’s method)"]]};
+ function opts(){var op=$("#nlOp").value;$("#nlS").innerHTML=S[op].map(function(x){return '<option value="'+x[0]+'">'+x[1]+'</option>';}).join("");}
+ function jumps(a,b,op,st){
+  var j=[],cur,t,o;
+  if(op==="+"&&st==="jump"){ cur=a; t=Math.floor(b/10)*10; o=b%10; if(t){j.push([cur,cur+t]);cur+=t;} if(o){j.push([cur,cur+o]);} }
+  if(op==="+"&&st==="bridge"){ cur=a; var r=b, gap=(10-a%10)%10; if(gap&&r>=gap){j.push([cur,cur+gap]);cur+=gap;r-=gap;} t=Math.floor(r/10)*10; o=r%10; if(t){j.push([cur,cur+t]);cur+=t;} if(o){j.push([cur,cur+o]);} }
+  if(op==="-"&&st==="back"){ cur=a; t=Math.floor(b/10)*10; o=b%10; if(t){j.push([cur,cur-t]);cur-=t;} if(o){ var d=cur%10; if(d&&o>d){j.push([cur,cur-d]);cur-=d;o-=d;} j.push([cur,cur-o]); } }
+  if(op==="-"&&st==="up"){ cur=b; var gp=(10-b%10)%10; if(gp&&cur+gp<=a){j.push([cur,cur+gp]);cur+=gp;} t=Math.floor((a-cur)/10)*10; if(t){j.push([cur,cur+t]);cur+=t;} if(a-cur){j.push([cur,a]);} }
+  return j;
+ }
+ function go(){
+  var a=Math.round(+$("#nlA").value), b=Math.round(+$("#nlB").value), op=$("#nlOp").value, st=$("#nlS").value;
+  if(!(a>=0&&b>=0&&a<=200&&b<=200)){ $("#nlRead").innerHTML='<small>Use numbers from 0 to 200.</small>'; $("#nlPic").innerHTML=""; return; }
+  if(op==="-"&&b>a){ $("#nlRead").innerHTML='<small>Choose a first number larger than the second for subtraction.</small>'; $("#nlPic").innerHTML=""; return; }
+  if((op==="+"&&b===0)||(op==="-"&&b===0)){ $("#nlRead").innerHTML='<small>Choose a second number larger than 0.</small>'; $("#nlPic").innerHTML=""; return; }
+  var J=jumps(a,b,op,st), pts=[]; J.forEach(function(x){pts.push(x[0],x[1]);});
+  var lo=Math.min.apply(null,pts), hi=Math.max.apply(null,pts), span=Math.max(hi-lo,1);
+  var W=700, L=40, R=660, X=function(v){return L+(v-lo)/span*(R-L);};
+  // keep small jumps visible: enforce a minimum width by using a piecewise scale on the sorted points
+  var uniq=pts.filter(function(v,i){return pts.indexOf(v)===i;}).sort(function(p,q){return p-q;});
+  var minW=70, raw=uniq.map(function(v){return (v-lo)/span*(R-L);}), pos=[], acc=0;
+  for(var i=0;i<uniq.length;i++){ if(i===0){pos.push(0);continue;} var d=Math.max(raw[i]-raw[i-1],minW); acc+=d; pos.push(acc); }
+  var k=(R-L)/Math.max(acc,1); X=function(v){return L+pos[uniq.indexOf(v)]*k;};
+  var s='<svg viewBox="0 0 '+W+' 150" role="img" aria-label="Empty number line"><line x1="20" y1="110" x2="680" y2="110" stroke="#1b2333" stroke-width="2"/>';
+  uniq.forEach(function(v){ s+='<line x1="'+X(v)+'" y1="102" x2="'+X(v)+'" y2="118" stroke="#1b2333" stroke-width="2"/><text x="'+X(v)+'" y="138" text-anchor="middle" font-size="15" font-weight="700" fill="#1b2333">'+v+'</text>'; });
+  J.forEach(function(x,i){ var x1=X(x[0]),x2=X(x[1]),mx=(x1+x2)/2,h=Math.min(70,20+Math.abs(x2-x1)*0.3), dir=x[1]>x[0]?1:-1, col=i%2?"#23897d":"#c88a12";
+   s+='<path d="M'+x1+' 104 Q'+mx+' '+(104-h*1.6)+' '+x2+' 104" fill="none" stroke="'+col+'" stroke-width="2.5"/>';
+   s+='<path d="M'+x2+' 104 l'+(-6*dir)+' -9 l'+(-3*dir)+' 7 z" fill="'+col+'"/>';
+   s+='<text x="'+mx+'" y="'+(104-h*0.8-6)+'" text-anchor="middle" font-size="14" font-weight="700" fill="'+col+'">'+(x[1]>x[0]?"+":"−")+Math.abs(x[1]-x[0])+'</text>'; });
+  $("#nlPic").innerHTML=s+'</svg>';
+  var ans=op==="+"?a+b:a-b, steps=J.map(function(x){return (x[1]>x[0]?"+ ":"− ")+Math.abs(x[1]-x[0]);}).join(", ");
+  var note={jump:"Jumping by tens then ones uses quantity value.",bridge:"Landing on a multiple of ten uses a number bond to 10.",back:"Jumping back by tens, then bridging back through a ten if needed.",up:"Adding up from the smaller number uses the inverse relationship: the jumps add to the answer."}[st];
+  $("#nlRead").innerHTML=a+(op==="+"?" + ":" − ")+b+" = "+ans+'<small>Jumps: '+steps+(st==="up"?' → '+J.map(function(x){return x[1]-x[0];}).join(" + ")+' = '+ans:'')+'. '+note+'</small>';
+ }
+ $("#nlOp").onchange=function(){opts();go();}; $("#nlS").onchange=go; $("#nlGo").onclick=go;
+ $("#nlA").onkeydown=$("#nlB").onkeydown=function(e){if(e.key==="Enter") go();};
+ opts(); go();
+}
+
+/* S2 strategy chooser */
+var STRAT=[
+ {p:"28 + 35",best:"Levelling or compensation: 28 is 2 away from 30.",s:{jump:"28 + 30 = 58, then + 5 = 63",bridge:"28 + 2 = 30, then + 33 = 63",comp:"30 + 35 = 65, then subtract 2 = 63",level:"28 + 35 = 30 + 33 = 63",split:"20 + 30 = 50, 8 + 5 = 13, 50 + 13 = 63",up:"Adding up is a strategy for subtraction."}},
+ {p:"125 − 78",best:"Compensation or constant difference: 78 is 2 away from 80. These are the syllabus examples.",s:{jump:"125 − 70 = 55, then − 8 = 47",bridge:"125 − 25 = 100, then − 53 = 47",comp:"125 − 80 = 45, then add 2 = 47",level:"Constant difference: 125 − 78 = 127 − 80 = 47",split:"!120 − 70 = 50, then 5 − 8? Students often switch to 8 − 5 = 3 and answer 53. NESA advises using the split strategy for addition only.",up:"78 + 2 = 80, + 20 = 100, + 25 = 125. So 2 + 20 + 25 = 47"}},
+ {p:"179 + 49",best:"Levelling: 180 + 48 = 228 in one step. The syllabus compares partitioning, rounding and levelling for this calculation.",s:{jump:"179 + 40 = 219, then + 9 = 228",bridge:"179 + 1 = 180, then + 48 = 228",comp:"180 + 50 = 230, then subtract 2 = 228",level:"179 + 49 = 180 + 48 = 228",split:"100 + 70 + 40 = 210, 9 + 9 = 18, 210 + 18 = 228",up:"Adding up is a strategy for subtraction."}},
+ {p:"456 − 298",best:"Constant difference: 458 − 300 = 158. NESA notes this suits subtracting a number ending in 8 or 9.",s:{jump:"Sequential: 456 − 200 = 256, − 90 = 166, − 8 = 158",bridge:"456 − 56 = 400, then − 242 = 158",comp:"456 − 300 = 156, then add 2 = 158",level:"Constant difference: 456 − 298 = 458 − 300 = 158",split:"!400 − 200 = 200, 50 − 90?, 6 − 8? The split strategy breaks down with regrouping in subtraction.",up:"298 + 2 = 300, + 100 = 400, + 56 = 456. So 2 + 100 + 56 = 158"}},
+ {p:"713 − 695",best:"Adding up: the difference is small. NESA gives 713 − 695 as an example where indirect addition works well.",s:{jump:"713 − 600 = 113, − 90 = 23, − 5 = 18",bridge:"713 − 13 = 700, then − 682 = 18",comp:"713 − 700 = 13, then add 5 = 18",level:"Constant difference: 718 − 700 = 18",split:"!700 − 600 = 100, 10 − 90?, 3 − 5? The split strategy doesn’t work here.",up:"695 + 5 = 700, + 13 = 713. So 5 + 13 = 18"}},
+ {p:"547 − 399",best:"Compensation: 547 − 400 = 147, then add 1, so 148. This is NESA’s additional advice example.",s:{jump:"547 − 300 = 247, − 90 = 157, − 9 = 148",bridge:"547 − 47 = 500, then − 352 = 148",comp:"547 − 400 = 147, then add 1 = 148",level:"Constant difference: 548 − 400 = 148",split:"!500 − 300 = 200, 40 − 90?, 7 − 9? The split strategy breaks down with regrouping in subtraction.",up:"399 + 1 = 400, + 100 = 500, + 47 = 547. So 1 + 100 + 47 = 148"}},
+ {p:"500 − 498",best:"Adding up or just noticing: 498 is 2 less than 500. NESA lists 500 − 498 as better done mentally than with an algorithm.",s:{jump:"500 − 400 = 100, − 90 = 10, − 8 = 2",bridge:"500 − 400 = 100, − 98 = 2",comp:"500 − 500 = 0, then add 2 = 2",level:"Constant difference: 502 − 500 = 2",split:"!The split strategy and the algorithm both need regrouping across zeros here: far more work than the answer deserves.",up:"498 + 2 = 500. So 2"}}
+];
+var SNAMES=[["jump","Jump"],["bridge","Bridge to a ten"],["comp","Compensation"],["level","Levelling / constant difference"],["split","Split tens and ones"],["up","Add up"]];
+function wireStrategies(){
+ $("#stP").innerHTML=STRAT.map(function(x,i){return '<option value="'+i+'">'+x.p+'</option>';}).join("");
+ var cur=0;
+ function show(){
+  var P=STRAT[cur];
+  $("#stM").innerHTML=SNAMES.map(function(n){return '<button data-k="'+n[0]+'">'+n[1]+'</button>';}).join("");
+  $("#stOut").innerHTML='<p class="note">Choose a strategy.</p>';
+  $("#stTip").innerHTML='<b>Think first:</b> what do you notice about the numbers in '+P.p+'? <button class="btn ghost small" id="stBest" style="margin-left:8px">Show the most efficient</button>';
+  $("#stBest").onclick=function(){$("#stTip").innerHTML='<b>Most efficient for '+P.p+':</b> '+P.best;};
+  $$("#stM button").forEach(function(b){b.onclick=function(){
+   $$("#stM button").forEach(function(x){x.classList.toggle("on",x===b);});
+   var t=P.s[b.dataset.k], warn=t.charAt(0)==="!", body=warn?t.slice(1):t;
+   $("#stOut").innerHTML='<div class="mk" style="grid-template-columns:1fr"><div class="side '+(warn?"before":"after")+'"><div class="lbl">'+b.textContent+'</div><div class="task" style="font-size:17px">'+body+'</div>'+'</div></div>';
+  };});
+ }
+ $("#stP").onchange=function(){cur=+this.value;show();};
+ show();
+}
+
+/* S3 spot the error */
+var ERRS=[
+ {st:"S2",work:"&nbsp;&nbsp;543\n− 289\n─────\n&nbsp;&nbsp;346",est:"543 − 289 is about 540 − 290 = 250, so 346 is far too big.",a:0,why:"In each column the smaller digit was taken from the larger (9 − 3, 8 − 4). This is the smaller-from-larger error. Emphasise quantity value, use number expanders, and estimate first."},
+ {st:"S1",work:"96 − 58\n90 − 50 = 40\n8 − 6 = 2\nAnswer: 42",est:"96 − 58 is about 100 − 60 = 40, but 58 + 42 = 100, not 96.",a:0,why:"The split strategy led to 8 − 6 instead of 6 − 8. NESA advises using the split strategy for addition only."},
+ {st:"S3",work:"2.25 + 1.5 = 2.40",est:"About 2 + 1.5 = 3.5, so 2.40 is too small.",a:2,why:"The student added 15 hundredths instead of 5 tenths, treating the decimal parts as whole numbers. Rename 1.5 as 1.50 and use a number line."},
+ {st:"S3",work:"2.25 − 1.5 = 2.10",est:"2.25 − 1.5 should be less than 1, so 2.10 is far too big.",a:2,why:"The student subtracted 15 from 25 (hundredths) and kept the 2. NESA suggests asking students to explain why 2.25 − 1.5 is not 2.10."},
+ {st:"S3",work:"&nbsp;&nbsp;1438\n+ 129&nbsp;\n─────\n&nbsp;&nbsp;2728",est:"1438 + 129 is about 1440 + 130 = 1570, so 2728 is far too big.",a:1,why:"The digits of 129 were aligned from the left, so the student added 1290. Use place value to check: the 1 in 129 is one hundred."},
+ {st:"S2",work:"&nbsp;&nbsp;528\n−&nbsp;&nbsp;43\n─────\n&nbsp;&nbsp;585",est:"528 − 43 is about 530 − 40 = 490, so 585 is too big.",a:3,why:"The student exchanged a hundred to make 12 tens, but didn’t reduce the 5 hundreds to 4. In expanded form, 400 + 120 + 8 take away 40 + 3 is 400 + 80 + 5 = 485. NESA stresses that one of the hundreds becomes 10 tens, not simply 10."}
+];
+function wireErrors(){
+ var opts=["Smaller digit taken from larger","Digits not aligned by place value","Decimal parts treated as whole numbers","Exchange recorded incorrectly"];
+ var list=ERRS;
+ var i=0,score=0,first=true;
+ function show(){
+  var e=list[i]; first=true;
+  $("#erScore").textContent="Work "+(i+1)+" of "+list.length+" · "+e.st+" · first-try score "+score;
+  $("#erWork").innerHTML='<pre>'+e.work+'</pre><button class="btn ghost small" id="erEst">Estimate first</button><span class="note" id="erEstT" style="margin-left:10px"></span>';
+  $("#erEst").onclick=function(){$("#erEstT").textContent=e.est;};
+  $("#erOpts").innerHTML=opts.map(function(o,j){return '<button data-j="'+j+'">'+o+'</button>';}).join("");
+  $("#erFb").className="fbline"; $("#erNext").disabled=true;
+  $$("#erOpts button").forEach(function(b){b.onclick=function(){
+   var j=+b.dataset.j;
+   if(j===e.a){ if(first) score++; b.classList.add("right"); $$("#erOpts button").forEach(function(x){x.disabled=true;}); $("#erFb").className="fbline show ok"; $("#erFb").innerHTML="<b>Yes.</b> "+e.why; $("#erNext").disabled=false; $("#erEstT").textContent=e.est; }
+   else { first=false; b.classList.add("wrong"); b.disabled=true; $("#erFb").className="fbline show no"; $("#erFb").textContent="Not quite. Look at what the student did in each step."; }
+   $("#erScore").textContent="Work "+(i+1)+" of "+list.length+" · "+e.st+" · first-try score "+score;
+  };});
+ }
+ $("#erNext").onclick=function(){ i++; if(i>=list.length){ $("#erWork").innerHTML='<p class="readout">You diagnosed '+score+' of '+list.length+' on the first try.<small>Which of these errors would an estimate have caught?</small></p><button class="btn small" id="erAgain">Start again</button>'; $("#erOpts").innerHTML=""; $("#erFb").className="fbline"; $("#erNext").disabled=true; $("#erAgain").onclick=function(){i=0;score=0;show();}; return; } show(); };
+ show();
+}
+
+function wireTool(t){
+ if(t==="parts") wirePartsTool();
+ if(t==="line") wireLine();
+ if(t==="strategies") wireStrategies();
+ if(t==="errors") wireErrors();
+}
+
+</script>
+<script>
+/* Professional learning module engine.
+   Shared by every module. Each module page loads, in order:
+   content.js (M config + data), tools.js (toolHTML + wireTool), then this file. */
+"use strict";
+/* ---------------- storage (safe) ---------------- */
+var KEY = M.key;
+var mem = {done:{}, notes:{}, todo:{}, chk:{}};
+try { var raw = window.localStorage.getItem(KEY); if (raw) { var p = JSON.parse(raw); mem.done = p.done||{}; mem.notes = p.notes||{}; mem.todo = p.todo||{}; mem.chk = p.chk||{}; } } catch(e) {}
+function save(){ try { window.localStorage.setItem(KEY, JSON.stringify(mem)); } catch(e) {} }
+
+/* ---------------- sections ---------------- */
+var SECTIONS = [
+ {id:"welcome",label:"Welcome",grp:"Start here",r:renderWelcome},
+ {id:"ideas",label:"The big ideas",grp:"Start here",r:renderIdeas},
+ {id:"prog",label:"Progression explorer",grp:"Start here",r:renderProg},
+ {id:"wm",label:"Working mathematically",grp:"Start here",r:renderWM},
+ {id:"es1",label:"Early Stage 1",grp:"Stage by stage",r:function(){return renderStage("es1");},stage:"es1"},
+ {id:"s1",label:"Stage 1",grp:"Stage by stage",r:function(){return renderStage("s1");},stage:"s1"},
+ {id:"s2",label:"Stage 2",grp:"Stage by stage",r:function(){return renderStage("s2");},stage:"s2"},
+ {id:"s3",label:"Stage 3",grp:"Stage by stage",r:function(){return renderStage("s3");},stage:"s3"},
+ {id:"models",label:"Models across K–6",grp:"Pull it together",r:renderModels},
+ {id:"sorter",label:"Misconception sorter",grp:"Pull it together",r:renderSorter},
+ {id:"reflect",label:"Reflect and plan",grp:"Pull it together",r:renderReflect}
+];
+var current = 0;
+
+function $(s,el){return (el||document).querySelector(s);}
+function $$(s,el){return Array.prototype.slice.call((el||document).querySelectorAll(s));}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+
+function buildNav(){
+ var side=$("#side"), h="", g="";
+ SECTIONS.forEach(function(s,i){
+  if(s.grp!==g){g=s.grp;h+='<div class="grp">'+g+'</div>';}
+  var dotStyle = s.stage && !mem.done[s.id] ? ' style="border-color:'+STAGES[s.stage].col+'"' : '';
+  h+='<button data-i="'+i+'" class="'+(i===current?"on":"")+'" aria-current="'+(i===current?"page":"false")+'"><span class="dot'+(mem.done[s.id]?" done":"")+'"'+dotStyle+'></span>'+s.label+'</button>';
+ });
+ side.innerHTML=h;
+ $$("button",side).forEach(function(b){b.onclick=function(){go(+b.dataset.i);};});
+ var sel=$("#mobSel");
+ sel.innerHTML=SECTIONS.map(function(s,i){return '<option value="'+i+'"'+(i===current?" selected":"")+'>'+(mem.done[s.id]?"✓ ":"")+s.label+'</option>';}).join("");
+ sel.onchange=function(){go(+sel.value);};
+ var n=SECTIONS.filter(function(s){return mem.done[s.id];}).length;
+ $("#progTxt").textContent=n+" of "+SECTIONS.length+" sections";
+ $("#progFill").style.width=(100*n/SECTIONS.length)+"%";
+}
+
+function go(i){
+ current=i; buildNav();
+ var s=SECTIONS[i], pg=$("#page");
+ pg.innerHTML=s.r()+doneBar(s,i);
+ wire(s.id);
+ var db=$("#doneBtn"); if(db) db.onclick=function(){mem.done[s.id]=!mem.done[s.id];save();go(i);};
+ var nx=$("#nextBtn"); if(nx) nx.onclick=function(){if(!mem.done[s.id]){mem.done[s.id]=true;save();} go(i+1);};
+ var pv=$("#prevBtn"); if(pv) pv.onclick=function(){go(i-1);};
+ try{window.scrollTo(0,0);}catch(e){}
+ var m=document.querySelector("main"); if(m) m.scrollTop=0;
+}
+
+function doneBar(s,i){
+ var d=!!mem.done[s.id];
+ return '<div class="done-bar'+(d?" is-done":"")+'"><div><b>'+(d?"Section complete ✓":"Finished this section?")+'</b><div class="note">'+(d?"You can come back at any time.":"Mark it complete to track your progress.")+'</div></div><div class="nextprev">'+
+ (i>0?'<button class="btn ghost" id="prevBtn">← Back</button>':'')+
+ '<button class="btn ghost" id="doneBtn">'+(d?"Mark as not done":"Mark complete")+'</button>'+
+ (i<SECTIONS.length-1?'<button class="btn" id="nextBtn">Next: '+SECTIONS[i+1].label+' →</button>':'')+'</div></div>';
+}
+
+/* ---------------- renderers ---------------- */
+function renderWelcome(){
+ var rows=ORDER.map(function(k){var S=STAGES[k],C=STAGE_CONTENT[k];return '<tr><td><span class="pill" style="background:'+S.col+';color:#fff;border-color:'+S.col+'">'+S.name+'</span><div class="note" style="margin-top:4px">'+S.years+'</div></td><td>'+S.fa+'</td><td>'+C.outcomes.map(function(o){return o[0];}).join(", ")+'</td></tr>';}).join("");
+ return '<div class="hero" style="border-left-color:var(--accent)"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Welcome</span><h2>'+M.welcomeH2+'</h2><p>'+M.welcomeP+'</p></div>'+
+ '<section class="blk"><h3>What you’ll do</h3><div class="grid3">'+
+ card("Explore","the six big ideas and how each one grows from Kindergarten to Year 6.")+
+ card("Diagnose","misconceptions with flip cards, short quizzes and a misconception sorter.")+
+ card("Rework","closed tasks into rich ones that embed Working mathematically, with one makeover for each stage.")+
+ card("Try",M.tryText)+
+ card("Reflect","on your own students and plan next steps. Your notes save in this browser.")+
+ '</div></section>'+
+ '<section class="blk"><h3>'+M.namesH3+'</h3><p class="lead">'+M.namesP+'</p><table class="simple"><thead><tr><th>Stage</th><th>Focus area name</th><th>Outcomes</th></tr></thead><tbody>'+rows+'</tbody></table></section>'+
+ '<section class="blk"><h3>Suggested pathways</h3><div class="grid2"><div class="card"><h4 style="margin-bottom:6px">On your own (about 45 minutes)</h4><ul class="tight"><li>Big ideas and the progression explorer</li><li>Your stage, plus the stage before it</li><li>The misconception sorter</li><li>Reflect and plan</li></ul></div><div class="card"><h4 style="margin-bottom:6px">As a staff or PLC session (about 60 minutes)</h4><ul class="tight"><li>Whole staff: big ideas and progression (15 min)</li><li>Stage teams: their stage section and tool (25 min)</li><li>Whole staff: misconception sorter (10 min)</li><li>Reflection prompts and next steps (10 min)</li></ul></div></div><p class="note" style="margin-top:12px">Tip: most difficulties in a stage begin in the stage before it, so look one stage back as well as at your own.</p></section>'+
+ checkHTML("pre");
+}
+function card(t,d){return '<div class="card"><b>'+t+'</b> <span style="color:var(--ink2)">'+d+'</span></div>';}
+
+function renderIdeas(){
+ return '<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Big ideas</span><h2>Six ideas run from K to 6</h2><p>'+M.ideasP+'</p></div>'+
+ '<div class="ideas">'+IDEAS.map(function(d,i){return '<button class="idea" data-i="'+i+'"><div class="num">'+(i+1)+'</div><h4>'+d.t+'</h4><p>'+d.d+'</p></button>';}).join("")+'</div>'+
+ '<div class="ideadetail card" id="ideaDetail"><p class="note" style="margin:0">Select an idea above to see what it looks like at each stage.</p></div>'+
+ '<p class="note" style="margin-top:14px">'+M.ideasNote+'</p>';
+}
+function showIdea(i){
+ var d=IDEAS[i];
+ $$(".idea").forEach(function(b){b.classList.toggle("on",+b.dataset.i===i);});
+ $("#ideaDetail").innerHTML='<h4 style="font-size:18px;margin-bottom:10px">'+(i+1)+'. '+d.t+' — at each stage</h4>'+ORDER.map(function(k){return '<div class="srow"><span class="sl" style="background:'+STAGES[k].col+'">'+STAGES[k].name+'</span><span>'+d.s[k]+'</span></div>';}).join("");
+}
+
+function renderProg(){
+ return '<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Progression</span><h2>How the focus area grows</h2><p>'+M.progP+'</p></div>'+
+ '<div class="aspects" role="tablist">'+ASPECTS.map(function(a,i){return '<button role="tab" data-k="'+i+'" class="'+(i===0?"on":"")+'">'+a.l+'</button>';}).join("")+'</div>'+
+ '<div class="pcols" id="pcols"></div>'+
+ '<section class="blk"><h3>What changes between stages</h3><div class="shifts">'+
+ M.shifts.map(function(x){return '<div class="shift"><div class="arr" style="color:'+STAGES[x[0]].col+'">'+x[1]+'</div>'+x[2]+'</div>';}).join("")+
+ '</div></section>';
+}
+function showAspect(i){
+ var a=ASPECTS[i];
+ $$(".aspects button").forEach(function(b){b.classList.toggle("on",+b.dataset.k===i);});
+ $("#pcols").innerHTML=ORDER.map(function(k){var S=STAGES[k];return '<div class="pcol"><div class="ph" style="background:'+S.col+'">'+S.name+'<small>'+S.years+'</small></div><div class="pb">'+a.v[k]+'</div></div>';}).join("");
+}
+
+function renderStage(k){
+ var S=STAGES[k], C=STAGE_CONTENT[k];
+ var h='<div class="hero" style="border-left-color:'+S.col+'"><span class="tag" style="background:'+S.soft+';color:'+S.col+'">'+S.name+' · '+S.years+'</span><h2>'+S.fa+'</h2><p>'+C.lead+'</p></div>';
+ h+='<section class="blk"><h3><span class="n">1</span>Outcomes</h3>'+C.outcomes.map(function(o){return '<div class="outc"><code style="background:'+S.col+'">'+o[0]+'</code><span>'+o[1]+'</span></div>';}).join("")+'</section>';
+ h+='<section class="blk"><h3><span class="n">2</span>Content at a glance</h3><p class="lead">Select a content heading to see its content points.</p>'+C.content.map(function(c){return '<div class="acc"><button aria-expanded="false"><span>'+(c[0]?'<span class="part" style="background:'+S.col+'">'+c[0]+'</span>':'')+c[1]+'</span><span class="ch">›</span></button><div class="body"><ul class="tight">'+c[2].map(function(p){return '<li>'+p+'</li>';}).join("")+'</ul></div></div>';}).join("")+'</section>';
+ h+='<section class="blk"><h3><span class="n">3</span>What teachers need to know</h3><div class="grid2">'+C.know.map(function(x){return '<div class="kcard" style="border-top-color:'+S.col+'"><h4>'+x[0]+'</h4><p>'+x[1]+'</p></div>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3><span class="n">4</span>Misconceptions: what you might see</h3><p class="lead">Read what the student does, think about what’s behind it, then select the card to check.</p><div class="flips">'+C.misc.map(function(m){return '<button class="flip" aria-pressed="false"><div class="in"><div class="f"><div class="k">What you might see</div><div class="say">'+m.see+'</div><div class="hint">What’s behind this? Select to reveal ↻</div></div><div class="b"><div class="k">Misconception</div><h4>'+m.name+'</h4><p><b>Respond:</b> '+m.resp+'</p><span class="pill '+({n:"src-nesa",d:"src-dio",a:"src-add"})[m.src]+'">'+({n:"NESA",d:"Diocesan PL slides",a:"Additional commentary"})[m.src]+'</span></div></div></button>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3><span class="n">5</span>Try it</h3>'+toolHTML(C.tool)+'</section>';
+ h+='<section class="blk"><h3><span class="n">6</span>Working mathematically: task makeover</h3>'+makeoverHTML(k)+'</section>';
+ h+='<section class="blk"><h3><span class="n">7</span>Teaching advice</h3><div class="card"><ul class="tight">'+C.advice.map(function(a){return '<li>'+a+'</li>';}).join("")+'</ul></div></section>';
+ h+='<section class="blk"><h3><span class="n">8</span>Vocabulary</h3><div class="chips">'+C.vocab.map(function(v){return '<span>'+v+'</span>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3><span class="n">9</span>'+C.check.title+'</h3><div class="qc" style="border-left:5px solid '+S.col+'"><ol>'+C.check.steps.map(function(s){return '<li>'+s+'</li>';}).join("")+'</ol></div></section>';
+ h+='<section class="blk quiz"><h3><span class="n">10</span>Check your understanding</h3>'+C.quiz.map(function(q,qi){return '<div class="q" data-q="'+qi+'"><h4>'+(qi+1)+'. '+q.q+'</h4>'+q.o.map(function(o,oi){return '<button class="opt" data-o="'+oi+'">'+o+'</button>';}).join("")+'<div class="fb"></div></div>';}).join("")+'</section>';
+ return h;
+}
+
+
+function makeoverHTML(k){
+ var W=WM[k], S=STAGES[k];
+ var h='<p class="lead">'+(W.tagsLead||'Every content point addresses MAO-WM-01. In this stage, the syllabus tags these points as reasoning:')+'</p>';
+ if(W.tags.length) h+='<div class="card" style="padding:4px 0;margin-bottom:16px">'+W.tags.map(function(t){return '<div class="tagrow" style="grid-template-columns:1fr auto"><span>'+t[0]+'</span><span class="wtag">'+t[1]+'</span></div>';}).join("")+'</div>';
+ h+='<p class="lead"><b>Try it yourself.</b> Read the closed task. How would you change it so students reason and communicate? Jot your idea, then reveal the makeover.</p>';
+ h+='<div class="mk"><div class="side before"><div class="lbl">Before: closed task</div><div class="task closed">'+W.before.task+'</div><b style="font-size:14px">Limitations</b><ul>'+W.before.lim.map(function(l){return '<li>'+l+'</li>';}).join("")+'</ul></div>';
+ h+='<div class="side after" id="mkAfter"><div class="hidden-after"><div class="think">How would you rework this task?<textarea id="mkIdea" placeholder="My idea…"></textarea></div><button class="btn" id="mkReveal" style="background:var(--good)">Reveal the makeover</button></div></div></div>';
+ h+='<p class="note" style="margin-top:10px">Example tasks are additional commentary, built on the syllabus content points and examples. They are not NESA tasks.</p>';
+ return h;
+}
+function afterHTML(k){
+ var A=WM[k].after;
+ return '<div class="lbl">After: rich task</div><div class="task">'+A.task+'</div><div class="wmchips">'+A.el.map(function(e){return '<span>'+e+'</span>';}).join("")+'</div>'+
+ '<div class="diff"><div><b>Enabling prompt</b>'+A.enable+'</div><div><b>Extending prompt</b>'+A.extend+'</div><div><b>Listen for</b>'+A.listen+'</div></div>'+
+ '<button class="btn ghost small" id="mkHide" style="margin-top:12px">Hide again</button>';
+}
+
+function renderWM(){
+ var h='<div class="hero" style="border-left-color:var(--good)"><span class="tag" style="background:var(--good-soft);color:var(--good)">Working mathematically</span><h2>Working mathematically is built into every content point</h2><p>The Working mathematically outcome, MAO-WM-01, applies to all content in every stage. It isn’t a separate strand to teach on its own. It shapes how students learn the content in this focus area.</p></div>';
+ h+='<section class="blk"><h3>The outcome</h3><div class="outc"><code style="background:var(--good)">MAO-WM-01</code><span>develops understanding and fluency in mathematics through exploring and connecting mathematical concepts, choosing and applying mathematical techniques to solve problems, and communicating their thinking and reasoning coherently and clearly</span></div><p class="lead" style="margin-top:12px">The outcome names five things students do. This module uses them to describe what a task asks of students.</p><div class="wmel">'+WM_ELEMENTS.map(function(e){return '<div><b>'+e[0]+'</b>'+e[1]+'</div>';}).join("")+'</div></section>';
+ var rows="";
+ ORDER.forEach(function(k){WM[k].tags.forEach(function(t){rows+='<div class="tagrow"><span class="sl" style="background:'+STAGES[k].col+'">'+STAGES[k].name+'</span><span>'+t[0]+'</span><span class="wtag">'+t[1]+'</span></div>';});});
+ h+='<section class="blk"><h3>Where the syllabus flags reasoning</h3><p class="lead">In the content, some points are tagged with a type of reasoning. These are good places to plan for discussion, justification and multiple representations.</p><div class="card" style="padding:4px 0">'+rows+'</div></section>';
+ h+='<section class="blk"><h3>Makeover practice</h3><p class="lead">Choose a closed task, then try each move. Each move turns the same content into a task that asks students to reason and communicate.</p><div class="tool"><div class="ctrl" style="margin-top:0"><label for="ctSel">Closed task</label><select id="ctSel">'+CLOSED.map(function(c,i){return '<option value="'+i+'">'+STAGES[c.st].name+': '+c.task+'</option>';}).join("")+'</select></div><div class="mk" style="grid-template-columns:1fr"><div class="side before"><div class="lbl">Closed task</div><div class="task closed" id="ctTask"></div></div></div><div class="moves" id="ctMoves"></div><div id="ctOut"></div></div><p class="note" style="margin-top:10px">These moves and example tasks are additional commentary, not NESA material.</p></section>';
+ h+='<section class="blk"><h3>Questions that invite reasoning</h3><div class="grid2">'+
+  card("“How do you know?”","Ask after correct answers too, not only after errors.")+
+  card("“Is there another way?”","Ask for a second representation: materials, a number line, words.")+
+  card("“Convince me.”","Ask students to persuade a sceptical partner, using a model as evidence.")+
+  card("“What would change if…?”","Change one number or condition and ask students to predict before they calculate.")+
+ '</div></section>';
+ return h;
+}
+function showClosed(i){
+ var c=CLOSED[i];
+ $("#ctTask").textContent=c.task;
+ $("#ctMoves").innerHTML=c.moves.map(function(m,j){return '<button data-j="'+j+'">'+m.m+'</button>';}).join("");
+ $("#ctOut").innerHTML='<p class="note">Select a move above.</p>';
+ $$("#ctMoves button").forEach(function(b){b.onclick=function(){
+  var m=c.moves[+b.dataset.j];
+  $$("#ctMoves button").forEach(function(x){x.classList.toggle("on",x===b);});
+  $("#ctOut").innerHTML='<div class="mk" style="grid-template-columns:1fr"><div class="side after"><div class="lbl">After: '+m.m+'</div><div class="task">'+m.t+'</div><div class="wmchips">'+m.el.map(function(e){return '<span>'+e+'</span>';}).join("")+'</div></div></div>';
+ };});
+}
+
+function renderModels(){
+ var h='<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Models</span><h2>'+M.modelsH2+'</h2><p>'+M.modelsP+'</p></div>';
+ h+='<div class="mgrid" role="table"><div class="mh first" style="grid-row:1;grid-column:1">Model</div>'+ORDER.map(function(k,ki){return '<div class="mh" style="grid-row:1;grid-column:'+(ki+2)+';background:'+STAGES[k].col+'">'+STAGES[k].name+'</div>';}).join("");
+ MODELS.forEach(function(m,i){
+  h+='<div class="mrow" data-i="'+i+'"><button class="mn" data-i="'+i+'" style="grid-row:'+(i+2)+'">'+m.n+'<small>'+m.w+'</small></button>';
+  var cells="";
+  for(var c=0;c<4;c++) cells+='<div class="mc" style="grid-column:'+(c+2)+';grid-row:'+(i+2)+'"></div>';
+  var g1=m.s+2, g2=m.e+3;
+  var col = m.hi ? "var(--navy)" : STAGES[ORDER[m.s]].col;
+  cells+='<div class="mbar" data-i="'+i+'" style="grid-column:'+g1+'/'+g2+';grid-row:'+(i+2)+';background:'+col+';opacity:'+(m.hi?1:.75)+'" title="'+esc(m.n)+'"></div>';
+  h+=cells+'</div>';
+ });
+ h+='</div><div class="mdetail card" id="mDetail"><p class="note" style="margin:0">Select a model to read how it’s used.</p></div>';
+ h+='<section class="blk"><h3>Using models well</h3><div class="grid2">'+
+  M.modelTips.map(function(x){return card(x[0],x[1]);}).join("")+
+ '</div></section>';
+ return h;
+}
+function showModel(i){
+ var m=MODELS[i];
+ $$(".mrow").forEach(function(r){r.classList.toggle("sel",+r.dataset.i===i);});
+ var st=ORDER.slice(m.s,m.e+1).map(function(k){return STAGES[k].name;}).join(", ");
+ $("#mDetail").innerHTML='<h4 style="font-size:18px;margin-bottom:4px">'+m.n+'</h4><div class="note" style="margin-bottom:8px">'+st+'</div><p style="margin:0;color:var(--ink2)">'+m.d+'</p>';
+}
+
+function renderSorter(){
+ return '<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Misconception sorter</span><h2>Find the root</h2><p>'+M.sorterP+'</p></div>'+
+ '<div class="sorter"><div class="scn" id="scn"></div></div>'+
+ '<section class="blk"><h3>The four roots across the stages</h3><div style="overflow-x:auto"><table class="simple" style="min-width:640px"><thead><tr><th>Root</th>'+ORDER.map(function(k){return '<th style="color:'+STAGES[k].col+'">'+STAGES[k].name+'</th>';}).join("")+'</tr></thead><tbody>'+
+ M.rootRows.map(function(r){return '<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td><td>'+r[4]+'</td></tr>';}).join("")+
+ '</tbody></table></div><p class="note" style="margin-top:10px">'+M.sorterNote+'</p></section>';
+}
+var sortIdx=0, sortScore=0, sortDone=0;
+function showScenario(){
+ var el=$("#scn");
+ if(sortIdx>=SCENARIOS.length){
+  el.innerHTML='<h4 style="font-size:20px;margin-bottom:8px">You matched '+sortScore+' of '+SCENARIOS.length+' on the first try.</h4><p class="lead">For discussion: which root do you see most in your classroom? Which stage do you think it starts in?</p><button class="btn" id="sortAgain">Start again</button>';
+  $("#sortAgain").onclick=function(){sortIdx=0;sortScore=0;sortDone=0;showScenario();};
+  return;
+ }
+ var s=SCENARIOS[sortIdx], S=STAGES[s.st], tried=false;
+ el.innerHTML='<div class="score">Scenario '+(sortIdx+1)+' of '+SCENARIOS.length+' · <span style="color:'+S.col+';font-weight:700">'+S.name+'</span></div><div class="quote">'+s.q+'</div><div class="roots">'+ROOTS.map(function(r,i){return '<button data-r="'+i+'">'+r+'</button>';}).join("")+'</div><div class="fbline" id="sortFb"></div><div class="ctrl"><button class="btn" id="sortNext" style="display:none">Next scenario →</button></div>';
+ $$(".roots button",el).forEach(function(b){b.onclick=function(){
+  var r=+b.dataset.r, fb=$("#sortFb");
+  if(r===s.a){
+   if(!tried) sortScore++;
+   b.classList.add("right");
+   $$(".roots button",el).forEach(function(x){x.disabled=true;});
+   fb.className="fbline show ok"; fb.innerHTML="<b>Yes, "+ROOTS[s.a].toLowerCase()+".</b> "+s.why;
+   $("#sortNext").style.display="inline-block";
+  } else {
+   tried=true; b.classList.add("wrong"); b.disabled=true;
+   fb.className="fbline show no"; fb.innerHTML="Not quite. Think about what the student is paying attention to. Try another root.";
+  }
+ };});
+ $("#sortNext").onclick=function(){sortIdx++;showScenario();};
+}
+
+function renderReflect(){
+ var h='<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Reflect and plan</span><h2>Connect the progression to your students</h2><p>Write your thinking below. Notes save automatically in this browser. Use <b>Copy my notes</b> to paste them into a document or email.</p></div>';
+ var g="";
+ PROMPTS.forEach(function(p,i){
+  if(p[0]!==g){g=p[0];h+='<h3 style="font-size:17px;margin:22px 0 10px">'+g+'</h3>';}
+  h+='<div class="rq"><label for="rq'+i+'">'+(i+1)+'. '+p[1]+'</label><textarea id="rq'+i+'" data-i="'+i+'" placeholder="Your thoughts…">'+esc(mem.notes[i]||"")+'</textarea></div>';
+ });
+ h+='<h3 style="font-size:17px;margin:22px 0 10px">Next steps</h3><div class="card todo">'+TODOS.map(function(t,i){return '<label><input type="checkbox" data-t="'+i+'"'+(mem.todo[i]?" checked":"")+'><span>'+t+'</span></label>';}).join("")+'</div>';
+ h+=checkHTML("post");
+ h+='<div class="ctrl" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center"><button class="btn" id="copyNotes">Copy my notes</button><button class="btn ghost" id="dlNotes">Download as text</button><span class="saved" id="savedMsg"></span></div><textarea id="copyBuf" aria-hidden="true" style="position:absolute;left:-9999px;top:0"></textarea>';
+ return h;
+}
+function notesText(){
+ var t=M.notesTitle+"\n\n";
+ PROMPTS.forEach(function(p,i){t+=(i+1)+". "+p[1]+"\n"+(mem.notes[i]||"(no response)")+"\n\n";});
+ var mk=ORDER.filter(function(k){return mem.notes["mk-"+k];});
+ if(mk.length){ t+="My task makeover ideas\n"; mk.forEach(function(k){t+=STAGES[k].name+": "+mem.notes["mk-"+k]+"\n";}); t+="\n"; }
+ t+=chkText();
+ t+="Next steps\n"; TODOS.forEach(function(x,i){t+=(mem.todo[i]?"[x] ":"[ ] ")+x+"\n";});
+ return t;
+}
+
+
+/* ---------------- knowledge and confidence self-check (private, saved in this browser) ---------------- */
+var FA_NAME = M.title.replace(/\s*K–6\s*$/,"");
+var CHK_CONF = [
+ "I understand how "+FA_NAME+" develops from Kindergarten to Year 6.",
+ "I can identify common misconceptions in "+FA_NAME+" and respond to them.",
+ "I can plan "+FA_NAME+" lessons that embed Working mathematically."
+];
+var CHK_SHORT = ["The K–6 progression","Misconceptions","Working mathematically"];
+function chkItems(){
+ var a=SCENARIOS.filter(function(s){return s.st==="s2";})[0]||SCENARIOS[0], b=SCENARIOS.filter(function(s){return s.st==="s3";})[0]||SCENARIOS[SCENARIOS.length-1];
+ return [a,b];
+}
+function chkAnsText(v){ return v>=0?ROOTS[v]:"Not sure"; }
+function chkOk(x){ return x&&x.conf&&x.ans?x:null; }
+function chkCompare(){
+ var pre=chkOk(mem.chk.pre), post=mem.chk.post, items=chkItems();
+ var h='<div class="chkres"><h4>'+(pre?"Before and after":"Your answers")+'</h4><table class="simple"><thead><tr><th>Confidence (1–5)</th>'+(pre?'<th>Before</th>':'')+'<th>'+(pre?'After':'Now')+'</th></tr></thead><tbody>';
+ CHK_SHORT.forEach(function(t,i){ var d=pre?post.conf[i]-pre.conf[i]:0; h+='<tr><td>'+t+'</td>'+(pre?'<td>'+pre.conf[i]+'</td>':'')+'<td>'+post.conf[i]+(pre&&d?' <span class="chkd '+(d>0?'up':'down')+'">'+(d>0?'+':'')+d+'</span>':'')+'</td></tr>'; });
+ h+='</tbody></table>';
+ items.forEach(function(s,i){
+  var pa=pre?pre.ans[i]:null, qa=post.ans[i];
+  h+='<div class="chkscn"><b>Scenario '+(i+1)+'.</b> '+s.q+'<ul class="tight">'+(pre?'<li>Before: '+chkAnsText(pa)+' '+(pa===s.a?'✓':'✗')+'</li>':'')+'<li>'+(pre?'After':'Your answer')+': '+chkAnsText(qa)+' '+(qa===s.a?'✓':'✗')+'</li></ul><div class="note"><b>Most likely root:</b> '+ROOTS[s.a]+'. '+s.why+'</div></div>';
+ });
+ return h+'</div>';
+}
+function checkHTML(ph){
+ var pre=ph==="pre", done=chkOk(mem.chk[ph]);
+ var h='<section class="blk chk" id="chk-'+ph+'"><div class="chkhead"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">'+(pre?"Before you start":"After the module")+'</span><h3>'+(pre?"Quick self-check: before":"Quick self-check: after")+' <span class="chktime">about 2 minutes · optional · private</span></h3>'+
+  '<p class="note">'+(pre?"Answer before you work through the module, then again at the end in <b>Reflect and plan</b> to see what has changed.":"The same questions as at the start. Compare your answers to see what has changed.")+' Your answers are saved only in this browser, like your notes. Nothing is sent anywhere.</p></div>';
+ if(done){
+  if(pre) return h+'<div class="fbline show ok">Saved'+(done.t?' on '+done.t:'')+'. You’ll see the answers and compare them with your after check at the end, in <b>Reflect and plan</b>. <button class="linkbtn" id="chkRedo-'+ph+'">Answer again</button></div></section>';
+  return h+chkCompare()+'<div class="ctrl"><button class="linkbtn" id="chkRedo-'+ph+'">Answer the after check again</button></div></section>';
+ }
+ h+='<div class="chkq"><b>How confident are you?</b> <span class="note">1 = not confident, 5 = very confident</span>';
+ CHK_CONF.forEach(function(c,i){
+  h+='<div class="chkrate" role="radiogroup" aria-label="'+esc(c)+'"><span>'+c+'</span><span class="chkopts">'+[1,2,3,4,5].map(function(v){return '<label><input type="radio" name="chkc'+ph+i+'" value="'+v+'"><span>'+v+'</span></label>';}).join("")+'</span></div>';
+ });
+ h+='</div>';
+ chkItems().forEach(function(s,i){
+  h+='<div class="chkq"><b>Scenario '+(i+1)+' ('+STAGES[s.st].name+').</b> '+s.q+' <span class="note">Which is the most likely root of this response?</span><div class="chkmc">'+ROOTS.map(function(r,j){return '<label><input type="radio" name="chkk'+ph+i+'" value="'+j+'"><span>'+r+'</span></label>';}).join("")+'<label><input type="radio" name="chkk'+ph+i+'" value="-1"><span>I’m not sure</span></label></div></div>';
+ });
+ h+='<div class="ctrl"><button class="btn" id="chkSave-'+ph+'">'+(pre?"Save my answers":"Save and compare")+'</button><span class="note" id="chkMsg-'+ph+'"></span></div></section>';
+ return h;
+}
+function wireCheck(ph){
+ var redo=$("#chkRedo-"+ph); if(redo){ redo.onclick=function(){ delete mem.chk[ph]; save(); var el=$("#chk-"+ph); el.outerHTML=checkHTML(ph); wireCheck(ph); }; }
+ var btn=$("#chkSave-"+ph); if(!btn) return;
+ btn.onclick=function(){
+  var msg=$("#chkMsg-"+ph), val=function(n){var x=$('input[name="'+n+'"]:checked');return x?+x.value:null;};
+  var conf=CHK_CONF.map(function(c,i){return val("chkc"+ph+i);}), ans=chkItems().map(function(s,i){return val("chkk"+ph+i);});
+  if(conf.some(function(v){return v===null;})||ans.some(function(v){return v===null;})){ msg.textContent="Please answer the confidence ratings and both scenarios (“I’m not sure” is fine)."; return; }
+  mem.chk[ph]={conf:conf,ans:ans,t:new Date().toLocaleDateString("en-AU")}; save();
+  var el=$("#chk-"+ph); el.outerHTML=checkHTML(ph); wireCheck(ph);
+ };
+}
+function chkText(){
+ var pre=chkOk(mem.chk.pre), post=chkOk(mem.chk.post); if(!pre&&!post) return "";
+ var t="Quick self-check\n", items=chkItems();
+ CHK_SHORT.forEach(function(x,i){ t+=x+" (confidence 1-5): "+(pre?"before "+pre.conf[i]:"before -")+", "+(post?"after "+post.conf[i]:"after -")+"\n"; });
+ items.forEach(function(s,i){ t+="Scenario "+(i+1)+": "+(pre?"before "+(pre.ans[i]===s.a?"correct":"not yet"):"before -")+", "+(post?"after "+(post.ans[i]===s.a?"correct":"not yet"):"after -")+"\n"; });
+ return t+"\n";
+}
+
+/* ---------------- wiring ---------------- */
+function wire(id){
+ if(id==="welcome") wireCheck("pre");
+ if(id==="reflect") wireCheck("post");
+ if(id==="ideas"){ $$(".idea").forEach(function(b){b.onclick=function(){showIdea(+b.dataset.i);};}); }
+ if(id==="prog"){ $$(".aspects button").forEach(function(b){b.onclick=function(){showAspect(+b.dataset.k);};}); showAspect(0); }
+ if(id==="models"){ $$(".mn,.mbar").forEach(function(b){b.onclick=function(){showModel(+b.dataset.i);};}); }
+ if(id==="sorter"){ sortIdx=0; sortScore=0; showScenario(); }
+ if(id==="wm"){ $("#ctSel").onchange=function(){showClosed(+this.value);}; showClosed(0); }
+ if(id==="reflect"){
+  var msg=$("#savedMsg"), tmr;
+  $$(".rq textarea").forEach(function(ta){ta.oninput=function(){mem.notes[ta.dataset.i]=ta.value;save();msg.textContent="Saved";clearTimeout(tmr);tmr=setTimeout(function(){msg.textContent="";},1500);};});
+  $$(".todo input").forEach(function(cb){cb.onchange=function(){mem.todo[cb.dataset.t]=cb.checked;save();};});
+  $("#copyNotes").onclick=function(){
+   var txt=notesText(), ok=false;
+   var buf=$("#copyBuf"); buf.value=txt; buf.select();
+   try{ok=document.execCommand("copy");}catch(e){}
+   if(!ok && navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){msg.textContent="Copied";},function(){msg.textContent="Copy blocked: select the text in each box instead";}); return; }
+   msg.textContent=ok?"Copied to clipboard":"Copy blocked: select the text in each box instead";
+  };
+  $("#dlNotes").onclick=function(){
+   try{ var a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([notesText()],{type:"text/plain"})); a.download=M.dlName; document.body.appendChild(a); a.click(); a.remove(); }
+   catch(e){ msg.textContent="Download blocked here: use Copy my notes instead"; }
+  };
+ }
+ var st=SECTIONS.filter(function(s){return s.id===id;})[0];
+ if(st && st.stage){
+  var C=STAGE_CONTENT[st.stage];
+  $$(".acc>button").forEach(function(b){b.onclick=function(){var a=b.parentNode;a.classList.toggle("open");b.setAttribute("aria-expanded",a.classList.contains("open"));};});
+  $$(".flip").forEach(function(f){f.onclick=function(){f.classList.toggle("on");f.setAttribute("aria-pressed",f.classList.contains("on"));};});
+  $$(".quiz .q").forEach(function(qd){
+   var q=C.quiz[+qd.dataset.q], fb=$(".fb",qd);
+   $$(".opt",qd).forEach(function(b){b.onclick=function(){
+    var o=+b.dataset.o;
+    if(o===q.a){ b.classList.add("right"); $$(".opt",qd).forEach(function(x){x.disabled=true;}); fb.className="fb show ok"; fb.innerHTML="<b>Correct.</b> "+q.why; }
+    else { b.classList.add("wrong"); b.disabled=true; fb.className="fb show no"; fb.innerHTML="Not quite. Have another go."; }
+   };});
+  });
+  wireMakeover(st.stage);
+  if(typeof wireTool==="function") wireTool(C.tool);
+ }
+}
+
+/* makeover reveal */
+function wireMakeover(k){
+ var box=$("#mkAfter"), key="mk-"+k;
+ function closed(){
+  box.innerHTML='<div class="hidden-after"><div class="think">How would you rework this task?<textarea id="mkIdea" placeholder="My idea…"></textarea></div><button class="btn" id="mkReveal" style="background:var(--good)">Reveal the makeover</button></div>';
+  var ta=$("#mkIdea"); ta.value=mem.notes[key]||""; ta.oninput=function(){mem.notes[key]=ta.value;save();};
+  $("#mkReveal").onclick=open;
+ }
+ function open(){ box.innerHTML=afterHTML(k)+(mem.notes[key]?'<div class="note" style="margin-top:10px"><b>Your idea:</b> '+esc(mem.notes[key])+'</div>':''); $("#mkHide").onclick=closed; }
+ closed();
+}
+
+/* ---------------- start ---------------- */
+document.getElementById("foot").innerHTML=M.footer;
+go(0);
+
+</script>
+</body>
+</html>
