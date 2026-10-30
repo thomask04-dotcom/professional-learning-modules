@@ -3,59 +3,187 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Maths Professional Learning Modules K–6</title>
+<title>Maths Module Finder K–6</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1b2333;--ink2:#4a5468;--ink3:#6d778a;--line:#e2e5ec;--bg:#f6f7fa;--navy:#1f2a44;--accent:#c8553d;--good:#2e7d4f}
+:root{--ink:#1b2333;--ink2:#4a5468;--ink3:#6d778a;--line:#e2e5ec;--bg:#f6f7fa;--navy:#1f2a44;--accent:#c8553d;--good:#2e7d4f;
+ --es1:#c8553d;--s1:#b07a1a;--s2:#23897d;--s3:#4b5bbf}
 *{box-sizing:border-box}
 body{margin:0;font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
-header{background:var(--navy);color:#fff;padding:32px 24px}
-header .in,main{max-width:980px;margin:0 auto}
+header{background:var(--navy);color:#fff;padding:30px 24px 26px}
+header .in,main{max-width:1000px;margin:0 auto}
 .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75;font-weight:600}
 h1{font-size:30px;font-weight:800;margin:4px 0 8px}
-header p{margin:0;opacity:.85;max-width:680px}
-main{padding:28px 24px 60px}
-h2{font-size:19px;margin:30px 0 12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.card{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;color:var(--ink);text-decoration:none;border-top:4px solid var(--accent)}
-a.card:hover{box-shadow:0 4px 14px rgba(20,30,60,.08);border-color:#c9ced9}
-.card h3{margin:0 0 6px;font-size:17px}
-.card p{margin:0;color:var(--ink2);font-size:14.5px}
-.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:5px;margin-bottom:8px}
-.ready{background:#e6f4ec;color:var(--good)}
-.soon{background:#eef0f4;color:var(--ink3)}
-.card.planned{border-top-color:var(--line);opacity:.8}
+header p{margin:0;opacity:.88;max-width:700px}
+main{padding:22px 24px 60px}
+.finder{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-top:-34px;box-shadow:0 6px 20px rgba(20,30,60,.08);position:relative}
+.finder label.big{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
+.search{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px}
+.search:focus{outline:none;border-color:var(--navy)}
+.hint{font-size:13px;color:var(--ink3);margin-top:6px}
+.hint button{background:none;border:0;padding:0;color:var(--navy);text-decoration:underline;font:inherit;cursor:pointer}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.row .lab{font-size:13px;font-weight:700;color:var(--ink2);min-width:74px}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:6px 13px;font:inherit;font-weight:600;font-size:14px;color:var(--ink2);cursor:pointer}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip[data-st="es1"].on{background:var(--es1);border-color:var(--es1)}
+.chip[data-st="s1"].on{background:var(--s1);border-color:var(--s1)}
+.chip[data-st="s2"].on{background:var(--s2);border-color:var(--s2)}
+.chip[data-st="s3"].on{background:var(--s3);border-color:var(--s3)}
+.count{margin:22px 0 10px;font-size:14px;color:var(--ink3)}
+h2{font-size:18px;margin:26px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;border-top:4px solid var(--accent);display:flex;flex-direction:column}
+.card h3{margin:0 0 4px;font-size:17px}
+.card .strand{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.card p{margin:6px 0 0;color:var(--ink2);font-size:14.5px}
+.stageinfo{margin-top:10px;font-size:13.5px;border-radius:8px;padding:8px 10px;background:var(--bg)}
+.stageinfo b{display:block}
+.matches{margin:10px 0 0;padding:0;list-style:none;font-size:13.5px}
+.matches li{padding:6px 0;border-top:1px solid var(--line)}
+.matches .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink3);margin-right:4px}
+.matches a{color:var(--ink);text-decoration:none}
+.matches a:hover{text-decoration:underline}
+mark{background:#fde9a8;color:inherit;padding:0 1px;border-radius:2px}
+.acts{margin-top:auto;padding-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-block;border-radius:9px;padding:8px 14px;font-weight:600;font-size:14px;text-decoration:none;background:var(--navy);color:#fff}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn:hover{filter:brightness(1.12)}
+.empty{background:#fff;border:1px dashed var(--line);border-radius:12px;padding:20px;color:var(--ink2)}
 footer{text-align:center;font-size:13px;color:var(--ink3);padding:20px}
+@media (max-width:520px){h1{font-size:25px}.row .lab{width:100%}}
 </style>
 </head>
 <body>
 <header><div class="in">
  <div class="eyebrow">NSW Mathematics K–10 Syllabus (2022)</div>
- <h1>Maths Professional Learning Modules K–6</h1>
- <p>Interactive modules that follow each focus area from Kindergarten to Year 6: the progression of outcomes, the maths teachers need, common misconceptions, teaching advice and Working mathematically.</p>
+ <h1>Maths Module Finder K–6</h1>
+ <p>Interactive professional learning modules that follow each focus area from Kindergarten to Year 6. Search for a topic or a misconception you’re seeing, or choose your stage.</p>
 </div></header>
 <main>
- <h2>Number and algebra</h2>
- <div class="grid">
-  <a class="card" href="modules/representing-numbers/"><span class="tag ready">Ready</span><h3>Representing numbers</h3><p>Place value, the role of zero, decimals and percentages, from counting collections to billions and thousandths.</p></a>
-  <div class="card planned"><span class="tag soon">Planned</span><h3>Additive relations</h3><p>Includes Combining and separating quantities (Early Stage 1 and Stage 1).</p></div>
-  <a class="card" href="modules/multiplicative-relations/"><span class="tag ready">Ready</span><h3>Multiplicative relations</h3><p>From Forming groups (Early Stage 1 and Stage 1) to fact families, properties of multiplication and efficient strategies.</p></a>
-  <div class="card planned"><span class="tag soon">Planned</span><h3>Partitioned fractions</h3><p>Stage 2 Partitioned fractions and Stage 3 Representing quantity fractions.</p></div>
+ <div class="finder">
+  <label class="big" for="q">What would you like to work on?</label>
+  <input class="search" id="q" type="search" placeholder="e.g. place value, area, ‘bigger is heavier’, equivalent fractions, line graphs" autocomplete="off">
+  <div class="hint">Try: <button data-q="place value">place value</button> · <button data-q="equivalent">equivalent</button> · <button data-q="area">area</button> · <button data-q="clock">clock</button> · <button data-q="misleading">misleading</button></div>
+  <div class="row" role="group" aria-label="Stage"><span class="lab">I teach</span>
+   <button class="chip on" data-st="">Any stage</button><button class="chip" data-st="es1">Kindergarten</button><button class="chip" data-st="s1">Stage 1</button><button class="chip" data-st="s2">Stage 2</button><button class="chip" data-st="s3">Stage 3</button>
+  </div>
+  <div class="row" role="group" aria-label="Strand"><span class="lab">Strand</span>
+   <button class="chip on" data-sd="">All</button><button class="chip" data-sd="Number and algebra">Number and algebra</button><button class="chip" data-sd="Measurement and space">Measurement and space</button><button class="chip" data-sd="Statistics and probability">Statistics and probability</button>
+  </div>
  </div>
- <h2>Measurement and space</h2>
- <div class="grid">
-  <div class="card planned"><span class="tag soon">Planned</span><h3>Geometric measure</h3><p>Position, length and the foundations of measuring.</p></div>
-  <div class="card planned"><span class="tag soon">Planned</span><h3>Two-dimensional spatial structure</h3><p>Shapes, area and angles.</p></div>
-  <div class="card planned"><span class="tag soon">Planned</span><h3>Three-dimensional spatial structure</h3><p>Objects and volume.</p></div>
-  <div class="card planned"><span class="tag soon">Planned</span><h3>Non-spatial measure</h3><p>Mass, time and related measures.</p></div>
- </div>
- <h2>Statistics and probability</h2>
- <div class="grid">
-  <div class="card planned"><span class="tag soon">Planned</span><h3>Data</h3><p>Collecting, representing and interpreting data.</p></div>
-  <div class="card planned"><span class="tag soon">Planned</span><h3>Chance</h3><p>Describing and comparing likelihood.</p></div>
- </div>
+ <div class="count" id="count" aria-live="polite"></div>
+ <div id="out"></div>
 </main>
-<footer>Built from the NESA <i>Mathematics K–10 Syllabus (2022)</i> and NESA syllabus support teaching advice. Progress and notes in each module are saved only in the viewer’s browser.</footer>
+<footer>Built from the NESA <i>Mathematics K–10 Syllabus (2022)</i> and NESA syllabus support teaching advice. Progress, notes and self-checks in each module are saved only in the viewer’s browser.</footer>
+
+<script>
+"use strict";
+/* Optional: if each module has its own Google Sites page, paste its address here,
+   e.g. "fractions":"https://sites.google.com/view/your-site/fractions".
+   Links then open that page (in a new tab). Leave empty to open the module directly. */
+var SITE_PAGES = {};
+
+var MODS = [
+ {slug:"representing-numbers",strand:"Number and algebra",title:"Representing numbers",desc:"Place value, the role of zero, decimals and percentages, from counting collections to billions and thousandths."},
+ {slug:"additive-relations",strand:"Number and algebra",title:"Additive relations",desc:"From Combining and separating quantities to choosing efficient mental and written strategies, including decimals."},
+ {slug:"multiplicative-relations",strand:"Number and algebra",title:"Multiplicative relations",desc:"From Forming groups to fact families, properties of multiplication and efficient strategies."},
+ {slug:"fractions",strand:"Number and algebra",title:"Fractions",desc:"From halving lengths and collections to Partitioned fractions (Stage 2) and Representing quantity fractions (Stage 3)."},
+ {slug:"geometric-measure",strand:"Measurement and space",title:"Geometric measure",desc:"Position, length and angles: from ‘in, on, under’ to the Cartesian plane, perimeter and degrees."},
+ {slug:"two-dimensional-spatial-structure",strand:"Measurement and space",title:"Two-dimensional spatial structure",desc:"Shapes, transformations and area, from triangles and non-examples to areas of parallelograms, triangles and composite shapes."},
+ {slug:"three-dimensional-spatial-structure",strand:"Measurement and space",title:"Three-dimensional spatial structure",desc:"Objects, volume and capacity: from ‘which holds more?’ to nets, views and the layer structure of volume."},
+ {slug:"non-spatial-measure",strand:"Measurement and space",title:"Non-spatial measure",desc:"Mass and time: from hefting and o’clock to grams, tonnes, decimals, 24-hour time and elapsed time."},
+ {slug:"data",strand:"Statistics and probability",title:"Data",desc:"From sorting objects and picture graphs to column graphs, dot plots, line graphs, bias and misleading displays."},
+ {slug:"chance",strand:"Statistics and probability",title:"Chance",desc:"From ‘could it be …?’ to likely and unlikely, predicted and actual results, and probabilities as fractions."}
+];
+var STAGE_NAMES={es1:"Kindergarten",s1:"Stage 1",s2:"Stage 2",s3:"Stage 3"};
+var state={q:"",st:"",sd:""};
+
+function $(s){return document.querySelector(s);}
+function $$(s){return Array.prototype.slice.call(document.querySelectorAll(s));}
+function strip(h){var d=document.createElement("div");d.innerHTML=String(h||"");return d.textContent||"";}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function norm(t){return strip(t).toLowerCase().replace(/[‘’']/g,"'").replace(/[“”]/g,'"');}
+function link(m,sec){
+ if(SITE_PAGES[m.slug]) return {href:SITE_PAGES[m.slug],nt:true};
+ return {href:"modules/"+m.slug+"/"+(sec?"#"+sec:""),nt:false};
+}
+
+/* Load each module's content (same site), so the finder can search inside it. */
+function loadModule(m){
+ return fetch("modules/"+m.slug+"/content.js").then(function(r){if(!r.ok) throw 0; return r.text();}).then(function(code){
+  var d=(new Function(code+"\n;return {M:M,STAGES:STAGES,SC:STAGE_CONTENT,IDEAS:IDEAS,MODELS:MODELS,SCEN:SCENARIOS};"))();
+  var items=[];
+  d.IDEAS.forEach(function(x){items.push({k:"Big idea",t:x.t,extra:x.d,sec:"ideas"});});
+  Object.keys(d.SC).forEach(function(st){
+   var C=d.SC[st];
+   C.content.forEach(function(c){items.push({k:"Content",t:strip(c[1]),extra:c[2].join(" "),sec:st,st:st});});
+   C.misc.forEach(function(x){items.push({k:"Misconception",t:strip(x.name),extra:x.see,sec:st,st:st});});
+   C.know.forEach(function(x){items.push({k:"Teacher knowledge",t:strip(x[0]),extra:x[1],sec:st,st:st});});
+   (C.vocab||[]).forEach(function(v){items.push({k:"Vocabulary",t:v,extra:"",sec:st,st:st,vocab:true});});
+  });
+  d.MODELS.forEach(function(x){items.push({k:"Model",t:x.n,extra:x.w+" "+x.d,sec:"models"});});
+  m.items=items.map(function(it){it.hay=norm(it.t+" "+it.extra);it.tl=norm(it.t);return it;});
+  m.stages={}; Object.keys(d.STAGES).forEach(function(st){ m.stages[st]={fa:d.STAGES[st].fa,out:d.SC[st].outcomes.map(function(o){return o[0];})}; });
+ }).catch(function(){ m.items=null; });
+}
+
+function hl(text,terms){
+ var t=esc(text); terms.forEach(function(w){ if(w.length<2) return; t=t.replace(new RegExp("("+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig"),"<mark>$1</mark>"); }); return t;
+}
+function render(){
+ var terms=norm(state.q).split(/\s+/).filter(function(w){return w;}), q=terms.join(" "), shown=[];
+ MODS.forEach(function(m){
+  if(state.sd && m.strand!==state.sd) return;
+  var score=0, hits=[];
+  if(q){
+   var head=norm(m.title+" "+m.desc+" "+m.strand);
+   var headHit=terms.every(function(w){return head.indexOf(w)>=0;});
+   if(headHit) score+=10;
+   (m.items||[]).forEach(function(it){
+    if(state.st && it.st && it.st!==state.st) return;
+    if(terms.every(function(w){return it.hay.indexOf(w)>=0;})){
+     var s=(it.tl.indexOf(q)>=0?6:0)+(it.vocab?1:3); hits.push({it:it,s:s}); }
+   });
+   hits.sort(function(a,b){return b.s-a.s;});
+   score+=hits.reduce(function(a,h){return a+h.s;},0);
+   if(!score) return;
+  }
+  shown.push({m:m,score:score,hits:hits});
+ });
+ if(q) shown.sort(function(a,b){return b.score-a.score;});
+ var html="";
+ if(!shown.length) html='<div class="empty">No modules match “'+esc(state.q)+'”. Try a shorter word, such as “area”, “clock” or “decimal”, or clear the filters.</div>';
+ else {
+  var groups=q?[["",shown]]:["Number and algebra","Measurement and space","Statistics and probability"].map(function(g){return [g,shown.filter(function(x){return x.m.strand===g;})];}).filter(function(g){return g[1].length;});
+  groups.forEach(function(g){
+   if(g[0]) html+='<h2>'+g[0]+'</h2>';
+   html+='<div class="grid">'+g[1].map(function(x){return cardHTML(x,terms);}).join("")+'</div>';
+  });
+ }
+ $("#out").innerHTML=html;
+ $("#count").textContent=q?(shown.length+" module"+(shown.length===1?"":"s")+" match “"+state.q+"”"+(state.st?" for "+STAGE_NAMES[state.st]:"")):(shown.length+" modules"+(state.st?" · showing "+STAGE_NAMES[state.st]+" details":""));
+}
+function cardHTML(x,terms){
+ var m=x.m, open=link(m,""), h='<article class="card"><span class="strand">'+m.strand+'</span><h3>'+m.title+'</h3><p>'+m.desc+'</p>';
+ if(state.st && m.stages && m.stages[state.st]){ var S=m.stages[state.st]; h+='<div class="stageinfo" style="border-left:4px solid var(--'+state.st+')"><b>'+STAGE_NAMES[state.st]+': '+esc(S.fa)+'</b>'+S.out.join(", ")+'</div>'; }
+ if(x.hits.length){
+  var seen={}, list=[]; x.hits.forEach(function(hh){var key=hh.it.k+hh.it.t+(hh.it.st||""); if(!seen[key]&&list.length<4){seen[key]=1;list.push(hh.it);}});
+  h+='<ul class="matches">'+list.map(function(it){var L=link(m,it.sec);return '<li><span class="k">'+it.k+(it.st?' · '+STAGE_NAMES[it.st]:'')+'</span><a href="'+L.href+'"'+(L.nt?' target="_blank" rel="noopener"':'')+'>'+hl(it.t,terms)+'</a></li>';}).join("")+(x.hits.length>list.length?'<li class="hint">and '+(x.hits.length-list.length)+' more in this module</li>':'')+'</ul>';
+ }
+ h+='<div class="acts"><a class="btn" href="'+open.href+'"'+(open.nt?' target="_blank" rel="noopener"':'')+'>Open module</a>';
+ if(state.st && !SITE_PAGES[m.slug]){ var L=link(m,state.st); h+='<a class="btn ghost" href="'+L.href+'">Go to '+STAGE_NAMES[state.st]+'</a>'; }
+ return h+'</div></article>';
+}
+
+var tmr;
+$("#q").addEventListener("input",function(){clearTimeout(tmr);var v=this.value;tmr=setTimeout(function(){state.q=v.trim();render();},120);});
+$$(".hint button").forEach(function(b){b.onclick=function(){$("#q").value=b.dataset.q;state.q=b.dataset.q;render();};});
+$$("[data-st]").forEach(function(b){b.onclick=function(){state.st=b.dataset.st;$$("[data-st]").forEach(function(x){x.classList.toggle("on",x===b);});render();};});
+$$("[data-sd]").forEach(function(b){b.onclick=function(){state.sd=b.dataset.sd;$$("[data-sd]").forEach(function(x){x.classList.toggle("on",x===b);});render();};});
+render();
+Promise.all(MODS.map(loadModule)).then(render);
+</script>
 </body>
 </html>

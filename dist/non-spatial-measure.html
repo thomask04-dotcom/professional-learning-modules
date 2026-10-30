@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Non-spatial Measure K–6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2333; --ink2:#4a5468; --ink3:#6d778a; --line:#e2e5ec; --bg:#f6f7fa; --card:#ffffff;
+  --navy:#1f2a44; --accent:#c8553d; --accent-soft:#fbeee9;
+  --es1:#d1603d; --es1-soft:#fcece6;
+  --s1:#c88a12; --s1-soft:#fbf3e1;
+  --s2:#23897d; --s2-soft:#e3f3f1;
+  --s3:#4b5bbf; --s3-soft:#e9ebf8;
+  --good:#2e7d4f; --good-soft:#e6f4ec; --bad:#b3372a; --bad-soft:#fbe9e7;
+  --r:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:16px}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+h1,h2,h3,h4{line-height:1.25;margin:0}
+p{margin:0 0 12px}
+a{color:var(--s3)}
+
+/* ---------- header ---------- */
+.top{background:var(--navy);color:#fff;padding:18px 24px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
+.top .brand{flex:1 1 320px}
+.top .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75;font-weight:600}
+.top h1{font-size:24px;font-weight:800;margin-top:2px}
+.prog{flex:0 1 260px;min-width:200px}
+.prog .lab{font-size:13px;opacity:.85;display:flex;justify-content:space-between}
+.prog .bar{height:8px;background:rgba(255,255,255,.18);border-radius:8px;overflow:hidden;margin-top:6px}
+.prog .fill{height:100%;background:#f2b33d;width:0;transition:width .4s}
+
+/* ---------- layout ---------- */
+.wrap{display:flex;min-height:calc(100vh - 80px);background:linear-gradient(to right,#fff 236px,var(--bg) 236px)}
+@media (max-width:820px){.wrap{background:var(--bg)}}
+nav.side{flex:0 0 236px;background:#fff;border-right:1px solid var(--line);padding:16px 10px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side .grp{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin:14px 10px 6px}
+nav.side button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;background:none;padding:8px 10px;border-radius:8px;color:var(--ink2);font-size:14.5px;font-weight:500}
+nav.side button:hover{background:var(--bg)}
+nav.side button.on{background:var(--accent-soft);color:var(--ink);font-weight:700}
+nav.side .dot{flex:0 0 18px;height:18px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:11px;color:#fff}
+nav.side .dot.done{background:var(--good);border-color:var(--good)}
+nav.side .dot.done::after{content:"✓"}
+.mobnav{display:none}
+main{flex:1;min-width:0;padding:28px 32px 60px}
+.page{max-width:900px;margin:0 auto}
+
+@media (max-width:820px){
+  nav.side{display:none}
+  .mobnav{display:block;padding:12px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  .mobnav select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--line);font-family:inherit;font-size:15px;background:#fff}
+  main{padding:20px 16px 48px}
+  .top{padding:16px}
+  .top h1{font-size:20px}
+}
+
+/* ---------- common blocks ---------- */
+.hero{border-radius:var(--r);padding:22px 24px;margin-bottom:22px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--accent)}
+.hero .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:8px}
+.hero h2{font-size:26px;font-weight:800;margin-bottom:8px}
+.hero p{color:var(--ink2);font-size:16.5px;margin:0}
+section.blk{margin:26px 0}
+section.blk>h3{font-size:19px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+section.blk>h3 .n{font-size:12px;font-weight:700;background:var(--navy);color:#fff;border-radius:6px;padding:2px 8px}
+.lead{color:var(--ink2);margin-bottom:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px;background:var(--bg);color:var(--ink2);border:1px solid var(--line)}
+.src-nesa{background:#eef2fb;color:#34408a;border-color:#d5dcf2}
+.src-add{background:#fff6e6;color:#8a5a00;border-color:#f2deb4}
+.src-dio{background:#eaf5ff;color:#0b5a8f;border-color:#c5e1f5}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:#fff;border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:14px}
+.note{font-size:14px;color:var(--ink3)}
+.btn{border:0;background:var(--navy);color:#fff;padding:10px 18px;border-radius:9px;font-weight:600}
+.btn:hover{filter:brightness(1.15)}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.small{padding:6px 12px;font-size:14px}
+.btn:disabled{opacity:.4;cursor:default;filter:none}
+.done-bar{margin-top:36px;padding:18px 20px;border-radius:var(--r);background:#fff;border:1px dashed #c9ced9;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.done-bar.is-done{border-style:solid;border-color:var(--good);background:var(--good-soft)}
+.nextprev{display:flex;flex-wrap:wrap;gap:10px}
+.tool select{max-width:100%}
+ul.tight{margin:0;padding-left:20px}
+ul.tight li{margin:4px 0}
+
+/* outcomes */
+.outc{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
+.outc code{font-family:inherit;font-weight:700;font-size:13px;padding:3px 8px;border-radius:6px;white-space:nowrap;color:#fff}
+
+/* accordion */
+.acc{border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:8px;overflow:hidden}
+.acc>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;border:0;background:#fff;padding:13px 16px;font-weight:600;color:var(--ink)}
+.acc>button .ch{transition:transform .2s;color:var(--ink3);flex:0 0 auto}
+.acc.open>button .ch{transform:rotate(90deg)}
+.acc .body{display:none;padding:0 16px 14px 16px;color:var(--ink2)}
+.acc.open .body{display:block}
+.acc .part{font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px;margin-right:8px;color:#fff;vertical-align:1px}
+
+/* knowledge cards */
+.kcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;border-top:4px solid var(--line)}
+.kcard h4{font-size:16px;margin-bottom:6px}
+.kcard p{color:var(--ink2);font-size:15px;margin:0}
+
+/* flip cards */
+.flips{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.flip{perspective:1200px;min-height:196px;border:0;background:none;padding:0;text-align:left}
+.flip .in{position:relative;width:100%;height:100%;min-height:196px;transition:transform .55s;transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;overflow:auto}
+.flip .f{background:#fff;border:1px solid var(--line)}
+.flip .b{background:var(--navy);color:#fff;transform:rotateY(180deg)}
+.flip .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;opacity:.7;margin-bottom:6px}
+.flip .f .say{font-size:16.5px;font-weight:600;flex:1;color:var(--ink)}
+.flip .f .hint{font-size:13px;color:var(--ink3);margin-top:10px}
+.flip .b h4{font-size:16px;margin-bottom:8px}
+.flip .b p{font-size:14px;margin:0 0 8px;opacity:.92}
+.flip .b .pill{align-self:flex-start;margin-top:auto}
+
+/* working mathematically */
+.wmel{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.wmel div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--ink2)}
+.wmel b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:2px}
+.wtag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:5px;background:#eef2fb;color:#34408a;white-space:nowrap}
+.tagrow{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:start;padding:10px 14px;border-top:1px solid var(--line);font-size:14.5px}
+.tagrow:first-child{border-top:0}
+.tagrow .sl{font-weight:700;font-size:12.5px;padding:3px 8px;border-radius:6px;color:#fff;text-align:center}
+@media (max-width:620px){.tagrow{grid-template-columns:1fr}.tagrow .sl{justify-self:start}}
+.mk{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:720px){.mk{grid-template-columns:1fr}}
+.mk .side{border-radius:var(--r);padding:18px 20px;border:2px solid}
+.mk .before{background:#fdf6f5;border-color:#efc9c3}
+.mk .after{background:#f2faf6;border-color:#a9d9bf}
+.mk .lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;margin-bottom:10px}
+.mk .before .lbl{color:var(--bad)}
+.mk .after .lbl{color:var(--good)}
+.mk .task{background:#fff;border:1px solid var(--line);border-radius:9px;padding:14px 16px;font-size:15.5px;margin-bottom:12px}
+.mk .task.closed{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14.5px}
+.mk ul{margin:0;padding-left:20px;font-size:14.5px;color:var(--ink2)}
+.mk ul li{margin:3px 0}
+.mk .hidden-after{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;min-height:220px;color:var(--ink2)}
+.mk .think{font-size:15px;max-width:320px}
+.mk .think textarea{width:100%;min-height:70px;margin-top:8px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:inherit;font-size:14.5px}
+.diff{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px}
+.diff div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14.5px;color:var(--ink2)}
+.diff b{display:block;color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.wmchips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.wmchips span{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:20px;background:var(--good-soft);color:#1d5236;border:1px solid #bfe3cd}
+.moves{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.moves button{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:7px 14px;font-weight:600;font-size:14px;color:var(--ink2)}
+.moves button.on{background:var(--good);border-color:var(--good);color:#fff}
+
+/* quiz */
+.quiz .q{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin-bottom:12px}
+.quiz .q h4{font-size:16px;margin-bottom:12px;font-weight:600}
+.quiz .opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:10px 14px;margin-bottom:8px;color:var(--ink)}
+.quiz .opt:hover:not(:disabled){border-color:#aab2c3}
+.quiz .opt.right{border-color:var(--good);background:var(--good-soft)}
+.quiz .opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.quiz .opt:disabled{cursor:default}
+.quiz .fb{display:none;margin-top:6px;padding:10px 14px;border-radius:9px;font-size:15px}
+.quiz .fb.show{display:block}
+.quiz .fb.ok{background:var(--good-soft);color:#1d5236}
+.quiz .fb.no{background:var(--bad-soft);color:#7a2219}
+
+/* quick check */
+.qc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+.qc ol{margin:0;padding-left:22px}
+.qc li{margin:8px 0;color:var(--ink2)}
+.qc li b{color:var(--ink)}
+
+/* tool box */
+.tool{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.tool .tt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink3);margin-bottom:4px}
+.tool h4{font-size:18px;margin-bottom:6px}
+.tool .ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.tool select,.tool input[type=number]{font-family:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.tool input[type=number]{width:90px}
+.fbline{margin-top:12px;padding:10px 14px;border-radius:9px;font-size:15px;display:none}
+.fbline.show{display:block}
+.fbline.ok{background:var(--good-soft);color:#1d5236}
+.fbline.no{background:var(--bad-soft);color:#7a2219}
+.fbline.info{background:var(--bg);color:var(--ink2)}
+
+/* shared */
+.readout{font-size:20px;font-weight:700;margin-top:14px}
+.readout small{display:block;font-size:14px;font-weight:500;color:var(--ink3);margin-top:2px}
+
+/* progression explorer */
+.aspects{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.aspects button{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:7px 14px;font-weight:600;font-size:14px;color:var(--ink2)}
+.aspects button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.pcols{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;position:relative}
+.pcol{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.pcol .ph{padding:10px 14px;color:#fff;font-weight:700}
+.pcol .ph small{display:block;font-weight:500;opacity:.85;font-size:12.5px}
+.pcol .pb{padding:12px 14px;font-size:14.5px;color:var(--ink2);flex:1}
+.pcol .pb b{color:var(--ink)}
+.shifts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.shift{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14.5px;color:var(--ink2)}
+.shift .arr{font-weight:700;color:var(--ink);font-size:13px;margin-bottom:4px}
+@media (max-width:820px){.pcols{grid-template-columns:1fr 1fr}.shifts{grid-template-columns:1fr}}
+@media (max-width:480px){.pcols{grid-template-columns:1fr}}
+
+/* big ideas */
+.ideas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.idea{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px;text-align:left;color:var(--ink);transition:box-shadow .2s,border-color .2s}
+.idea:hover{border-color:#b9c0cf;box-shadow:0 4px 14px rgba(20,30,60,.06)}
+.idea .num{font-size:30px;font-weight:800;color:var(--accent);line-height:1}
+.idea h4{font-size:17px;margin:8px 0 6px}
+.idea p{font-size:14.5px;color:var(--ink2);margin:0}
+.idea.on{border-color:var(--navy);box-shadow:0 0 0 2px var(--navy)}
+.ideadetail{margin-top:14px}
+.srow{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.srow:first-of-type{border-top:0}
+.srow .sl{font-weight:700;font-size:13px;padding:3px 8px;border-radius:6px;color:#fff;align-self:start;text-align:center}
+
+/* models grid */
+.mgrid{display:grid;grid-template-columns:minmax(170px,1.3fr) repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.mgrid .mh{padding:10px 8px;font-weight:700;font-size:13px;text-align:center;border-bottom:1px solid var(--line);color:#fff}
+.mgrid .mh.first{text-align:left;color:var(--ink);background:#fff;padding-left:14px}
+.mrow{display:contents}
+.mrow>.mn{grid-column:1;padding:9px 14px;border-top:1px solid var(--line);font-weight:600;font-size:14.5px;cursor:pointer;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;color:var(--ink)}
+.mrow>.mn small{display:block;font-weight:400;color:var(--ink3);font-size:12.5px}
+.mrow .mc{border-top:1px solid var(--line);border-left:1px solid var(--line);position:relative}
+.mbar{position:relative;z-index:1;align-self:center;height:18px;border-radius:9px;margin:0 8px;cursor:pointer}
+.mrow.sel>.mn{background:var(--accent-soft)}
+.mdetail{margin-top:14px}
+@media (max-width:620px){.mgrid{grid-template-columns:minmax(120px,1.4fr) repeat(4,1fr)}.mgrid .mh{font-size:11px;padding:8px 2px}}
+
+/* sorter */
+.sorter .scn{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.sorter .quote{font-size:19px;font-weight:600;border-left:4px solid var(--accent);padding:4px 0 4px 14px;margin:8px 0 18px}
+.roots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.roots button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;text-align:left;font-weight:600;color:var(--ink)}
+.roots button:hover:not(:disabled){border-color:#9aa3b5}
+.roots button.right{border-color:var(--good);background:var(--good-soft)}
+.roots button.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.roots button:disabled{cursor:default}
+@media (max-width:560px){.roots{grid-template-columns:1fr}}
+.score{font-size:14px;color:var(--ink3)}
+
+/* reflection */
+.rq{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:12px}
+.rq label{font-weight:600;display:block;margin-bottom:8px}
+.rq textarea{width:100%;min-height:84px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:inherit;font-size:15px;resize:vertical}
+.rq textarea:focus{outline:2px solid var(--s3);border-color:transparent}
+.todo label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line);cursor:pointer}
+.todo label:first-child{border-top:0}
+.todo input{margin-top:5px;width:17px;height:17px;accent-color:var(--good)}
+.saved{font-size:13px;color:var(--good);margin-left:8px}
+
+table.simple{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;font-size:15px}
+table.simple th,table.simple td{padding:10px 12px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+table.simple th{background:var(--bg);font-size:13px;color:var(--ink2);border-top:0}
+footer{font-size:13px;color:var(--ink3);text-align:center;padding:20px 16px 30px;border-top:1px solid var(--line);background:#fff}
+:focus-visible{outline:3px solid #f2b33d;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* knowledge and confidence check */
+.chk{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;border-top:4px solid var(--accent)}
+.chk h3{margin:8px 0 6px}
+.chktime{font-size:13px;font-weight:600;color:var(--ink3);margin-left:4px}
+.chkq{margin-top:16px}
+.chkq select,.chkq textarea{display:block;margin-top:6px;max-width:100%;font-family:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:8px}
+.chkq textarea{width:100%;min-height:70px}
+.chkrate{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}
+.chkrate>span:first-child{flex:1;min-width:220px}
+.chkopts{display:flex;gap:6px}
+.chkopts label,.chkmc label{cursor:pointer}
+.chkopts input,.chkmc input{position:absolute;opacity:0;pointer-events:none}
+.chkopts span{display:inline-block;width:38px;height:38px;line-height:36px;text-align:center;border:1.5px solid var(--line);border-radius:50%;font-weight:700;color:var(--ink2);background:#fff}
+.chkopts input:checked+span{background:var(--navy);border-color:var(--navy);color:#fff}
+.chkopts input:focus-visible+span,.chkmc input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.chkmc{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.chkmc span{display:block;border:1.5px solid var(--line);border-radius:9px;padding:8px 12px;background:#fff;font-size:15px}
+.chkmc input:checked+span{border-color:var(--navy);background:#eef0f7;font-weight:600}
+.linkbtn{background:none;border:0;padding:0;color:var(--navy);text-decoration:underline;font:inherit;cursor:pointer}
+.chkres{margin-top:12px}
+.chkres h4{margin:0 0 8px}
+.chkres table{margin-bottom:10px}
+.chkd{font-size:12px;font-weight:700;padding:1px 6px;border-radius:5px;margin-left:4px}
+.chkd.up{background:var(--good-soft);color:#1d5236}
+.chkd.down{background:var(--bad-soft);color:#7a2219}
+.chkscn{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+
+</style>
+<style>
+/* ES1 balance */
+.blpic{margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px}
+.blpic svg{width:100%;height:auto;display:block;margin:0 auto}
+.bllab{display:flex;justify-content:space-between;max-width:520px;margin:0 auto;font-size:13px;font-weight:700;color:var(--ink2);padding:0 4%}
+.bllab span{max-width:45%;text-align:center}
+
+/* clocks */
+.ckwrap,.rcwrap{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:10px}
+.ckpic{width:220px;max-width:100%}
+.ckpic svg{width:100%;height:auto;display:block;overflow:visible}
+.ckside{flex:1;min-width:220px}
+.ckv{font-weight:700;min-width:28px}
+.rdopts{flex:1;min-width:220px;display:flex;flex-direction:column;gap:8px}
+.rdopt{border:2px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px;text-align:left;font-weight:600;font-size:15px;color:var(--ink);cursor:pointer}
+.rdopt:hover:not(:disabled){border-color:var(--s2)}
+.rdopt.right{border-color:var(--good);background:var(--good-soft)}
+.rdopt.wrong{border-color:var(--accent);background:var(--bad-soft)}
+
+/* S3 elapsed */
+.elpic{margin-top:6px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px;overflow-x:auto}
+.elpic svg{width:100%;height:auto;display:block;min-width:300px}
+.tool input[type=time]{padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:15px}
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="eyebrow">NSW Mathematics K–10 (2022) · Mass and time</div>
+    <h1>Non-spatial Measure K–6</h1>
+  </div>
+  <div class="prog" aria-live="polite">
+    <div class="lab"><span>Your progress</span><span id="progTxt">0 of 0</span></div>
+    <div class="bar"><div class="fill" id="progFill"></div></div>
+  </div>
+</header>
+
+<div class="mobnav"><label class="note" for="mobSel">Go to section</label><select id="mobSel"></select></div>
+
+<div class="wrap">
+  <nav class="side" id="side" aria-label="Module sections"></nav>
+  <main><div class="page" id="page"></div></main>
+</div>
+
+<footer id="foot"></footer>
+
+<script>
+/* ---------------- module config ---------------- */
+var M = {
+ key:"nsm-k6-module-v1",
+ title:"Non-spatial Measure K–6",
+ dlName:"non-spatial-measure-reflections.txt",
+ welcomeH2:"How students learn about mass and time, K to 6",
+ welcomeP:"This module follows Non-spatial measure across four stages in two strands: mass (from hefting ‘heavy’ and ‘light’ to grams, kilograms, tonnes and decimal notation) and time (from ‘before’ and ‘after’ and o’clock to 24-hour time, timetables and elapsed time). It covers how the outcomes build, the maths you need to teach it, the misconceptions to look for, and what the NESA teaching advice recommends.",
+ tryText:"a model for each stage: which side of the balance goes down, how the hour hand moves, reading the clock to the minute, and elapsed time on a timeline.",
+ namesH3:"One focus area, two strands",
+ namesP:"Non-spatial measure has the same name in every stage, with parts A and B from Stage 1. Each stage has a mass strand and a time strand. NESA notes that although they share a substrand, teachers aren’t expected to connect the concepts of mass and time. All content also addresses the Working mathematically outcome, MAO-WM-01.",
+ ideasP:"NESA explains that the units of mass and time don’t rely on a physical spatial structure. In mass, the arrangement of units doesn’t affect the total: unlike length or area, they needn’t be end to end with no gaps. Concepts of time are influenced by students’ experiences, cultural knowledge and personal judgements, and time can be understood through lunar, seasonal and Gregorian calendars, and as linear or cyclical. Six ideas run through the focus area. Select an idea to see how it develops.",
+ ideasNote:"Non-spatial measure connects to Representing numbers (decimal notation to thousandths), Fractions (half, quarter and three-quarters of an hour or a kilogram), Geometric measure (quarter and half turns; reading scales) and Data (timelines and timetables).",
+ progP:"Mass moves from hefting and comparing directly, to equal-arm balances with informal units, to grams and kilograms on scaled instruments, to choosing units and converting with decimals. Time moves from sequencing events and o’clock, to half and quarter hours, to reading clocks to the minute and am/pm, to 24-hour time and calculating elapsed time.",
+ shifts:[
+  ["es1","Early Stage 1 → Stage 1","From hefting to the equal-arm balance and uniform informal units, and recognising that mass is conserved. Time moves from days of the week and o’clock to months, half past, quarter past and quarter to, and hours, minutes and seconds."],
+  ["s1","Stage 1 → Stage 2","From informal units to the kilogram and gram, read on scaled instruments. Time moves from quarter hours to reading analog clocks to the minute (Part A) and digital displays with am and pm (Part B)."],
+  ["s2","Stage 2 → Stage 3","From measuring to choosing units and devices, tonnes, decimal notation and conversions. Time moves to 24-hour time, timetables and elapsed time calculated by bridging the hour."]
+ ],
+ modelsH2:"Each stage adds models; clocks carry time from Kindergarten to Stage 3",
+ modelsP:"The bars show the stages where the syllabus or the NESA teaching advice names or uses each model. Select a model for more detail.",
+ modelTips:[
+  ["Choose surprising pairs.","Include objects that are large but light, small but heavy, and large but lighter than a smaller object."],
+  ["Real objects, not pictures.","NESA notes that images can reinforce the idea that bigger items weigh more. Where visuals are needed, show real objects on scales."],
+  ["Hour hand and minute hand.","Say ‘hour hand’ and ‘minute hand’, not ‘little hand’ and ‘big hand’, so the names describe what each hand does."],
+  ["Bridge the hour on a timeline.","Jump to the next hour, then whole hours, then the remaining minutes. An unscaled timeline links to work in Data."]
+ ],
+ sorterP:"Most misconceptions in this focus area come from four roots, and each root reappears in a new form as students move from hefting and o’clock to tonnes and 24-hour time. Read each student response and choose its root.",
+ rootRows:[
+  ["Mass judged by size or appearance","Thinks the bigger object is always heavier","Thinks plasticine gets heavier when rolled into a snake","Thinks a bigger parcel must be more than 1 kg","Confuses gross mass and net mass <span class=\"pill src-add\">Add.</span>"],
+  ["Time treated as base 10","—","Can’t connect :30 to half past (rather than :50)","Says 4:57 is 43 minutes to five <span class=\"pill src-add\">Add.</span>","Writes 1.5 hours as 1 hour 50 minutes"],
+  ["Clock hands and notation misread","Mixes up the ‘big hand’ and ‘little hand’ <span class=\"pill src-add\">Add.</span>","Points the hour hand exactly at 3 for half past three","Reads the minute hand on the 2 as ‘2 minutes’","Converts 1800 hours to 8 pm <span class=\"pill src-add\">Add.</span>"],
+  ["A moment in time confused with a duration","Uses ‘long’ and ‘short’ only for length","Has little sense of how long a minute is <span class=\"pill src-add\">Add.</span>","Answers ‘what time?’ when asked ‘how long?’ <span class=\"pill src-add\">Add.</span>","Gives the finishing time instead of the elapsed time <span class=\"pill src-add\">Add.</span>"]
+ ],
+ sorterNote:"NESA notes that early experiences often lead students to conclude that large things are heavier than small things, and that students often position the hour hand inaccurately while locating the minute hand correctly (Earnest et al. 2018).",
+ notesTitle:"Non-spatial Measure K–6: my reflections",
+ footer:"Built from the NESA <i>Mathematics K–10 Syllabus (2022)</i> outcomes and content (Early Stage 1 to Stage 3) and the NESA syllabus support teaching advice. Items marked <span class=\"pill src-add\">Additional commentary</span> are common classroom observations, not NESA examples. Your progress and notes are saved only in this browser."
+};
+
+/* ---------------- data ---------------- */
+var STAGES = {
+ es1:{short:"ES1", name:"Early Stage 1", years:"Kindergarten", fa:"Non-spatial measure", col:"var(--es1)", soft:"var(--es1-soft)"},
+ s1:{short:"S1", name:"Stage 1", years:"Years 1–2", fa:"Non-spatial measure A and B", col:"var(--s1)", soft:"var(--s1-soft)"},
+ s2:{short:"S2", name:"Stage 2", years:"Years 3–4", fa:"Non-spatial measure A and B", col:"var(--s2)", soft:"var(--s2-soft)"},
+ s3:{short:"S3", name:"Stage 3", years:"Years 5–6", fa:"Non-spatial measure A and B", col:"var(--s3)", soft:"var(--s3-soft)"}
+};
+var ORDER = ["es1","s1","s2","s3"];
+
+var STAGE_CONTENT = {
+es1:{
+ lead:"In Kindergarten, students identify objects as heavy or light and compare masses by hefting. They sequence events, name the days of the week, compare durations and read o’clock time on analog and digital clocks. NESA stresses comparing objects that challenge the idea that bigger is heavier.",
+ outcomes:[["MAE-NSM-01","describes and compares the masses of objects"],["MAE-NSM-02","sequences events and reads hour time on clocks"]],
+ content:[
+  ["","Mass: Identify and compare mass using weight",["Identify that objects can be heavy or light","Compare two masses directly by hefting","Predict which object would be heavier than, lighter than, or about the same weight as another, and explain (Reasons about relations)"]],
+  ["","Time: Compare and order the duration of events",["Use terms such as daytime, night-time, morning, afternoon, today, tomorrow, yesterday, before, after and next","Sequence events: daily events, recounts, cultural experiences, narratives","Compare the duration of two events: eating lunch and brushing teeth"]],
+  ["","Time: Connect days of the week to familiar events",["Recall that there are seven days in a week","Name and order the days of the week","Relate events to a particular day or time of day: routines, class schedules, sports training"]],
+  ["","Time: Tell time on the hour",["Create the layout of an analog clock: numeral cards around a hoop","Read analog and digital clocks to the hour using ‘o’clock’","Describe the positions of the hour and minute hands; the numbers on the clock represent hours"]]
+ ],
+ know:[
+  ["Mass isn’t spatial","Early experiences lead students to conclude that large things are heavier and that objects of the same size and shape have the same mass. Objects with the same volume can have different masses."],
+  ["Five kinds of objects","Compare two objects that are quite different in mass. Include objects that are light and large, heavy and large, light and small, heavy and small, and large but lighter than a smaller object."],
+  ["Weight and mass","‘Weigh’ and ‘weight’ are more common in everyday use, and ‘weight’ is acceptable in Early Stage 1. Weight is a force that changes with gravity; mass stays constant. Hefting is testing weight by lifting or holding and balancing."],
+  ["Many ways to feel mass","Students have different gross motor skills. Experiences can include resistance against the body, grip, or an object such as a blanket placed on the lap."],
+  ["Time is personal and cultural","In Early Stage 1, time spans are personal judgements. Concepts of time can be linear or cyclical. Work with local Aboriginal communities on Aboriginal concepts of time and language; some students may use terms such as ‘long, long time ago’ or ‘old time’."],
+  ["Long and short","‘Long’ and ‘short’ can confuse students who have met them only for length. They are comparatives: 5 years or 50 000 years might both be ‘a long time’."]
+ ],
+ misc:[
+  {see:"Says the big pillow is heavier than the small tin of beans.",name:"Bigger means heavier",resp:"Heft both. Compare objects that are large but lighter than a smaller object. Try the balance tool below.",src:"n"},
+  {see:"Says two boxes the same size must weigh the same.",name:"Same size, same mass",resp:"Heft an empty box and an identical box full of blocks.",src:"n"},
+  {see:"Says eating lunch took “a short time” because the sandwich was short.",name:"Long and short only for length",resp:"Use ‘long’ and ‘short’ for time in context: a long time, a short time, ‘which took longer?’",src:"n"},
+  {see:"Reads 3 o’clock as 12 o’clock because the ‘big hand’ points to the 12.",name:"Mixing up the hands",resp:"Name them ‘hour hand’ and ‘minute hand’. At o’clock, the hour hand tells the hour.",src:"a"},
+  {see:"Puts Saturday before Friday when ordering the days.",name:"Days not yet linked to routines",resp:"Connect each day to a familiar event (sport on Tuesday, library on Thursday) and revisit the order daily.",src:"a"}
+ ],
+ advice:["Compare only two objects that are quite different in mass, and include large but light objects.","Offer different ways to experience mass: resistance, grip, or an object on the lap.","Introduce time through everyday contexts: wait times, timers, first-and-then boards, visual schedules, weekly routines.","Make clocks accessible: strong colour contrast between hands, braille, tactile or talking clocks.","Work with local Aboriginal communities on Aboriginal concepts of time.","Extend students who understand mass by exploring placing masses at different points on an equal-arm balance."],
+ vocab:["mass","matter","heavy","heavier","heaviest","light","lighter","lightest","about the same as","hard to push","hard to pull","daytime","night-time","yesterday","today","tomorrow","before","after","next","a long time","a short time","days","week","weekdays","weekend","morning","afternoon","o’clock","clock","hour hand","minute hand"],
+ check:{title:"Quick check (built from the syllabus and NESA advice)",steps:["Give a large light object and a small heavy object. Ask, <i>Which do you think is heavier? Why?</i> Then heft. Try the balance tool below.","Ask the student to order three pictures of their day and tell what happens before and after.","Ask, <i>What day is it today? What day was yesterday? What do we do on Fridays?</i>","Show 4 o’clock on an analog clock. Ask, <i>What time is it? Which hand tells you?</i>"]},
+ tool:"balance",
+ quiz:[
+  {q:"Which pairs does NESA suggest students compare in Early Stage 1?",o:["Objects that are almost the same mass","Objects that are quite different in mass, including large but light objects","Only objects of the same size","Objects weighed in grams"],a:1,why:"Include light and large, heavy and large, light and small, heavy and small, and large but lighter than a smaller object."},
+  {q:"Is ‘weight’ acceptable in Early Stage 1?",o:["No, only ‘mass’","Yes, ‘weight’ is an acceptable description for mass at this stage","Only in Stage 3","Only for liquids"],a:1,why:"‘Weigh’ and ‘weight’ are more common in everyday language."}
+ ]
+},
+s1:{
+ lead:"In Years 1 and 2, students use the equal-arm balance to compare masses and to measure with uniform informal units, and recognise that mass is conserved. They name the months, use calendars, measure duration, and read time to the half-hour and quarter-hour using ‘past’ and ‘to’.",
+ outcomes:[["MA1-NSM-01","measures, records, compares and estimates the masses of objects using uniform informal units"],["MA1-NSM-02","describes, compares and orders durations of events, and reads half- and quarter-hour time"]],
+ content:[
+  ["A","Mass: Investigate mass using an equal-arm balance",["Place objects on either side to obtain a level balance","Compare two masses and record which is heavier or lighter","Predict the action of the balance before placing objects (Reasons about relations)","Find two collections with the same mass: blocks and counters","Order masses by hefting and check with the balance"]],
+  ["A","Time: Name and order the cycle of months",["Name and order the months; recall the days in each month","Identify a day and date on a Gregorian calendar","Recognise monthly and annual cycles: Aboriginal calendars, the school year, Lunar calendars"]],
+  ["A","Time: Tell time to the half-hour",["Read analog clocks to the half-hour using ‘o’clock’ and ‘half past’","Connect half turns of the minute hand to the passing of the half-hour","Explain why the hour hand is halfway between hour markers at half past (Reasons about relations)","Record hour and half-hour time, connecting analog and digital"]],
+  ["B","Mass: Compare masses using an equal-arm balance",["Measure mass by counting the uniform informal units needed to balance","Select an appropriate unit and justify the choice (Reasons about relations)","Explain the relationship between the mass of a unit and the number needed: more toothpicks than pop sticks (Reasons about relations)","Compare using the same units: scissors 6 blocks, pencil 3 blocks, so scissors are 3 blocks heavier","Estimate and check; recognise that mass is conserved (plasticine moulded or divided)"]],
+  ["B","Time: Describe duration using units of time",["Use a calendar to calculate months, weeks or days until an event","Measure duration with a repeated informal unit: claps while the teacher writes your name","Use the terms hour, minute and second; an hour is longer than a minute","Predict the time remaining until an event starts or finishes (Reasons about relations)"]],
+  ["B","Time: Tell time to the quarter-hour",["Read quarter past and quarter to, and relate them to quarter turns","Identify which hour has just passed when the hour hand isn’t on a numeral","Record quarter-past and quarter-to time on analog and digital clocks","Associate 3, 6 and 9 with 15, 30 and 45 minutes and quarter past, half past and quarter to"]]
+ ],
+ know:[
+  ["Key understandings of measurement","Repeatedly using a unit; selecting an appropriate unit; needing a common unit to compare; and realising some informal units (such as pebbles) are unsatisfactory because they aren’t uniform."],
+  ["Conservation of mass","When students realise that changing the shape of an object doesn’t change its mass, they are said to conserve mass."],
+  ["Two uses of the balance","The equal-arm balance compares the masses of two objects, and measures mass using multiple identical units. It is a pivoted beam with equal-length arms and a pan on each arm."],
+  ["Analog shows the base of 60","Analog clocks represent the 60-minute hour more effectively than digital. Half past as halfway around is more transparent than :30, which relies on knowing :30 means half an hour (not :50)."],
+  ["Quarter hours are hard","Quarter past as 15 minutes or a quarter turn, and quarter to as 45 minutes or three-quarters around, is much more challenging than half past. It needs extensive modelling and practice. There is always more than one way to express a time."],
+  ["A sense of duration","Students need a sense of one hour, one minute and one second, built through practical experiences rather than recalling that there are 60 minutes in an hour."]
+ ],
+ misc:[
+  {see:"Says the plasticine is heavier after it is rolled into a long snake.",name:"Mass not conserved",resp:"Balance the ball against blocks, reshape it and balance again. This is a Stage 1 B content point.",src:"n"},
+  {see:"Points the hour hand exactly at the 3 for half past three.",name:"The hour hand doesn’t move",resp:"Move the minute hand slowly around and watch the hour hand. At half past, it is halfway to the next hour. Try the clock tool below.",src:"n"},
+  {see:"Says the pencil is heavier because it balanced 8 toothpicks but the scissors balanced 6 blocks.",name:"Comparing with different units",resp:"Use the same unit to compare. More toothpicks than blocks are needed because each toothpick is lighter.",src:"n"},
+  {see:"Uses pebbles of different sizes as units and gets a different answer each time.",name:"Units that aren’t uniform",resp:"Discuss why the units must be identical. NESA names pebbles as unsatisfactory units.",src:"n"},
+  {see:"At 3:45, says it is “quarter to three”.",name:"Naming the hour for ‘to’ times",resp:"Ask which hour is coming next. ‘To’ times name the next hour.",src:"a"},
+  {see:"Calls the hands the “big hand” and the “little hand”.",name:"Names that don’t describe the job",resp:"Use ‘hour hand’ and ‘minute hand’ to promote understanding of their functions.",src:"n"}
+ ],
+ advice:["Allow time to process instructions and feel mass; offer grip or resistance comparisons for students with different gross motor skills.","Use the equal-arm balance both to compare and to measure with identical units.","Use ‘hour hand’ and ‘minute hand’ rather than ‘little hand’ and ‘big hand’.","Build a sense of one hour, one minute and one second through practical experiences.","Give extensive modelling and practice with quarter past and quarter to.","Connect analog clocks to cycles: weekly, monthly, annual, seasonal or lunar."],
+ vocab:["measure","estimate","about the same as","level balance","equal-arm balance","mass","heavier","lighter","balance","calendar","days","date","month","year","clock","analog","digital","hour hand","minute hand","o’clock","half past","quarter past","quarter to","hour","minute","second","numeral"],
+ check:{title:"Quick checks (built from the syllabus examples)",steps:["Roll a ball of plasticine into a snake. Ask, <i>Is it heavier, lighter or the same? How could we check?</i>","Ask, <i>Would you need more toothpicks or more pop sticks to balance this book? Why?</i>","Ask the student to show half past three on a clock. Watch where they put the hour hand. Try the clock tool below.","Show quarter to four. Ask, <i>What time is it? Which hour has just passed?</i>"]},
+ tool:"clock",
+ quiz:[
+  {q:"Why does NESA suggest analog clocks for learning the half-hour?",o:["They are more common","They represent the 60-minute base of an hour more transparently","They are easier to read","Digital clocks are inaccurate"],a:1,why:"Halfway around the clock face shows half an hour; :30 relies on knowing it means half an hour."},
+  {q:"What does it mean to conserve mass?",o:["To keep objects safe","To realise that changing an object’s shape doesn’t change its mass","To use the same unit","To weigh carefully"],a:1,why:"For example, plasticine has the same mass whatever shape it is moulded into."},
+  {q:"Why should teachers say ‘hour hand’ and ‘minute hand’?",o:["They are shorter words","The names describe each hand’s function","Big and little are inaccurate on all clocks","It is required for assessment"],a:1,why:"NESA recommends these terms to promote understanding of their respective functions."}
+ ]
+},
+s2:{
+ lead:"In Years 3 and 4, students use kilograms and grams, read scaled instruments, and interpret fractions of a kilogram. Time is split by instrument: analog clocks to the minute in Part A, and digital displays, seconds and am/pm notation in Part B.",
+ outcomes:[["MA2-NSM-01","estimates, measures and compares the masses of objects using kilograms and grams"],["MA2-NSM-02","represents and interprets analog and digital time in hours, minutes and seconds"]],
+ content:[
+  ["A","Mass: Compare objects using the kilogram",["Recognise the need for a formal unit","Identify familiar objects of about 1 kg: a pack of flour; a litre of milk","Record using kg","Find objects more than, less than and about 1 kg, and check against a 1 kg mass"]],
+  ["A","Time: Represent and read analog time",["Use minutes for duration: recess is about 20 minutes","Identify 30 minutes as a half-hour, 60 minutes as an hour, and the quarter-hour as 15 minutes","Recognise that a numeral on the clock often represents 2 values: the 2 can mean 2 hours or 10 minutes","Use 5-minute intervals as benchmarks: 4:19 is about twenty past four","Read time as past the hour to half past, then towards the hour: ten past seven, five to seven","Read analog clocks to the minute"]],
+  ["B","Mass: Use scaled instruments",["Recognise the need for a unit smaller than the kilogram","Relate 1000 grams to one kilogram with a scaled instrument","Identify objects measured in grams: an egg is about 60 g","Measure and record in g; compare in kg and g using scales","Interpret ½, ¼ and ¾ of a kilogram in grams","Record masses as kilograms and grams: 1 kg 200 grams"]],
+  ["B","Time: Represent and interpret digital time displays",["Identify durations in seconds: the 3-second rule; running 100 metres","Read or set digital devices to the minute or second; 60 seconds in a minute","Recognise that the hour is read first: 7:35 is seven thirty-five; 4:00 is four o’clock, not four, zero, zero","Find the time to the next hour: 4:57 is 3 minutes to five"]],
+  ["B","Time: Use am and pm notation",["Record times with colon notation and am or pm: 9:15 am","Relate midday or noon and midnight to am and pm: 3:15 pm is after midday","Relate analog and digital notation: 20 to 9 in the morning is 8:40 am"]]
+ ],
+ know:[
+  ["Formal units","Formal units allow easier and more accurate communication. Students develop a sense of the size of a kilogram and a gram and use them to estimate and measure."],
+  ["Real objects, not images","Using images to compare masses can reinforce the belief that bigger items weigh more. Where visuals are needed, use images of real objects on scales, so the size and the recorded mass are both clear."],
+  ["Analog first, then digital","Stage 2 separates time by instrument: analog in Part A, digital in Part B. Relative language (half past 11, ten to nine) differs from precise language (2:30, four forty-five), so students develop each before using them interchangeably."],
+  ["Watch the hour hand","When showing half an hour on a clock face, attend to the hour hand as well as the minute hand. Students often position the hour hand inaccurately while locating the minute hand correctly (Earnest et al. 2018). Learning about equal intervals on lengths first helps (Earnest and Chandler 2021)."],
+  ["Noon, midnight and :00","Use ‘12 noon’ or ‘12 midday’ and ‘12 midnight’ rather than 12:00 pm and 12:00 am. The double zero for exact hours is confusing and needs explicit teaching."],
+  ["Time and culture","Some Aboriginal and Torres Strait Islander students may need support code switching between Eastern Standard Time and cultural ways of understanding time, such as lunar cycles or tides."]
+ ],
+ misc:[
+  {see:"Reads a clock with the minute hand on the 2 and the hour hand past the 7 as “7:02”.",name:"Numerals read as minutes",resp:"Each numeral on the clock represents 2 values. Count the 5-minute intervals: the 2 means 10 minutes. Try the tool below.",src:"n"},
+  {see:"Reads 6:40 on an analog clock as “twenty to six”.",name:"Naming the wrong hour for ‘to’ times",resp:"The hour hand is past the 6, nearly at 7. ‘To’ times name the hour that is coming next: twenty to seven.",src:"a"},
+  {see:"Says the bigger box must be more than a kilogram without hefting it.",name:"Bigger means heavier",resp:"Compare it with a 1 kg mass. Use real objects; images can reinforce this misconception.",src:"n"},
+  {see:"Reads 4:00 as “four, zero, zero”.",name:"Reading the double zero",resp:"Explicitly teach that 4:00 is four o’clock, and that the hour is read first.",src:"n"},
+  {see:"Writes 1 kg 200 g as 1.200 kg but reads it as “1 kg 2 g”.",name:"Kilograms and grams not related",resp:"Use a scaled instrument to relate 1000 grams to 1 kilogram before introducing decimal notation (Stage 3).",src:"a"},
+  {see:"Thinks 12:00 pm means midnight.",name:"Noon and midnight",resp:"Use ‘12 noon’ and ‘12 midnight’ rather than am or pm forms, as NESA advises.",src:"n"}
+ ],
+ advice:["Teach mass with physical objects; where visuals are needed, show real objects on scales.","Separate analog (Part A) and digital (Part B) language before using them interchangeably.","Attend to the hour hand as well as the minute hand when showing half an hour.","Use ‘12 noon’ and ‘12 midnight’ rather than 12:00 pm and 12:00 am.","Discuss other meanings of ‘scale’ and ‘scales’: fish scales, map scales, musical scales.","Show watch faces with separate scales for hours and minutes to address the numerals’ two values."],
+ vocab:["mass","more than","less than","about the same as","pan balance","level balance","measure","estimate","kilogram","gram","scales","time","clock","analog","digital","hour hand","minute hand","second hand","revolution","numeral","hour","minute","second","o’clock","minutes past","minutes to","am","pm","midday","noon","midnight"],
+ check:{title:"Quick checks (built from the syllabus examples and NESA advice)",steps:["Show an analog clock at ten to two. Ask, <i>What does the 2 tell you? What does the hand pointing near the 2 tell you?</i> Try the tool below.","Show 4:19. Ask, <i>About what time is it?</i> (about twenty past four)","Ask, <i>How many grams in half a kilogram? A quarter of a kilogram?</i>","Show 4:57 on a digital clock. Ask, <i>How long until five o’clock?</i>"]},
+ tool:"readclock",
+ quiz:[
+  {q:"Why does Stage 2 separate analog time (Part A) from digital time (Part B)?",o:["Digital clocks are harder","So students develop the very different language of each instrument before using them interchangeably","Analog clocks are no longer used","To match the Data strand"],a:1,why:"Relative language (ten to nine) and precise language (8:50) are very different."},
+  {q:"What error do students often make when showing half an hour on a clock face?",o:["Placing the minute hand on the 3","Positioning the hour hand inaccurately while placing the minute hand correctly","Using a digital clock","Counting by tens"],a:1,why:"Earnest et al. (2018) found students often position the hour hand inaccurately."},
+  {q:"How should midday be expressed?",o:["12:00 am","12:00 pm","‘12 noon’ or ‘12 midday’","00:00"],a:2,why:"NESA advises ‘12 noon’, ‘12 midday’ and ‘12 midnight’ rather than am or pm forms."}
+ ]
+},
+s3:{
+ lead:"In Years 5 and 6, students choose units and devices for mass, use tonnes, record masses in decimal notation and convert between units. They convert between 12- and 24-hour time, read timetables, and calculate elapsed time by bridging to the hour.",
+ outcomes:[["MA3-NSM-01","selects and uses the appropriate unit and device to measure the masses of objects"],["MA3-NSM-02","measures and compares duration, using 12- and 24-hour time and am and pm notation"]],
+ content:[
+  ["A","Mass: Choose appropriate units",["Identify the appropriate unit and device: electronic scales for a school bag (kg); kitchen scales for ingredients (g)","Recognise situations measured in tonnes: trucks at a weighing station"]],
+  ["A","Mass: Connect decimal representations to the metric system",["3 kg 250 g is the same as 3.25 kg","2.08 kg is 2 kilograms and 80 grams","Record mass in decimal notation to 3 decimal places: 0.875 kg"]],
+  ["A","Time: Compare 12- and 24-hour time",["Recognise that 24-hour time avoids confusion between am and pm","Read 24-hour time: 1800 hours is eighteen-hundred hours; 0630 is zero six thirty hours","Convert: 11:30 pm is 2330 hours","Read and use real timetables in 12- and 24-hour time"]],
+  ["B","Mass: Convert between units",["Convert between kilograms and grams, and kilograms and tonnes: 1250 g = 1.25 kg; 4.32 t = 4320 kg","Solve problems with different units: the total of 50 g, 750 g and 2.5 kg"]],
+  ["B","Time: Solve problems involving duration",["Use start and finish times to calculate elapsed time","Add and subtract time mentally by bridging: from 2:45 to 3:00 is 15 minutes, to 5:00 is 2 hours, so 2 hours 15 minutes","Round time calculations to the nearest minute or hour","Represent intervals as decimals: 2¼ hours is 2.25 hours; 1.5 hours is 1 hour 30 minutes, not 1 hour 50 minutes","Solve duration problems in 12- and 24-hour notation"]]
+ ],
+ know:[
+  ["Mass and weight","In everyday use, weight is a synonym for mass; in science, weight is a force. Goods in Australia are sold by mass in grams and kilograms, so K–6 focuses on metric units of mass."],
+  ["Gross and net mass","Gross mass is the mass of the contents and the container. Net mass is the mass of the contents only."],
+  ["Units of 1000","Converting between grams, kilograms and tonnes relies on working with units of 1000, connecting to decimal place value to thousandths."],
+  ["Time regroups in 60s","Regrouping units of time is like partitioning and combining numbers, except the unit is 60 rather than 10 or 100. So 1.5 hours is 1 hour 30 minutes."],
+  ["Unscaled timelines","Record elapsed time by jumping to the next hour, then whole hours, then the remaining minutes: 8:40 am to 11:05 am is 20 min + 2 h + 5 min. The timeline is unscaled and links to Data."],
+  ["24-hour time","24-hour time avoids am/pm confusion. It can be written without a colon (1545) or with one (15:45). Some students may need support code switching between cultural knowledges of time and Australian Eastern Standard Time."]
+ ],
+ misc:[
+  {see:"Writes 1.5 hours as 1 hour 50 minutes.",name:"Time treated as base 10",resp:"An hour is 60 minutes, so 0.5 hours is 30 minutes. The syllabus uses this exact example.",src:"n"},
+  {see:"Subtracts 2:45 from 5:00 as 5.00 − 2.45 = 2.55.",name:"Subtracting times like decimals",resp:"Bridge to the hour: 2:45 to 3:00 is 15 minutes, then 3:00 to 5:00 is 2 hours. Try the timeline tool below.",src:"n"},
+  {see:"Converts 1800 hours to 8 pm.",name:"Subtracting 10 instead of 12",resp:"Afternoon 24-hour times are 12 more than pm times: 18 − 12 = 6, so 6 pm.",src:"a"},
+  {see:"Writes 2.08 kg as 2 kg 8 g.",name:"Decimal places in metric units",resp:"1 kg = 1000 g, so 0.08 kg is 80 g. Use a place value chart to thousandths.",src:"n"},
+  {see:"Gives “11:05” when asked how long from 8:40 to 11:05.",name:"Finishing time given for duration",resp:"Distinguish a moment in time from an amount of time. Show the jumps on a timeline and add them.",src:"a"},
+  {see:"Weighs a full lunchbox and says the food has a mass of 650 g.",name:"Gross mass for net mass",resp:"Weigh the empty container too. Net mass is the contents only.",src:"n"}
+ ],
+ advice:["Use local industries and businesses for tonnes: weighbridges, cranes, hoists.","Connect conversions between g, kg and t to place value and units of 1000.","Use unscaled timelines to record elapsed time, with different levels of scaffolding.","Compare regrouping time (units of 60) with regrouping numbers (units of 10 or 100).","Read and use real timetables in 12- and 24-hour time.","Support students in code switching between cultural knowledges of time and Australian Eastern Standard Time."],
+ vocab:["gram","kilogram","tonne","mass","gross mass","net mass","measure","scales","12-hour time","24-hour time","am","pm","daylight saving","local time","hour","minute","second","timeline","timetable","elapsed time","duration"],
+ check:{title:"Quick checks (built from the syllabus examples and NESA advice)",steps:["Ask, <i>School starts at 8:40 am and morning tea is at 11:05 am. How long is it between them?</i> Watch for bridging to the hour. Try the timeline tool below.","Ask, <i>Is 1.5 hours the same as 1 hour 50 minutes? Explain.</i>","Ask, <i>Write 11:30 pm in 24-hour time. Read 0630 aloud.</i>","Ask, <i>What is the total mass of items of 50 g, 750 g and 2.5 kg?</i>"]},
+ tool:"elapsed",
+ quiz:[
+  {q:"What is 1.5 hours?",o:["1 hour 50 minutes","1 hour 30 minutes","1 hour 15 minutes","150 minutes"],a:1,why:"Time regroups in 60s: 0.5 hours is half of 60 minutes."},
+  {q:"How does NESA suggest recording elapsed time from 8:40 am to 11:05 am?",o:["Subtract 8.40 from 11.05","An unscaled timeline: 20 minutes to 9:00, 2 hours to 11:00, then 5 minutes","Count every minute","Use a calendar"],a:1,why:"Bridging to the hour avoids treating time as base 10."},
+  {q:"What is net mass?",o:["The mass of the container and contents","The mass of the contents only","The mass in tonnes","The estimated mass"],a:1,why:"Gross mass includes the container; net mass is the contents only."}
+ ]
+}
+};
+
+var IDEAS = [
+ {t:"Mass isn’t decided by size",d:"Objects with the same volume can have different masses; shape doesn’t change mass.",s:{es1:"Large but light; small but heavy.",s1:"Conservation: plasticine moulded or divided.",s2:"Real objects on scales, not pictures.",s3:"Gross and net mass."}},
+ {t:"Measuring mass needs a unit",d:"From hefting, to identical informal units, to grams, kilograms and tonnes.",s:{es1:"Hefting and comparing directly.",s1:"Uniform informal units on an equal-arm balance.",s2:"Kilograms and grams on scaled instruments.",s3:"Choosing units and devices; tonnes."}},
+ {t:"Metric mass uses units of 1000",d:"1000 g = 1 kg; 1000 kg = 1 t; decimals record mixed units.",s:{es1:"Heavy, heavier, heaviest.",s1:"More toothpicks than pop sticks.",s2:"½, ¼ and ¾ kg in grams; 1 kg 200 g.",s3:"3.25 kg; 4.32 t = 4320 kg."}},
+ {t:"Time is sequence and duration",d:"Moments in time differ from amounts of time.",s:{es1:"Before, after, next; comparing durations.",s1:"Calendars; hours, minutes and seconds; informal units of duration.",s2:"Minutes and seconds to describe duration.",s3:"Elapsed time from start and finish times."}},
+ {t:"Clocks show turns and a base of 60",d:"The minute hand turns once each hour; the hour hand moves between numerals.",s:{es1:"O’clock; numbers represent hours.",s1:"Half and quarter turns; the hour hand between numerals.",s2:"Each numeral has 2 values; reading to the minute.",s3:"Regrouping time in 60s; decimal hours."}},
+ {t:"Time has many representations",d:"Analog, digital, am/pm, 24-hour and cultural ways of understanding time.",s:{es1:"Days of the week; cultural time.",s1:"Months; Aboriginal and Lunar calendars; analog and digital.",s2:"Digital displays; am and pm; noon and midnight.",s3:"24-hour time; timetables."}}
+];
+
+var ASPECTS = [
+ {k:"o",l:"Outcomes",v:{es1:"<b>MAE-NSM-01</b> describes and compares the masses of objects<br><b>MAE-NSM-02</b> sequences events and reads hour time on clocks",s1:"<b>MA1-NSM-01</b> measures, records, compares and estimates masses using uniform informal units<br><b>MA1-NSM-02</b> describes, compares and orders durations, and reads half- and quarter-hour time",s2:"<b>MA2-NSM-01</b> estimates, measures and compares masses using kg and g<br><b>MA2-NSM-02</b> represents and interprets analog and digital time in hours, minutes and seconds",s3:"<b>MA3-NSM-01</b> selects and uses the appropriate unit and device to measure mass<br><b>MA3-NSM-02</b> measures and compares duration, using 12- and 24-hour time and am and pm"}},
+ {k:"m",l:"Mass",v:{es1:"Hefting; heavy and light",s1:"Equal-arm balance; uniform informal units; conservation",s2:"kg and g; scaled instruments; fractions of a kg",s3:"Choosing units and devices; tonnes; decimals; conversions"}},
+ {k:"t",l:"Telling time",v:{es1:"O’clock, analog and digital",s1:"Half past, quarter past, quarter to",s2:"To the minute; digital; am and pm",s3:"24-hour time; timetables"}},
+ {k:"d",l:"Duration",v:{es1:"Comparing two events; days of the week",s1:"Months; calendars; informal units; hours, minutes, seconds",s2:"Minutes and seconds; time to the next hour",s3:"Elapsed time; bridging; decimal hours"}},
+ {k:"l",l:"Language",v:{es1:"heavy, light, before, after, long time, short time, o’clock",s1:"equal-arm balance, hour hand, minute hand, half past, quarter to",s2:"kilogram, gram, scales; relative and precise time; noon, midnight",s3:"tonne, gross and net mass; 24-hour time; timeline, timetable"}}
+];
+
+var MODELS = [
+ {n:"Hefting with hands and body",w:"grip, resistance, objects on the lap",s:0,e:1,d:"Comparing masses by lifting, holding one object in each hand, or feeling resistance, with adjustments for different gross motor skills."},
+ {n:"Equal-arm balance",w:"comparing and measuring",s:0,e:2,hi:true,d:"Extending Early Stage 1 students; comparing and measuring with identical units in Stage 1; checking against a 1 kg mass in Stage 2."},
+ {n:"Plasticine",w:"conservation of mass",s:1,e:1,d:"Moulding or dividing a lump shows that mass stays the same."},
+ {n:"Scaled instruments",w:"kitchen and electronic scales",s:2,e:3,d:"Relating 1000 g to 1 kg; choosing devices for different objects."},
+ {n:"Benchmark objects",w:"flour, milk, eggs",s:2,e:3,d:"A pack of flour or a litre of milk is about 1 kg; an egg is about 60 g; trucks at a weighbridge for tonnes."},
+ {n:"Visual schedules and timers",w:"first-and-then boards",s:0,e:1,d:"Building a sense of sequence and duration through routines."},
+ {n:"Calendars",w:"Gregorian, Aboriginal, Lunar",s:0,e:1,d:"Days of the week; months; cycles; counting days until an event."},
+ {n:"Analog clocks",w:"from a hoop to reading to the minute",s:0,e:3,hi:true,d:"Numeral cards around a hoop; o’clock; half and quarter turns; reading to the minute; relating analog and digital."},
+ {n:"Digital displays",w:"clocks, timers, devices",s:0,e:3,d:"O’clock in Early Stage 1; reading the hour first and seconds in Stage 2; 24-hour time in Stage 3."},
+ {n:"Watch faces with two scales",w:"separate hours and minutes",s:2,e:2,d:"Address the confusion of one set of numerals representing both hours and minutes."},
+ {n:"Unscaled timelines",w:"bridging to the hour",s:3,e:3,d:"Recording elapsed time in jumps; a link to Data."},
+ {n:"Timetables",w:"real-life, 12- and 24-hour",s:3,e:3,d:"Reading and interpreting transport and event timetables."}
+];
+
+var ROOTS = ["Mass judged by size or appearance","Time treated as base 10","Clock hands and notation misread","A moment in time confused with a duration"];
+var SCENARIOS = [
+ {st:"es1",q:"Ava says the big beach ball is heavier than the small rock.",a:0,why:"Ava judges mass by size. Heft both."},
+ {st:"es1",q:"Leo says lunch took “a short time” because his sandwich was short.",a:3,why:"Leo uses ‘short’ only for length. Use ‘long’ and ‘short’ for time in context."},
+ {st:"s1",q:"Mia says the plasticine snake is heavier than the ball it was rolled from.",a:0,why:"Mia doesn’t yet conserve mass. Balance it before and after."},
+ {st:"s1",q:"Tom shows half past three with the hour hand pointing exactly at the 3.",a:2,why:"At half past, the hour hand is halfway between the 3 and the 4."},
+ {st:"s1",q:"Grace thinks :30 and :50 both mean half past.",a:1,why:"Grace hasn’t linked half an hour to 30 of 60 minutes. Use the analog clock face."},
+ {st:"s2",q:"Ben reads the minute hand on the 2 as “2 minutes past”.",a:2,why:"Each numeral has two values. The 2 means 10 minutes for the minute hand."},
+ {st:"s2",q:"Ella says 4:57 is 43 minutes to five.",a:1,why:"Ella subtracts from 100 rather than 60. 4:57 is 3 minutes to five."},
+ {st:"s2",q:"When asked how long recess lasts, Josh answers “11 o’clock”.",a:3,why:"Josh gives a moment in time, not a duration."},
+ {st:"s3",q:"Kai writes 1.5 hours as 1 hour 50 minutes.",a:1,why:"0.5 hours is 30 minutes. Time regroups in 60s."},
+ {st:"s3",q:"Ruby converts 1800 hours to 8 pm.",a:2,why:"Subtract 12, not 10: 1800 hours is 6 pm."},
+ {st:"s3",q:"Jai is asked how long from 8:40 to 11:05 and answers 11:05.",a:3,why:"Jai gives the finishing time instead of the elapsed time."},
+ {st:"s3",q:"Lily says the bigger parcel must be heavier, so it costs more to post.",a:0,why:"Mass isn’t decided by size. Weigh both."}
+];
+
+var PROMPTS = [
+ ["Looking across the progression","Which of the six big ideas does your stage depend on most? Which earlier stage is it built on?"],
+ ["Looking across the progression","Where do students learn that time regroups in 60s? How could this be made explicit from Stage 1 to Stage 3?"],
+ ["Looking across the progression","How do your students experience mass physically? How often are pictures used instead of real objects?"],
+ ["Your students","Run the quick check for your stage with three students: one secure, one you’re unsure of and one who is struggling. What did you learn that you didn’t expect?"],
+ ["Your students","Which root misconception do you see most often? Where in the earlier stages might it have started?"],
+ ["Your students","How might your students’ cultural understandings of time shape how they think about duration and sequence?"],
+ ["Your practice","Do you consistently say ‘hour hand’ and ‘minute hand’? Do your students?"],
+ ["Your practice","How do you use analog clocks to show half and quarter turns, and to show the hour hand moving between numerals?"],
+ ["Your practice","How could you work with your local Aboriginal community on Aboriginal concepts of time?"]
+];
+var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+var WM_ELEMENTS = [
+ ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],
+ ["Exploring and connecting","Students explore ideas and connect concepts and representations."],
+ ["Choosing and applying techniques","Students choose and apply mathematical techniques to solve problems."],
+ ["Communicating","Students communicate their thinking clearly and coherently."],
+ ["Reasoning","Students reason about and justify their thinking."]
+];
+
+var WM = {
+ es1:{
+  tags:[["Predict which object would be heavier than, lighter than, or have about the same weight as another object and explain reasons for this prediction","Reasons about relations"]],
+  before:{task:"Circle the heavier one.<br><br>(a picture of an elephant and a mouse)",lim:["Size and mass agree, so it confirms ‘bigger is heavier’","A picture, not real objects","No predicting, hefting or explaining"]},
+  after:{task:"“Here is a big box and a small tin. Which do you think is heavier? Why?” Students predict, heft and explain. Then, “Find something bigger than the tin that is lighter.”",enable:"Start with two objects that are very different in mass.",extend:"“Find two things that feel about the same. How could we check?”",listen:"‘It’s bigger but it’s lighter’; ‘I felt it pull my hand down’; heavier, lighter, about the same.",el:["Exploring and connecting","Choosing and applying techniques","Communicating","Reasoning"]}
+ },
+ s1:{
+  tags:[["Predict the action of an equal-arm balance before placing particular objects in each pan","Reasons about relations"],["Explain why the hour hand on a clock is halfway between successive hour-markers when the minute hand shows the half-hour","Reasons about relations"],["Select an appropriate uniform informal unit to measure the mass of an object and justify the choice","Reasons about relations"],["Explain the relationship between the mass of a unit and the number of units needed","Reasons about relations"],["Make predictions about the time remaining until a particular event starts or finishes","Reasons about relations"]],
+  before:{task:"Draw the hands to show half past 3.<br><br>(a blank clock face)",lim:["The hour hand’s position isn’t discussed","One answer","No reasoning about turns"]},
+  after:{task:"“Show 3 o’clock, then move the minute hand slowly to half past 3. What happens to the hour hand? Why?”",enable:"Use a geared clock so the hands move together.",extend:"“Where will the hour hand be at quarter past 3? At quarter to 4?”",listen:"‘The hour hand moves too’; ‘halfway between 3 and 4 because it’s half an hour’; half turn, quarter turn.",el:["Exploring and connecting","Communicating","Reasoning"]}
+ },
+ s2:{
+  tagsLead:"Every content point addresses MAO-WM-01. In Stage 2, the syllabus doesn’t tag any Non-spatial measure points as reasoning, so the makeover below builds reasoning into a typical task:",
+  tags:[],
+  before:{task:"What time is it?<br><br>(an analog clock showing 7:10)",lim:["One clock, one answer","No attention to the two values of the numeral","No comparison of representations"]},
+  after:{task:"“The minute hand points to the 2. Sam says it’s 2 minutes past. Lee says it’s 10 minutes past. Who is correct? How many different ways can you say and write this time?”",enable:"Mark the 5-minute intervals on the outside of the clock face.",extend:"“Find a time where the hour hand and minute hand point to the same numeral. Is there more than one?”",listen:"‘Each numeral means two things’; counting by fives; ten past seven, 7:10, seven ten.",el:["Understanding and fluency","Exploring and connecting","Communicating","Reasoning"]}
+ },
+ s3:{
+  tagsLead:"Every content point addresses MAO-WM-01. In Stage 3, the syllabus doesn’t tag any Non-spatial measure points as reasoning, so the makeover below builds reasoning into a typical task:",
+  tags:[],
+  before:{task:"How long is it from 2:45 pm to 5:00 pm?",lim:["Invites subtracting like decimals (5.00 − 2.45)","One method","No representation"]},
+  after:{task:"“Jo says 2:45 pm to 5:00 pm is 2 hours 55 minutes. Show on a timeline whether Jo is correct. Then plan a 2 hour 15 minute excursion using a real bus timetable in 24-hour time.”",enable:"Provide an unscaled timeline with the hours marked.",extend:"“Write the duration in decimal hours. Why isn’t it 2.15 hours?”",listen:"Bridging to the hour; ‘60 minutes, not 100’; 2.25 hours; converting 1445 to 2:45 pm.",el:["Choosing and applying techniques","Communicating","Reasoning","Exploring and connecting"]}
+ }
+};
+
+var CLOSED = [
+ {st:"s1",task:"What time is it? (a clock showing half past 3)",moves:[
+  {m:"Who is correct?",t:"“Ali drew half past 3 with the hour hand on the 3. Bea drew it halfway between the 3 and 4. Who is correct? Why?”",el:["Reasoning","Communicating"]},
+  {m:"Same and different",t:"“What is the same and what is different about half past 3 and 3:30?”",el:["Exploring and connecting","Communicating"]},
+  {m:"Always, sometimes, never",t:"“At half past, the hour hand points to a numeral. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
+  {m:"Open it up",t:"“Show a time where the minute hand has made a half turn since 3 o’clock. What other times can you show with quarter turns?”",el:["Choosing and applying techniques","Reasoning"]},
+  {m:"Convince me",t:"“Convince me that quarter to 4 is 45 minutes after 3 o’clock.”",el:["Understanding and fluency","Communicating"]}
+ ]},
+ {st:"s2",task:"How many grams in 1 kilogram?",moves:[
+  {m:"Who is correct?",t:"“Kai says the bigger parcel must be heavier. Mia says you need to weigh them. Who is correct?”",el:["Reasoning","Communicating"]},
+  {m:"Same and different",t:"“What is the same and what is different about 1 kg 250 g, 1250 g and 1¼ kg?”",el:["Exploring and connecting","Communicating"]},
+  {m:"Always, sometimes, never",t:"“A bigger object is heavier than a smaller object. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
+  {m:"Open it up",t:"“Find three objects in the classroom that together have a mass of about 1 kg.”",el:["Choosing and applying techniques","Reasoning"]},
+  {m:"Convince me",t:"“Convince me that half a kilogram and two quarter kilograms are the same mass.”",el:["Understanding and fluency","Communicating"]}
+ ]},
+ {st:"s3",task:"Convert 11:30 pm to 24-hour time.",moves:[
+  {m:"Who is correct?",t:"“Jo says 1.5 hours is 1 hour 50 minutes. Sam says it’s 1 hour 30 minutes. Who is correct? Explain.”",el:["Reasoning","Communicating"]},
+  {m:"Same and different",t:"“What is the same and what is different about 6:30 am, 0630 and 1830?”",el:["Exploring and connecting","Communicating"]},
+  {m:"Always, sometimes, never",t:"“To convert pm times to 24-hour time, add 12 to the hour. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
+  {m:"Open it up",t:"“Find two events on this timetable that are 2 hours 15 minutes apart.”",el:["Choosing and applying techniques","Reasoning"]},
+  {m:"Convince me",t:"“Convince me that 8:40 am to 11:05 am is 2 hours 25 minutes.”",el:["Understanding and fluency","Communicating"]}
+ ]}
+];
+
+</script>
+<script>
+function toolHTML(t){
+ if(t==="balance") return '<div class="tool"><div class="tt">Diagnostic</div><h4>Which side will go down?</h4><p class="note">The pairs follow NESA’s advice to include objects that are large but light, small but heavy, and the same size but different in mass. Predict, then let go of the balance. (In class, use real objects: NESA notes pictures can reinforce ‘bigger is heavier’.)</p><div class="blpic" id="blPic"></div><div class="ctrl"><button class="btn small" data-c="l">Left is heavier</button><button class="btn small" data-c="r">Right is heavier</button><button class="btn small" data-c="s">About the same</button><button class="btn ghost small" id="blNew" disabled>Next pair</button></div><div class="fbline" id="blFb"></div><div class="score" id="blScore"></div></div>';
+ if(t==="clock") return '<div class="tool"><div class="tt">Model</div><h4>Watch the hour hand</h4><p class="note">Move the minute hand and watch the hour hand travel between the numerals. Switch to “Hour hand stuck” to see the common error of pointing the hour hand at the numeral for half past.</p><div class="moves" id="ckMode" style="margin-top:0"><button data-m="move" class="on">Hour hand moves</button><button data-m="stuck">Hour hand stuck (error)</button></div><div class="ckwrap"><div class="ckpic" id="ckPic"></div><div class="ckside"><div class="ctrl" style="margin-top:0"><label for="ckH">Hour</label><select id="ckH">'+[1,2,3,4,5,6,7,8,9,10,11,12].map(function(h){return '<option'+(h===3?' selected':'')+'>'+h+'</option>';}).join("")+'</select></div><div class="ctrl"><label for="ckM">Minutes</label><input type="range" id="ckM" min="0" max="59" value="30"><span class="ckv" id="ckMv">30</span></div><div class="moves" id="ckQ" style="margin:0"><button data-q="0">o’clock</button><button data-q="15">quarter past</button><button data-q="30" class="on">half past</button><button data-q="45">quarter to</button></div></div></div><div class="readout" id="ckRead"></div></div>';
+ if(t==="readclock") return '<div class="tool"><div class="tt">Diagnostic</div><h4>Read the clock to the minute</h4><p class="note">Each numeral has two values: the hour for the hour hand and 5-minute intervals for the minute hand. Choose the time shown. The wrong options are common errors.</p><div class="rcwrap"><div class="ckpic" id="rdPic"></div><div class="rdopts" id="rdOpts"></div></div><div class="fbline" id="rdFb"></div><div class="ctrl"><button class="btn ghost small" id="rdNew" disabled>New clock</button><label><input type="checkbox" id="rdMarks"> Show 5-minute labels</label><span class="score" id="rdScore"></span></div></div>';
+ if(t==="elapsed") return '<div class="tool"><div class="tt">Model</div><h4>Elapsed time on a timeline</h4><p class="note">Enter start and finish times. The unscaled timeline bridges to the next hour, jumps whole hours, then adds the remaining minutes, as in the NESA advice.</p><div class="ctrl" style="margin-top:0"><label for="elS">Start</label><input type="time" id="elS" value="08:40"><label for="elE">Finish</label><input type="time" id="elE" value="11:05"><button class="btn small" id="elGo">Show</button></div><div class="moves" id="elFmt" style="margin-top:0"><button data-f="12" class="on">12-hour time</button><button data-f="24">24-hour time</button></div><div class="elpic" id="elPic"></div><div class="readout" id="elRead"></div></div>';
+ return "";
+}
+
+/* ---------- shared helpers ---------- */
+var NUMW=["","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"];
+function hr12(h){ h=((h-1)%12+12)%12+1; return h; }
+function timeWords(h,m){
+ var nh=hr12(h+1);
+ if(m===0) return NUMW[hr12(h)]+" o’clock";
+ if(m===15) return "quarter past "+NUMW[hr12(h)];
+ if(m===30) return "half past "+NUMW[hr12(h)];
+ if(m===45) return "quarter to "+NUMW[nh];
+ var w={5:"five",10:"ten",20:"twenty",25:"twenty-five"};
+ if(m<30) return (w[m]||m+" minute"+(m===1?"":"s"))+" past "+NUMW[hr12(h)];
+ var r=60-m; return (w[r]||r+" minute"+(r===1?"":"s"))+" to "+NUMW[nh];
+}
+function digital(h,m){ return hr12(h)+":"+(m<10?"0":"")+m; }
+function clockSVG(h,m,opt){
+ opt=opt||{}; var cx=110, cy=110, R=96, s='<svg viewBox="0 0 220 220" role="img" aria-label="Analog clock">';
+ s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="#fff" stroke="var(--ink)" stroke-width="4"/>';
+ for(var i=0;i<60;i++){ var a=i*Math.PI/30, big=i%5===0, r1=big?R-12:R-6;
+  s+='<line x1="'+(cx+Math.sin(a)*r1).toFixed(1)+'" y1="'+(cy-Math.cos(a)*r1).toFixed(1)+'" x2="'+(cx+Math.sin(a)*(R-2)).toFixed(1)+'" y2="'+(cy-Math.cos(a)*(R-2)).toFixed(1)+'" stroke="var(--ink)" stroke-width="'+(big?2.5:1)+'"/>'; }
+ for(var n=1;n<=12;n++){ var b=n*Math.PI/6;
+  s+='<text x="'+(cx+Math.sin(b)*(R-26)).toFixed(1)+'" y="'+(cy-Math.cos(b)*(R-26)+6).toFixed(1)+'" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink)">'+n+'</text>';
+  if(opt.marks) s+='<text x="'+(cx+Math.sin(b)*(R+14)).toFixed(1)+'" y="'+(cy-Math.cos(b)*(R+14)+4).toFixed(1)+'" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent)">'+(n*5%60===0?"00":n*5)+'</text>';
+ }
+ if(opt.sector){ var e=m*Math.PI/30; if(m>0) s+='<path d="M'+cx+' '+cy+' L'+cx+' '+(cy-R+14)+' A'+(R-14)+' '+(R-14)+' 0 '+(m>30?1:0)+' 1 '+(cx+Math.sin(e)*(R-14)).toFixed(1)+' '+(cy-Math.cos(e)*(R-14)).toFixed(1)+'Z" fill="var(--s1)" fill-opacity=".14"/>'; }
+ var ha=((h%12)+(opt.stuck?0:m/60))*Math.PI/6, ma=m*Math.PI/30;
+ s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+Math.sin(ma)*(R-16)).toFixed(1)+'" y2="'+(cy-Math.cos(ma)*(R-16)).toFixed(1)+'" stroke="#2f7f6f" stroke-width="5" stroke-linecap="round"/>';
+ s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+Math.sin(ha)*(R-46)).toFixed(1)+'" y2="'+(cy-Math.cos(ha)*(R-46)).toFixed(1)+'" stroke="'+(opt.stuck?"var(--accent)":"#1f2a44")+'" stroke-width="8" stroke-linecap="round"/>';
+ s+='<circle cx="'+cx+'" cy="'+cy+'" r="6" fill="var(--ink)"/>';
+ return s+'</svg>';
+}
+
+/* ---------- ES1 balance ---------- */
+var BL_PAIRS=[
+ {l:{n:"beach ball",k:"circle",w:84,h:84,c:"#e0a33a"},r:{n:"rock",k:"rock",w:40,h:30,c:"#7a7f8c"},a:"r",why:"The rock is smaller but heavier. Large objects can be lighter than smaller ones."},
+ {l:{n:"box of books",k:"box",w:84,h:64,c:"#8b6b4a"},r:{n:"feather",k:"feather",w:56,h:18,c:"#9aa6bd"},a:"l",why:"The box is large and heavy; the feather is small and light. Here the bigger object is heavier."},
+ {l:{n:"empty box",k:"box",w:90,h:66,c:"#d9c3a3"},r:{n:"full water bottle",k:"bottle",w:28,h:70,c:"#3b7fae"},a:"r",why:"The water bottle is smaller but heavier than the empty box."},
+ {l:{n:"tin of beans",k:"tin",w:36,h:44,c:"#c8553d"},r:{n:"pillow",k:"pillow",w:96,h:40,c:"#c9d0f0"},a:"l",why:"The tin is small and heavy; the pillow is large and light."},
+ {l:{n:"box full of blocks",k:"box",w:64,h:54,c:"#8b6b4a"},r:{n:"the same box, empty",k:"box",w:64,h:54,c:"#d9c3a3"},a:"l",why:"The boxes are the same size and shape, but they have different masses."},
+ {l:{n:"ball of plasticine",k:"circle",w:46,h:46,c:"#2f7f6f"},r:{n:"the same plasticine rolled into a snake",k:"snake",w:96,h:14,c:"#2f7f6f"},a:"s",why:"It is the same plasticine, so the mass is the same: changing the shape doesn’t change the mass (Stage 1 conservation)."}
+];
+function blObj(o,x,y){
+ var s='', w=o.w, h=o.h, c=o.c, x0=x-w/2, y0=y-h;
+ if(o.k==="circle") s='<circle cx="'+x+'" cy="'+(y-h/2)+'" r="'+(w/2)+'" fill="'+c+'"/>'+(w>60?'<path d="M'+(x-w/2)+' '+(y-h/2)+' Q'+x+' '+(y-h/2-18)+' '+(x+w/2)+' '+(y-h/2)+'" stroke="#fff" stroke-width="4" fill="none"/>':'');
+ else if(o.k==="rock") s='<path d="M'+x0+' '+y+' Q'+(x0-4)+' '+(y0+6)+' '+(x0+12)+' '+y0+' Q'+(x+8)+' '+(y0-6)+' '+(x0+w)+' '+(y0+10)+' Q'+(x0+w+4)+' '+y+' '+(x0+w-4)+' '+y+'Z" fill="'+c+'"/>';
+ else if(o.k==="feather") s='<path d="M'+x0+' '+y+' Q'+x+' '+(y-h*1.6)+' '+(x0+w)+' '+(y-h)+' Q'+x+' '+(y-2)+' '+x0+' '+y+'Z" fill="'+c+'"/>';
+ else if(o.k==="bottle") s='<rect x="'+x0+'" y="'+(y0+12)+'" width="'+w+'" height="'+(h-12)+'" rx="5" fill="'+c+'"/><rect x="'+(x-5)+'" y="'+y0+'" width="10" height="14" fill="'+c+'"/>';
+ else if(o.k==="tin") s='<rect x="'+x0+'" y="'+y0+'" width="'+w+'" height="'+h+'" rx="3" fill="'+c+'"/><rect x="'+x0+'" y="'+(y0+12)+'" width="'+w+'" height="18" fill="#fff" fill-opacity=".5"/>';
+ else if(o.k==="pillow") s='<rect x="'+x0+'" y="'+y0+'" width="'+w+'" height="'+h+'" rx="16" fill="'+c+'"/>';
+ else if(o.k==="snake") s='<rect x="'+x0+'" y="'+y0+'" width="'+w+'" height="'+h+'" rx="7" fill="'+c+'"/>';
+ else s='<rect x="'+x0+'" y="'+y0+'" width="'+w+'" height="'+h+'" rx="3" fill="'+c+'"/><line x1="'+x0+'" y1="'+(y0+10)+'" x2="'+(x0+w)+'" y2="'+(y0+10)+'" stroke="#000" stroke-opacity=".15" stroke-width="2"/>';
+ return s;
+}
+function wireBalance(){
+ var order, i, score=0, round=0;
+ function draw(p,tilt){
+  var cx=200, cy=70, L=130, ang=tilt*Math.PI/180, dx=Math.cos(ang)*L, dy=Math.sin(ang)*L;
+  var lx=cx-dx, ly=cy-dy, rx=cx+dx, ry=cy+dy, drop=70, s='<svg viewBox="0 0 400 260" style="max-width:520px">';
+  s+='<path d="M'+(cx-40)+' 250 L'+(cx+40)+' 250 L'+(cx+8)+' '+(cy+4)+' L'+(cx-8)+' '+(cy+4)+'Z" fill="#c9ced9"/>';
+  s+='<line x1="'+lx.toFixed(1)+'" y1="'+ly.toFixed(1)+'" x2="'+rx.toFixed(1)+'" y2="'+ry.toFixed(1)+'" stroke="var(--ink)" stroke-width="7" stroke-linecap="round"/><circle cx="'+cx+'" cy="'+cy+'" r="7" fill="var(--accent)"/>';
+  [[lx,ly,p.l],[rx,ry,p.r]].forEach(function(e){
+   var px=e[0], py=e[1]+drop+60;
+   s+='<line x1="'+px.toFixed(1)+'" y1="'+e[1].toFixed(1)+'" x2="'+(px-50).toFixed(1)+'" y2="'+py.toFixed(1)+'" stroke="var(--ink3)" stroke-width="1.5"/><line x1="'+px.toFixed(1)+'" y1="'+e[1].toFixed(1)+'" x2="'+(px+50).toFixed(1)+'" y2="'+py.toFixed(1)+'" stroke="var(--ink3)" stroke-width="1.5"/>';
+   s+=blObj(e[2],px,py);
+   s+='<path d="M'+(px-58).toFixed(1)+' '+py.toFixed(1)+' Q'+px.toFixed(1)+' '+(py+22).toFixed(1)+' '+(px+58).toFixed(1)+' '+py.toFixed(1)+'Z" fill="#9aa6bd"/>';
+  });
+  s+='</svg><div class="bllab"><span>'+p.l.n+'</span><span>'+p.r.n+'</span></div>';
+  $("#blPic").innerHTML=s;
+ }
+ function start(){ order=BL_PAIRS.slice().sort(function(){return Math.random()-.5;}); i=0; show(); }
+ function show(){ draw(order[i],0); $("#blFb").className="fbline"; $$(".tool [data-c]").forEach(function(x){x.disabled=false;}); $("#blNew").disabled=true; $("#blNew").textContent="Next pair"; }
+ $$(".tool [data-c]").forEach(function(btn){btn.onclick=function(){
+  var p=order[i], ok=btn.dataset.c===p.a; round++; if(ok) score++;
+  draw(p,p.a==="l"?-12:p.a==="r"?12:0);
+  $("#blFb").className="fbline show "+(ok?"ok":"no");
+  $("#blFb").innerHTML=(ok?"<b>Yes.</b> ":"<b>Not this time.</b> ")+(p.a==="s"?"The balance stays level. ":"The "+(p.a==="l"?p.l.n:p.r.n)+" side goes down. ")+p.why;
+  $$(".tool [data-c]").forEach(function(x){x.disabled=true;}); $("#blNew").disabled=false;
+  if(i===order.length-1) $("#blNew").textContent="Start again";
+  $("#blScore").textContent=score+" of "+round+" correct";
+ };});
+ $("#blNew").onclick=function(){ if(i===order.length-1) start(); else { i++; show(); } };
+ start();
+}
+
+/* ---------- S1 clock model ---------- */
+function wireClock(){
+ var mode="move";
+ function draw(){
+  var h=+$("#ckH").value, m=+$("#ckM").value; $("#ckMv").textContent=m;
+  $$("#ckQ button").forEach(function(b){b.classList.toggle("on",+b.dataset.q===m);});
+  $("#ckPic").innerHTML=clockSVG(h,m,{stuck:mode==="stuck",sector:true});
+  var turn={0:"no turn yet",15:"a quarter turn",30:"a half turn",45:"three-quarters of a turn"}[m], frac=m/60, msg;
+  if(mode==="stuck") msg='Not quite: the hour hand is still pointing at the '+h+'<small>'+(m===0?'At o’clock this is correct. Move the minute hand to see the problem.':'After '+m+' minutes, the hour hand should have moved '+(m===30?'halfway':m===15?'a quarter of the way':m===45?'three-quarters of the way':Math.round(frac*100)+'% of the way')+' from the '+h+' to the '+hr12(h+1)+'. Students often position the hour hand inaccurately while placing the minute hand correctly (Earnest et al. 2018).')+'</small>';
+  else msg=timeWords(h,m).replace(/^./,function(c){return c.toUpperCase();})+' · '+digital(h,m)+'<small>The minute hand has made '+(turn||m+' sixtieths of a turn')+' since '+NUMW[h]+' o’clock. The hour hand has moved '+(m===0?'nowhere yet: it points at the '+h:(m===30?'halfway':m===15?'a quarter of the way':m===45?'three-quarters of the way':'part of the way')+' from the '+h+' to the '+hr12(h+1))+'.'+(m===30?' This is why the hour hand is halfway between the hour markers at half past (a Stage 1 A reasoning point).':'')+(m>30?' The hour hand is closer to the '+hr12(h+1)+', but the hour that has just passed is '+h+'.':'')+'</small>';
+  $("#ckRead").innerHTML=msg;
+ }
+ $$("#ckMode button").forEach(function(b){b.onclick=function(){mode=b.dataset.m;$$("#ckMode button").forEach(function(x){x.classList.toggle("on",x===b);});draw();};});
+ $$("#ckQ button").forEach(function(b){b.onclick=function(){$("#ckM").value=b.dataset.q;draw();};});
+ $("#ckM").oninput=draw; $("#ckH").onchange=draw;
+ draw();
+}
+
+/* ---------- S2 read the clock ---------- */
+function wireReadclock(){
+ var H, Mn, opts, score=0, round=0, answered=false;
+ function fmt(h,m){ return timeWords(h,m)+" ("+digital(h,m)+")"; }
+ function newQ(){
+  answered=false;
+  do{ H=1+Math.floor(Math.random()*12); Mn=1+Math.floor(Math.random()*58); }while(Mn%15===0||Mn<5||Mn>55||Math.abs(Mn-30)<3);
+  var c=[{h:H,m:Mn,k:"ok"}], near=Math.round(Mn/5)||12;
+  c.push({h:H,m:near===12?12:near,k:"numeral"});
+  if(Mn>30) c.push({h:H-1,m:Mn,k:"tohour"}); else c.push({h:H+1,m:Mn,k:"ahead"});
+  c.push({h:near,m:(H*5)%60,k:"swap"});
+  if(Mn>30) c.push({h:H+1,m:Mn,k:"ahead"});
+  var seen={}, list=[]; c.forEach(function(o){var key=fmt(o.h,o.m); if(!seen[key]&&list.length<4){seen[key]=1; list.push(o);}});
+  opts=list.sort(function(){return Math.random()-.5;});
+  draw();
+  $("#rdOpts").innerHTML=opts.map(function(o,j){return '<button class="rdopt" data-j="'+j+'">'+fmt(o.h,o.m)+'</button>';}).join("");
+  $$("#rdOpts .rdopt").forEach(function(b){b.onclick=function(){answer(+b.dataset.j,b);};});
+  $("#rdFb").className="fbline"; $("#rdNew").disabled=true;
+ }
+ function draw(){ $("#rdPic").innerHTML=clockSVG(H,Mn,{marks:$("#rdMarks").checked}); }
+ function answer(j,b){
+  if(answered) return; answered=true; round++;
+  var o=opts[j], ok=o.k==="ok"; if(ok) score++;
+  $$("#rdOpts .rdopt").forEach(function(x){x.disabled=true; if(opts[+x.dataset.j].k==="ok") x.classList.add("right");});
+  if(!ok) b.classList.add("wrong");
+  var why={
+   ok:"The minute hand shows "+Mn+" minutes: count by fives to the nearest numeral, then by ones. The hour hand is "+(Mn<30?"just past the "+hr12(H):"getting close to the "+hr12(H+1)+", so the hour that has passed is "+hr12(H))+".",
+   numeral:"This reads the numeral the minute hand points to as a number of minutes. For the minute hand, each numeral stands for 5 minutes, so the "+(Math.round(Mn/5)||12)+" means "+((Math.round(Mn/5)||12)*5)+" minutes.",
+   tohour:"‘To’ times name the hour that is coming next. The hour hand is nearly at the "+hr12(H+1)+", so it is "+timeWords(H,Mn)+".",
+   ahead:"The hour hand hasn’t reached the "+hr12(H+1)+" yet, so the hour that has passed is "+hr12(H)+".",
+   swap:"This mixes up the hands. The shorter hour hand shows the hour; the longer minute hand shows the minutes."
+  };
+  $("#rdFb").className="fbline show "+(ok?"ok":"no");
+  $("#rdFb").innerHTML=(ok?"<b>Yes.</b> ":"<b>Not this time.</b> "+why[o.k]+" ")+(ok?why.ok:"It is "+fmt(H,Mn)+".");
+  $("#rdNew").disabled=false; $("#rdScore").textContent=score+" of "+round+" correct";
+ }
+ $("#rdNew").onclick=newQ; $("#rdMarks").onchange=draw;
+ newQ();
+}
+
+/* ---------- S3 elapsed time ---------- */
+function wireElapsed(){
+ var f="12";
+ function parse(v){ var p=(v||"").split(":"); if(p.length<2) return null; var h=+p[0], m=+p[1]; if(isNaN(h)||isNaN(m)) return null; return h*60+m; }
+ function show(t){
+  t=((t%1440)+1440)%1440; var h=Math.floor(t/60), m=t%60;
+  if(f==="24") return (h<10?"0":"")+h+(m<10?"0":"")+m;
+  if(t===720) return "12 noon"; if(t===0) return "12 midnight";
+  return hr12(h)+":"+(m<10?"0":"")+m+(h<12?" am":" pm");
+ }
+ function dur(n){ var h=Math.floor(n/60), m=n%60, a=[]; if(h) a.push(h+" hour"+(h>1?"s":"")); if(m||!h) a.push(m+" minute"+(m===1?"":"s")); return a.join(" "); }
+ function draw(){
+  var s=parse($("#elS").value), e=parse($("#elE").value);
+  if(s===null||e===null){ $("#elRead").innerHTML="<small>Enter a start and a finish time.</small>"; $("#elPic").innerHTML=""; return; }
+  var next=e<=s, E=next?e+1440:e, pts=[s], jumps=[];
+  var firstHour=Math.ceil(s/60)*60;
+  if(firstHour>s && firstHour<E){ pts.push(firstHour); }
+  var lastHour=Math.floor(E/60)*60;
+  if(lastHour>pts[pts.length-1] && lastHour<=E) pts.push(lastHour);
+  if(pts[pts.length-1]!==E) pts.push(E);
+  for(var k=1;k<pts.length;k++) jumps.push(pts[k]-pts[k-1]);
+  var n=pts.length, W=Math.max(320,n*150), x0=50, step=(W-100)/(n-1), sv='<svg viewBox="0 0 '+W+' 130" style="max-width:'+W+'px">';
+  sv+='<line x1="'+(x0-20)+'" y1="90" x2="'+(W-30)+'" y2="90" stroke="var(--ink)" stroke-width="2"/>';
+  pts.forEach(function(p,k){ var x=x0+k*step; sv+='<line x1="'+x+'" y1="82" x2="'+x+'" y2="98" stroke="var(--ink)" stroke-width="2"/><text x="'+x+'" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">'+show(p)+'</text>'; });
+  jumps.forEach(function(j,k){ var a=x0+k*step, b=a+step, mid=(a+b)/2;
+   sv+='<path d="M'+(a+4)+' 84 Q'+mid+' 30 '+(b-4)+' 84" fill="none" stroke="var(--s3)" stroke-width="2.5"/><path d="M'+(b-4)+' 84 l-9 -3 l4 -8z" fill="var(--s3)"/>';
+   sv+='<text x="'+mid+'" y="46" text-anchor="middle" font-size="13" font-weight="700" fill="var(--s3)">+ '+dur(j).replace(" hours","h").replace(" hour","h").replace(" minutes"," min").replace(" minute"," min")+'</text>'; });
+  $("#elPic").innerHTML=sv+'</svg>';
+  var T=E-s, dec=T/60, decTxt=(T%15===0)?"or "+(+dec.toFixed(2))+" hours":"or about "+dec.toFixed(2)+" hours";
+  var sh=Math.floor(s/60), sm=s%60, eh=Math.floor(e/60), em=e%60;
+  var naive=(eh+em/100)-(sh+sm/100), note="";
+  var dh=function(x){return f==="12"?hr12(x):x;};
+  if(!next && sm>em && (f==="24"||(sh<12)===(eh<12))) note=' Treating the times as decimals gives '+(dh(eh)+"."+(em<10?"0":"")+em)+' − '+(dh(sh)+"."+(sm<10?"0":"")+sm)+' = '+(((dh(eh)*100+em)-(dh(sh)*100+sm))/100).toFixed(2)+', which is wrong because an hour has 60 minutes, not 100.';
+  $("#elRead").innerHTML=(jumps.length>1?jumps.map(dur).join(" + ")+" = ":"")+dur(T)+'<small>'+show(s)+' to '+show(E)+(next?' (the next day)':'')+'. That is '+T+' minutes, '+decTxt+'.'+note+'</small>';
+ }
+ $$("#elFmt button").forEach(function(b){b.onclick=function(){f=b.dataset.f;$$("#elFmt button").forEach(function(x){x.classList.toggle("on",x===b);});draw();};});
+ $("#elGo").onclick=draw; $("#elS").onchange=draw; $("#elE").onchange=draw;
+ draw();
+}
+
+function wireTool(t){
+ if(t==="balance") wireBalance();
+ if(t==="clock") wireClock();
+ if(t==="readclock") wireReadclock();
+ if(t==="elapsed") wireElapsed();
+}
+
+</script>
+<script>
+/* Professional learning module engine.
+   Shared by every module. Each module page loads, in order:
+   content.js (M config + data), tools.js (toolHTML + wireTool), then this file. */
+"use strict";
+/* ---------------- storage (safe) ---------------- */
+var KEY = M.key;
+var mem = {done:{}, notes:{}, todo:{}, chk:{}};
+try { var raw = window.localStorage.getItem(KEY); if (raw) { var p = JSON.parse(raw); mem.done = p.done||{}; mem.notes = p.notes||{}; mem.todo = p.todo||{}; mem.chk = p.chk||{}; } } catch(e) {}
+function save(){ try { window.localStorage.setItem(KEY, JSON.stringify(mem)); } catch(e) {} }
+
+/* ---------------- sections ---------------- */
+var SECTIONS = [
+ {id:"welcome",label:"Welcome",grp:"Start here",r:renderWelcome},
+ {id:"ideas",label:"The big ideas",grp:"Start here",r:renderIdeas},
+ {id:"prog",label:"Progression explorer",grp:"Start here",r:renderProg},
+ {id:"wm",label:"Working mathematically",grp:"Start here",r:renderWM},
+ {id:"es1",label:"Early Stage 1",grp:"Stage by stage",r:function(){return renderStage("es1");},stage:"es1"},
+ {id:"s1",label:"Stage 1",grp:"Stage by stage",r:function(){return renderStage("s1");},stage:"s1"},
+ {id:"s2",label:"Stage 2",grp:"Stage by stage",r:function(){return renderStage("s2");},stage:"s2"},
+ {id:"s3",label:"Stage 3",grp:"Stage by stage",r:function(){return renderStage("s3");},stage:"s3"},
+ {id:"models",label:"Models across K–6",grp:"Pull it together",r:renderModels},
+ {id:"sorter",label:"Misconception sorter",grp:"Pull it together",r:renderSorter},
+ {id:"reflect",label:"Reflect and plan",grp:"Pull it together",r:renderReflect}
+];
+var current = 0;
+
+function $(s,el){return (el||document).querySelector(s);}
+function $$(s,el){return Array.prototype.slice.call((el||document).querySelectorAll(s));}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+
+function buildNav(){
+ var side=$("#side"), h="", g="";
+ SECTIONS.forEach(function(s,i){
+  if(s.grp!==g){g=s.grp;h+='<div class="grp">'+g+'</div>';}
+  var dotStyle = s.stage && !mem.done[s.id] ? ' style="border-color:'+STAGES[s.stage].col+'"' : '';
+  h+='<button data-i="'+i+'" class="'+(i===current?"on":"")+'" aria-current="'+(i===current?"page":"false")+'"><span class="dot'+(mem.done[s.id]?" done":"")+'"'+dotStyle+'></span>'+s.label+'</button>';
+ });
+ side.innerHTML=h;
+ $$("button",side).forEach(function(b){b.onclick=function(){go(+b.dataset.i);};});
+ var sel=$("#mobSel");
+ sel.innerHTML=SECTIONS.map(function(s,i){return '<option value="'+i+'"'+(i===current?" selected":"")+'>'+(mem.done[s.id]?"✓ ":"")+s.label+'</option>';}).join("");
+ sel.onchange=function(){go(+sel.value);};
+ var n=SECTIONS.filter(function(s){return mem.done[s.id];}).length;
+ $("#progTxt").textContent=n+" of "+SECTIONS.length+" sections";
+ $("#progFill").style.width=(100*n/SECTIONS.length)+"%";
+}
+
+function go(i){
+ current=i; buildNav();
+ var s=SECTIONS[i], pg=$("#page");
+ pg.innerHTML=s.r()+doneBar(s,i);
+ wire(s.id);
+ var db=$("#doneBtn"); if(db) db.onclick=function(){mem.done[s.id]=!mem.done[s.id];save();go(i);};
+ var nx=$("#nextBtn"); if(nx) nx.onclick=function(){if(!mem.done[s.id]){mem.done[s.id]=true;save();} go(i+1);};
+ var pv=$("#prevBtn"); if(pv) pv.onclick=function(){go(i-1);};
+ try{window.scrollTo(0,0);}catch(e){}
+ var m=document.querySelector("main"); if(m) m.scrollTop=0;
+}
+
+function doneBar(s,i){
+ var d=!!mem.done[s.id];
+ return '<div class="done-bar'+(d?" is-done":"")+'"><div><b>'+(d?"Section complete ✓":"Finished this section?")+'</b><div class="note">'+(d?"You can come back at any time.":"Mark it complete to track your progress.")+'</div></div><div class="nextprev">'+
+ (i>0?'<button class="btn ghost" id="prevBtn">← Back</button>':'')+
+ '<button class="btn ghost" id="doneBtn">'+(d?"Mark as not done":"Mark complete")+'</button>'+
+ (i<SECTIONS.length-1?'<button class="btn" id="nextBtn">Next: '+SECTIONS[i+1].label+' →</button>':'')+'</div></div>';
+}
+
+/* ---------------- renderers ---------------- */
+function renderWelcome(){
+ var rows=ORDER.map(function(k){var S=STAGES[k],C=STAGE_CONTENT[k];return '<tr><td><span class="pill" style="background:'+S.col+';color:#fff;border-color:'+S.col+'">'+S.name+'</span><div class="note" style="margin-top:4px">'+S.years+'</div></td><td>'+S.fa+'</td><td>'+C.outcomes.map(function(o){return o[0];}).join(", ")+'</td></tr>';}).join("");
+ return '<div class="hero" style="border-left-color:var(--accent)"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Welcome</span><h2>'+M.welcomeH2+'</h2><p>'+M.welcomeP+'</p></div>'+
+ '<section class="blk"><h3>What you’ll do</h3><div class="grid3">'+
+ card("Explore","the six big ideas and how each one grows from Kindergarten to Year 6.")+
+ card("Diagnose","misconceptions with flip cards, short quizzes and a misconception sorter.")+
+ card("Rework","closed tasks into rich ones that embed Working mathematically, with one makeover for each stage.")+
+ card("Try",M.tryText)+
+ card("Reflect","on your own students and plan next steps. Your notes save in this browser.")+
+ '</div></section>'+
+ '<section class="blk"><h3>'+M.namesH3+'</h3><p class="lead">'+M.namesP+'</p><table class="simple"><thead><tr><th>Stage</th><th>Focus area name</th><th>Outcomes</th></tr></thead><tbody>'+rows+'</tbody></table></section>'+
+ '<section class="blk"><h3>Suggested pathways</h3><div class="grid2"><div class="card"><h4 style="margin-bottom:6px">On your own (about 45 minutes)</h4><ul class="tight"><li>Big ideas and the progression explorer</li><li>Your stage, plus the stage before it</li><li>The misconception sorter</li><li>Reflect and plan</li></ul></div><div class="card"><h4 style="margin-bottom:6px">As a staff or PLC session (about 60 minutes)</h4><ul class="tight"><li>Whole staff: big ideas and progression (15 min)</li><li>Stage teams: their stage section and tool (25 min)</li><li>Whole staff: misconception sorter (10 min)</li><li>Reflection prompts and next steps (10 min)</li></ul></div></div><p class="note" style="margin-top:12px">Tip: most difficulties in a stage begin in the stage before it, so look one stage back as well as at your own.</p></section>'+
+ checkHTML("pre");
+}
+function card(t,d){return '<div class="card"><b>'+t+'</b> <span style="color:var(--ink2)">'+d+'</span></div>';}
+
+function renderIdeas(){
+ return '<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Big ideas</span><h2>Six ideas run from K to 6</h2><p>'+M.ideasP+'</p></div>'+
+ '<div class="ideas">'+IDEAS.map(function(d,i){return '<button class="idea" data-i="'+i+'"><div class="num">'+(i+1)+'</div><h4>'+d.t+'</h4><p>'+d.d+'</p></button>';}).join("")+'</div>'+
+ '<div class="ideadetail card" id="ideaDetail"><p class="note" style="margin:0">Select an idea above to see what it looks like at each stage.</p></div>'+
+ '<p class="note" style="margin-top:14px">'+M.ideasNote+'</p>';
+}
+function showIdea(i){
+ var d=IDEAS[i];
+ $$(".idea").forEach(function(b){b.classList.toggle("on",+b.dataset.i===i);});
+ $("#ideaDetail").innerHTML='<h4 style="font-size:18px;margin-bottom:10px">'+(i+1)+'. '+d.t+' — at each stage</h4>'+ORDER.map(function(k){return '<div class="srow"><span class="sl" style="background:'+STAGES[k].col+'">'+STAGES[k].name+'</span><span>'+d.s[k]+'</span></div>';}).join("");
+}
+
+function renderProg(){
+ return '<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Progression</span><h2>How the focus area grows</h2><p>'+M.progP+'</p></div>'+
+ '<div class="aspects" role="tablist">'+ASPECTS.map(function(a,i){return '<button role="tab" data-k="'+i+'" class="'+(i===0?"on":"")+'">'+a.l+'</button>';}).join("")+'</div>'+
+ '<div class="pcols" id="pcols"></div>'+
+ '<section class="blk"><h3>What changes between stages</h3><div class="shifts">'+
+ M.shifts.map(function(x){return '<div class="shift"><div class="arr" style="color:'+STAGES[x[0]].col+'">'+x[1]+'</div>'+x[2]+'</div>';}).join("")+
+ '</div></section>';
+}
+function showAspect(i){
+ var a=ASPECTS[i];
+ $$(".aspects button").forEach(function(b){b.classList.toggle("on",+b.dataset.k===i);});
+ $("#pcols").innerHTML=ORDER.map(function(k){var S=STAGES[k];return '<div class="pcol"><div class="ph" style="background:'+S.col+'">'+S.name+'<small>'+S.years+'</small></div><div class="pb">'+a.v[k]+'</div></div>';}).join("");
+}
+
+function renderStage(k){
+ var S=STAGES[k], C=STAGE_CONTENT[k];
+ var h='<div class="hero" style="border-left-color:'+S.col+'"><span class="tag" style="background:'+S.soft+';color:'+S.col+'">'+S.name+' · '+S.years+'</span><h2>'+S.fa+'</h2><p>'+C.lead+'</p></div>';
+ h+='<section class="blk"><h3><span class="n">1</span>Outcomes</h3>'+C.outcomes.map(function(o){return '<div class="outc"><code style="background:'+S.col+'">'+o[0]+'</code><span>'+o[1]+'</span></div>';}).join("")+'</section>';
+ h+='<section class="blk"><h3><span class="n">2</span>Content at a glance</h3><p class="lead">Select a content heading to see its content points.</p>'+C.content.map(function(c){return '<div class="acc"><button aria-expanded="false"><span>'+(c[0]?'<span class="part" style="background:'+S.col+'">'+c[0]+'</span>':'')+c[1]+'</span><span class="ch">›</span></button><div class="body"><ul class="tight">'+c[2].map(function(p){return '<li>'+p+'</li>';}).join("")+'</ul></div></div>';}).join("")+'</section>';
+ h+='<section class="blk"><h3><span class="n">3</span>What teachers need to know</h3><div class="grid2">'+C.know.map(function(x){return '<div class="kcard" style="border-top-color:'+S.col+'"><h4>'+x[0]+'</h4><p>'+x[1]+'</p></div>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3><span class="n">4</span>Misconceptions: what you might see</h3><p class="lead">Read what the student does, think about what’s behind it, then select the card to check.</p><div class="flips">'+C.misc.map(function(m){return '<button class="flip" aria-pressed="false"><div class="in"><div class="f"><div class="k">What you might see</div><div class="say">'+m.see+'</div><div class="hint">What’s behind this? Select to reveal ↻</div></div><div class="b"><div class="k">Misconception</div><h4>'+m.name+'</h4><p><b>Respond:</b> '+m.resp+'</p><span class="pill '+({n:"src-nesa",d:"src-dio",a:"src-add"})[m.src]+'">'+({n:"NESA",d:"Diocesan PL slides",a:"Additional commentary"})[m.src]+'</span></div></div></button>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3><span class="n">5</span>Try it</h3>'+toolHTML(C.tool)+'</section>';
+ h+='<section class="blk"><h3><span class="n">6</span>Working mathematically: task makeover</h3>'+makeoverHTML(k)+'</section>';
+ h+='<section class="blk"><h3><span class="n">7</span>Teaching advice</h3><div class="card"><ul class="tight">'+C.advice.map(function(a){return '<li>'+a+'</li>';}).join("")+'</ul></div></section>';
+ h+='<section class="blk"><h3><span class="n">8</span>Vocabulary</h3><div class="chips">'+C.vocab.map(function(v){return '<span>'+v+'</span>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3><span class="n">9</span>'+C.check.title+'</h3><div class="qc" style="border-left:5px solid '+S.col+'"><ol>'+C.check.steps.map(function(s){return '<li>'+s+'</li>';}).join("")+'</ol></div></section>';
+ h+='<section class="blk quiz"><h3><span class="n">10</span>Check your understanding</h3>'+C.quiz.map(function(q,qi){return '<div class="q" data-q="'+qi+'"><h4>'+(qi+1)+'. '+q.q+'</h4>'+q.o.map(function(o,oi){return '<button class="opt" data-o="'+oi+'">'+o+'</button>';}).join("")+'<div class="fb"></div></div>';}).join("")+'</section>';
+ return h;
+}
+
+
+function makeoverHTML(k){
+ var W=WM[k], S=STAGES[k];
+ var h='<p class="lead">'+(W.tagsLead||'Every content point addresses MAO-WM-01. In this stage, the syllabus tags these points as reasoning:')+'</p>';
+ if(W.tags.length) h+='<div class="card" style="padding:4px 0;margin-bottom:16px">'+W.tags.map(function(t){return '<div class="tagrow" style="grid-template-columns:1fr auto"><span>'+t[0]+'</span><span class="wtag">'+t[1]+'</span></div>';}).join("")+'</div>';
+ h+='<p class="lead"><b>Try it yourself.</b> Read the closed task. How would you change it so students reason and communicate? Jot your idea, then reveal the makeover.</p>';
+ h+='<div class="mk"><div class="side before"><div class="lbl">Before: closed task</div><div class="task closed">'+W.before.task+'</div><b style="font-size:14px">Limitations</b><ul>'+W.before.lim.map(function(l){return '<li>'+l+'</li>';}).join("")+'</ul></div>';
+ h+='<div class="side after" id="mkAfter"><div class="hidden-after"><div class="think">How would you rework this task?<textarea id="mkIdea" placeholder="My idea…"></textarea></div><button class="btn" id="mkReveal" style="background:var(--good)">Reveal the makeover</button></div></div></div>';
+ h+='<p class="note" style="margin-top:10px">Example tasks are additional commentary, built on the syllabus content points and examples. They are not NESA tasks.</p>';
+ return h;
+}
+function afterHTML(k){
+ var A=WM[k].after;
+ return '<div class="lbl">After: rich task</div><div class="task">'+A.task+'</div><div class="wmchips">'+A.el.map(function(e){return '<span>'+e+'</span>';}).join("")+'</div>'+
+ '<div class="diff"><div><b>Enabling prompt</b>'+A.enable+'</div><div><b>Extending prompt</b>'+A.extend+'</div><div><b>Listen for</b>'+A.listen+'</div></div>'+
+ '<button class="btn ghost small" id="mkHide" style="margin-top:12px">Hide again</button>';
+}
+
+function renderWM(){
+ var h='<div class="hero" style="border-left-color:var(--good)"><span class="tag" style="background:var(--good-soft);color:var(--good)">Working mathematically</span><h2>Working mathematically is built into every content point</h2><p>The Working mathematically outcome, MAO-WM-01, applies to all content in every stage. It isn’t a separate strand to teach on its own. It shapes how students learn the content in this focus area.</p></div>';
+ h+='<section class="blk"><h3>The outcome</h3><div class="outc"><code style="background:var(--good)">MAO-WM-01</code><span>develops understanding and fluency in mathematics through exploring and connecting mathematical concepts, choosing and applying mathematical techniques to solve problems, and communicating their thinking and reasoning coherently and clearly</span></div><p class="lead" style="margin-top:12px">The outcome names five things students do. This module uses them to describe what a task asks of students.</p><div class="wmel">'+WM_ELEMENTS.map(function(e){return '<div><b>'+e[0]+'</b>'+e[1]+'</div>';}).join("")+'</div></section>';
+ var rows="";
+ ORDER.forEach(function(k){WM[k].tags.forEach(function(t){rows+='<div class="tagrow"><span class="sl" style="background:'+STAGES[k].col+'">'+STAGES[k].name+'</span><span>'+t[0]+'</span><span class="wtag">'+t[1]+'</span></div>';});});
+ h+='<section class="blk"><h3>Where the syllabus flags reasoning</h3><p class="lead">In the content, some points are tagged with a type of reasoning. These are good places to plan for discussion, justification and multiple representations.</p><div class="card" style="padding:4px 0">'+rows+'</div></section>';
+ h+='<section class="blk"><h3>Makeover practice</h3><p class="lead">Choose a closed task, then try each move. Each move turns the same content into a task that asks students to reason and communicate.</p><div class="tool"><div class="ctrl" style="margin-top:0"><label for="ctSel">Closed task</label><select id="ctSel">'+CLOSED.map(function(c,i){return '<option value="'+i+'">'+STAGES[c.st].name+': '+c.task+'</option>';}).join("")+'</select></div><div class="mk" style="grid-template-columns:1fr"><div class="side before"><div class="lbl">Closed task</div><div class="task closed" id="ctTask"></div></div></div><div class="moves" id="ctMoves"></div><div id="ctOut"></div></div><p class="note" style="margin-top:10px">These moves and example tasks are additional commentary, not NESA material.</p></section>';
+ h+='<section class="blk"><h3>Questions that invite reasoning</h3><div class="grid2">'+
+  card("“How do you know?”","Ask after correct answers too, not only after errors.")+
+  card("“Is there another way?”","Ask for a second representation: materials, a number line, words.")+
+  card("“Convince me.”","Ask students to persuade a sceptical partner, using a model as evidence.")+
+  card("“What would change if…?”","Change one number or condition and ask students to predict before they calculate.")+
+ '</div></section>';
+ return h;
+}
+function showClosed(i){
+ var c=CLOSED[i];
+ $("#ctTask").textContent=c.task;
+ $("#ctMoves").innerHTML=c.moves.map(function(m,j){return '<button data-j="'+j+'">'+m.m+'</button>';}).join("");
+ $("#ctOut").innerHTML='<p class="note">Select a move above.</p>';
+ $$("#ctMoves button").forEach(function(b){b.onclick=function(){
+  var m=c.moves[+b.dataset.j];
+  $$("#ctMoves button").forEach(function(x){x.classList.toggle("on",x===b);});
+  $("#ctOut").innerHTML='<div class="mk" style="grid-template-columns:1fr"><div class="side after"><div class="lbl">After: '+m.m+'</div><div class="task">'+m.t+'</div><div class="wmchips">'+m.el.map(function(e){return '<span>'+e+'</span>';}).join("")+'</div></div></div>';
+ };});
+}
+
+function renderModels(){
+ var h='<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Models</span><h2>'+M.modelsH2+'</h2><p>'+M.modelsP+'</p></div>';
+ h+='<div class="mgrid" role="table"><div class="mh first" style="grid-row:1;grid-column:1">Model</div>'+ORDER.map(function(k,ki){return '<div class="mh" style="grid-row:1;grid-column:'+(ki+2)+';background:'+STAGES[k].col+'">'+STAGES[k].name+'</div>';}).join("");
+ MODELS.forEach(function(m,i){
+  h+='<div class="mrow" data-i="'+i+'"><button class="mn" data-i="'+i+'" style="grid-row:'+(i+2)+'">'+m.n+'<small>'+m.w+'</small></button>';
+  var cells="";
+  for(var c=0;c<4;c++) cells+='<div class="mc" style="grid-column:'+(c+2)+';grid-row:'+(i+2)+'"></div>';
+  var g1=m.s+2, g2=m.e+3;
+  var col = m.hi ? "var(--navy)" : STAGES[ORDER[m.s]].col;
+  cells+='<div class="mbar" data-i="'+i+'" style="grid-column:'+g1+'/'+g2+';grid-row:'+(i+2)+';background:'+col+';opacity:'+(m.hi?1:.75)+'" title="'+esc(m.n)+'"></div>';
+  h+=cells+'</div>';
+ });
+ h+='</div><div class="mdetail card" id="mDetail"><p class="note" style="margin:0">Select a model to read how it’s used.</p></div>';
+ h+='<section class="blk"><h3>Using models well</h3><div class="grid2">'+
+  M.modelTips.map(function(x){return card(x[0],x[1]);}).join("")+
+ '</div></section>';
+ return h;
+}
+function showModel(i){
+ var m=MODELS[i];
+ $$(".mrow").forEach(function(r){r.classList.toggle("sel",+r.dataset.i===i);});
+ var st=ORDER.slice(m.s,m.e+1).map(function(k){return STAGES[k].name;}).join(", ");
+ $("#mDetail").innerHTML='<h4 style="font-size:18px;margin-bottom:4px">'+m.n+'</h4><div class="note" style="margin-bottom:8px">'+st+'</div><p style="margin:0;color:var(--ink2)">'+m.d+'</p>';
+}
+
+function renderSorter(){
+ return '<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Misconception sorter</span><h2>Find the root</h2><p>'+M.sorterP+'</p></div>'+
+ '<div class="sorter"><div class="scn" id="scn"></div></div>'+
+ '<section class="blk"><h3>The four roots across the stages</h3><div style="overflow-x:auto"><table class="simple" style="min-width:640px"><thead><tr><th>Root</th>'+ORDER.map(function(k){return '<th style="color:'+STAGES[k].col+'">'+STAGES[k].name+'</th>';}).join("")+'</tr></thead><tbody>'+
+ M.rootRows.map(function(r){return '<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td><td>'+r[4]+'</td></tr>';}).join("")+
+ '</tbody></table></div><p class="note" style="margin-top:10px">'+M.sorterNote+'</p></section>';
+}
+var sortIdx=0, sortScore=0, sortDone=0;
+function showScenario(){
+ var el=$("#scn");
+ if(sortIdx>=SCENARIOS.length){
+  el.innerHTML='<h4 style="font-size:20px;margin-bottom:8px">You matched '+sortScore+' of '+SCENARIOS.length+' on the first try.</h4><p class="lead">For discussion: which root do you see most in your classroom? Which stage do you think it starts in?</p><button class="btn" id="sortAgain">Start again</button>';
+  $("#sortAgain").onclick=function(){sortIdx=0;sortScore=0;sortDone=0;showScenario();};
+  return;
+ }
+ var s=SCENARIOS[sortIdx], S=STAGES[s.st], tried=false;
+ el.innerHTML='<div class="score">Scenario '+(sortIdx+1)+' of '+SCENARIOS.length+' · <span style="color:'+S.col+';font-weight:700">'+S.name+'</span></div><div class="quote">'+s.q+'</div><div class="roots">'+ROOTS.map(function(r,i){return '<button data-r="'+i+'">'+r+'</button>';}).join("")+'</div><div class="fbline" id="sortFb"></div><div class="ctrl"><button class="btn" id="sortNext" style="display:none">Next scenario →</button></div>';
+ $$(".roots button",el).forEach(function(b){b.onclick=function(){
+  var r=+b.dataset.r, fb=$("#sortFb");
+  if(r===s.a){
+   if(!tried) sortScore++;
+   b.classList.add("right");
+   $$(".roots button",el).forEach(function(x){x.disabled=true;});
+   fb.className="fbline show ok"; fb.innerHTML="<b>Yes, "+ROOTS[s.a].toLowerCase()+".</b> "+s.why;
+   $("#sortNext").style.display="inline-block";
+  } else {
+   tried=true; b.classList.add("wrong"); b.disabled=true;
+   fb.className="fbline show no"; fb.innerHTML="Not quite. Think about what the student is paying attention to. Try another root.";
+  }
+ };});
+ $("#sortNext").onclick=function(){sortIdx++;showScenario();};
+}
+
+function renderReflect(){
+ var h='<div class="hero"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Reflect and plan</span><h2>Connect the progression to your students</h2><p>Write your thinking below. Notes save automatically in this browser. Use <b>Copy my notes</b> to paste them into a document or email.</p></div>';
+ var g="";
+ PROMPTS.forEach(function(p,i){
+  if(p[0]!==g){g=p[0];h+='<h3 style="font-size:17px;margin:22px 0 10px">'+g+'</h3>';}
+  h+='<div class="rq"><label for="rq'+i+'">'+(i+1)+'. '+p[1]+'</label><textarea id="rq'+i+'" data-i="'+i+'" placeholder="Your thoughts…">'+esc(mem.notes[i]||"")+'</textarea></div>';
+ });
+ h+='<h3 style="font-size:17px;margin:22px 0 10px">Next steps</h3><div class="card todo">'+TODOS.map(function(t,i){return '<label><input type="checkbox" data-t="'+i+'"'+(mem.todo[i]?" checked":"")+'><span>'+t+'</span></label>';}).join("")+'</div>';
+ h+=checkHTML("post");
+ h+='<div class="ctrl" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center"><button class="btn" id="copyNotes">Copy my notes</button><button class="btn ghost" id="dlNotes">Download as text</button><span class="saved" id="savedMsg"></span></div><textarea id="copyBuf" aria-hidden="true" style="position:absolute;left:-9999px;top:0"></textarea>';
+ return h;
+}
+function notesText(){
+ var t=M.notesTitle+"\n\n";
+ PROMPTS.forEach(function(p,i){t+=(i+1)+". "+p[1]+"\n"+(mem.notes[i]||"(no response)")+"\n\n";});
+ var mk=ORDER.filter(function(k){return mem.notes["mk-"+k];});
+ if(mk.length){ t+="My task makeover ideas\n"; mk.forEach(function(k){t+=STAGES[k].name+": "+mem.notes["mk-"+k]+"\n";}); t+="\n"; }
+ t+=chkText();
+ t+="Next steps\n"; TODOS.forEach(function(x,i){t+=(mem.todo[i]?"[x] ":"[ ] ")+x+"\n";});
+ return t;
+}
+
+
+/* ---------------- knowledge and confidence self-check (private, saved in this browser) ---------------- */
+var FA_NAME = M.title.replace(/\s*K–6\s*$/,"");
+var CHK_CONF = [
+ "I understand how "+FA_NAME+" develops from Kindergarten to Year 6.",
+ "I can identify common misconceptions in "+FA_NAME+" and respond to them.",
+ "I can plan "+FA_NAME+" lessons that embed Working mathematically."
+];
+var CHK_SHORT = ["The K–6 progression","Misconceptions","Working mathematically"];
+function chkItems(){
+ var a=SCENARIOS.filter(function(s){return s.st==="s2";})[0]||SCENARIOS[0], b=SCENARIOS.filter(function(s){return s.st==="s3";})[0]||SCENARIOS[SCENARIOS.length-1];
+ return [a,b];
+}
+function chkAnsText(v){ return v>=0?ROOTS[v]:"Not sure"; }
+function chkOk(x){ return x&&x.conf&&x.ans?x:null; }
+function chkCompare(){
+ var pre=chkOk(mem.chk.pre), post=mem.chk.post, items=chkItems();
+ var h='<div class="chkres"><h4>'+(pre?"Before and after":"Your answers")+'</h4><table class="simple"><thead><tr><th>Confidence (1–5)</th>'+(pre?'<th>Before</th>':'')+'<th>'+(pre?'After':'Now')+'</th></tr></thead><tbody>';
+ CHK_SHORT.forEach(function(t,i){ var d=pre?post.conf[i]-pre.conf[i]:0; h+='<tr><td>'+t+'</td>'+(pre?'<td>'+pre.conf[i]+'</td>':'')+'<td>'+post.conf[i]+(pre&&d?' <span class="chkd '+(d>0?'up':'down')+'">'+(d>0?'+':'')+d+'</span>':'')+'</td></tr>'; });
+ h+='</tbody></table>';
+ items.forEach(function(s,i){
+  var pa=pre?pre.ans[i]:null, qa=post.ans[i];
+  h+='<div class="chkscn"><b>Scenario '+(i+1)+'.</b> '+s.q+'<ul class="tight">'+(pre?'<li>Before: '+chkAnsText(pa)+' '+(pa===s.a?'✓':'✗')+'</li>':'')+'<li>'+(pre?'After':'Your answer')+': '+chkAnsText(qa)+' '+(qa===s.a?'✓':'✗')+'</li></ul><div class="note"><b>Most likely root:</b> '+ROOTS[s.a]+'. '+s.why+'</div></div>';
+ });
+ return h+'</div>';
+}
+function checkHTML(ph){
+ var pre=ph==="pre", done=chkOk(mem.chk[ph]);
+ var h='<section class="blk chk" id="chk-'+ph+'"><div class="chkhead"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">'+(pre?"Before you start":"After the module")+'</span><h3>'+(pre?"Quick self-check: before":"Quick self-check: after")+' <span class="chktime">about 2 minutes · optional · private</span></h3>'+
+  '<p class="note">'+(pre?"Answer before you work through the module, then again at the end in <b>Reflect and plan</b> to see what has changed.":"The same questions as at the start. Compare your answers to see what has changed.")+' Your answers are saved only in this browser, like your notes. Nothing is sent anywhere.</p></div>';
+ if(done){
+  if(pre) return h+'<div class="fbline show ok">Saved'+(done.t?' on '+done.t:'')+'. You’ll see the answers and compare them with your after check at the end, in <b>Reflect and plan</b>. <button class="linkbtn" id="chkRedo-'+ph+'">Answer again</button></div></section>';
+  return h+chkCompare()+'<div class="ctrl"><button class="linkbtn" id="chkRedo-'+ph+'">Answer the after check again</button></div></section>';
+ }
+ h+='<div class="chkq"><b>How confident are you?</b> <span class="note">1 = not confident, 5 = very confident</span>';
+ CHK_CONF.forEach(function(c,i){
+  h+='<div class="chkrate" role="radiogroup" aria-label="'+esc(c)+'"><span>'+c+'</span><span class="chkopts">'+[1,2,3,4,5].map(function(v){return '<label><input type="radio" name="chkc'+ph+i+'" value="'+v+'"><span>'+v+'</span></label>';}).join("")+'</span></div>';
+ });
+ h+='</div>';
+ chkItems().forEach(function(s,i){
+  h+='<div class="chkq"><b>Scenario '+(i+1)+' ('+STAGES[s.st].name+').</b> '+s.q+' <span class="note">Which is the most likely root of this response?</span><div class="chkmc">'+ROOTS.map(function(r,j){return '<label><input type="radio" name="chkk'+ph+i+'" value="'+j+'"><span>'+r+'</span></label>';}).join("")+'<label><input type="radio" name="chkk'+ph+i+'" value="-1"><span>I’m not sure</span></label></div></div>';
+ });
+ h+='<div class="ctrl"><button class="btn" id="chkSave-'+ph+'">'+(pre?"Save my answers":"Save and compare")+'</button><span class="note" id="chkMsg-'+ph+'"></span></div></section>';
+ return h;
+}
+function wireCheck(ph){
+ var redo=$("#chkRedo-"+ph); if(redo){ redo.onclick=function(){ delete mem.chk[ph]; save(); var el=$("#chk-"+ph); el.outerHTML=checkHTML(ph); wireCheck(ph); }; }
+ var btn=$("#chkSave-"+ph); if(!btn) return;
+ btn.onclick=function(){
+  var msg=$("#chkMsg-"+ph), val=function(n){var x=$('input[name="'+n+'"]:checked');return x?+x.value:null;};
+  var conf=CHK_CONF.map(function(c,i){return val("chkc"+ph+i);}), ans=chkItems().map(function(s,i){return val("chkk"+ph+i);});
+  if(conf.some(function(v){return v===null;})||ans.some(function(v){return v===null;})){ msg.textContent="Please answer the confidence ratings and both scenarios (“I’m not sure” is fine)."; return; }
+  mem.chk[ph]={conf:conf,ans:ans,t:new Date().toLocaleDateString("en-AU")}; save();
+  var el=$("#chk-"+ph); el.outerHTML=checkHTML(ph); wireCheck(ph);
+ };
+}
+function chkText(){
+ var pre=chkOk(mem.chk.pre), post=chkOk(mem.chk.post); if(!pre&&!post) return "";
+ var t="Quick self-check\n", items=chkItems();
+ CHK_SHORT.forEach(function(x,i){ t+=x+" (confidence 1-5): "+(pre?"before "+pre.conf[i]:"before -")+", "+(post?"after "+post.conf[i]:"after -")+"\n"; });
+ items.forEach(function(s,i){ t+="Scenario "+(i+1)+": "+(pre?"before "+(pre.ans[i]===s.a?"correct":"not yet"):"before -")+", "+(post?"after "+(post.ans[i]===s.a?"correct":"not yet"):"after -")+"\n"; });
+ return t+"\n";
+}
+
+/* ---------------- wiring ---------------- */
+function wire(id){
+ if(id==="welcome") wireCheck("pre");
+ if(id==="reflect") wireCheck("post");
+ if(id==="ideas"){ $$(".idea").forEach(function(b){b.onclick=function(){showIdea(+b.dataset.i);};}); }
+ if(id==="prog"){ $$(".aspects button").forEach(function(b){b.onclick=function(){showAspect(+b.dataset.k);};}); showAspect(0); }
+ if(id==="models"){ $$(".mn,.mbar").forEach(function(b){b.onclick=function(){showModel(+b.dataset.i);};}); }
+ if(id==="sorter"){ sortIdx=0; sortScore=0; showScenario(); }
+ if(id==="wm"){ $("#ctSel").onchange=function(){showClosed(+this.value);}; showClosed(0); }
+ if(id==="reflect"){
+  var msg=$("#savedMsg"), tmr;
+  $$(".rq textarea").forEach(function(ta){ta.oninput=function(){mem.notes[ta.dataset.i]=ta.value;save();msg.textContent="Saved";clearTimeout(tmr);tmr=setTimeout(function(){msg.textContent="";},1500);};});
+  $$(".todo input").forEach(function(cb){cb.onchange=function(){mem.todo[cb.dataset.t]=cb.checked;save();};});
+  $("#copyNotes").onclick=function(){
+   var txt=notesText(), ok=false;
+   var buf=$("#copyBuf"); buf.value=txt; buf.select();
+   try{ok=document.execCommand("copy");}catch(e){}
+   if(!ok && navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){msg.textContent="Copied";},function(){msg.textContent="Copy blocked: select the text in each box instead";}); return; }
+   msg.textContent=ok?"Copied to clipboard":"Copy blocked: select the text in each box instead";
+  };
+  $("#dlNotes").onclick=function(){
+   try{ var a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([notesText()],{type:"text/plain"})); a.download=M.dlName; document.body.appendChild(a); a.click(); a.remove(); }
+   catch(e){ msg.textContent="Download blocked here: use Copy my notes instead"; }
+  };
+ }
+ var st=SECTIONS.filter(function(s){return s.id===id;})[0];
+ if(st && st.stage){
+  var C=STAGE_CONTENT[st.stage];
+  $$(".acc>button").forEach(function(b){b.onclick=function(){var a=b.parentNode;a.classList.toggle("open");b.setAttribute("aria-expanded",a.classList.contains("open"));};});
+  $$(".flip").forEach(function(f){f.onclick=function(){f.classList.toggle("on");f.setAttribute("aria-pressed",f.classList.contains("on"));};});
+  $$(".quiz .q").forEach(function(qd){
+   var q=C.quiz[+qd.dataset.q], fb=$(".fb",qd);
+   $$(".opt",qd).forEach(function(b){b.onclick=function(){
+    var o=+b.dataset.o;
+    if(o===q.a){ b.classList.add("right"); $$(".opt",qd).forEach(function(x){x.disabled=true;}); fb.className="fb show ok"; fb.innerHTML="<b>Correct.</b> "+q.why; }
+    else { b.classList.add("wrong"); b.disabled=true; fb.className="fb show no"; fb.innerHTML="Not quite. Have another go."; }
+   };});
+  });
+  wireMakeover(st.stage);
+  if(typeof wireTool==="function") wireTool(C.tool);
+ }
+}
+
+/* makeover reveal */
+function wireMakeover(k){
+ var box=$("#mkAfter"), key="mk-"+k;
+ function closed(){
+  box.innerHTML='<div class="hidden-after"><div class="think">How would you rework this task?<textarea id="mkIdea" placeholder="My idea…"></textarea></div><button class="btn" id="mkReveal" style="background:var(--good)">Reveal the makeover</button></div>';
+  var ta=$("#mkIdea"); ta.value=mem.notes[key]||""; ta.oninput=function(){mem.notes[key]=ta.value;save();};
+  $("#mkReveal").onclick=open;
+ }
+ function open(){ box.innerHTML=afterHTML(k)+(mem.notes[key]?'<div class="note" style="margin-top:10px"><b>Your idea:</b> '+esc(mem.notes[key])+'</div>':''); $("#mkHide").onclick=closed; }
+ closed();
+}
+
+/* ---------------- start ---------------- */
+document.getElementById("foot").innerHTML=M.footer;
+var startId=""; try{ startId=decodeURIComponent((window.location.hash||"").slice(1)); }catch(e){}
+var startIdx=SECTIONS.map(function(s){return s.id;}).indexOf(startId);
+go(startIdx>=0?startIdx:0);
+
+</script>
+</body>
+</html>

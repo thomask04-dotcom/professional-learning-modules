@@ -55,7 +55,7 @@ var PAIRS=[
  {a:"0.3",b:"0.4",m:"<b>Reciprocal or negative thinking.</b> Some students pick 0.3 by analogy with one third and one quarter, or with −3 and −4."},
  {a:"0.5",b:"0.25",m:"<b>Benchmarks.</b> 0.5 is a half and 0.25 is a quarter. Students using whole number thinking may pick 0.25 because 25 is more than 5."},
  {a:"0.7",b:"0.07",m:"<b>Zero in the tenths place.</b> 0.07 is 7 hundredths, ten times smaller than 7 tenths."},
- {a:"0.6",b:"0.60",m:"<b>Trailing zeros.</b> They’re equal: 0.60 is 60 hundredths, the same as 6 tenths. Students who think a trailing zero makes a decimal bigger choose 0.60."}
+ {a:"0.6",b:"0.60",m:"<b>Trailing zeros.</b> They’re equal: 0.60 is 6 tenths and 0 hundredths, the same as 6 tenths. Students who think a trailing zero makes a decimal bigger choose 0.60."}
 ];
 function wireDecimals(){
  var i=0, score=0, first=true;

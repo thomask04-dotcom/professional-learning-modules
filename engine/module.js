@@ -4,8 +4,8 @@
 "use strict";
 /* ---------------- storage (safe) ---------------- */
 var KEY = M.key;
-var mem = {done:{}, notes:{}, todo:{}};
-try { var raw = window.localStorage.getItem(KEY); if (raw) { var p = JSON.parse(raw); mem.done = p.done||{}; mem.notes = p.notes||{}; mem.todo = p.todo||{}; } } catch(e) {}
+var mem = {done:{}, notes:{}, todo:{}, chk:{}};
+try { var raw = window.localStorage.getItem(KEY); if (raw) { var p = JSON.parse(raw); mem.done = p.done||{}; mem.notes = p.notes||{}; mem.todo = p.todo||{}; mem.chk = p.chk||{}; } } catch(e) {}
 function save(){ try { window.localStorage.setItem(KEY, JSON.stringify(mem)); } catch(e) {} }
 
 /* ---------------- sections ---------------- */
@@ -77,7 +77,8 @@ function renderWelcome(){
  card("Reflect","on your own students and plan next steps. Your notes save in this browser.")+
  '</div></section>'+
  '<section class="blk"><h3>'+M.namesH3+'</h3><p class="lead">'+M.namesP+'</p><table class="simple"><thead><tr><th>Stage</th><th>Focus area name</th><th>Outcomes</th></tr></thead><tbody>'+rows+'</tbody></table></section>'+
- '<section class="blk"><h3>Suggested pathways</h3><div class="grid2"><div class="card"><h4 style="margin-bottom:6px">On your own (about 45 minutes)</h4><ul class="tight"><li>Big ideas and the progression explorer</li><li>Your stage, plus the stage before it</li><li>The misconception sorter</li><li>Reflect and plan</li></ul></div><div class="card"><h4 style="margin-bottom:6px">As a staff or PLC session (about 60 minutes)</h4><ul class="tight"><li>Whole staff: big ideas and progression (15 min)</li><li>Stage teams: their stage section and tool (25 min)</li><li>Whole staff: misconception sorter (10 min)</li><li>Reflection prompts and next steps (10 min)</li></ul></div></div><p class="note" style="margin-top:12px">Tip: most difficulties in a stage begin in the stage before it, so look one stage back as well as at your own.</p></section>';
+ '<section class="blk"><h3>Suggested pathways</h3><div class="grid2"><div class="card"><h4 style="margin-bottom:6px">On your own (about 45 minutes)</h4><ul class="tight"><li>Big ideas and the progression explorer</li><li>Your stage, plus the stage before it</li><li>The misconception sorter</li><li>Reflect and plan</li></ul></div><div class="card"><h4 style="margin-bottom:6px">As a staff or PLC session (about 60 minutes)</h4><ul class="tight"><li>Whole staff: big ideas and progression (15 min)</li><li>Stage teams: their stage section and tool (25 min)</li><li>Whole staff: misconception sorter (10 min)</li><li>Reflection prompts and next steps (10 min)</li></ul></div></div><p class="note" style="margin-top:12px">Tip: most difficulties in a stage begin in the stage before it, so look one stage back as well as at your own.</p></section>'+
+ checkHTML("pre");
 }
 function card(t,d){return '<div class="card"><b>'+t+'</b> <span style="color:var(--ink2)">'+d+'</span></div>';}
 
@@ -126,8 +127,8 @@ function renderStage(k){
 
 function makeoverHTML(k){
  var W=WM[k], S=STAGES[k];
- var h='<p class="lead">Every content point addresses MAO-WM-01. In this stage, the syllabus tags these points as reasoning:</p>';
- h+='<div class="card" style="padding:4px 0;margin-bottom:16px">'+W.tags.map(function(t){return '<div class="tagrow" style="grid-template-columns:1fr auto"><span>'+t[0]+'</span><span class="wtag">'+t[1]+'</span></div>';}).join("")+'</div>';
+ var h='<p class="lead">'+(W.tagsLead||'Every content point addresses MAO-WM-01. In this stage, the syllabus tags these points as reasoning:')+'</p>';
+ if(W.tags.length) h+='<div class="card" style="padding:4px 0;margin-bottom:16px">'+W.tags.map(function(t){return '<div class="tagrow" style="grid-template-columns:1fr auto"><span>'+t[0]+'</span><span class="wtag">'+t[1]+'</span></div>';}).join("")+'</div>';
  h+='<p class="lead"><b>Try it yourself.</b> Read the closed task. How would you change it so students reason and communicate? Jot your idea, then reveal the makeover.</p>';
  h+='<div class="mk"><div class="side before"><div class="lbl">Before: closed task</div><div class="task closed">'+W.before.task+'</div><b style="font-size:14px">Limitations</b><ul>'+W.before.lim.map(function(l){return '<li>'+l+'</li>';}).join("")+'</ul></div>';
  h+='<div class="side after" id="mkAfter"><div class="hidden-after"><div class="think">How would you rework this task?<textarea id="mkIdea" placeholder="My idea…"></textarea></div><button class="btn" id="mkReveal" style="background:var(--good)">Reveal the makeover</button></div></div></div>';
@@ -234,6 +235,7 @@ function renderReflect(){
   h+='<div class="rq"><label for="rq'+i+'">'+(i+1)+'. '+p[1]+'</label><textarea id="rq'+i+'" data-i="'+i+'" placeholder="Your thoughts…">'+esc(mem.notes[i]||"")+'</textarea></div>';
  });
  h+='<h3 style="font-size:17px;margin:22px 0 10px">Next steps</h3><div class="card todo">'+TODOS.map(function(t,i){return '<label><input type="checkbox" data-t="'+i+'"'+(mem.todo[i]?" checked":"")+'><span>'+t+'</span></label>';}).join("")+'</div>';
+ h+=checkHTML("post");
  h+='<div class="ctrl" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center"><button class="btn" id="copyNotes">Copy my notes</button><button class="btn ghost" id="dlNotes">Download as text</button><span class="saved" id="savedMsg"></span></div><textarea id="copyBuf" aria-hidden="true" style="position:absolute;left:-9999px;top:0"></textarea>';
  return h;
 }
@@ -242,12 +244,79 @@ function notesText(){
  PROMPTS.forEach(function(p,i){t+=(i+1)+". "+p[1]+"\n"+(mem.notes[i]||"(no response)")+"\n\n";});
  var mk=ORDER.filter(function(k){return mem.notes["mk-"+k];});
  if(mk.length){ t+="My task makeover ideas\n"; mk.forEach(function(k){t+=STAGES[k].name+": "+mem.notes["mk-"+k]+"\n";}); t+="\n"; }
+ t+=chkText();
  t+="Next steps\n"; TODOS.forEach(function(x,i){t+=(mem.todo[i]?"[x] ":"[ ] ")+x+"\n";});
  return t;
 }
 
+
+/* ---------------- knowledge and confidence self-check (private, saved in this browser) ---------------- */
+var FA_NAME = M.title.replace(/\s*K–6\s*$/,"");
+var CHK_CONF = [
+ "I understand how "+FA_NAME+" develops from Kindergarten to Year 6.",
+ "I can identify common misconceptions in "+FA_NAME+" and respond to them.",
+ "I can plan "+FA_NAME+" lessons that embed Working mathematically."
+];
+var CHK_SHORT = ["The K–6 progression","Misconceptions","Working mathematically"];
+function chkItems(){
+ var a=SCENARIOS.filter(function(s){return s.st==="s2";})[0]||SCENARIOS[0], b=SCENARIOS.filter(function(s){return s.st==="s3";})[0]||SCENARIOS[SCENARIOS.length-1];
+ return [a,b];
+}
+function chkAnsText(v){ return v>=0?ROOTS[v]:"Not sure"; }
+function chkOk(x){ return x&&x.conf&&x.ans?x:null; }
+function chkCompare(){
+ var pre=chkOk(mem.chk.pre), post=mem.chk.post, items=chkItems();
+ var h='<div class="chkres"><h4>'+(pre?"Before and after":"Your answers")+'</h4><table class="simple"><thead><tr><th>Confidence (1–5)</th>'+(pre?'<th>Before</th>':'')+'<th>'+(pre?'After':'Now')+'</th></tr></thead><tbody>';
+ CHK_SHORT.forEach(function(t,i){ var d=pre?post.conf[i]-pre.conf[i]:0; h+='<tr><td>'+t+'</td>'+(pre?'<td>'+pre.conf[i]+'</td>':'')+'<td>'+post.conf[i]+(pre&&d?' <span class="chkd '+(d>0?'up':'down')+'">'+(d>0?'+':'')+d+'</span>':'')+'</td></tr>'; });
+ h+='</tbody></table>';
+ items.forEach(function(s,i){
+  var pa=pre?pre.ans[i]:null, qa=post.ans[i];
+  h+='<div class="chkscn"><b>Scenario '+(i+1)+'.</b> '+s.q+'<ul class="tight">'+(pre?'<li>Before: '+chkAnsText(pa)+' '+(pa===s.a?'✓':'✗')+'</li>':'')+'<li>'+(pre?'After':'Your answer')+': '+chkAnsText(qa)+' '+(qa===s.a?'✓':'✗')+'</li></ul><div class="note"><b>Most likely root:</b> '+ROOTS[s.a]+'. '+s.why+'</div></div>';
+ });
+ return h+'</div>';
+}
+function checkHTML(ph){
+ var pre=ph==="pre", done=chkOk(mem.chk[ph]);
+ var h='<section class="blk chk" id="chk-'+ph+'"><div class="chkhead"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">'+(pre?"Before you start":"After the module")+'</span><h3>'+(pre?"Quick self-check: before":"Quick self-check: after")+' <span class="chktime">about 2 minutes · optional · private</span></h3>'+
+  '<p class="note">'+(pre?"Answer before you work through the module, then again at the end in <b>Reflect and plan</b> to see what has changed.":"The same questions as at the start. Compare your answers to see what has changed.")+' Your answers are saved only in this browser, like your notes. Nothing is sent anywhere.</p></div>';
+ if(done){
+  if(pre) return h+'<div class="fbline show ok">Saved'+(done.t?' on '+done.t:'')+'. You’ll see the answers and compare them with your after check at the end, in <b>Reflect and plan</b>. <button class="linkbtn" id="chkRedo-'+ph+'">Answer again</button></div></section>';
+  return h+chkCompare()+'<div class="ctrl"><button class="linkbtn" id="chkRedo-'+ph+'">Answer the after check again</button></div></section>';
+ }
+ h+='<div class="chkq"><b>How confident are you?</b> <span class="note">1 = not confident, 5 = very confident</span>';
+ CHK_CONF.forEach(function(c,i){
+  h+='<div class="chkrate" role="radiogroup" aria-label="'+esc(c)+'"><span>'+c+'</span><span class="chkopts">'+[1,2,3,4,5].map(function(v){return '<label><input type="radio" name="chkc'+ph+i+'" value="'+v+'"><span>'+v+'</span></label>';}).join("")+'</span></div>';
+ });
+ h+='</div>';
+ chkItems().forEach(function(s,i){
+  h+='<div class="chkq"><b>Scenario '+(i+1)+' ('+STAGES[s.st].name+').</b> '+s.q+' <span class="note">Which is the most likely root of this response?</span><div class="chkmc">'+ROOTS.map(function(r,j){return '<label><input type="radio" name="chkk'+ph+i+'" value="'+j+'"><span>'+r+'</span></label>';}).join("")+'<label><input type="radio" name="chkk'+ph+i+'" value="-1"><span>I’m not sure</span></label></div></div>';
+ });
+ h+='<div class="ctrl"><button class="btn" id="chkSave-'+ph+'">'+(pre?"Save my answers":"Save and compare")+'</button><span class="note" id="chkMsg-'+ph+'"></span></div></section>';
+ return h;
+}
+function wireCheck(ph){
+ var redo=$("#chkRedo-"+ph); if(redo){ redo.onclick=function(){ delete mem.chk[ph]; save(); var el=$("#chk-"+ph); el.outerHTML=checkHTML(ph); wireCheck(ph); }; }
+ var btn=$("#chkSave-"+ph); if(!btn) return;
+ btn.onclick=function(){
+  var msg=$("#chkMsg-"+ph), val=function(n){var x=$('input[name="'+n+'"]:checked');return x?+x.value:null;};
+  var conf=CHK_CONF.map(function(c,i){return val("chkc"+ph+i);}), ans=chkItems().map(function(s,i){return val("chkk"+ph+i);});
+  if(conf.some(function(v){return v===null;})||ans.some(function(v){return v===null;})){ msg.textContent="Please answer the confidence ratings and both scenarios (“I’m not sure” is fine)."; return; }
+  mem.chk[ph]={conf:conf,ans:ans,t:new Date().toLocaleDateString("en-AU")}; save();
+  var el=$("#chk-"+ph); el.outerHTML=checkHTML(ph); wireCheck(ph);
+ };
+}
+function chkText(){
+ var pre=chkOk(mem.chk.pre), post=chkOk(mem.chk.post); if(!pre&&!post) return "";
+ var t="Quick self-check\n", items=chkItems();
+ CHK_SHORT.forEach(function(x,i){ t+=x+" (confidence 1-5): "+(pre?"before "+pre.conf[i]:"before -")+", "+(post?"after "+post.conf[i]:"after -")+"\n"; });
+ items.forEach(function(s,i){ t+="Scenario "+(i+1)+": "+(pre?"before "+(pre.ans[i]===s.a?"correct":"not yet"):"before -")+", "+(post?"after "+(post.ans[i]===s.a?"correct":"not yet"):"after -")+"\n"; });
+ return t+"\n";
+}
+
 /* ---------------- wiring ---------------- */
 function wire(id){
+ if(id==="welcome") wireCheck("pre");
+ if(id==="reflect") wireCheck("post");
  if(id==="ideas"){ $$(".idea").forEach(function(b){b.onclick=function(){showIdea(+b.dataset.i);};}); }
  if(id==="prog"){ $$(".aspects button").forEach(function(b){b.onclick=function(){showAspect(+b.dataset.k);};}); showAspect(0); }
  if(id==="models"){ $$(".mn,.mbar").forEach(function(b){b.onclick=function(){showModel(+b.dataset.i);};}); }
@@ -301,4 +370,6 @@ function wireMakeover(k){
 
 /* ---------------- start ---------------- */
 document.getElementById("foot").innerHTML=M.footer;
-go(0);
+var startId=""; try{ startId=decodeURIComponent((window.location.hash||"").slice(1)); }catch(e){}
+var startIdx=SECTIONS.map(function(s){return s.id;}).indexOf(startId);
+go(startIdx>=0?startIdx:0);

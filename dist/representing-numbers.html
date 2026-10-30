@@ -85,7 +85,8 @@ section.blk>h3 .n{font-size:12px;font-weight:700;background:var(--navy);color:#f
 .btn:disabled{opacity:.4;cursor:default;filter:none}
 .done-bar{margin-top:36px;padding:18px 20px;border-radius:var(--r);background:#fff;border:1px dashed #c9ced9;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
 .done-bar.is-done{border-style:solid;border-color:var(--good);background:var(--good-soft)}
-.nextprev{display:flex;gap:10px}
+.nextprev{display:flex;flex-wrap:wrap;gap:10px}
+.tool select{max-width:100%}
 ul.tight{margin:0;padding-left:20px}
 ul.tight li{margin:4px 0}
 
@@ -262,6 +263,33 @@ footer{font-size:13px;color:var(--ink3);text-align:center;padding:20px 16px 30px
 :focus-visible{outline:3px solid #f2b33d;outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
+/* knowledge and confidence check */
+.chk{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;border-top:4px solid var(--accent)}
+.chk h3{margin:8px 0 6px}
+.chktime{font-size:13px;font-weight:600;color:var(--ink3);margin-left:4px}
+.chkq{margin-top:16px}
+.chkq select,.chkq textarea{display:block;margin-top:6px;max-width:100%;font-family:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:8px}
+.chkq textarea{width:100%;min-height:70px}
+.chkrate{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}
+.chkrate>span:first-child{flex:1;min-width:220px}
+.chkopts{display:flex;gap:6px}
+.chkopts label,.chkmc label{cursor:pointer}
+.chkopts input,.chkmc input{position:absolute;opacity:0;pointer-events:none}
+.chkopts span{display:inline-block;width:38px;height:38px;line-height:36px;text-align:center;border:1.5px solid var(--line);border-radius:50%;font-weight:700;color:var(--ink2);background:#fff}
+.chkopts input:checked+span{background:var(--navy);border-color:var(--navy);color:#fff}
+.chkopts input:focus-visible+span,.chkmc input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.chkmc{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.chkmc span{display:block;border:1.5px solid var(--line);border-radius:9px;padding:8px 12px;background:#fff;font-size:15px}
+.chkmc input:checked+span{border-color:var(--navy);background:#eef0f7;font-weight:600}
+.linkbtn{background:none;border:0;padding:0;color:var(--navy);text-decoration:underline;font:inherit;cursor:pointer}
+.chkres{margin-top:12px}
+.chkres h4{margin:0 0 8px}
+.chkres table{margin-bottom:10px}
+.chkd{font-size:12px;font-weight:700;padding:1px 6px;border-radius:5px;margin-left:4px}
+.chkd.up{background:var(--good-soft);color:#1d5236}
+.chkd.down{background:var(--bad-soft);color:#7a2219}
+.chkscn{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+
 </style>
 <style>
 /* ES1 cards */
@@ -354,7 +382,7 @@ var M = {
  ],
  sorterNote:"NESA notes that decimal misconceptions move around: ‘longer is larger’ can turn into ‘shorter is larger’, so keep checking through Stages 2 and 3.",
  notesTitle:"Representing Numbers K–6: my reflections",
- footer:"Built from the NESA <i>Mathematics K–10 Syllabus (2022)</i> outcomes and content (Early Stage 1 to Stage 3) and the NESA syllabus support teaching advice. Items marked <span class=\"pill src-add\">Additional commentary</span> are common classroom observations, not NESA examples. Your progress and notes are saved only in this browser."
+ footer:"Built from the NESA <i>Mathematics K–10 Syllabus (2022)</i> outcomes and content (Early Stage 1 to Stage 3), the NESA syllabus support teaching advice, and the NESA additional teaching advice <i>Stage 2 – Representing numbers using place value B</i>. Items marked <span class=\"pill src-add\">Additional commentary</span> are common classroom observations, not NESA examples. Your progress and notes are saved only in this browser."
 };
 
 /* ---------------- data ---------------- */
@@ -456,25 +484,31 @@ s2:{
   ["Zero’s roles","Lexical zeros name a number (300). Syntactic zeros hold an empty place (1002) and are harder. Trailing zeros show precision. Write 0.2, not .2."],
   ["Say ‘ones’, not ‘units’","Both are correct, but ‘ones’ avoids confusion with units of ten and units of measurement: “10 ones equal 1 ten”."],
   ["Expanded notation enables operations","234 = 200 + 30 + 4 = 200 + 20 + 14, which is why exchanging a ten for ten ones in 234 − 119 makes sense."],
-  ["The decimal point shows where the ones are","Grouping by ten builds places to the left; splitting one into ten builds them to the right. Symmetry is around the ones, not the point. Introduce decimals with words (three tenths), not fraction notation."]
+  ["The decimal point shows where the ones are","Grouping by ten builds places to the left; splitting one into ten builds them to the right. Symmetry is around the ones, not the point. Introduce decimals with words (three tenths), not fraction notation."],
+  ["Read decimals by place value","Reading 1.12 as ‘one point twelve’ reinforces the idea that decimals are two whole numbers. Say ‘1 and 1 tenth and 2 hundredths’. Thinking of 0.45 as 4 tenths and 5 hundredths helped problem solving more than ‘45 hundredths’ (Rittle-Johnson et al. 2001). <span class=\"pill src-nesa\">NESA additional advice</span>"],
+  ["Money uses only some decimal features","$1.25 is read as two whole numbers, ‘one dollar twenty-five’, and amounts under $1 are often written in cents (83c). Petrol prices use four digits in cents per litre. Money is a context, but not a model of decimal place value. <span class=\"pill src-nesa\">NESA additional advice</span>"],
+  ["Say ‘times as large’","‘Ten times bigger’ is ambiguous: ‘one time bigger’ would mean doubling. Say ‘10 times as large’, and for smaller values use the fraction: ‘one-tenth as large’, not ‘ten times smaller’. <span class=\"pill src-nesa\">NESA additional advice</span>"]
  ],
  misc:[
   {see:"Says the 5 in 53 means “five”.",name:"Every digit is ones",resp:"Compare the 5 in 35 and 53 with materials: one is 10 times the other.",src:"n"},
   {see:"Reads 1001 as “one hundred and one” or “ten hundred and ten”.",name:"Misreading internal zeros",resp:"Name 1200, 1020 and 1002 in turn. Play Wipe-out.",src:"n"},
-  {see:"Writes 0.11 for eleven tenths.",name:"Decimals are two whole numbers separated by a point",resp:"Regroup 10 tenths as 1 using length models; write 11 tenths as 1.1. (40–50% of 11- to 15-year-olds did this in one Norwegian study.)",src:"n"},
+  {see:"Writes 0.11 for eleven tenths.",name:"Decimals are two whole numbers separated by a point",resp:"Regroup 10 tenths as 1 using length models; write 11 tenths as 1.1. Read decimals by place value (‘1 and 1 tenth’), not ‘one point eleven’. (40–50% of 11- to 15-year-olds did this in one Norwegian study.)",src:"n"},
+  {see:"Reads 1.12 as “one point twelve” and says 1.12 is bigger than 1.5.",name:"Reading the decimal part as a whole number",resp:"Read it as ‘1 and 1 tenth and 2 hundredths’ and compare the tenths first. NESA’s additional advice notes that money reading (‘one twenty-five’) can reinforce this.",src:"n"},
   {see:"Says 0.75 is larger than 0.8.",name:"Longer is larger",resp:"Set benchmarks (0.5 is a half, 0.25 is a quarter). Focus on the tenths digit on a length divided into tenths.",src:"n"},
   {see:"Says 0.4 is larger than 0.45.",name:"Shorter is larger",resp:"Often appears as ‘longer is larger’ fades. Keep checking across stages; use number lines and hundredths grids.",src:"n"},
   {see:"Says 0.3 is larger than 0.4, “like one third is bigger than one quarter”.",name:"Reciprocal or negative thinking",resp:"Place both on a number line and name them as tenths.",src:"n"},
   {see:"Thinks the first place after the point is ‘oneths’.",name:"The decimal point is the centre of symmetry",resp:"Show the stepped symmetry around the ones column: tens and tenths, hundreds and hundredths.",src:"a"}
  ],
- advice:["<b>Number expanders</b> help with renaming in non-standard forms, such as 5429 as 54 hundreds and 29 ones.","<b>Arrow cards</b> show that a number contains its parts: in 34, the 30 is still there under the 4. Ask how many tens are in 230, and build the same number with base 10 blocks or bundles.","<b>Let students split numbers.</b> Most children who haven’t been taught an algorithm split numbers into place value parts when adding (Kamii 2004).","<b>Direct attention</b> to the tenths digit; it improves decimal magnitude knowledge (Durkin and Rittle-Johnson 2015).","<b>Number conventions.</b> Numbers with 5 or more digits use a space, not a comma (16 234); 4-digit numbers have no space (2004). Some students know other numeral sets, such as Arabic-script or Devanagari."],
- vocab:["number before/after","more than","greater than","less than","largest/smallest number","digit","zero","ones","groups of ten","tens","hundreds","thousands","place value"],
- check:{title:"Quick checks (activities from NESA teaching advice)",steps:["<b>Wipe-out.</b> The student enters 3042 on a calculator and must make it show 3002 by subtracting one number. Ask them to explain, and to say the answer as a number (forty), not a string of digits.","<b>Decimal comparison.</b> Ask, <i>Which is larger, 0.75 or 0.8? How do you know?</i> Then have them place both on a number line marked in tenths. Recheck later with 0.4 and 0.45. Try the comparison tool below."]},
+ advice:["<b>Read decimals aloud by place value:</b> 1.12 is ‘1 and 1 tenth and 2 hundredths’ (NESA additional advice).","<b>Multisensory access:</b> use bead strings, interlocking cubes, ten frames, blocks, counters and pattern-based materials such as Numicon. Represent numbers with fingers, dots and images before numerals. Virtual manipulatives support embodied learning (NESA additional advice).","<b>Number expanders</b> help with renaming in non-standard forms, such as 5429 as 54 hundreds and 29 ones.","<b>Arrow cards</b> show that a number contains its parts: in 34, the 30 is still there under the 4. Ask how many tens are in 230, and build the same number with base 10 blocks or bundles.","<b>Let students split numbers.</b> Most children who haven’t been taught an algorithm split numbers into place value parts when adding (Kamii 2004).","<b>Direct attention</b> to the tenths digit; it improves decimal magnitude knowledge (Durkin and Rittle-Johnson 2015).","<b>Number conventions.</b> Numbers with 5 or more digits use a space, not a comma (16 234); 4-digit numbers have no space (2004). Some students know other numeral sets, such as Arabic-script or Devanagari."],
+ vocab:["number before/after","more than","greater than","less than","largest/smallest number","ascending order","descending order","digit","zero","ones","groups of ten","tens","hundreds","thousands","tens of thousands","place value","expanded notation","times as large","decimal","decimal point","tenths","hundredths","decimal places"],
+ check:{title:"Quick checks (activities from NESA teaching advice)",steps:["<b>Wipe-out.</b> The student enters 3042 on a calculator and must make it show 3002 by subtracting one number. Ask them to explain, and to say the answer as a number (forty), not a string of digits.","<b>Decimal comparison.</b> Ask, <i>Which is larger, 0.75 or 0.8? How do you know?</i> Then have them place both on a number line marked in tenths. Recheck later with 0.4 and 0.45. Try the comparison tool below.","<b>Reading decimals.</b> Ask the student to read 1.12 and 0.45 aloud. Listen for ‘one point twelve’, and model ‘1 and 1 tenth and 2 hundredths’ (NESA additional advice)."]},
  tool:"decimals",
  quiz:[
   {q:"A student says 0.75 is larger than 0.8. Which misconception is this?",o:["Shorter is larger","Longer is larger","Reciprocal thinking","Negative thinking"],a:1,why:"NESA identifies ‘longer decimals are larger’ as the most common first misconception. Benchmarks (0.5, 0.25) and attention to the tenths digit help."},
   {q:"In 1002, the zeros are…",o:["lexical zeros that name the number","trailing zeros that show precision","syntactic (place holder) zeros, harder to interpret than the zeros in 1000","not needed"],a:2,why:"Internal zeros show an empty place and are harder than the lexical zeros in 1000. Students may misread 1001 as ‘one hundred and one’."},
-  {q:"Why does NESA suggest introducing decimals using words (three tenths) rather than fraction notation?",o:["Fraction notation for tenths doesn’t use place value","Fractions are taught later","Words are quicker to write","Students prefer words"],a:0,why:"3/10 doesn’t use the place value system, while 0.3 does. Words connect the meaning to the place value columns."}
+  {q:"Why does NESA suggest introducing decimals using words (three tenths) rather than fraction notation?",o:["Fraction notation for tenths doesn’t use place value","Fractions are taught later","Words are quicker to write","Students prefer words"],a:0,why:"3/10 doesn’t use the place value system, while 0.3 does. Words connect the meaning to the place value columns."},
+  {q:"How does NESA’s additional advice suggest reading 1.12 aloud?",o:["‘One point twelve’","‘One dollar twelve’","‘1 and 1 tenth and 2 hundredths’","‘112 hundredths’"],a:2,why:"Reading the decimal part as a whole number reinforces the two-whole-numbers misconception. Thinking in tenths and hundredths supported problem solving (Rittle-Johnson et al. 2001)."},
+  {q:"Which phrase does NESA recommend instead of ‘ten times smaller’?",o:["‘Ten times less’","‘One-tenth as large’","‘Divided by ten times’","‘Ten times bigger, backwards’"],a:1,why:"Everyday phrases like ‘ten times smaller’ are ambiguous. Use ‘times as large’, and the fraction multiplier for smaller values."}
  ]
 },
 s3:{
@@ -500,7 +534,7 @@ s3:{
  misc:[
   {see:"Completes 5.37 = 5 + 0.3 + ___ with 7.",name:"The decimal point separates two whole numbers",resp:"Partition on a number slide or with linear materials, naming each part as tenths or hundredths.",src:"n"},
   {see:"Says 0.07 is the same as 0.7.",name:"Ignoring a zero in the tenths place",resp:"Build both with a linear model; read them as 7 hundredths and 7 tenths.",src:"n"},
-  {see:"Says 0.320 is greater than 0.32.",name:"Trailing zeros make a decimal bigger",resp:"Show both on a number line; rename both as thousandths.",src:"n"},
+  {see:"Says 0.320 is greater than 0.32.",name:"Trailing zeros make a decimal bigger",resp:"Show both on a number line, and read both by place value: 3 tenths and 2 hundredths, with 0 thousandths in 0.320.",src:"n"},
   {see:"Explains × 10 as “moving the decimal point one place”.",name:"The decimal point moves",resp:"Use a number slide with a fixed decimal marker so the digits move instead.",src:"n"},
   {see:"Places 0.6 and 0.5 to the left of 0 on a number line.",name:"Decimals starting with zero are less than zero",resp:"Check where students place decimals beginning with zero. Label 0 and 1 and ask what lies between.",src:"n"},
   {see:"Says 0.5 is one-fifth.",name:"Confusing benchmark forms",resp:"Practise equivalent forms on one number line: ½ = 0.5 = 50%.",src:"n"},
@@ -603,7 +637,7 @@ var WM = {
  s2:{
   tags:[["Compare and describe the relative size of numbers by positioning numbers on a number line","Reasons about quantity"],["Partition numbers of up to 4 digits in non-standard forms","Reasons about quantity"],["Recognise and describe how rearranging digits changes the size of a number","Reasons about relations"],["Represent and compare tenths as decimals using linear representations","Reasons about relations"]],
   before:{task:"Circle the larger number.<br><br>0.75&nbsp;&nbsp;&nbsp;&nbsp;0.8",lim:["A 50% chance of a correct guess","A correct answer can hide ‘shorter is larger’ thinking","No representation and no explanation"]},
-  after:{task:"“Sam says 0.75 is bigger than 0.8 because 75 is bigger than 8.”<br><br>“Convince Sam he isn’t right, using a number line or a metre ruler. Then write a decimal that is between 0.75 and 0.8.”",enable:"Compare tenths only (0.7 and 0.8) on a clothesline from 0 to 1.",extend:"“Find three decimals between 0.75 and 0.8. How many could there be?”",listen:"Attention to the tenths digit; naming as hundredths (“75 hundredths and 80 hundredths”); benchmarks (“0.75 is three quarters”).",el:["Understanding and fluency","Exploring and connecting","Communicating","Reasoning"]}
+  after:{task:"“Sam says 0.75 is bigger than 0.8 because 75 is bigger than 8.”<br><br>“Convince Sam he isn’t right, using a number line or a metre ruler. Then write a decimal that is between 0.75 and 0.8.”",enable:"Compare tenths only (0.7 and 0.8) on a clothesline from 0 to 1.",extend:"“Find three decimals between 0.75 and 0.8. How many could there be?”",listen:"Attention to the tenths digit; reading by place value (“7 tenths and 5 hundredths” compared with “8 tenths”); benchmarks (“0.75 is three quarters”).",el:["Understanding and fluency","Exploring and connecting","Communicating","Reasoning"]}
  },
  s3:{
   tags:[["Regroup numbers in different forms","Reasons about quantity"],["Recognise that negative whole numbers can result from subtraction","Reasons about quantity"],["Recognise that 10% is one-tenth of 100% and use this to find 10% of a quantity","Reasons about relations"]],
@@ -695,7 +729,7 @@ var PAIRS=[
  {a:"0.3",b:"0.4",m:"<b>Reciprocal or negative thinking.</b> Some students pick 0.3 by analogy with one third and one quarter, or with −3 and −4."},
  {a:"0.5",b:"0.25",m:"<b>Benchmarks.</b> 0.5 is a half and 0.25 is a quarter. Students using whole number thinking may pick 0.25 because 25 is more than 5."},
  {a:"0.7",b:"0.07",m:"<b>Zero in the tenths place.</b> 0.07 is 7 hundredths, ten times smaller than 7 tenths."},
- {a:"0.6",b:"0.60",m:"<b>Trailing zeros.</b> They’re equal: 0.60 is 60 hundredths, the same as 6 tenths. Students who think a trailing zero makes a decimal bigger choose 0.60."}
+ {a:"0.6",b:"0.60",m:"<b>Trailing zeros.</b> They’re equal: 0.60 is 6 tenths and 0 hundredths, the same as 6 tenths. Students who think a trailing zero makes a decimal bigger choose 0.60."}
 ];
 function wireDecimals(){
  var i=0, score=0, first=true;
@@ -771,8 +805,8 @@ function wireTool(t){
 "use strict";
 /* ---------------- storage (safe) ---------------- */
 var KEY = M.key;
-var mem = {done:{}, notes:{}, todo:{}};
-try { var raw = window.localStorage.getItem(KEY); if (raw) { var p = JSON.parse(raw); mem.done = p.done||{}; mem.notes = p.notes||{}; mem.todo = p.todo||{}; } } catch(e) {}
+var mem = {done:{}, notes:{}, todo:{}, chk:{}};
+try { var raw = window.localStorage.getItem(KEY); if (raw) { var p = JSON.parse(raw); mem.done = p.done||{}; mem.notes = p.notes||{}; mem.todo = p.todo||{}; mem.chk = p.chk||{}; } } catch(e) {}
 function save(){ try { window.localStorage.setItem(KEY, JSON.stringify(mem)); } catch(e) {} }
 
 /* ---------------- sections ---------------- */
@@ -844,7 +878,8 @@ function renderWelcome(){
  card("Reflect","on your own students and plan next steps. Your notes save in this browser.")+
  '</div></section>'+
  '<section class="blk"><h3>'+M.namesH3+'</h3><p class="lead">'+M.namesP+'</p><table class="simple"><thead><tr><th>Stage</th><th>Focus area name</th><th>Outcomes</th></tr></thead><tbody>'+rows+'</tbody></table></section>'+
- '<section class="blk"><h3>Suggested pathways</h3><div class="grid2"><div class="card"><h4 style="margin-bottom:6px">On your own (about 45 minutes)</h4><ul class="tight"><li>Big ideas and the progression explorer</li><li>Your stage, plus the stage before it</li><li>The misconception sorter</li><li>Reflect and plan</li></ul></div><div class="card"><h4 style="margin-bottom:6px">As a staff or PLC session (about 60 minutes)</h4><ul class="tight"><li>Whole staff: big ideas and progression (15 min)</li><li>Stage teams: their stage section and tool (25 min)</li><li>Whole staff: misconception sorter (10 min)</li><li>Reflection prompts and next steps (10 min)</li></ul></div></div><p class="note" style="margin-top:12px">Tip: most difficulties in a stage begin in the stage before it, so look one stage back as well as at your own.</p></section>';
+ '<section class="blk"><h3>Suggested pathways</h3><div class="grid2"><div class="card"><h4 style="margin-bottom:6px">On your own (about 45 minutes)</h4><ul class="tight"><li>Big ideas and the progression explorer</li><li>Your stage, plus the stage before it</li><li>The misconception sorter</li><li>Reflect and plan</li></ul></div><div class="card"><h4 style="margin-bottom:6px">As a staff or PLC session (about 60 minutes)</h4><ul class="tight"><li>Whole staff: big ideas and progression (15 min)</li><li>Stage teams: their stage section and tool (25 min)</li><li>Whole staff: misconception sorter (10 min)</li><li>Reflection prompts and next steps (10 min)</li></ul></div></div><p class="note" style="margin-top:12px">Tip: most difficulties in a stage begin in the stage before it, so look one stage back as well as at your own.</p></section>'+
+ checkHTML("pre");
 }
 function card(t,d){return '<div class="card"><b>'+t+'</b> <span style="color:var(--ink2)">'+d+'</span></div>';}
 
@@ -893,8 +928,8 @@ function renderStage(k){
 
 function makeoverHTML(k){
  var W=WM[k], S=STAGES[k];
- var h='<p class="lead">Every content point addresses MAO-WM-01. In this stage, the syllabus tags these points as reasoning:</p>';
- h+='<div class="card" style="padding:4px 0;margin-bottom:16px">'+W.tags.map(function(t){return '<div class="tagrow" style="grid-template-columns:1fr auto"><span>'+t[0]+'</span><span class="wtag">'+t[1]+'</span></div>';}).join("")+'</div>';
+ var h='<p class="lead">'+(W.tagsLead||'Every content point addresses MAO-WM-01. In this stage, the syllabus tags these points as reasoning:')+'</p>';
+ if(W.tags.length) h+='<div class="card" style="padding:4px 0;margin-bottom:16px">'+W.tags.map(function(t){return '<div class="tagrow" style="grid-template-columns:1fr auto"><span>'+t[0]+'</span><span class="wtag">'+t[1]+'</span></div>';}).join("")+'</div>';
  h+='<p class="lead"><b>Try it yourself.</b> Read the closed task. How would you change it so students reason and communicate? Jot your idea, then reveal the makeover.</p>';
  h+='<div class="mk"><div class="side before"><div class="lbl">Before: closed task</div><div class="task closed">'+W.before.task+'</div><b style="font-size:14px">Limitations</b><ul>'+W.before.lim.map(function(l){return '<li>'+l+'</li>';}).join("")+'</ul></div>';
  h+='<div class="side after" id="mkAfter"><div class="hidden-after"><div class="think">How would you rework this task?<textarea id="mkIdea" placeholder="My idea…"></textarea></div><button class="btn" id="mkReveal" style="background:var(--good)">Reveal the makeover</button></div></div></div>';
@@ -1001,6 +1036,7 @@ function renderReflect(){
   h+='<div class="rq"><label for="rq'+i+'">'+(i+1)+'. '+p[1]+'</label><textarea id="rq'+i+'" data-i="'+i+'" placeholder="Your thoughts…">'+esc(mem.notes[i]||"")+'</textarea></div>';
  });
  h+='<h3 style="font-size:17px;margin:22px 0 10px">Next steps</h3><div class="card todo">'+TODOS.map(function(t,i){return '<label><input type="checkbox" data-t="'+i+'"'+(mem.todo[i]?" checked":"")+'><span>'+t+'</span></label>';}).join("")+'</div>';
+ h+=checkHTML("post");
  h+='<div class="ctrl" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center"><button class="btn" id="copyNotes">Copy my notes</button><button class="btn ghost" id="dlNotes">Download as text</button><span class="saved" id="savedMsg"></span></div><textarea id="copyBuf" aria-hidden="true" style="position:absolute;left:-9999px;top:0"></textarea>';
  return h;
 }
@@ -1009,12 +1045,79 @@ function notesText(){
  PROMPTS.forEach(function(p,i){t+=(i+1)+". "+p[1]+"\n"+(mem.notes[i]||"(no response)")+"\n\n";});
  var mk=ORDER.filter(function(k){return mem.notes["mk-"+k];});
  if(mk.length){ t+="My task makeover ideas\n"; mk.forEach(function(k){t+=STAGES[k].name+": "+mem.notes["mk-"+k]+"\n";}); t+="\n"; }
+ t+=chkText();
  t+="Next steps\n"; TODOS.forEach(function(x,i){t+=(mem.todo[i]?"[x] ":"[ ] ")+x+"\n";});
  return t;
 }
 
+
+/* ---------------- knowledge and confidence self-check (private, saved in this browser) ---------------- */
+var FA_NAME = M.title.replace(/\s*K–6\s*$/,"");
+var CHK_CONF = [
+ "I understand how "+FA_NAME+" develops from Kindergarten to Year 6.",
+ "I can identify common misconceptions in "+FA_NAME+" and respond to them.",
+ "I can plan "+FA_NAME+" lessons that embed Working mathematically."
+];
+var CHK_SHORT = ["The K–6 progression","Misconceptions","Working mathematically"];
+function chkItems(){
+ var a=SCENARIOS.filter(function(s){return s.st==="s2";})[0]||SCENARIOS[0], b=SCENARIOS.filter(function(s){return s.st==="s3";})[0]||SCENARIOS[SCENARIOS.length-1];
+ return [a,b];
+}
+function chkAnsText(v){ return v>=0?ROOTS[v]:"Not sure"; }
+function chkOk(x){ return x&&x.conf&&x.ans?x:null; }
+function chkCompare(){
+ var pre=chkOk(mem.chk.pre), post=mem.chk.post, items=chkItems();
+ var h='<div class="chkres"><h4>'+(pre?"Before and after":"Your answers")+'</h4><table class="simple"><thead><tr><th>Confidence (1–5)</th>'+(pre?'<th>Before</th>':'')+'<th>'+(pre?'After':'Now')+'</th></tr></thead><tbody>';
+ CHK_SHORT.forEach(function(t,i){ var d=pre?post.conf[i]-pre.conf[i]:0; h+='<tr><td>'+t+'</td>'+(pre?'<td>'+pre.conf[i]+'</td>':'')+'<td>'+post.conf[i]+(pre&&d?' <span class="chkd '+(d>0?'up':'down')+'">'+(d>0?'+':'')+d+'</span>':'')+'</td></tr>'; });
+ h+='</tbody></table>';
+ items.forEach(function(s,i){
+  var pa=pre?pre.ans[i]:null, qa=post.ans[i];
+  h+='<div class="chkscn"><b>Scenario '+(i+1)+'.</b> '+s.q+'<ul class="tight">'+(pre?'<li>Before: '+chkAnsText(pa)+' '+(pa===s.a?'✓':'✗')+'</li>':'')+'<li>'+(pre?'After':'Your answer')+': '+chkAnsText(qa)+' '+(qa===s.a?'✓':'✗')+'</li></ul><div class="note"><b>Most likely root:</b> '+ROOTS[s.a]+'. '+s.why+'</div></div>';
+ });
+ return h+'</div>';
+}
+function checkHTML(ph){
+ var pre=ph==="pre", done=chkOk(mem.chk[ph]);
+ var h='<section class="blk chk" id="chk-'+ph+'"><div class="chkhead"><span class="tag" style="background:var(--accent-soft);color:var(--accent)">'+(pre?"Before you start":"After the module")+'</span><h3>'+(pre?"Quick self-check: before":"Quick self-check: after")+' <span class="chktime">about 2 minutes · optional · private</span></h3>'+
+  '<p class="note">'+(pre?"Answer before you work through the module, then again at the end in <b>Reflect and plan</b> to see what has changed.":"The same questions as at the start. Compare your answers to see what has changed.")+' Your answers are saved only in this browser, like your notes. Nothing is sent anywhere.</p></div>';
+ if(done){
+  if(pre) return h+'<div class="fbline show ok">Saved'+(done.t?' on '+done.t:'')+'. You’ll see the answers and compare them with your after check at the end, in <b>Reflect and plan</b>. <button class="linkbtn" id="chkRedo-'+ph+'">Answer again</button></div></section>';
+  return h+chkCompare()+'<div class="ctrl"><button class="linkbtn" id="chkRedo-'+ph+'">Answer the after check again</button></div></section>';
+ }
+ h+='<div class="chkq"><b>How confident are you?</b> <span class="note">1 = not confident, 5 = very confident</span>';
+ CHK_CONF.forEach(function(c,i){
+  h+='<div class="chkrate" role="radiogroup" aria-label="'+esc(c)+'"><span>'+c+'</span><span class="chkopts">'+[1,2,3,4,5].map(function(v){return '<label><input type="radio" name="chkc'+ph+i+'" value="'+v+'"><span>'+v+'</span></label>';}).join("")+'</span></div>';
+ });
+ h+='</div>';
+ chkItems().forEach(function(s,i){
+  h+='<div class="chkq"><b>Scenario '+(i+1)+' ('+STAGES[s.st].name+').</b> '+s.q+' <span class="note">Which is the most likely root of this response?</span><div class="chkmc">'+ROOTS.map(function(r,j){return '<label><input type="radio" name="chkk'+ph+i+'" value="'+j+'"><span>'+r+'</span></label>';}).join("")+'<label><input type="radio" name="chkk'+ph+i+'" value="-1"><span>I’m not sure</span></label></div></div>';
+ });
+ h+='<div class="ctrl"><button class="btn" id="chkSave-'+ph+'">'+(pre?"Save my answers":"Save and compare")+'</button><span class="note" id="chkMsg-'+ph+'"></span></div></section>';
+ return h;
+}
+function wireCheck(ph){
+ var redo=$("#chkRedo-"+ph); if(redo){ redo.onclick=function(){ delete mem.chk[ph]; save(); var el=$("#chk-"+ph); el.outerHTML=checkHTML(ph); wireCheck(ph); }; }
+ var btn=$("#chkSave-"+ph); if(!btn) return;
+ btn.onclick=function(){
+  var msg=$("#chkMsg-"+ph), val=function(n){var x=$('input[name="'+n+'"]:checked');return x?+x.value:null;};
+  var conf=CHK_CONF.map(function(c,i){return val("chkc"+ph+i);}), ans=chkItems().map(function(s,i){return val("chkk"+ph+i);});
+  if(conf.some(function(v){return v===null;})||ans.some(function(v){return v===null;})){ msg.textContent="Please answer the confidence ratings and both scenarios (“I’m not sure” is fine)."; return; }
+  mem.chk[ph]={conf:conf,ans:ans,t:new Date().toLocaleDateString("en-AU")}; save();
+  var el=$("#chk-"+ph); el.outerHTML=checkHTML(ph); wireCheck(ph);
+ };
+}
+function chkText(){
+ var pre=chkOk(mem.chk.pre), post=chkOk(mem.chk.post); if(!pre&&!post) return "";
+ var t="Quick self-check\n", items=chkItems();
+ CHK_SHORT.forEach(function(x,i){ t+=x+" (confidence 1-5): "+(pre?"before "+pre.conf[i]:"before -")+", "+(post?"after "+post.conf[i]:"after -")+"\n"; });
+ items.forEach(function(s,i){ t+="Scenario "+(i+1)+": "+(pre?"before "+(pre.ans[i]===s.a?"correct":"not yet"):"before -")+", "+(post?"after "+(post.ans[i]===s.a?"correct":"not yet"):"after -")+"\n"; });
+ return t+"\n";
+}
+
 /* ---------------- wiring ---------------- */
 function wire(id){
+ if(id==="welcome") wireCheck("pre");
+ if(id==="reflect") wireCheck("post");
  if(id==="ideas"){ $$(".idea").forEach(function(b){b.onclick=function(){showIdea(+b.dataset.i);};}); }
  if(id==="prog"){ $$(".aspects button").forEach(function(b){b.onclick=function(){showAspect(+b.dataset.k);};}); showAspect(0); }
  if(id==="models"){ $$(".mn,.mbar").forEach(function(b){b.onclick=function(){showModel(+b.dataset.i);};}); }
@@ -1068,7 +1171,9 @@ function wireMakeover(k){
 
 /* ---------------- start ---------------- */
 document.getElementById("foot").innerHTML=M.footer;
-go(0);
+var startId=""; try{ startId=decodeURIComponent((window.location.hash||"").slice(1)); }catch(e){}
+var startIdx=SECTIONS.map(function(s){return s.id;}).indexOf(startId);
+go(startIdx>=0?startIdx:0);
 
 </script>
 </body>

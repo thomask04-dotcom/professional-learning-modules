@@ -9,13 +9,20 @@ The modules are designed to be embedded in a Google Site.
 | Module | Folder | Status |
 | --- | --- | --- |
 | Representing numbers | `modules/representing-numbers/` | Ready |
+| Additive relations (incl. Combining and separating quantities) | `modules/additive-relations/` | Ready |
 | Multiplicative relations (incl. Forming groups) | `modules/multiplicative-relations/` | Ready |
-| Additive relations, Partitioned fractions, Geometric measure, 2D and 3D spatial structure, Non-spatial measure, Data, Chance | — | Planned |
+| Fractions (Partitioned fractions and Representing quantity fractions) | `modules/fractions/` | Ready |
+| Geometric measure | `modules/geometric-measure/` | Ready |
+| Two-dimensional spatial structure | `modules/two-dimensional-spatial-structure/` | Ready |
+| Three-dimensional spatial structure | `modules/three-dimensional-spatial-structure/` | Ready |
+| Non-spatial measure | `modules/non-spatial-measure/` | Ready |
+| Data | `modules/data/` | Ready |
+| Chance (incl. Early Stage 1 Data foundations) | `modules/chance/` | Ready |
 
 ## How it's organised
 
 ```
-index.html                 Landing page linking every module
+index.html                 Module finder (search, stage and strand filters) linking every module
 engine/
   module.css               Shared design (all modules)
   module.js                Shared behaviour: navigation, progress, flip cards,
@@ -43,9 +50,35 @@ Load order in each module page matters: `content.js`, then `tools.js`, then `eng
 Module addresses:
 
 - `https://thomask04-dotcom.github.io/professional-learning-modules/modules/representing-numbers/`
+- `https://thomask04-dotcom.github.io/professional-learning-modules/modules/additive-relations/`
 - `https://thomask04-dotcom.github.io/professional-learning-modules/modules/multiplicative-relations/`
+- `https://thomask04-dotcom.github.io/professional-learning-modules/modules/fractions/`
+- `https://thomask04-dotcom.github.io/professional-learning-modules/modules/geometric-measure/`
+- `https://thomask04-dotcom.github.io/professional-learning-modules/modules/two-dimensional-spatial-structure/`
+- `https://thomask04-dotcom.github.io/professional-learning-modules/modules/three-dimensional-spatial-structure/`
+- `https://thomask04-dotcom.github.io/professional-learning-modules/modules/non-spatial-measure/`
+- `https://thomask04-dotcom.github.io/professional-learning-modules/modules/data/`
+- `https://thomask04-dotcom.github.io/professional-learning-modules/modules/chance/`
 
 The published site is public to anyone with the link.
+
+## Quick self-check
+
+Every module has an optional, private self-check. The "before" check is on the Welcome page and the "after" check is on Reflect and plan. It has three confidence ratings and two misconception scenarios.
+
+Answers are saved only in the teacher's browser and are never sent anywhere. After the second check, teachers see their before and after answers side by side, and the results are included when they copy or download their notes.
+
+## Module finder
+
+The main page (`index.html`) is a module finder. Teachers can:
+
+- search for a topic or misconception (it searches inside every module's big ideas, content, misconceptions, teacher knowledge, models and vocabulary)
+- filter by stage and strand
+- jump straight to the matching section of a module
+
+Any module can be opened at a section by adding its id to the address, for example `modules/data/#s3` (also `#ideas`, `#prog`, `#wm`, `#es1`, `#s1`, `#s2`, `#models`, `#sorter` or `#reflect`).
+
+If each module has its own Google Sites page, paste those addresses into `SITE_PAGES` near the top of the script in `index.html`. Finder links then open the Google Sites pages (in a new tab), so Google Sites analytics counts each module's views.
 
 ## Embedding in Google Sites
 
@@ -63,11 +96,11 @@ Test on a school device first: some networks filter `github.io`.
    - `M`: module text (welcome, big ideas intro, shifts between stages, model tips, sorter roots, footer). Give it a new `key` so saved progress doesn't clash with other modules.
    - `STAGES`: focus area names for each stage.
    - `STAGE_CONTENT`: per stage — lead, outcomes, content headings and points, teacher knowledge, misconceptions (`src`: `"n"` NESA, `"d"` diocesan PL slides, `"a"` additional commentary), advice, vocabulary, quick check, `tool` name and quiz.
-   - `IDEAS`, `ASPECTS`, `MODELS`, `ROOTS`, `SCENARIOS`, `PROMPTS`, `TODOS`, `WM` (reasoning tags and task makeovers), `CLOSED` (makeover practice).
+   - `IDEAS`, `ASPECTS`, `MODELS`, `ROOTS`, `SCENARIOS`, `PROMPTS`, `TODOS`, `WM` (reasoning tags and task makeovers), `CLOSED` (makeover practice). A stage's `WM` entry can include `tagsLead` to replace the default sentence above its reasoning tags (used in Fractions, where Early Stage 1 and Stage 1 have no fractions outcomes).
 4. Write four tools in `tools.js`: `toolHTML(name)` returns each tool's markup, and `wireTool(name)` attaches its behaviour. Put their styles in `tools.css`.
 5. Add a card to the landing page `index.html` and a row to the table above.
 6. Run `python3 scripts/build_single.py` to refresh `dist/`.
 
 ## Sources
 
-Content is drawn from the NESA *Mathematics K–10 Syllabus (2022)* outcomes and content, the NESA syllabus support teaching advice, and (for Multiplicative relations) the Catholic Education Diocese of Wollongong PL slides *Forming groups to multiplicative relations*. Each module marks which items come from which source; items marked "Additional commentary" are common classroom observations.
+Content is drawn from the NESA *Mathematics K–10 Syllabus (2022)* outcomes and content, the NESA syllabus support teaching advice, the NESA additional teaching advice where relevant, and (for Multiplicative relations, Fractions and Two-dimensional spatial structure) Catholic Education Diocese of Wollongong PL slides. Each module marks which items come from which source; items marked "Additional commentary" are common classroom observations.
