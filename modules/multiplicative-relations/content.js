@@ -282,20 +282,12 @@ var FLW = {
   ["Fostering student self-efficacy","Mixed practice with fact families helps students see their own progress without timed tests."]
  ]
 };
-/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+/* The 4 main focus areas: [focus area, how this module supports it]. Proficient descriptors are in the engine (APST_LIB). */
 var APST = [
  ["1.2","The progression shows how students move from counting by ones to composite units and multiplicative thinking."],
- ["1.3","Recognise students’ cultural knowledge and home-language strategies for multiplying and dividing."],
- ["1.4","Tasks such as buying bull roarers and clapsticks connect to Aboriginal cultural contexts. Plan these with your local community."],
  ["1.5","Use the quick checks to target students still using repeated addition and to extend those ready for multi-digit methods."],
  ["2.1","Deepen your knowledge of sharing and grouping division, the array, fact families and order of operations without mnemonics such as BODMAS."],
- ["2.2","Follow the sequence from equal groups in Early Stage 1 to multi-digit multiplication in Stage 3."],
- ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
- ["2.4","Use Aboriginal cultural contexts respectfully, in consultation with local Aboriginal communities."],
- ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
- ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
- ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
- ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."]
 ];
 
 var WM_ELEMENTS = [

@@ -286,19 +286,12 @@ var FLW = {
   ["Fostering student self-efficacy","Name the strategy a student used and show them their growth from counting by ones to using groups of ten."]
  ]
 };
-/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+/* The 4 main focus areas: [focus area, how this module supports it]. Proficient descriptors are in the engine (APST_LIB). */
 var APST = [
  ["1.2","The progression and big ideas show how students build composite units and place value, and where misconceptions begin."],
- ["1.3","Recognise students’ home-language number words, many of which follow a regular tens-then-ones pattern that English does not."],
  ["1.5","Use the quick checks and stage content to plan for students who need more time with counting and those ready for decimals."],
  ["2.1","Deepen your content knowledge of place value, rounding and decimals, and the models and language NESA recommends."],
- ["2.2","See how content is sequenced from Early Stage 1 to Stage 3 so your program builds on earlier stages."],
- ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
- ["2.5","Reading, writing and saying numbers, and the vocabulary of place value, are explicit numeracy and literacy demands."],
- ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
- ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
- ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
- ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."]
 ];
 
 var WM_ELEMENTS = [

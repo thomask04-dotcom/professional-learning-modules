@@ -259,18 +259,12 @@ var FLW = {
   ["Promoting coping strategies and facilitating referrals","Chance shows that outcomes aren’t always in our control, a useful link to coping with disappointment."]
  ]
 };
-/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+/* The 4 main focus areas: [focus area, how this module supports it]. Proficient descriptors are in the engine (APST_LIB). */
 var APST = [
  ["1.2","The progression shows how students move from beliefs and preferences to reasoning about outcomes and probability."],
- ["1.5","Use the quick checks to target students who confuse ‘unlikely’ with ‘impossible’ and extend those ready to quantify probability."],
  ["2.1","Deepen your knowledge of chance, probability and the misconceptions NESA describes, such as the ‘law of averages’."],
- ["2.2","Follow the sequence from Early Stage 1 Data foundations to Stage 3 Chance."],
- ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
  ["2.6","Digital simulators let students run many trials quickly and compare observed and expected results."],
- ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
- ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
- ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
- ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."]
 ];
 
 var WM_ELEMENTS = [

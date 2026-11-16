@@ -69,7 +69,7 @@ Every module has a **Framework and Standards** page (section id `#links`) under 
 - how the module connects to the five essential elements of the Catholic Education Diocese of Wollongong *Faith, Learning and Wellbeing Framework* (Agency, Relevance, Rigour, Environment and Equity)
 - how the module can be used as an Ongoing Cyclic Inquiry, with links to the part of the module that supports each step
 - the framework's high impact strategies (learning and wellbeing) that the module models most
-- the AITSL *Australian Professional Standards for Teachers* focus areas the module supports, with the descriptor for the career stage the teacher chooses (Graduate, Proficient, Highly Accomplished or Lead)
+- the 4 main AITSL *Australian Professional Standards for Teachers* focus areas the module supports, with the Proficient career stage descriptor for each
 
 The framework text and the APST descriptors are shared in `engine/module.js` (`FLW_ELEMENTS`, `OCI`, `APST_LIB`). Each module's own links are in its `content.js` (`FLW` and `APST`).
 
@@ -120,7 +120,7 @@ Test on a school device first: some networks filter `github.io`.
    - `STAGE_CONTENT`: per stage — lead, outcomes, content headings and points, teacher knowledge, misconceptions (`src`: `"n"` NESA, `"d"` diocesan PL slides, `"a"` additional commentary), advice, vocabulary, quick check, `tool` name and quiz.
    - `IDEAS`, `ASPECTS`, `MODELS`, `ROOTS`, `SCENARIOS`, `PROMPTS`, `TODOS`, `WM` (reasoning tags and task makeovers), `CLOSED` (makeover practice). A stage's `WM` entry can include `tagsLead` to replace the default sentence above its reasoning tags (used in Fractions, where Early Stage 1 and Stage 1 have no fractions outcomes). Add new `PROMPTS` at the end of the list, because saved notes are matched to prompts by position.
    - `FLW`: an `intro` sentence, one sentence for each essential element in `el` (`agency`, `relevance`, `rigour`, `environment`, `equity`) and about five high impact strategies in `his`, each as `[strategy, how this module uses it]`.
-   - `APST`: the focus areas the module supports, each as `[code, how this module supports it]`. Every code must be in `APST_LIB` in `engine/module.js`; add the four career-stage descriptors there for any new code.
+   - `APST`: the 4 main focus areas the module supports, each as `[code, how this module supports it]`. Every code must be in `APST_LIB` in `engine/module.js`; add the Proficient descriptor there for any new code.
 4. Write four tools in `tools.js`: `toolHTML(name)` returns each tool's markup, and `wireTool(name)` attaches its behaviour. Put their styles in `tools.css`.
 5. Add a card to the landing page `index.html` and a row to the table above.
 6. Run `python3 scripts/build_single.py` to refresh `dist/`.
