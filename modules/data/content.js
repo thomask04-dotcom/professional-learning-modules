@@ -265,19 +265,12 @@ var FLW = {
   ["Supporting inclusion and belonging","Some Aboriginal students may prefer not to ask or be asked direct questions. Offer observation and conversation as ways to collect data."]
  ]
 };
-/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+/* The 4 main focus areas: [focus area, how this module supports it]. Proficient descriptors are in the engine (APST_LIB). */
 var APST = [
  ["1.2","The progression shows how students move from sorting objects to interpreting and critiquing displays."],
- ["1.4","The module notes that some Aboriginal students may prefer observation or conversation to direct questions, and uses seasonal data from Aboriginal calendars."],
- ["1.5","Use the quick checks to target students still reading single values and extend those ready to critique displays."],
  ["1.6","Make data displays accessible with strong colour contrast, alternative text and captions."],
  ["2.1","Deepen your knowledge of the statistical investigation process, displays and the language NESA recommends."],
- ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
- ["2.4","Use Aboriginal calendars and environmental knowledge respectfully, in consultation with local Aboriginal communities."],
- ["2.6","Students use spreadsheets and digital tools to organise and display data."],
- ["5.4","Interpreting data is both the content of this module and a model for how you read your own class data."],
- ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
- ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+ ["5.4","Interpreting data is both the content of this module and a model for how you read your own class data."]
 ];
 
 var WM_ELEMENTS = [

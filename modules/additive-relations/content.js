@@ -278,20 +278,12 @@ var FLW = {
   ["Engaging students","Use storytelling and real contexts so combining and separating have a purpose."]
  ]
 };
-/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+/* The 4 main focus areas: [focus area, how this module supports it]. Proficient descriptors are in the engine (APST_LIB). */
 var APST = [
  ["1.2","The progression shows how students move from counting all to part-part-whole reasoning and flexible strategies."],
- ["1.3","Connect problems to students’ cultural knowledge and stories, and recognise strategies from home."],
- ["1.4","The module notes that mathematics as storytelling supports the engagement of Aboriginal students, and that some students bring well-developed understandings of quantity."],
  ["1.5","Use the quick checks to target students who know bonds but still count by ones, and to extend those ready for algorithms."],
  ["2.1","Deepen your knowledge of addition and subtraction structures, including comparison subtraction, and the empty number line and bar model."],
- ["2.2","Follow the sequence from Early Stage 1 to Stage 3 so strategies build across years."],
- ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
- ["2.5","Replace key-word teaching for word problems with reading for meaning and representing the situation."],
- ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
- ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
- ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
- ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."]
 ];
 
 var WM_ELEMENTS = [

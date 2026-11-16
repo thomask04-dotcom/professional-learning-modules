@@ -262,19 +262,12 @@ var FLW = {
   ["Supporting inclusion and belonging","Recognise students’ home languages and cultural ways of sharing when you introduce fractions."]
  ]
 };
-/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+/* The 4 main focus areas: [focus area, how this module supports it]. Proficient descriptors are in the engine (APST_LIB). */
 var APST = [
  ["1.2","The progression shows how fraction understanding grows from halving to fractions as numbers, and where misconceptions start."],
- ["1.3","Recognise students’ home languages and cultural knowledge, such as sharing within kinship systems, when teaching fractions."],
  ["1.5","Use the quick checks to support students who only go from whole to part and extend those ready for equivalence and operations."],
  ["2.1","Deepen your knowledge of fraction models, the number line, equivalence and the language NESA recommends."],
- ["2.2","Follow the sequence from halves in Early Stage 1 to operations with fractions in Stage 3."],
- ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
- ["2.5","Fraction language (‘two-thirds’, ‘equivalent’, ‘denominator’) is taught explicitly as part of numeracy and literacy."],
- ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
- ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
- ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
- ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."]
 ];
 
 var WM_ELEMENTS = [
