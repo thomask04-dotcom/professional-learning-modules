@@ -247,9 +247,44 @@ var PROMPTS = [
  ["Your students","How might your students’ cultural understandings of time shape how they think about duration and sequence?"],
  ["Your practice","Do you consistently say ‘hour hand’ and ‘minute hand’? Do your students?"],
  ["Your practice","How do you use analog clocks to show half and quarter turns, and to show the hour hand moving between numerals?"],
- ["Your practice","How could you work with your local Aboriginal community on Aboriginal concepts of time?"]
+ ["Your practice","How could you work with your local Aboriginal community on Aboriginal concepts of time?"],
+ ["Faith, Learning and Wellbeing","How might your students’ cultures and family routines shape how they think about time? How could you value that knowledge in class?"],
+ ["Faith, Learning and Wellbeing","Which students lose confidence when reading clocks? What could you do to build their self-efficacy?"]
 ];
 var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+/* ---------------- Faith, Learning and Wellbeing Framework and AITSL Standards ---------------- */
+var FLW = {
+ intro:"In Non-spatial measure, students learn about mass and time, from comparing and sequencing to reading clocks, timetables and elapsed time.",
+ el:{
+  agency:"Students choose how to compare masses and how to work out durations, and explain their method.",
+  relevance:"Time is part of every day, through timetables, routines and events. Aboriginal concepts of time, learnt with the local community, broaden students’ understanding.",
+  rigour:"Students learn why time regroups in 60s and how the hour hand moves between numerals, rather than only reading digital times.",
+  environment:"Physical experiences with mass and real analog clocks give every student a concrete starting point.",
+  equity:"The quick checks show who confuses the hour and minute hands, so support can be targeted. Students’ cultural understandings of time are valued."
+ },
+ his:[
+  ["Explicit teaching","Always say ‘hour hand’ and ‘minute hand’, and show half and quarter turns on an analog clock."],
+  ["Multiple exposures","Revisit regrouping in 60s from Stage 1 to Stage 3."],
+  ["Worked examples","Model elapsed time on an empty number line before students try their own."],
+  ["Engaging students","Use real timetables and events from students’ lives."],
+  ["Supporting inclusion and belonging","Recognise students’ cultural understandings of time, and work with the local Aboriginal community."]
+ ]
+};
+/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+var APST = [
+ ["1.2","The progression shows how students move from comparing and sequencing to formal units and elapsed time."],
+ ["1.4","The module invites you to explore Aboriginal concepts of time with your local Aboriginal community."],
+ ["1.5","Use the quick checks to target students who confuse the clock hands and extend those ready for timetables and 24-hour time."],
+ ["1.6","Use real objects and tactile or talking clocks so students with disability can take part."],
+ ["2.1","Deepen your knowledge of mass and time, including why time regroups in 60s, and the language NESA recommends."],
+ ["2.2","Follow the sequence from Early Stage 1 to Stage 3 so mass and time build across years."],
+ ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
+ ["2.4","Learn about Aboriginal concepts of time respectfully, in consultation with local Aboriginal communities."],
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
+ ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
+ ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+];
 
 var WM_ELEMENTS = [
  ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],

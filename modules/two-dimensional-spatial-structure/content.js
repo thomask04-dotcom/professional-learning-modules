@@ -251,9 +251,44 @@ var PROMPTS = [
  ["Your students","The diocesan slides note that online tests are more spatially demanding. Which of your students might be disadvantaged, and how could you build their spatial reasoning?"],
  ["Your practice","How often do your students see non-examples and shapes in unusual orientations?"],
  ["Your practice","Try the diocesan ‘precise mathematical language’ questions. Is a square a rectangle? Is a rectangle regular? How would you explain the difference between features and properties?"],
- ["Your practice","How do you use local Aboriginal artworks, artefacts or designs, and how do you consult with local Communities?"]
+ ["Your practice","How do you use local Aboriginal artworks, artefacts or designs, and how do you consult with local Communities?"],
+ ["Faith, Learning and Wellbeing","Which of your students may find spatial tasks hardest? How could you build their spatial reasoning and their confidence?"],
+ ["Faith, Learning and Wellbeing","How could you work with your local Aboriginal community so that artworks and designs are used in your shape lessons with respect?"]
 ];
 var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+/* ---------------- Faith, Learning and Wellbeing Framework and AITSL Standards ---------------- */
+var FLW = {
+ intro:"In Two-dimensional spatial structure, students learn the properties of 2D shapes, transformations and the array structure of area.",
+ el:{
+  agency:"Students sort and classify shapes by their own criteria, then refine them using properties, and choose how to show area.",
+  relevance:"Shapes, symmetry and tessellation are found in the environment, Aboriginal artworks and Islamic designs, created in consultation with local communities.",
+  rigour:"Students move beyond prototypes and features to precise properties, non-examples and the row-and-column structure of area.",
+  environment:"Hands-on shape work and shared language let students test and revise ideas, such as whether a square is a rectangle.",
+  equity:"Building spatial reasoning helps students who may be disadvantaged by spatially demanding online tests, and tasks can be adapted for students with vision impairment."
+ },
+ his:[
+  ["Explicit teaching","Use precise language for features and properties, and show shapes in unusual orientations."],
+  ["Questioning","Ask ‘Is a square a rectangle?’ and ‘Is this a triangle? How do you know?’"],
+  ["Multiple exposures","Use grids and arrays for area across Stage 1 to Stage 3."],
+  ["Collaborative learning","Students debate classifications and agree on definitions."],
+  ["Supporting inclusion and belonging","Use local Aboriginal artworks and designs, in consultation with local communities, and adapt tasks for students with vision impairment."]
+ ]
+};
+/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+var APST = [
+ ["1.2","The progression shows how students move from prototypes to properties and from covering to the array structure of area."],
+ ["1.5","Use the quick checks to target students who rely on prototypes and extend those ready for properties and area formulas."],
+ ["1.6","Adapt spatial tasks with tactile shapes and descriptions for students with disability, including vision impairment."],
+ ["2.1","Deepen your knowledge of shape properties, transformations and area, and the language NESA recommends."],
+ ["2.2","Follow the sequence from Early Stage 1 to Stage 3 so shape and area build across years."],
+ ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
+ ["2.4","Use local Aboriginal artworks, artefacts and designs respectfully, in consultation with local Aboriginal communities."],
+ ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
+ ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
+ ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+];
 
 var WM_ELEMENTS = [
  ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],

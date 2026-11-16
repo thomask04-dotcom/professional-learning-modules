@@ -280,3 +280,32 @@ footer{font-size:13px;color:var(--ink3);text-align:center;padding:20px 16px 30px
 .chkd.up{background:var(--good-soft);color:#1d5236}
 .chkd.down{background:var(--bad-soft);color:#7a2219}
 .chkscn{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+
+/* ---------------- Faith, Learning and Wellbeing and APST ---------------- */
+:root{--flw:#b8611a;--flw-soft:#fcf0e4;--flw-ink:#8a4510}
+.flw{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.flwel{background:#fff;border:1px solid var(--line);border-top:4px solid var(--flw);border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.flwtag{align-self:flex-start;background:var(--flw-soft);color:var(--flw-ink);font-weight:700;font-size:13px;letter-spacing:.02em;text-transform:uppercase;border-radius:20px;padding:3px 10px}
+.flwdef{margin:0;font-size:14px;color:var(--ink3);font-style:italic}
+.flwwe{margin:0;font-size:14px;color:var(--ink2)}
+.flwmod{margin-top:auto;background:var(--bg);border-radius:8px;padding:10px 12px;font-size:15px}
+.flwmod b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--flw-ink);margin-bottom:4px}
+ol.oci{list-style:none;counter-reset:oci;padding:0;margin:0;display:grid;gap:10px}
+ol.oci>li{counter-increment:oci;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+ol.oci>li::before{content:counter(oci);width:30px;height:30px;border-radius:50%;background:var(--flw);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+ol.oci>li b{display:block;margin-bottom:2px}
+ol.oci>li span{color:var(--ink2);font-size:15px}
+ol.oci-plan label{display:block;font-weight:400;margin-bottom:8px}
+ol.oci-plan label b{display:inline;margin:0}
+ol.oci-plan textarea{width:100%;min-height:72px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:inherit;font-size:15px;resize:vertical}
+.apst{display:grid;gap:12px}
+.apstrow{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+.apsthd{grid-column:1/-1;display:flex;gap:10px;align-items:baseline}
+.apsthd code{background:var(--navy);color:#fff;border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;font-family:inherit;flex:none}
+.apstd,.apstm{font-size:15px;color:var(--ink2)}
+.apstm{background:var(--bg);border-radius:8px;padding:8px 10px}
+.apstrow .k{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink3);margin-bottom:3px}
+@media (max-width:620px){.apstrow{grid-template-columns:1fr}}
+.review{border:1px solid var(--line);border-left:4px solid var(--good);border-radius:var(--r);padding:16px 18px;background:#fff;margin-top:22px}
+.review input[type=date]{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;margin-left:8px;max-width:100%}
+.review .rq{background:var(--bg)}

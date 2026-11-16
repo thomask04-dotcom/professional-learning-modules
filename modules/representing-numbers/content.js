@@ -261,10 +261,45 @@ var PROMPTS = [
  ["Your students","Are any students still counting by ones where the syllabus expects composite units? What would you do next for them?"],
  ["Your practice","NESA advises against teaching rounding as ‘five or more, round up’. How do you teach rounding now, and what would you change?"],
  ["Your practice","How do you describe multiplying by 10? Do you say the decimal point moves, or that the digits move?"],
- ["Your practice","How are students’ home languages and number words recognised in your classroom?"]
+ ["Your practice","How are students’ home languages and number words recognised in your classroom?"],
+ ["Faith, Learning and Wellbeing","Where did you see agency in this module? How could your students set their own goals for representing numbers, using the quick check for your stage?"],
+ ["Faith, Learning and Wellbeing","Equity asks that every student can access high quality learning. Which of your students could be left counting by ones, and what will you change so they are not?"]
 ];
 var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
 
+
+/* ---------------- Faith, Learning and Wellbeing Framework and AITSL Standards ---------------- */
+var FLW = {
+ intro:"In Representing numbers, students build quantity, place value and the structure of our number system, from subitising and counting to decimals and large numbers.",
+ el:{
+  agency:"Students choose a representation (materials, a number line, expanded notation) and explain why it works. The quick check for each stage gives students a clear next goal.",
+  relevance:"Numbers come from students’ worlds: counting collections, money, scales and measurements. Students’ home-language number words are recognised and compared with English.",
+  rigour:"The big ideas, such as zero, unitising and the multiplicative structure of place value, deepen from stage to stage. The Working mathematically makeovers turn closed tasks into reasoning tasks.",
+  environment:"Misconceptions are treated as reasonable steps in learning, not failures, so students can share partial thinking safely. Shared models and language across the school make lessons predictable.",
+  equity:"The quick checks and the misconception sorter help you notice who is still counting by ones and plan their next step, so every student can reach grade-level reasoning."
+ },
+ his:[
+  ["Explicit teaching","Model place value with precise language: when we multiply by 10, the digits move, not the decimal point."],
+  ["Multiple exposures","Use the same models (ten frames, base-ten materials, number lines) across stages so ideas are revisited and extended."],
+  ["Questioning","‘Convince me’ and ‘open it up’ prompts ask students to justify where a number sits and why."],
+  ["Differentiated teaching","Run the quick check with three students, then group by what they can do, not by year level."],
+  ["Fostering student self-efficacy","Name the strategy a student used and show them their growth from counting by ones to using groups of ten."]
+ ]
+};
+/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+var APST = [
+ ["1.2","The progression and big ideas show how students build composite units and place value, and where misconceptions begin."],
+ ["1.3","Recognise students’ home-language number words, many of which follow a regular tens-then-ones pattern that English does not."],
+ ["1.5","Use the quick checks and stage content to plan for students who need more time with counting and those ready for decimals."],
+ ["2.1","Deepen your content knowledge of place value, rounding and decimals, and the models and language NESA recommends."],
+ ["2.2","See how content is sequenced from Early Stage 1 to Stage 3 so your program builds on earlier stages."],
+ ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
+ ["2.5","Reading, writing and saying numbers, and the vocabulary of place value, are explicit numeracy and literacy demands."],
+ ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
+ ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
+ ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+];
 
 var WM_ELEMENTS = [
  ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],
@@ -313,7 +348,7 @@ var CLOSED = [
   {m:"Convince me",t:"“About how many children are in our school hall right now, to the nearest ten? Convince me, then check by counting in tens.”",el:["Understanding and fluency","Choosing and applying techniques"]}
  ]},
  {st:"s3",task:"Place 0.6 on a number line from 0 to 1.",moves:[
-  {m:"Who is correct?",t:"“Kai put 0.6 to the left of zero, ‘because it starts with zero’. Jess put it halfway between 0 and 1. Who is correct, and why might Kai think that?”",el:["Reasoning","Communicating"]},
+  {m:"Who is correct?",t:"“Kai put 0.6 to the left of zero, ‘because it starts with zero’. Jess put it just past halfway between 0 and 1. Who is correct, and why might Kai think that?”",el:["Reasoning","Communicating"]},
   {m:"Same and different",t:"“What is the same and what is different about 0.6, −0.6 and 6?”",el:["Exploring and connecting","Communicating"]},
   {m:"Always, sometimes, never",t:"“A decimal that starts with 0 is less than 1. Always, sometimes or never true?”",el:["Reasoning","Exploring and connecting"]},
   {m:"Open it up",t:"“Choose three decimals that would be hard to place on this line. Place them, then swap with a partner to check.”",el:["Choosing and applying techniques","Communicating"]},
