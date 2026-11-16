@@ -238,9 +238,44 @@ var PROMPTS = [
  ["Your students","Can your students rebuild the whole from a part? Which students go only from whole to part?"],
  ["Your practice","How do you read ⅔ aloud? Do you say ‘two-thirds’, ‘2 out of 3’ or ‘2 over 3’?"],
  ["Your practice","How much of your fractions teaching uses shading inside shapes? What could you use instead?"],
- ["Your practice","How do you recognise students’ home languages and cultural knowledge (such as sharing within kinship systems) when teaching fractions?"]
+ ["Your practice","How do you recognise students’ home languages and cultural knowledge (such as sharing within kinship systems) when teaching fractions?"],
+ ["Faith, Learning and Wellbeing","Fractions often cause anxiety for students. How could you build a classroom where students feel safe to test and revise their fraction ideas?"],
+ ["Faith, Learning and Wellbeing","Where could fair sharing, and the value of justice it reflects, give fractions real purpose for your students?"]
 ];
 var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+/* ---------------- Faith, Learning and Wellbeing Framework and AITSL Standards ---------------- */
+var FLW = {
+ intro:"In Fractions, students move from halves and equal parts to fractions as numbers on a number line, equivalence and operations with fractions.",
+ el:{
+  agency:"Students choose models (strips, number lines, collections) and decide which one shows a fraction best, then justify their thinking.",
+  relevance:"Fractions are drawn from sharing, cooking and measuring, and students’ cultural knowledge, such as sharing within kinship systems, is recognised.",
+  rigour:"The module challenges ‘an equal part of a whole’ as the only meaning, building fractions as lengths, numbers and relationships, including rebuilding the whole from a part.",
+  environment:"Students discuss misconceptions such as ‘bigger denominator, bigger fraction’ openly, as reasonable ideas to test.",
+  equity:"The quick checks show which students only go from whole to part, so you can plan the next step for each student."
+ },
+ his:[
+  ["Explicit teaching","Say fractions precisely, such as ‘two-thirds’, rather than ‘2 out of 3’ or ‘2 over 3’."],
+  ["Multiple exposures","Meet fractions as lengths, areas and collections, and on number lines, not only as shaded shapes."],
+  ["Questioning","Ask students to rebuild the whole from a part and to compare fractions without calculating."],
+  ["Collaborative learning","Partners compare different models of the same fraction and explain why they match."],
+  ["Supporting inclusion and belonging","Recognise students’ home languages and cultural ways of sharing when you introduce fractions."]
+ ]
+};
+/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+var APST = [
+ ["1.2","The progression shows how fraction understanding grows from halving to fractions as numbers, and where misconceptions start."],
+ ["1.3","Recognise students’ home languages and cultural knowledge, such as sharing within kinship systems, when teaching fractions."],
+ ["1.5","Use the quick checks to support students who only go from whole to part and extend those ready for equivalence and operations."],
+ ["2.1","Deepen your knowledge of fraction models, the number line, equivalence and the language NESA recommends."],
+ ["2.2","Follow the sequence from halves in Early Stage 1 to operations with fractions in Stage 3."],
+ ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
+ ["2.5","Fraction language (‘two-thirds’, ‘equivalent’, ‘denominator’) is taught explicitly as part of numeracy and literacy."],
+ ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
+ ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
+ ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+];
 
 var WM_ELEMENTS = [
  ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],

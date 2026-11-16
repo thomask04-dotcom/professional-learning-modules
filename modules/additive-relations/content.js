@@ -254,9 +254,45 @@ var PROMPTS = [
  ["Your students","Do any students know their number bonds but still count by ones? What would you do next for them?"],
  ["Your practice","How do you read the equals sign aloud? How often do students see number sentences written as 5 = 4 + 1?"],
  ["Your practice","Do you teach key words for word problems? What could you do instead?"],
- ["Your practice","When do students in your class choose a mental strategy over an algorithm? How do you encourage them to look at the numbers first?"]
+ ["Your practice","When do students in your class choose a mental strategy over an algorithm? How do you encourage them to look at the numbers first?"],
+ ["Faith, Learning and Wellbeing","Where could your students make real choices about strategy in additive problems? How will you help them explain and own those choices?"],
+ ["Faith, Learning and Wellbeing","Which contexts or stories from your students’ lives and community could make addition and subtraction more relevant for them?"]
 ];
 var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+/* ---------------- Faith, Learning and Wellbeing Framework and AITSL Standards ---------------- */
+var FLW = {
+ intro:"In Additive relations, students learn to combine, separate and compare quantities, from part-part-whole thinking to efficient mental strategies and algorithms.",
+ el:{
+  agency:"Students choose between mental strategies and algorithms by looking at the numbers first, and explain their choice.",
+  relevance:"Problems come from real contexts and storytelling, including money and everyday comparisons, rather than key-word drills.",
+  rigour:"The progression moves from counting all to part-part-whole and the equals sign as ‘the same as’, so students reason about relationships, not just answers.",
+  environment:"Errors are analysed as a class as useful information, so students feel safe to share strategies that did not work.",
+  equity:"The quick checks show who knows number bonds but still counts by ones, so support can be targeted. Storytelling supports the engagement of Aboriginal students, and all students."
+ },
+ his:[
+  ["Worked examples","Show an empty number line or bar model next to a number sentence, then fade the support."],
+  ["Explicit teaching","Read the equals sign as ‘is the same as’, and show sentences such as 5 = 4 + 1."],
+  ["Questioning","Ask ‘How did you know?’ and ‘Which strategy is most efficient here?’ instead of checking answers only."],
+  ["Collaborative learning","Students compare strategies for the same problem and look for the most efficient one."],
+  ["Engaging students","Use storytelling and real contexts so combining and separating have a purpose."]
+ ]
+};
+/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+var APST = [
+ ["1.2","The progression shows how students move from counting all to part-part-whole reasoning and flexible strategies."],
+ ["1.3","Connect problems to students’ cultural knowledge and stories, and recognise strategies from home."],
+ ["1.4","The module notes that mathematics as storytelling supports the engagement of Aboriginal students, and that some students bring well-developed understandings of quantity."],
+ ["1.5","Use the quick checks to target students who know bonds but still count by ones, and to extend those ready for algorithms."],
+ ["2.1","Deepen your knowledge of addition and subtraction structures, including comparison subtraction, and the empty number line and bar model."],
+ ["2.2","Follow the sequence from Early Stage 1 to Stage 3 so strategies build across years."],
+ ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
+ ["2.5","Replace key-word teaching for word problems with reading for meaning and representing the situation."],
+ ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
+ ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
+ ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+];
 
 var WM_ELEMENTS = [
  ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],

@@ -241,9 +241,44 @@ var PROMPTS = [
  ["Your students","Which of your students might prefer collecting data through observation or conversation rather than questioning?"],
  ["Your practice","How often do your students create their own questions, rather than graphing data you provide?"],
  ["Your practice","How often do your students critique graphs from the media or advertisements?"],
- ["Your practice","Are your data displays accessible: strong colour contrast, alternative text, captions?"]
+ ["Your practice","Are your data displays accessible: strong colour contrast, alternative text, captions?"],
+ ["Faith, Learning and Wellbeing","Which questions do your students genuinely care about? How could they use data to investigate them, and to act with justice or compassion in their community?"],
+ ["Faith, Learning and Wellbeing","Are all of your students able to take part in collecting and reading data? What would make your data lessons more inclusive?"]
 ];
 var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+/* ---------------- Faith, Learning and Wellbeing Framework and AITSL Standards ---------------- */
+var FLW = {
+ intro:"In Data, students learn to pose questions, collect, display and interpret data, and critique how data is used.",
+ el:{
+  agency:"Students create their own questions and choose how to collect and display data, rather than only graphing data they are given.",
+  relevance:"Data comes from students’ lives and other learning areas, such as Science and Technology, HSIE and PDHPE, and from seasonal Aboriginal calendars.",
+  rigour:"Students move from reading values to ‘here, hidden, beyond’ questions and critiquing graphs from the media.",
+  environment:"Students may engage more through observation or conversation than questioning, so data collection can respect how each student prefers to take part.",
+  equity:"Data displays are made accessible with strong colour contrast, alternative text and captions, so every student can read and share them."
+ },
+ his:[
+  ["Setting goals","Students pose their own question and plan how to answer it with data."],
+  ["Questioning","Use ‘here, hidden, beyond’ questions to move from reading values to inferring."],
+  ["Collaborative learning","Groups collect and display data together and critique each other’s displays."],
+  ["Engaging students","Use authentic data from students’ lives and other learning areas."],
+  ["Supporting inclusion and belonging","Some Aboriginal students may prefer not to ask or be asked direct questions. Offer observation and conversation as ways to collect data."]
+ ]
+};
+/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+var APST = [
+ ["1.2","The progression shows how students move from sorting objects to interpreting and critiquing displays."],
+ ["1.4","The module notes that some Aboriginal students may prefer observation or conversation to direct questions, and uses seasonal data from Aboriginal calendars."],
+ ["1.5","Use the quick checks to target students still reading single values and extend those ready to critique displays."],
+ ["1.6","Make data displays accessible with strong colour contrast, alternative text and captions."],
+ ["2.1","Deepen your knowledge of the statistical investigation process, displays and the language NESA recommends."],
+ ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
+ ["2.4","Use Aboriginal calendars and environmental knowledge respectfully, in consultation with local Aboriginal communities."],
+ ["2.6","Students use spreadsheets and digital tools to organise and display data."],
+ ["5.4","Interpreting data is both the content of this module and a model for how you read your own class data."],
+ ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
+ ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+];
 
 var WM_ELEMENTS = [
  ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],

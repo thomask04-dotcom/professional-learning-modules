@@ -95,7 +95,7 @@ s1:{
   {see:"Says taking a red cube from a bag of 9 blue and 1 red is impossible.",name:"Unlikely seen as impossible",resp:"Take cubes out (and put them back) many times. Red appears sometimes. Try the tool below.",src:"n"},
   {see:"Says red and blue “take turns”, so blue is next.",name:"Expecting turns",resp:"Record many draws and look for runs of the same colour.",src:"a"},
   {see:"Says it won’t rain because it’s sports day.",name:"Wishes as predictions",resp:"Discuss what could happen, whatever we hope.",src:"a"},
-  {see:"Says the bag with 5 red cubes is better for red than the bag with 2 red cubes, though the first also has 20 blue.",name:"Comparing amounts, not proportions",resp:"Compare the reds with the whole bag. Use very familiar, simple proportions in Stage 1.",src:"a"},
+  {see:"Says the bag with 5 red cubes is better for red than the bag with 2 red cubes and 1 blue cube, though the first also has 20 blue.",name:"Comparing amounts, not proportions",resp:"Compare the reds with the whole bag. Use very familiar, simple proportions in Stage 1.",src:"a"},
   {see:"Uses ‘likely’ to mean ‘will happen’.",name:"Likely and certain confused",resp:"Place events between ‘won’t happen’ and ‘will happen’, without assigning exact positions.",src:"n"}
  ],
  advice:["Encourage students to recognise the impact of chance on their predictions.","Use examples where all possible outcomes are well defined, such as a bag of cubes whose contents are known.","Discuss the two extremes, certain and certain not to happen, and the words in between.","Show that low-probability events are not impossible.","Use familiar activities, such as what might happen after lunch."],
@@ -235,9 +235,43 @@ var PROMPTS = [
  ["Your students","How often do your students’ predictions reflect their wishes rather than the possible outcomes?"],
  ["Your practice","How often do students run enough trials to see variation, and to see results settle down?"],
  ["Your practice","Do you ever place chance words at exact points on a number line? What could you do instead?"],
- ["Your practice","How could Data and Chance be taught together in your stage?"]
+ ["Your practice","How could Data and Chance be taught together in your stage?"],
+ ["Faith, Learning and Wellbeing","Chance teaches that outcomes aren’t always fair or in our control. How could you use this to talk with students about hope, disappointment and coping?"],
+ ["Faith, Learning and Wellbeing","How could your students take more control of chance experiments, from designing them to deciding how many trials are enough?"]
 ];
 var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+/* ---------------- Faith, Learning and Wellbeing Framework and AITSL Standards ---------------- */
+var FLW = {
+ intro:"In Chance, students move from discussing what could happen to describing likelihood, comparing predictions with results and assigning probabilities.",
+ el:{
+  agency:"Students design and run their own chance experiments, predict results and decide when they have enough trials.",
+  relevance:"Everyday events, weather and games give chance language real meaning.",
+  rigour:"Students move from wishes and beliefs to listing outcomes, comparing proportions and seeing results settle down over many trials.",
+  environment:"Predictions are tested, not judged, so students can be ‘wrong’ safely and learn that randomness means different results can happen.",
+  equity:"The quick checks show which students rely on personal beliefs or compare amounts instead of proportions, so support can be targeted."
+ },
+ his:[
+  ["Questioning","Ask ‘Could it be …?’ and ‘Why couldn’t it be …?’ to decide what is possible."],
+  ["Structuring lessons","Predict, test, then compare results with predictions."],
+  ["Collaborative learning","Pool results across the class to show how results settle down over many trials."],
+  ["Metacognitive strategies","Students notice when their wishes or beliefs drive a prediction."],
+  ["Promoting coping strategies and facilitating referrals","Chance shows that outcomes aren’t always in our control, a useful link to coping with disappointment."]
+ ]
+};
+/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+var APST = [
+ ["1.2","The progression shows how students move from beliefs and preferences to reasoning about outcomes and probability."],
+ ["1.5","Use the quick checks to target students who confuse ‘unlikely’ with ‘impossible’ and extend those ready to quantify probability."],
+ ["2.1","Deepen your knowledge of chance, probability and the misconceptions NESA describes, such as the ‘law of averages’."],
+ ["2.2","Follow the sequence from Early Stage 1 Data foundations to Stage 3 Chance."],
+ ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
+ ["2.6","Digital simulators let students run many trials quickly and compare observed and expected results."],
+ ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
+ ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
+ ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+];
 
 var WM_ELEMENTS = [
  ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],

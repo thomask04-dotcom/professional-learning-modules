@@ -62,6 +62,28 @@ Module addresses:
 
 The published site is public to anyone with the link.
 
+## Framework and Standards
+
+Every module has a **Framework and Standards** page (section id `#links`) under Start here. It shows:
+
+- how the module connects to the five essential elements of the Catholic Education Diocese of Wollongong *Faith, Learning and Wellbeing Framework* (Agency, Relevance, Rigour, Environment and Equity)
+- how the module can be used as an Ongoing Cyclic Inquiry, with links to the part of the module that supports each step
+- the framework's high impact strategies (learning and wellbeing) that the module models most
+- the AITSL *Australian Professional Standards for Teachers* focus areas the module supports, with the descriptor for the career stage the teacher chooses (Graduate, Proficient, Highly Accomplished or Lead)
+
+The framework text and the APST descriptors are shared in `engine/module.js` (`FLW_ELEMENTS`, `OCI`, `APST_LIB`). Each module's own links are in its `content.js` (`FLW` and `APST`).
+
+## Reflection
+
+Teachers can reflect throughout each module, and everything saves in their browser:
+
+- **Pause and reflect** at the end of each stage page (three short questions)
+- **Reflect and plan**: the module's reflection questions (including two on the Faith, Learning and Wellbeing Framework), an inquiry plan following the five Ongoing Cyclic Inquiry steps, the APST focus areas they want evidence for, next steps and the after self-check
+
+Teachers complete everything within the module: nothing asks them to return later or check in.
+
+All of this is included when teachers copy or download their notes, so it can go into a Professional Development Plan or accreditation evidence.
+
 ## Quick self-check
 
 Every module has an optional, private self-check. The "before" check is on the Welcome page and the "after" check is on Reflect and plan. It has three confidence ratings and two misconception scenarios.
@@ -76,7 +98,7 @@ The main page (`index.html`) is a module finder. Teachers can:
 - filter by stage and strand
 - jump straight to the matching section of a module
 
-Any module can be opened at a section by adding its id to the address, for example `modules/data/#s3` (also `#ideas`, `#prog`, `#wm`, `#es1`, `#s1`, `#s2`, `#models`, `#sorter` or `#reflect`).
+Any module can be opened at a section by adding its id to the address, for example `modules/data/#s3` (also `#links`, `#ideas`, `#prog`, `#wm`, `#es1`, `#s1`, `#s2`, `#models`, `#sorter` or `#reflect`).
 
 If each module has its own Google Sites page, paste those addresses into `SITE_PAGES` near the top of the script in `index.html`. Finder links then open the Google Sites pages (in a new tab), so Google Sites analytics counts each module's views.
 
@@ -96,11 +118,15 @@ Test on a school device first: some networks filter `github.io`.
    - `M`: module text (welcome, big ideas intro, shifts between stages, model tips, sorter roots, footer). Give it a new `key` so saved progress doesn't clash with other modules.
    - `STAGES`: focus area names for each stage.
    - `STAGE_CONTENT`: per stage — lead, outcomes, content headings and points, teacher knowledge, misconceptions (`src`: `"n"` NESA, `"d"` diocesan PL slides, `"a"` additional commentary), advice, vocabulary, quick check, `tool` name and quiz.
-   - `IDEAS`, `ASPECTS`, `MODELS`, `ROOTS`, `SCENARIOS`, `PROMPTS`, `TODOS`, `WM` (reasoning tags and task makeovers), `CLOSED` (makeover practice). A stage's `WM` entry can include `tagsLead` to replace the default sentence above its reasoning tags (used in Fractions, where Early Stage 1 and Stage 1 have no fractions outcomes).
+   - `IDEAS`, `ASPECTS`, `MODELS`, `ROOTS`, `SCENARIOS`, `PROMPTS`, `TODOS`, `WM` (reasoning tags and task makeovers), `CLOSED` (makeover practice). A stage's `WM` entry can include `tagsLead` to replace the default sentence above its reasoning tags (used in Fractions, where Early Stage 1 and Stage 1 have no fractions outcomes). Add new `PROMPTS` at the end of the list, because saved notes are matched to prompts by position.
+   - `FLW`: an `intro` sentence, one sentence for each essential element in `el` (`agency`, `relevance`, `rigour`, `environment`, `equity`) and about five high impact strategies in `his`, each as `[strategy, how this module uses it]`.
+   - `APST`: the focus areas the module supports, each as `[code, how this module supports it]`. Every code must be in `APST_LIB` in `engine/module.js`; add the four career-stage descriptors there for any new code.
 4. Write four tools in `tools.js`: `toolHTML(name)` returns each tool's markup, and `wireTool(name)` attaches its behaviour. Put their styles in `tools.css`.
 5. Add a card to the landing page `index.html` and a row to the table above.
 6. Run `python3 scripts/build_single.py` to refresh `dist/`.
 
 ## Sources
+
+The Framework and Standards page draws on the Catholic Education Diocese of Wollongong *Faith, Learning and Wellbeing Framework* and the AITSL *Australian Professional Standards for Teachers*; APST descriptors are quoted from AITSL.
 
 Content is drawn from the NESA *Mathematics K–10 Syllabus (2022)* outcomes and content, the NESA syllabus support teaching advice, the NESA additional teaching advice where relevant, and (for Multiplicative relations, Fractions and Two-dimensional spatial structure) Catholic Education Diocese of Wollongong PL slides. Each module marks which items come from which source; items marked "Additional commentary" are common classroom observations.

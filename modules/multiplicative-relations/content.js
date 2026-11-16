@@ -99,7 +99,7 @@ s1:{
  ],
  misc:[
   {see:"Asked how many in 3 groups of 4, answers “7”.",name:"Number of groups and number in each group confused",resp:"Trace around each group while counting the groups, then label the number in each group. Ask, “How many groups? How many in each? How many altogether?”",src:"n"},
-  {see:"Skip counts 3, 6, 9, 12, 15 but can’t say how many threes were counted.",name:"Losing track of the number of groups",resp:"Keep track of groups on fingers or markers, and record the new total as each group is counted (diocesan PL slides).",src:"a"},
+  {see:"Skip counts 3, 6, 9, 12, 15 but can’t say how many threes were counted.",name:"Losing track of the number of groups",resp:"Keep track of groups on fingers or markers, and record the new total as each group is counted (diocesan PL slides).",src:"d"},
   {see:"Builds an ‘array’ of 12 with rows of 5, 4 and 3.",name:"An array doesn’t need equal rows",resp:"Revisit the definition: every row has the same number and every column has the same number. Transform equal groups into equal rows.",src:"a"},
   {see:"Shares 13 counters between 3 people and gives the extra one to the first person.",name:"Not recognising the part left over",resp:"Talk about what’s fair: everyone gets 4 and 1 is left over. Ask, “What could we do with the one left over?”",src:"a"},
   {see:"Splits 10 counters into 6 and 4 and calls each pile “a half”.",name:"A half is any part",resp:"Share between two so each has the same. Re-create the whole from a given half.",src:"a"},
@@ -174,7 +174,7 @@ s3:{
  ],
  know:[
   ["The distributive property drives multi-digit multiplication","8 × 24 is 8 × 20 plus 8 × 4. The area model can be recorded as an extended form of the algorithm, and it is a precursor to expanding binomials in Stage 5."],
-  ["Primes, composites and 1","A prime has exactly 2 distinct factors; as an array it has only one row. 1 has one factor, so it is neither prime nor composite. 2 is the only even prime."],
+  ["Primes, composites and 1","A prime has exactly 2 distinct factors; it can only be arranged as an array with a single row (or column). 1 has one factor, so it is neither prime nor composite. 2 is the only even prime."],
   ["Euclidean division","Whole-number division with a whole-number remainder: 53 ÷ 3 = 17 remainder 2, which can be written 53 = 3 × 17 + 2. Sharing base 10 blocks mirrors the division algorithm."],
   ["Rates, ratios and bar models","The simplest multiplication word problems are rates (“4 students have $3 each”). Bar models show ‘five times as many’, and ratio tables keep values in a constant ratio (28 students : 20 computers = 7 : 5)."],
   ["Fractions as division","Say ‘3 divided by 4’ rather than ‘3 over 4’. The fraction bar represents division."],
@@ -258,9 +258,45 @@ var PROMPTS = [
  ["Your students","Are any students still counting by ones or using repeated addition where the syllabus expects skip counting, facts or strategies? What would you do next?"],
  ["Your practice","How are multiplication facts learnt in your class: blocked tables, or fact families with mixed practice? What would you change?"],
  ["Your practice","Do you use the phrase ‘lots of’ or a mnemonic like BODMAS? What would you use instead?"],
- ["Your practice","How are students’ cultural knowledge and home-language strategies recognised when they multiply and divide?"]
+ ["Your practice","How are students’ cultural knowledge and home-language strategies recognised when they multiply and divide?"],
+ ["Faith, Learning and Wellbeing","How do your students feel about learning multiplication facts? What could you change so practice builds confidence and self-efficacy rather than anxiety?"],
+ ["Faith, Learning and Wellbeing","How could multiplicative problems in your class connect to your students’ cultures, families and community in a way that is respectful and real?"]
 ];
 var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+/* ---------------- Faith, Learning and Wellbeing Framework and AITSL Standards ---------------- */
+var FLW = {
+ intro:"In Multiplicative relations, students move from equal groups and sharing to arrays, fact families and multiplicative thinking with larger numbers.",
+ el:{
+  agency:"Students choose a strategy, such as splitting an array or using a known fact, and explain why it works.",
+  relevance:"Problems use real contexts, including purchases and cultural objects such as bull roarers and clapsticks, and recognise students’ home-language strategies.",
+  rigour:"The array connects equal groups, multiplication, division and area, so students build structure rather than memorising isolated facts.",
+  environment:"Mixed practice with fact families replaces timed, blocked tables, so fluency grows without fear of failure.",
+  equity:"The quick checks show who is still counting by ones or using repeated addition where the syllabus expects skip counting, facts or strategies, so support can be targeted."
+ },
+ his:[
+  ["Explicit teaching","Model both sharing and grouping division with materials and arrays, using precise language instead of ‘lots of’."],
+  ["Multiple exposures","Use the array from Stage 1 to Stage 3 for multiplication, division and area."],
+  ["Worked examples","Show how splitting an array matches the distributive property before students try their own."],
+  ["Feedback","Give feedback on the strategy, not only the answer, so students can move from counting to facts."],
+  ["Fostering student self-efficacy","Mixed practice with fact families helps students see their own progress without timed tests."]
+ ]
+};
+/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+var APST = [
+ ["1.2","The progression shows how students move from counting by ones to composite units and multiplicative thinking."],
+ ["1.3","Recognise students’ cultural knowledge and home-language strategies for multiplying and dividing."],
+ ["1.4","Tasks such as buying bull roarers and clapsticks connect to Aboriginal cultural contexts. Plan these with your local community."],
+ ["1.5","Use the quick checks to target students still using repeated addition and to extend those ready for multi-digit methods."],
+ ["2.1","Deepen your knowledge of sharing and grouping division, the array, fact families and order of operations without mnemonics such as BODMAS."],
+ ["2.2","Follow the sequence from equal groups in Early Stage 1 to multi-digit multiplication in Stage 3."],
+ ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
+ ["2.4","Use Aboriginal cultural contexts respectfully, in consultation with local Aboriginal communities."],
+ ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
+ ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
+ ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+];
 
 var WM_ELEMENTS = [
  ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],

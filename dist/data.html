@@ -290,6 +290,32 @@ footer{font-size:13px;color:var(--ink3);text-align:center;padding:20px 16px 30px
 .chkd.down{background:var(--bad-soft);color:#7a2219}
 .chkscn{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
 
+/* ---------------- Faith, Learning and Wellbeing and APST ---------------- */
+:root{--flw:#b8611a;--flw-soft:#fcf0e4;--flw-ink:#8a4510}
+.flw{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.flwel{background:#fff;border:1px solid var(--line);border-top:4px solid var(--flw);border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.flwtag{align-self:flex-start;background:var(--flw-soft);color:var(--flw-ink);font-weight:700;font-size:13px;letter-spacing:.02em;text-transform:uppercase;border-radius:20px;padding:3px 10px}
+.flwdef{margin:0;font-size:14px;color:var(--ink3);font-style:italic}
+.flwwe{margin:0;font-size:14px;color:var(--ink2)}
+.flwmod{margin-top:auto;background:var(--bg);border-radius:8px;padding:10px 12px;font-size:15px}
+.flwmod b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--flw-ink);margin-bottom:4px}
+ol.oci{list-style:none;counter-reset:oci;padding:0;margin:0;display:grid;gap:10px}
+ol.oci>li{counter-increment:oci;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+ol.oci>li::before{content:counter(oci);width:30px;height:30px;border-radius:50%;background:var(--flw);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+ol.oci>li b{display:block;margin-bottom:2px}
+ol.oci>li span{color:var(--ink2);font-size:15px}
+ol.oci-plan label{display:block;font-weight:400;margin-bottom:8px}
+ol.oci-plan label b{display:inline;margin:0}
+ol.oci-plan textarea{width:100%;min-height:72px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:inherit;font-size:15px;resize:vertical}
+.apst{display:grid;gap:12px}
+.apstrow{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+.apsthd{grid-column:1/-1;display:flex;gap:10px;align-items:baseline}
+.apsthd code{background:var(--navy);color:#fff;border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;font-family:inherit;flex:none}
+.apstd,.apstm{font-size:15px;color:var(--ink2)}
+.apstm{background:var(--bg);border-radius:8px;padding:8px 10px}
+.apstrow .k{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink3);margin-bottom:3px}
+@media (max-width:620px){.apstrow{grid-template-columns:1fr}}
+
 </style>
 <style>
 /* shared picture panels */
@@ -571,9 +597,44 @@ var PROMPTS = [
  ["Your students","Which of your students might prefer collecting data through observation or conversation rather than questioning?"],
  ["Your practice","How often do your students create their own questions, rather than graphing data you provide?"],
  ["Your practice","How often do your students critique graphs from the media or advertisements?"],
- ["Your practice","Are your data displays accessible: strong colour contrast, alternative text, captions?"]
+ ["Your practice","Are your data displays accessible: strong colour contrast, alternative text, captions?"],
+ ["Faith, Learning and Wellbeing","Which questions do your students genuinely care about? How could they use data to investigate them, and to act with justice or compassion in their community?"],
+ ["Faith, Learning and Wellbeing","Are all of your students able to take part in collecting and reading data? What would make your data lessons more inclusive?"]
 ];
 var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+/* ---------------- Faith, Learning and Wellbeing Framework and AITSL Standards ---------------- */
+var FLW = {
+ intro:"In Data, students learn to pose questions, collect, display and interpret data, and critique how data is used.",
+ el:{
+  agency:"Students create their own questions and choose how to collect and display data, rather than only graphing data they are given.",
+  relevance:"Data comes from students’ lives and other learning areas, such as Science and Technology, HSIE and PDHPE, and from seasonal Aboriginal calendars.",
+  rigour:"Students move from reading values to ‘here, hidden, beyond’ questions and critiquing graphs from the media.",
+  environment:"Students may engage more through observation or conversation than questioning, so data collection can respect how each student prefers to take part.",
+  equity:"Data displays are made accessible with strong colour contrast, alternative text and captions, so every student can read and share them."
+ },
+ his:[
+  ["Setting goals","Students pose their own question and plan how to answer it with data."],
+  ["Questioning","Use ‘here, hidden, beyond’ questions to move from reading values to inferring."],
+  ["Collaborative learning","Groups collect and display data together and critique each other’s displays."],
+  ["Engaging students","Use authentic data from students’ lives and other learning areas."],
+  ["Supporting inclusion and belonging","Some Aboriginal students may prefer not to ask or be asked direct questions. Offer observation and conversation as ways to collect data."]
+ ]
+};
+/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+var APST = [
+ ["1.2","The progression shows how students move from sorting objects to interpreting and critiquing displays."],
+ ["1.4","The module notes that some Aboriginal students may prefer observation or conversation to direct questions, and uses seasonal data from Aboriginal calendars."],
+ ["1.5","Use the quick checks to target students still reading single values and extend those ready to critique displays."],
+ ["1.6","Make data displays accessible with strong colour contrast, alternative text and captions."],
+ ["2.1","Deepen your knowledge of the statistical investigation process, displays and the language NESA recommends."],
+ ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
+ ["2.4","Use Aboriginal calendars and environmental knowledge respectfully, in consultation with local Aboriginal communities."],
+ ["2.6","Students use spreadsheets and digital tools to organise and display data."],
+ ["5.4","Interpreting data is both the content of this module and a model for how you read your own class data."],
+ ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
+ ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+];
 
 var WM_ELEMENTS = [
  ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],
@@ -820,6 +881,7 @@ function save(){ try { window.localStorage.setItem(KEY, JSON.stringify(mem)); } 
 /* ---------------- sections ---------------- */
 var SECTIONS = [
  {id:"welcome",label:"Welcome",grp:"Start here",r:renderWelcome},
+ {id:"links",label:"Framework and Standards",grp:"Start here",r:renderLinks},
  {id:"ideas",label:"The big ideas",grp:"Start here",r:renderIdeas},
  {id:"prog",label:"Progression explorer",grp:"Start here",r:renderProg},
  {id:"wm",label:"Working mathematically",grp:"Start here",r:renderWM},
@@ -883,10 +945,11 @@ function renderWelcome(){
  card("Diagnose","misconceptions with flip cards, short quizzes and a misconception sorter.")+
  card("Rework","closed tasks into rich ones that embed Working mathematically, with one makeover for each stage.")+
  card("Try",M.tryText)+
- card("Reflect","on your own students and plan next steps. Your notes save in this browser.")+
+ card("Connect","your learning to the Faith, Learning and Wellbeing Framework and the Australian Professional Standards for Teachers.")+
+ card("Reflect","after each stage, then plan an inquiry for your students. Your notes save in this browser.")+
  '</div></section>'+
  '<section class="blk"><h3>'+M.namesH3+'</h3><p class="lead">'+M.namesP+'</p><table class="simple"><thead><tr><th>Stage</th><th>Focus area name</th><th>Outcomes</th></tr></thead><tbody>'+rows+'</tbody></table></section>'+
- '<section class="blk"><h3>Suggested pathways</h3><div class="grid2"><div class="card"><h4 style="margin-bottom:6px">On your own (about 45 minutes)</h4><ul class="tight"><li>Big ideas and the progression explorer</li><li>Your stage, plus the stage before it</li><li>The misconception sorter</li><li>Reflect and plan</li></ul></div><div class="card"><h4 style="margin-bottom:6px">As a staff or PLC session (about 60 minutes)</h4><ul class="tight"><li>Whole staff: big ideas and progression (15 min)</li><li>Stage teams: their stage section and tool (25 min)</li><li>Whole staff: misconception sorter (10 min)</li><li>Reflection prompts and next steps (10 min)</li></ul></div></div><p class="note" style="margin-top:12px">Tip: most difficulties in a stage begin in the stage before it, so look one stage back as well as at your own.</p></section>'+
+ '<section class="blk"><h3>Suggested pathways</h3><div class="grid2"><div class="card"><h4 style="margin-bottom:6px">On your own (about 45 minutes)</h4><ul class="tight"><li>Framework and Standards (a quick read)</li><li>Big ideas and the progression explorer</li><li>Your stage, plus the stage before it, pausing to reflect after each</li><li>The misconception sorter</li><li>Reflect and plan</li></ul></div><div class="card"><h4 style="margin-bottom:6px">As a staff or PLC session (about 60 minutes)</h4><ul class="tight"><li>Whole staff: big ideas and progression (15 min)</li><li>Stage teams: their stage section, tool and stage reflection (25 min)</li><li>Whole staff: misconception sorter (10 min)</li><li>Inquiry plan, links to the framework and Standards, next steps (10 min)</li></ul></div></div><p class="note" style="margin-top:12px">Tip: most difficulties in a stage begin in the stage before it, so look one stage back as well as at your own.</p></section>'+
  checkHTML("pre");
 }
 function card(t,d){return '<div class="card"><b>'+t+'</b> <span style="color:var(--ink2)">'+d+'</span></div>';}
@@ -930,7 +993,16 @@ function renderStage(k){
  h+='<section class="blk"><h3><span class="n">8</span>Vocabulary</h3><div class="chips">'+C.vocab.map(function(v){return '<span>'+v+'</span>';}).join("")+'</div></section>';
  h+='<section class="blk"><h3><span class="n">9</span>'+C.check.title+'</h3><div class="qc" style="border-left:5px solid '+S.col+'"><ol>'+C.check.steps.map(function(s){return '<li>'+s+'</li>';}).join("")+'</ol></div></section>';
  h+='<section class="blk quiz"><h3><span class="n">10</span>Check your understanding</h3>'+C.quiz.map(function(q,qi){return '<div class="q" data-q="'+qi+'"><h4>'+(qi+1)+'. '+q.q+'</h4>'+q.o.map(function(o,oi){return '<button class="opt" data-o="'+oi+'">'+o+'</button>';}).join("")+'<div class="fb"></div></div>';}).join("")+'</section>';
+ h+='<section class="blk"><h3><span class="n">11</span>Pause and reflect</h3><p class="lead">Take a few minutes before moving on. Your answers save in this browser and are included when you copy or download your notes in <b>Reflect and plan</b>.</p>'+stageReflectQs(k).map(function(q,i){var key="st-"+k+"-"+i;return '<div class="rq"><label for="'+key+'">'+q+'</label><textarea id="'+key+'" data-k="'+key+'" placeholder="Your thoughts…">'+esc(mem.notes[key]||"")+'</textarea></div>';}).join("")+'<span class="saved" data-saved></span></section>';
  return h;
+}
+function stageReflectQs(k){
+ var S=STAGES[k];
+ return [
+  "What did the "+S.name+" section confirm or challenge about how you teach this focus area?",
+  "Which misconception, reasoning point or quick check from "+S.name+" have you seen in your own students? What did you notice?",
+  "What is one thing you will try next, with which students, and what evidence will tell you it made a difference?"
+ ];
 }
 
 
@@ -1043,19 +1115,95 @@ function renderReflect(){
   if(p[0]!==g){g=p[0];h+='<h3 style="font-size:17px;margin:22px 0 10px">'+g+'</h3>';}
   h+='<div class="rq"><label for="rq'+i+'">'+(i+1)+'. '+p[1]+'</label><textarea id="rq'+i+'" data-i="'+i+'" placeholder="Your thoughts…">'+esc(mem.notes[i]||"")+'</textarea></div>';
  });
+ h+='<section class="blk inq"><h3>My inquiry plan</h3><p class="lead">Use the framework’s Ongoing Cyclic Inquiry to turn this module into action for your students.</p><ol class="oci oci-plan">'+OCI_PLAN.map(function(q,i){var key="oci-"+i;return '<li><div><label for="'+key+'"><b>'+OCI[i][0]+'.</b> '+q+'</label><textarea id="'+key+'" data-k="'+key+'" placeholder="Your plan…">'+esc(mem.notes[key]||"")+'</textarea></div></li>';}).join("")+'</ol></section>';
+ h+='<section class="blk"><h3>Link to the Standards</h3><p class="lead">Tick the focus areas from the Australian Professional Standards for Teachers that this learning supports for you, then note the evidence you could keep. See <button class="linkbtn" data-go="links">Framework and Standards</button> for the descriptors at each career stage.</p><div class="card todo">'+APST.map(function(a){var key="apst-"+a[0],L=APST_LIB[a[0]];return '<label><input type="checkbox" data-ck="'+key+'"'+(mem.notes[key]?" checked":"")+'><span><b>'+a[0]+'</b> '+L.t+'</span></label>';}).join("")+'</div><div class="rq" style="margin-top:12px"><label for="apst-ev">Evidence I could keep (for example, annotated work samples, quick check results, a revised task, a program change, notes from a stage meeting)</label><textarea id="apst-ev" data-k="apst-ev" placeholder="Evidence…">'+esc(mem.notes["apst-ev"]||"")+'</textarea></div></section>';
  h+='<h3 style="font-size:17px;margin:22px 0 10px">Next steps</h3><div class="card todo">'+TODOS.map(function(t,i){return '<label><input type="checkbox" data-t="'+i+'"'+(mem.todo[i]?" checked":"")+'><span>'+t+'</span></label>';}).join("")+'</div>';
  h+=checkHTML("post");
  h+='<div class="ctrl" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center"><button class="btn" id="copyNotes">Copy my notes</button><button class="btn ghost" id="dlNotes">Download as text</button><span class="saved" id="savedMsg"></span></div><textarea id="copyBuf" aria-hidden="true" style="position:absolute;left:-9999px;top:0"></textarea>';
  return h;
 }
+var OCI_PLAN = [
+ "What do my students currently know and do in this focus area? What evidence do I have (quick check, self-check, work samples)?",
+ "What is one learning goal for my students, and one goal for my own practice?",
+ "What will I do, when, and with which students? Which model, task makeover or strategy from this module will I use?",
+ "What evidence will I collect along the way, and when (quick checks, work samples, student talk)?",
+ "How will I know whether the change has worked for my students, and what would I do next?"
+];
 function notesText(){
  var t=M.notesTitle+"\n\n";
  PROMPTS.forEach(function(p,i){t+=(i+1)+". "+p[1]+"\n"+(mem.notes[i]||"(no response)")+"\n\n";});
+ var st=ORDER.filter(function(k){return [0,1,2].some(function(i){return mem.notes["st-"+k+"-"+i];});});
+ if(st.length){ t+="Stage reflections\n"; st.forEach(function(k){ t+=STAGES[k].name+"\n"; stageReflectQs(k).forEach(function(q,i){ var v=mem.notes["st-"+k+"-"+i]; if(v) t+="- "+q+"\n  "+v+"\n"; }); }); t+="\n"; }
  var mk=ORDER.filter(function(k){return mem.notes["mk-"+k];});
  if(mk.length){ t+="My task makeover ideas\n"; mk.forEach(function(k){t+=STAGES[k].name+": "+mem.notes["mk-"+k]+"\n";}); t+="\n"; }
+ t+="My inquiry plan (Ongoing Cyclic Inquiry)\n"; OCI_PLAN.forEach(function(q,i){ t+=OCI[i][0]+": "+(mem.notes["oci-"+i]||"(no response)")+"\n"; }); t+="\n";
+ var ap=APST.filter(function(a){return mem.notes["apst-"+a[0]];});
+ t+="Australian Professional Standards for Teachers: focus areas I am working on\n"+(ap.length?ap.map(function(a){return a[0]+" "+APST_LIB[a[0]].t;}).join("\n"):"(none selected)")+"\nEvidence I could keep: "+(mem.notes["apst-ev"]||"(no response)")+"\n\n";
  t+=chkText();
  t+="Next steps\n"; TODOS.forEach(function(x,i){t+=(mem.todo[i]?"[x] ":"[ ] ")+x+"\n";});
  return t;
+}
+
+/* ---------------- Faith, Learning and Wellbeing Framework and the Standards ---------------- */
+/* Shared text. Each module's content.js supplies FLW (how the module connects) and APST (which focus areas, and how). */
+var FLW_ELEMENTS = [
+ {k:"agency",n:"Agency",d:"Where learners make choices, set goals, and take actions that influence their learning experiences.",we:"We believe every student can be a successful learner."},
+ {k:"relevance",n:"Relevance",d:"The connection between goals, needs, and interests of learners with real-world experiences that are meaningful and purposeful.",we:"We strive to meet students where they are."},
+ {k:"rigour",n:"Rigour",d:"The depth, thoroughness, and challenging nature of an educational experience.",we:"We accept all students need to be challenged to improve, and we value reflective practice."},
+ {k:"environment",n:"Environment",d:"The tangible and intangible realities that enable an individual to flourish within a connected community.",we:"We promote a positive, optimistic learning culture."},
+ {k:"equity",n:"Equity",d:"The provision of inclusive, high quality educational opportunities, resources, and support to every student.",we:"We value diversity and inclusion, and recognise the importance of using meaningful data to inform practice."}
+];
+var OCI = [
+ ["Identify current context","Take the <b>before</b> self-check on the Welcome page, then run the quick check for your stage with a few students.","welcome"],
+ ["Prioritise and set goals","Use the progression explorer and the misconception sorter to choose one priority for your students.","prog"],
+ ["Plan and implement","Plan a short sequence using the task makeover, the teaching advice and the model for your stage.","wm"],
+ ["Monitor and collect evidence","Re-run the quick check, collect work samples and listen for the reasoning described in the makeover.","sorter"],
+ ["Reflect and evaluate","Complete the <b>after</b> self-check and plan how you will judge the impact on your students, in Reflect and plan.","reflect"]
+];
+var CAREER = ["Graduate","Proficient","Highly Accomplished","Lead"];
+/* AITSL, Australian Professional Standards for Teachers: focus area titles and descriptors (Graduate, Proficient, Highly Accomplished, Lead). */
+var APST_LIB = {
+ "1.2":{t:"Understand how students learn",d:["Demonstrate knowledge and understanding of research into how students learn and the implications for teaching.","Structure teaching programs using research and collegial advice about how students learn.","Expand understanding of how students learn using research and workplace knowledge.","Lead processes to evaluate the effectiveness of teaching programs using research and workplace knowledge about how students learn."]},
+ "1.3":{t:"Students with diverse linguistic, cultural, religious and socioeconomic backgrounds",d:["Demonstrate knowledge of teaching strategies that are responsive to the learning strengths and needs of students from diverse linguistic, cultural, religious and socioeconomic backgrounds.","Design and implement teaching strategies that are responsive to the learning strengths and needs of students from diverse linguistic, cultural, religious and socioeconomic backgrounds.","Support colleagues to develop effective teaching strategies that address the learning strengths and needs of students from diverse linguistic, cultural, religious and socioeconomic backgrounds.","Evaluate and revise school learning and teaching programs, using expert and community knowledge and experience, to meet the needs of students with diverse linguistic, cultural, religious and socioeconomic backgrounds."]},
+ "1.4":{t:"Strategies for teaching Aboriginal and Torres Strait Islander students",d:["Demonstrate broad knowledge and understanding of the impact of culture, cultural identity and linguistic background on the education of students from Aboriginal and Torres Strait Islander backgrounds.","Design and implement effective teaching strategies that are responsive to the local community and cultural setting, linguistic background and histories of Aboriginal and Torres Strait Islander students.","Provide advice and support colleagues in the implementation of effective teaching strategies for Aboriginal and Torres Strait Islander students using knowledge of and support from community representatives.","Develop teaching programs that support equitable and ongoing participation of Aboriginal and Torres Strait Islander students by engaging in collaborative relationships with community representatives and parents/carers."]},
+ "1.5":{t:"Differentiate teaching to meet the specific learning needs of students across the full range of abilities",d:["Demonstrate knowledge and understanding of strategies for differentiating teaching to meet the specific learning needs of students across the full range of abilities.","Develop teaching activities that incorporate differentiated strategies to meet the specific learning needs of students across the full range of abilities.","Evaluate learning and teaching programs, using student assessment data, that are differentiated for the specific learning needs of students across the full range of abilities.","Lead colleagues to evaluate the effectiveness of learning and teaching programs differentiated for the specific learning needs of students across the full range of abilities."]},
+ "1.6":{t:"Strategies to support full participation of students with disability",d:["Demonstrate broad knowledge and understanding of legislative requirements and teaching strategies that support participation and learning of students with disability.","Design and implement teaching activities that support the participation and learning of students with disability and address relevant policy and legislative requirements.","Work with colleagues to access specialist knowledge, and relevant policy and legislation, to develop teaching programs that support the participation and learning of students with disability.","Initiate and lead the review of school policies to support the engagement and full participation of students with disability and ensure compliance with legislative and/or system policies."]},
+ "2.1":{t:"Content and teaching strategies of the teaching area",d:["Demonstrate knowledge and understanding of the concepts, substance and structure of the content and teaching strategies of the teaching area.","Apply knowledge of the content and teaching strategies of the teaching area to develop engaging teaching activities.","Support colleagues using current and comprehensive knowledge of content and teaching strategies to develop and implement engaging learning and teaching programs.","Lead initiatives within the school to evaluate and improve knowledge of content and teaching strategies and demonstrate exemplary teaching of subjects using effective, research-based learning and teaching programs."]},
+ "2.2":{t:"Content selection and organisation",d:["Organise content into an effective learning and teaching sequence.","Organise content into coherent, well-sequenced learning and teaching programs.","Exhibit innovative practice in the selection and organisation of content and delivery of learning and teaching programs.","Lead initiatives that utilise comprehensive content knowledge to improve the selection and sequencing of content into coherently organised learning and teaching programs."]},
+ "2.3":{t:"Curriculum, assessment and reporting",d:["Use curriculum, assessment and reporting knowledge to design learning sequences and lesson plans.","Design and implement learning and teaching programs using knowledge of curriculum, assessment and reporting requirements.","Support colleagues to plan and implement learning and teaching programs using contemporary knowledge and understanding of curriculum, assessment and reporting requirements.","Lead colleagues to develop learning and teaching programs using comprehensive knowledge of curriculum, assessment and reporting requirements."]},
+ "2.4":{t:"Understand and respect Aboriginal and Torres Strait Islander people to promote reconciliation between Indigenous and non-Indigenous Australians",d:["Demonstrate broad knowledge of, understanding of and respect for Aboriginal and Torres Strait Islander histories, cultures and languages.","Provide opportunities for students to develop understanding of and respect for Aboriginal and Torres Strait Islander histories, cultures and languages.","Support colleagues with providing opportunities for students to develop understanding of and respect for Aboriginal and Torres Strait Islander histories, cultures and languages.","Lead initiatives to assist colleagues with opportunities for students to develop understanding of and respect for Aboriginal and Torres Strait Islander histories, cultures and languages."]},
+ "2.5":{t:"Literacy and numeracy strategies",d:["Know and understand literacy and numeracy teaching strategies and their application in teaching areas.","Apply knowledge and understanding of effective teaching strategies to support students’ literacy and numeracy achievement.","Support colleagues to implement effective teaching strategies to improve students’ literacy and numeracy achievement.","Monitor and evaluate the implementation of teaching strategies within the school to improve students’ achievement in literacy and numeracy using research-based knowledge and student data."]},
+ "2.6":{t:"Information and Communication Technology (ICT)",d:["Implement teaching strategies for using ICT to expand curriculum learning opportunities for students.","Use effective teaching strategies to integrate ICT into learning and teaching programs to make selected content relevant and meaningful.","Model high-level teaching knowledge and skills and work with colleagues to use current ICT to improve their teaching practice and make content relevant and meaningful.","Lead and support colleagues within the school to select and use ICT with effective teaching strategies to expand learning opportunities and content knowledge for all students."]},
+ "3.3":{t:"Use teaching strategies",d:["Include a range of teaching strategies.","Select and use relevant teaching strategies to develop knowledge, skills, problem solving and critical and creative thinking.","Support colleagues to select and apply effective teaching strategies to develop knowledge, skills, problem solving and critical and creative thinking.","Work with colleagues to review, modify and expand their repertoire of teaching strategies to enable students to use knowledge, skills, problem solving and critical and creative thinking."]},
+ "3.4":{t:"Select and use resources",d:["Demonstrate knowledge of a range of resources, including ICT, that engage students in their learning.","Select and/or create and use a range of resources, including ICT, to engage students in their learning.","Assist colleagues to create, select and use a wide range of resources, including ICT, to engage students in their learning.","Model exemplary skills and lead colleagues in selecting, creating and evaluating resources, including ICT, for application by teachers within or beyond the school."]},
+ "3.5":{t:"Use effective classroom communication",d:["Demonstrate a range of verbal and non-verbal communication strategies to support student engagement.","Use effective verbal and non-verbal communication strategies to support student understanding, participation, engagement and achievement.","Assist colleagues to select a wide range of verbal and non-verbal communication strategies to support students’ understanding, engagement and achievement.","Demonstrate and lead by example inclusive verbal and non-verbal communication using collaborative strategies and contextual knowledge to support students’ understanding, engagement and achievement."]},
+ "3.6":{t:"Evaluate and improve teaching programs",d:["Demonstrate broad knowledge of strategies that can be used to evaluate teaching programs to improve student learning.","Evaluate personal teaching and learning programs using evidence, including feedback from students and student assessment data, to inform planning.","Work with colleagues to review current teaching and learning programs using student feedback, student assessment data, knowledge of curriculum and workplace practices.","Conduct regular reviews of teaching and learning programs using multiple sources of evidence including: student assessment data, curriculum documents, teaching practices and feedback from parents/carers, students and colleagues."]},
+ "5.1":{t:"Assess student learning",d:["Demonstrate understanding of assessment strategies, including informal and formal, diagnostic, formative and summative approaches to assess student learning.","Develop, select and use informal and formal, diagnostic, formative and summative assessment strategies to assess student learning.","Develop and apply a comprehensive range of assessment strategies to diagnose learning needs, comply with curriculum requirements and support colleagues to evaluate the effectiveness of their approaches to assessment.","Evaluate school assessment policies and strategies to support colleagues with: using assessment data to diagnose learning needs, complying with curriculum, system and/or school assessment requirements and using a range of assessment strategies."]},
+ "5.4":{t:"Interpret student data",d:["Demonstrate the capacity to interpret student assessment data to evaluate student learning and modify teaching practice.","Use student assessment data to analyse and evaluate student understanding of subject/content, identifying interventions and modifying teaching practice.","Work with colleagues to use data from internal and external student assessments for evaluating learning and teaching, identifying interventions and modifying teaching practice.","Coordinate student performance and program evaluation using internal and external student assessment data to improve teaching practice."]},
+ "6.2":{t:"Engage in professional learning and improve practice",d:["Understand the relevant and appropriate sources of professional learning for teachers.","Participate in learning to update knowledge and practice, targeted to professional needs and school and/or system priorities.","Plan for professional learning by accessing and critiquing relevant research, engage in high-quality targeted opportunities to improve practice and offer quality placements for pre-service teachers where applicable.","Initiate collaborative relationships to expand professional learning opportunities, engage in research, and provide quality opportunities and placements for pre-service teachers."]},
+ "6.3":{t:"Engage with colleagues and improve practice",d:["Seek and apply constructive feedback from supervisors and teachers to improve teaching practices.","Contribute to collegial discussions and apply constructive feedback from colleagues to improve professional knowledge and practice.","Initiate and engage in professional discussions with colleagues in a range of forums to evaluate practice directed at improving professional knowledge and practice, and the educational outcomes of students.","Implement professional dialogue within the school or professional learning network(s) that is informed by feedback, analysis of current research and practice to improve the educational outcomes of students."]},
+ "6.4":{t:"Apply professional learning and improve student learning",d:["Demonstrate an understanding of the rationale for continued professional learning and the implications for improved student learning.","Undertake professional learning programs designed to address identified student learning needs.","Engage with colleagues to evaluate the effectiveness of teacher professional learning activities to address student learning needs.","Advocate, participate in and lead strategies to support high-quality professional learning opportunities for colleagues that focus on improved student learning."]}
+};
+function careerIdx(){ var c=parseInt(mem.notes["apst-stage"],10); return (c>=0&&c<4)?c:1; }
+function renderLinks(){
+ var h='<div class="hero" style="border-left-color:var(--flw)"><span class="tag" style="background:var(--flw-soft);color:var(--flw-ink)">Framework and Standards</span><h2>How this module connects to our framework and the Standards</h2><p>This module supports the Catholic Education Diocese of Wollongong <i>Faith, Learning and Wellbeing Framework</i> and the Australian Professional Standards for Teachers. Use this page to see where your learning fits, and to choose the Standards you will gather evidence for.</p></div>';
+ h+='<section class="blk"><h3>Faith, Learning and Wellbeing Framework</h3><p class="lead">The framework supports communities where every student develops resilience, confidence and self-efficacy. Its five essential elements are animated through Ongoing Cyclic Inquiry and evidence-based high impact strategies, and reflect our call to be bearers of Christ’s love through our values of hope, integrity, justice and compassion. '+FLW.intro+'</p><div class="flw">'+FLW_ELEMENTS.map(function(e){return '<div class="flwel"><span class="flwtag">'+e.n+'</span><p class="flwdef">'+e.d+'</p><p class="flwwe">'+e.we+'</p><div class="flwmod"><b>In this module</b>'+FLW.el[e.k]+'</div></div>';}).join("")+'</div></section>';
+ h+='<section class="blk"><h3>Ongoing Cyclic Inquiry: use the module as an inquiry</h3><p class="lead">The framework’s approach is a cycle. Each step below points to the part of this module that supports it. Record your plan in <b>Reflect and plan</b>.</p><ol class="oci">'+OCI.map(function(s){var j=SECTIONS.map(function(x){return x.id;}).indexOf(s[2]);return '<li><div><b>'+s[0]+'</b><span>'+s[1]+'</span>'+(j>=0?' <button class="linkbtn" data-go="'+s[2]+'">Go to '+SECTIONS[j].label+'</button>':'')+'</div></li>';}).join("")+'</ol></section>';
+ h+='<section class="blk"><h3>High impact strategies in this module</h3><p class="lead">The framework names high impact strategies for learning and for wellbeing. These are the ones this module models most often.</p><div class="grid2">'+FLW.his.map(function(x){return '<div class="kcard" style="border-top-color:var(--flw)"><h4>'+x[0]+'</h4><p>'+x[1]+'</p></div>';}).join("")+'</div><p class="note" style="margin-top:10px">The framework lists its high impact strategies with the source “Victorian Government Department of Education”.</p></section>';
+ h+='<section class="blk" id="apstBlk">'+apstHTML()+'</section>';
+ return h;
+}
+function apstHTML(){
+ var c=careerIdx();
+ var h='<h3>Australian Professional Standards for Teachers</h3><p class="lead">Working through this module, and acting on it with your students, can contribute evidence towards these focus areas. Choose a career stage to see its descriptor.</p>';
+ h+='<div class="aspects" role="group" aria-label="Career stage">'+CAREER.map(function(n,i){return '<button data-cs="'+i+'" class="'+(i===c?"on":"")+'" aria-pressed="'+(i===c)+'">'+n+'</button>';}).join("")+'</div>';
+ h+='<div class="apst">'+APST.map(function(a){var L=APST_LIB[a[0]];return '<div class="apstrow"><div class="apsthd"><code>'+a[0]+'</code><b>'+L.t+'</b></div><div class="apstd"><span class="k">'+CAREER[c]+' descriptor</span>'+L.d[c]+'</div><div class="apstm"><span class="k">In this module</span>'+a[1]+'</div></div>';}).join("")+'</div>';
+ h+='<div class="card" style="margin-top:14px"><b>Using this as evidence.</b> <span style="color:var(--ink2)">Your stage reflections and inquiry plan (in Reflect and plan) can support your Professional Development Plan and accreditation evidence, as your school and NESA require. Highly Accomplished and Lead teachers can use the module to lead a stage team or staff session and evaluate its impact on student learning.</span></div>';
+ h+='<p class="note" style="margin-top:10px">Descriptors are quoted from the Australian Professional Standards for Teachers (AITSL). “In this module” notes are additional commentary.</p>';
+ return h;
+}
+function wireLinks(){
+ $$("[data-cs]").forEach(function(b){b.onclick=function(){mem.notes["apst-stage"]=b.dataset.cs;save();$("#apstBlk").innerHTML=apstHTML();wireLinks();};});
 }
 
 
@@ -1125,6 +1273,12 @@ function chkText(){
 /* ---------------- wiring ---------------- */
 function wire(id){
  if(id==="welcome") wireCheck("pre");
+ if(id==="links") wireLinks();
+ $$("[data-go]").forEach(function(b){b.onclick=function(){var j=SECTIONS.map(function(s){return s.id;}).indexOf(b.dataset.go); if(j>=0) go(j);};});
+ var smsg=$("#savedMsg")||$("[data-saved]"), stmr;
+ function saved(){ if(!smsg) return; smsg.textContent="Saved"; clearTimeout(stmr); stmr=setTimeout(function(){smsg.textContent="";},1500); }
+ $$("textarea[data-k],input[data-k]").forEach(function(el){el.oninput=el.onchange=function(){mem.notes[el.dataset.k]=el.value;save();saved();};});
+ $$("input[data-ck]").forEach(function(cb){cb.onchange=function(){mem.notes[cb.dataset.ck]=cb.checked?"1":"";save();saved();};});
  if(id==="reflect") wireCheck("post");
  if(id==="ideas"){ $$(".idea").forEach(function(b){b.onclick=function(){showIdea(+b.dataset.i);};}); }
  if(id==="prog"){ $$(".aspects button").forEach(function(b){b.onclick=function(){showAspect(+b.dataset.k);};}); showAspect(0); }
@@ -1133,8 +1287,8 @@ function wire(id){
  if(id==="wm"){ $("#ctSel").onchange=function(){showClosed(+this.value);}; showClosed(0); }
  if(id==="reflect"){
   var msg=$("#savedMsg"), tmr;
-  $$(".rq textarea").forEach(function(ta){ta.oninput=function(){mem.notes[ta.dataset.i]=ta.value;save();msg.textContent="Saved";clearTimeout(tmr);tmr=setTimeout(function(){msg.textContent="";},1500);};});
-  $$(".todo input").forEach(function(cb){cb.onchange=function(){mem.todo[cb.dataset.t]=cb.checked;save();};});
+  $$(".rq textarea[data-i]").forEach(function(ta){ta.oninput=function(){mem.notes[ta.dataset.i]=ta.value;save();msg.textContent="Saved";clearTimeout(tmr);tmr=setTimeout(function(){msg.textContent="";},1500);};});
+  $$(".todo input[data-t]").forEach(function(cb){cb.onchange=function(){mem.todo[cb.dataset.t]=cb.checked;save();};});
   $("#copyNotes").onclick=function(){
    var txt=notesText(), ok=false;
    var buf=$("#copyBuf"); buf.value=txt; buf.select();

@@ -99,7 +99,7 @@ s1:{
   ["Capacity and internal volume","Use ‘capacity’ and ‘internal volume’ interchangeably. Capacity isn’t taught as a separate concept from volume until Stage 4."]
  ],
  misc:[
-  {see:"Counts 12 cubes in a 3 by 2 by 3 prism: only the cubes that can be seen.",name:"Ignoring hidden cubes",resp:"Build it, then take it apart layer by layer. Count the cubes in one layer and the number of layers. Try the tool below.",src:"n"},
+  {see:"Counts 14 cubes in a 3 by 2 by 3 prism (18 cubes): only the cubes that can be seen.",name:"Ignoring hidden cubes",resp:"Build it, then take it apart layer by layer. Count the cubes in one layer and the number of layers. Try the tool below.",src:"n"},
   {see:"Says a cylinder has three faces.",name:"Curved and flat surfaces called faces",resp:"A face is a flat surface with only straight edges. A cylinder has one curved surface and two flat surfaces.",src:"n"},
   {see:"Says the model made of 20 small cubes is bigger than one made of 12 large blocks.",name:"Ignoring the size of the unit",resp:"Compare the models directly. Record the type of unit as well as the number. This is a Stage 1 B reasoning point.",src:"n"},
   {see:"Packs marbles into a box and says it holds 40, ignoring the gaps.",name:"Using units that don’t pack",resp:"Pack the same box with cubes. Cubes pack better than other objects in rectangular containers.",src:"n"},
@@ -228,7 +228,7 @@ var ROOTS = ["Judging volume or capacity by one dimension or appearance","Counti
 var SCENARIOS = [
  {st:"es1",q:"Noah says the tall thin bottle holds more water than the wide bowl because it is taller.",a:0,why:"Noah judges capacity by height. Pour one into the other."},
  {st:"es1",q:"Isla calls the ball a circle.",a:2,why:"Isla uses a 2D name for a 3D object. Model ‘object’ and ‘shape’."},
- {st:"s1",q:"Tom counts 12 cubes in a 3 by 2 by 3 prism.",a:1,why:"Tom counts only the visible cubes. Take the prism apart in layers."},
+ {st:"s1",q:"Tom counts 14 cubes in a 3 by 2 by 3 prism of 18 cubes.",a:1,why:"Tom counts only the visible cubes. Take the prism apart in layers."},
  {st:"s1",q:"Grace says her 20-block model is bigger than Sam’s 12-block model, but Sam used larger blocks.",a:3,why:"Grace ignores the size of the unit. Compare the models directly."},
  {st:"s1",q:"Leo says a cylinder has three faces.",a:2,why:"Curved surfaces and flat surfaces with curved boundaries aren’t faces."},
  {st:"s2",q:"Maya says every shape made of six squares folds into a cube.",a:2,why:"Only 11 arrangements are nets of a cube. Fold and test."},
@@ -249,9 +249,44 @@ var PROMPTS = [
  ["Your students","NESA notes that visualising isn’t only visual. How could you include students with vision impairment in visualising tasks?"],
  ["Your practice","How often do students build and handle objects, rather than looking at pictures of them?"],
  ["Your practice","Do you use schematic representations, like plans and nets, as well as pictures? How could you use them more?"],
- ["Your practice","How consistently do you and your colleagues use ‘face’, ‘surface’, ‘capacity’ and ‘volume’?"]
+ ["Your practice","How consistently do you and your colleagues use ‘face’, ‘surface’, ‘capacity’ and ‘volume’?"],
+ ["Faith, Learning and Wellbeing","How often do all of your students, including those who find visualising hard, get to build, hold and explain 3D objects? What will you change?"],
+ ["Faith, Learning and Wellbeing","Which real-world design problem could give your students agency and purpose when they learn about volume and nets?"]
 ];
 var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+/* ---------------- Faith, Learning and Wellbeing Framework and AITSL Standards ---------------- */
+var FLW = {
+ intro:"In Three-dimensional spatial structure, students learn about 3D objects, capacity and volume, from handling containers and objects to layers, nets and prisms.",
+ el:{
+  agency:"Students build and take apart objects, choose how to count cubes, and design nets and prisms for a given volume.",
+  relevance:"Containers, packaging and buildings from students’ lives give purpose to capacity, volume and nets.",
+  rigour:"Students move from ‘taller holds more’ to the layer structure of volume, linking it to the row-and-column structure of area.",
+  environment:"Handling real objects and containers gives every student a concrete way in and invites discussion.",
+  equity:"Visualising isn’t only visual, so tasks can include students with vision impairment. The quick checks show who needs more hands-on experience."
+ },
+ his:[
+  ["Explicit teaching","Use ‘face’, ‘surface’, ‘capacity’ and ‘volume’ consistently, and model how layers build a prism."],
+  ["Multiple exposures","Meet objects as real objects, pictures, plans and nets."],
+  ["Structuring lessons","Move from handling and building, to drawing, to schematic representations."],
+  ["Collaborative learning","Partners build prisms and explain how they counted the cubes."],
+  ["Supporting inclusion and belonging","Include students with vision impairment through touch and description."]
+ ]
+};
+/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+var APST = [
+ ["1.2","The progression shows how students move from comparing containers to the layer structure of volume."],
+ ["1.5","Use the quick checks to target students who rely on height to judge capacity and extend those ready for volume formulas."],
+ ["1.6","NESA notes that visualising isn’t only visual. Plan tactile and verbal ways for students with vision impairment to take part."],
+ ["2.1","Deepen your knowledge of 3D objects, nets, capacity and volume, and the language NESA recommends."],
+ ["2.2","Follow the sequence from Early Stage 1 to Stage 3 so capacity and volume build across years."],
+ ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
+ ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
+ ["3.4","Use concrete materials, containers and nets, as well as pictures and digital tools."],
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
+ ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
+ ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+];
 
 var WM_ELEMENTS = [
  ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],

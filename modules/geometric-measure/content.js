@@ -254,9 +254,45 @@ var PROMPTS = [
  ["Your students","How do your students use left and right, and compass directions, when the frame of reference changes?"],
  ["Your practice","Do students make their own measuring devices before using a ruler? What would change if they did?"],
  ["Your practice","Do you or your students use ‘sharp’ and ‘blunt’ for angles? What language could you use instead?"],
- ["Your practice","How do you connect to students’ knowledge of Country, local maps and on-Country measurement?"]
+ ["Your practice","How do you connect to students’ knowledge of Country, local maps and on-Country measurement?"],
+ ["Faith, Learning and Wellbeing","How could learning on Country, or in your school grounds, help your students build a sense of belonging and connection while they measure?"],
+ ["Faith, Learning and Wellbeing","Which of your students could lead a measuring task or choose their own tools? How will you give them that agency?"]
 ];
 var TODOS = ["Choose one quick check to use with my class in the next fortnight","Bring two student work samples to the next meeting that show a misconception from this module","Agree as a stage team on one shared model or piece of language to use consistently"];
+
+/* ---------------- Faith, Learning and Wellbeing Framework and AITSL Standards ---------------- */
+var FLW = {
+ intro:"In Geometric measure, students learn to measure length, angles and position, from direct comparison and informal units to scales, compass directions and the number plane.",
+ el:{
+  agency:"Students make their own measuring devices and personal benchmarks, then choose which unit or tool suits a task.",
+  relevance:"Measurement is connected to students’ knowledge of Country, local maps and on-Country learning, and to real tasks such as planning a garden bed.",
+  rigour:"Students build the ideas behind a ruler, an angle as an amount of turn and the number plane, rather than only reading scales.",
+  environment:"Hands-on comparison and outdoor measuring give every student a way in and build a sense of belonging to place.",
+  equity:"The quick checks show who is still struggling with units or turning, so you can plan targeted practice."
+ },
+ his:[
+  ["Explicit teaching","Teach an angle as an amount of turn, and avoid labels such as ‘sharp’ and ‘blunt’."],
+  ["Multiple exposures","Build and reuse personal benchmarks for length from Stage 1 to Stage 3."],
+  ["Structuring lessons","Move from direct comparison, to informal units, to formal units and tools."],
+  ["Collaborative learning","Students measure together outdoors and compare their methods and results."],
+  ["Engaging students","Connect position and direction to local maps and Country."]
+ ]
+};
+/* [focus area, how this module supports it]. Descriptors for each career stage are in the engine (APST_LIB). */
+var APST = [
+ ["1.2","The progression shows how students move from direct comparison to units, scales and the number plane."],
+ ["1.4","The module connects measurement and position to students’ knowledge of Country and on-Country learning."],
+ ["1.5","Use the quick checks to target students still building units of length or turning, and to extend others."],
+ ["2.1","Deepen your knowledge of length, angle, position and the number plane, and the models NESA recommends."],
+ ["2.2","Follow the sequence from Early Stage 1 to Stage 3 so measurement builds across years."],
+ ["2.3","Each stage page links the NESA syllabus outcomes and content to classroom tasks and assessment."],
+ ["2.4","Use local maps and Country respectfully, in consultation with local Aboriginal communities."],
+ ["3.3","The Working mathematically makeovers model questioning and reasoning strategies you can use straight away."],
+ ["3.4","Students make and use measuring devices, rulers, protractors and maps, including digital ones."],
+ ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."],
+ ["6.2","Working through the module, the quick checks and the misconception sorter, then recording your inquiry plan and review, shows professional learning applied to your own practice."],
+ ["6.3","The stage-team next steps (shared models and language, bringing work samples to a meeting) build collegial feedback and moderation into the module."]
+];
 
 var WM_ELEMENTS = [
  ["Understanding and fluency","Students build conceptual understanding alongside fluent recall and procedures."],
@@ -285,7 +321,7 @@ var WM = {
  s3:{
   tags:[["Determine which side lengths are needed to find the perimeter of a shape","Reasons about relations"],["Recognise that rectangles with the same perimeter may have different dimensions","Spatial reasoning"],["Estimate and describe the size of angles using known angles as benchmarks","Reasons about mental rotation"],["Determine the number of different rectangles that can be formed using whole-number dimensions for a given area","Reasons about spatial structure"],["Recognise right angles, angles on a straight line and angles at a point embedded in diagrams","Reasons about spatial orientation"]],
   before:{task:"Find the perimeter of a rectangle 6 m long and 4 m wide.<br><br>P = ____",lim:["A single calculation with given dimensions","No decisions or comparison","Doesn’t connect perimeter and area"]},
-  after:{task:"“A garden bed needs exactly 20 m of edging. What could the garden bed look like? Which shape gives the most space for plants?”",enable:"Start with 12 m of edging and use grid paper.",extend:"“Now keep the area at 24 m². Which rectangle needs the least edging?”",listen:"Length and width adding to 10; listing systematically; same perimeter, different areas; the square (5 m by 5 m) giving the most area.",el:["Exploring and connecting","Choosing and applying techniques","Communicating","Reasoning"]}
+  after:{task:"“A garden bed needs exactly 20 m of edging. What could a rectangular garden bed look like? Which rectangle gives the most space for plants?”",enable:"Start with 12 m of edging and use grid paper.",extend:"“Now keep the area at 24 m². Which rectangle needs the least edging?”",listen:"Length and width adding to 10; listing systematically; same perimeter, different areas; the square (5 m by 5 m) giving the most area.",el:["Exploring and connecting","Choosing and applying techniques","Communicating","Reasoning"]}
  }
 };
 
