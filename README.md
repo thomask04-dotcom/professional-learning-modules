@@ -73,13 +73,14 @@ Every module has a **Framework and Standards** page (section id `#links`) under 
 
 The framework text and the APST descriptors are shared in `engine/module.js` (`FLW_ELEMENTS`, `OCI`, `APST_LIB`). Each module's own links are in its `content.js` (`FLW` and `APST`).
 
-## Reflection and review
+## Reflection
 
 Teachers can reflect throughout each module, and everything saves in their browser:
 
 - **Pause and reflect** at the end of each stage page (three short questions)
-- **Reflect and plan**: the module's reflection questions (including two on the Faith, Learning and Wellbeing Framework), an inquiry plan, the APST focus areas they want evidence for, next steps and the after self-check
-- **Come back and review**: a review date and three questions to answer 4–6 weeks later, after trying the plan with students
+- **Reflect and plan**: the module's reflection questions (including two on the Faith, Learning and Wellbeing Framework), an inquiry plan following the five Ongoing Cyclic Inquiry steps, the APST focus areas they want evidence for, next steps and the after self-check
+
+Teachers complete everything within the module: nothing asks them to return later or check in.
 
 All of this is included when teachers copy or download their notes, so it can go into a Professional Development Plan or accreditation evidence.
 

@@ -315,9 +315,6 @@ ol.oci-plan textarea{width:100%;min-height:72px;border:1px solid var(--line);bor
 .apstm{background:var(--bg);border-radius:8px;padding:8px 10px}
 .apstrow .k{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink3);margin-bottom:3px}
 @media (max-width:620px){.apstrow{grid-template-columns:1fr}}
-.review{border:1px solid var(--line);border-left:4px solid var(--good);border-radius:var(--r);padding:16px 18px;background:#fff;margin-top:22px}
-.review input[type=date]{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;margin-left:8px;max-width:100%}
-.review .rq{background:var(--bg)}
 
 </style>
 <style>
@@ -949,10 +946,10 @@ function renderWelcome(){
  card("Rework","closed tasks into rich ones that embed Working mathematically, with one makeover for each stage.")+
  card("Try",M.tryText)+
  card("Connect","your learning to the Faith, Learning and Wellbeing Framework and the Australian Professional Standards for Teachers.")+
- card("Reflect","after each stage, plan an inquiry for your students, and come back to review it. Your notes save in this browser.")+
+ card("Reflect","after each stage, then plan an inquiry for your students. Your notes save in this browser.")+
  '</div></section>'+
  '<section class="blk"><h3>'+M.namesH3+'</h3><p class="lead">'+M.namesP+'</p><table class="simple"><thead><tr><th>Stage</th><th>Focus area name</th><th>Outcomes</th></tr></thead><tbody>'+rows+'</tbody></table></section>'+
- '<section class="blk"><h3>Suggested pathways</h3><div class="grid2"><div class="card"><h4 style="margin-bottom:6px">On your own (about 45 minutes)</h4><ul class="tight"><li>Framework and Standards (a quick read)</li><li>Big ideas and the progression explorer</li><li>Your stage, plus the stage before it, pausing to reflect after each</li><li>The misconception sorter</li><li>Reflect and plan, then review in 4–6 weeks</li></ul></div><div class="card"><h4 style="margin-bottom:6px">As a staff or PLC session (about 60 minutes)</h4><ul class="tight"><li>Whole staff: big ideas and progression (15 min)</li><li>Stage teams: their stage section, tool and stage reflection (25 min)</li><li>Whole staff: misconception sorter (10 min)</li><li>Inquiry plan, links to the framework and Standards, next steps (10 min)</li><li>Follow-up meeting: share your reviews and evidence</li></ul></div></div><p class="note" style="margin-top:12px">Tip: most difficulties in a stage begin in the stage before it, so look one stage back as well as at your own.</p></section>'+
+ '<section class="blk"><h3>Suggested pathways</h3><div class="grid2"><div class="card"><h4 style="margin-bottom:6px">On your own (about 45 minutes)</h4><ul class="tight"><li>Framework and Standards (a quick read)</li><li>Big ideas and the progression explorer</li><li>Your stage, plus the stage before it, pausing to reflect after each</li><li>The misconception sorter</li><li>Reflect and plan</li></ul></div><div class="card"><h4 style="margin-bottom:6px">As a staff or PLC session (about 60 minutes)</h4><ul class="tight"><li>Whole staff: big ideas and progression (15 min)</li><li>Stage teams: their stage section, tool and stage reflection (25 min)</li><li>Whole staff: misconception sorter (10 min)</li><li>Inquiry plan, links to the framework and Standards, next steps (10 min)</li></ul></div></div><p class="note" style="margin-top:12px">Tip: most difficulties in a stage begin in the stage before it, so look one stage back as well as at your own.</p></section>'+
  checkHTML("pre");
 }
 function card(t,d){return '<div class="card"><b>'+t+'</b> <span style="color:var(--ink2)">'+d+'</span></div>';}
@@ -1118,11 +1115,10 @@ function renderReflect(){
   if(p[0]!==g){g=p[0];h+='<h3 style="font-size:17px;margin:22px 0 10px">'+g+'</h3>';}
   h+='<div class="rq"><label for="rq'+i+'">'+(i+1)+'. '+p[1]+'</label><textarea id="rq'+i+'" data-i="'+i+'" placeholder="Your thoughts…">'+esc(mem.notes[i]||"")+'</textarea></div>';
  });
- h+='<section class="blk inq"><h3>My inquiry plan</h3><p class="lead">Use the framework’s Ongoing Cyclic Inquiry to turn this module into action for your students. The last step, <b>Reflect and evaluate</b>, is in the review at the bottom of this page.</p><ol class="oci oci-plan">'+OCI_PLAN.map(function(q,i){var key="oci-"+i;return '<li><div><label for="'+key+'"><b>'+OCI[i][0]+'.</b> '+q+'</label><textarea id="'+key+'" data-k="'+key+'" placeholder="Your plan…">'+esc(mem.notes[key]||"")+'</textarea></div></li>';}).join("")+'</ol></section>';
+ h+='<section class="blk inq"><h3>My inquiry plan</h3><p class="lead">Use the framework’s Ongoing Cyclic Inquiry to turn this module into action for your students.</p><ol class="oci oci-plan">'+OCI_PLAN.map(function(q,i){var key="oci-"+i;return '<li><div><label for="'+key+'"><b>'+OCI[i][0]+'.</b> '+q+'</label><textarea id="'+key+'" data-k="'+key+'" placeholder="Your plan…">'+esc(mem.notes[key]||"")+'</textarea></div></li>';}).join("")+'</ol></section>';
  h+='<section class="blk"><h3>Link to the Standards</h3><p class="lead">Tick the focus areas from the Australian Professional Standards for Teachers that this learning supports for you, then note the evidence you could keep. See <button class="linkbtn" data-go="links">Framework and Standards</button> for the descriptors at each career stage.</p><div class="card todo">'+APST.map(function(a){var key="apst-"+a[0],L=APST_LIB[a[0]];return '<label><input type="checkbox" data-ck="'+key+'"'+(mem.notes[key]?" checked":"")+'><span><b>'+a[0]+'</b> '+L.t+'</span></label>';}).join("")+'</div><div class="rq" style="margin-top:12px"><label for="apst-ev">Evidence I could keep (for example, annotated work samples, quick check results, a revised task, a program change, notes from a stage meeting)</label><textarea id="apst-ev" data-k="apst-ev" placeholder="Evidence…">'+esc(mem.notes["apst-ev"]||"")+'</textarea></div></section>';
  h+='<h3 style="font-size:17px;margin:22px 0 10px">Next steps</h3><div class="card todo">'+TODOS.map(function(t,i){return '<label><input type="checkbox" data-t="'+i+'"'+(mem.todo[i]?" checked":"")+'><span>'+t+'</span></label>';}).join("")+'</div>';
  h+=checkHTML("post");
- h+='<section class="blk review"><span class="tag" style="background:var(--good-soft);color:var(--good)">Review · 4–6 weeks later</span><h3>Come back and review</h3><p class="lead">This is the <b>Reflect and evaluate</b> step of your inquiry. Set a date, then return to this page after you have tried your plan with your students.</p><div class="ctrl" style="margin:0 0 14px"><label for="rev-date" style="font-weight:600">My review date</label> <input type="date" id="rev-date" data-k="rev-date" value="'+esc(mem.notes["rev-date"]||"")+'"></div>'+REVIEW_QS.map(function(q,i){var key="rev-"+i;return '<div class="rq"><label for="'+key+'">'+q+'</label><textarea id="'+key+'" data-k="'+key+'" placeholder="Your review…">'+esc(mem.notes[key]||"")+'</textarea></div>';}).join("")+'</section>';
  h+='<div class="ctrl" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center"><button class="btn" id="copyNotes">Copy my notes</button><button class="btn ghost" id="dlNotes">Download as text</button><span class="saved" id="savedMsg"></span></div><textarea id="copyBuf" aria-hidden="true" style="position:absolute;left:-9999px;top:0"></textarea>';
  return h;
 }
@@ -1130,12 +1126,8 @@ var OCI_PLAN = [
  "What do my students currently know and do in this focus area? What evidence do I have (quick check, self-check, work samples)?",
  "What is one learning goal for my students, and one goal for my own practice?",
  "What will I do, when, and with which students? Which model, task makeover or strategy from this module will I use?",
- "What evidence will I collect along the way, and when (quick checks, work samples, student talk)?"
-];
-var REVIEW_QS = [
- "What changed for my students? What evidence shows it?",
- "Which essential element of the framework (Agency, Relevance, Rigour, Environment or Equity) did my changes strengthen? How?",
- "What will I keep, change or stop? What will my next inquiry cycle focus on?"
+ "What evidence will I collect along the way, and when (quick checks, work samples, student talk)?",
+ "How will I know whether the change has worked for my students, and what would I do next?"
 ];
 function notesText(){
  var t=M.notesTitle+"\n\n";
@@ -1149,7 +1141,6 @@ function notesText(){
  t+="Australian Professional Standards for Teachers: focus areas I am working on\n"+(ap.length?ap.map(function(a){return a[0]+" "+APST_LIB[a[0]].t;}).join("\n"):"(none selected)")+"\nEvidence I could keep: "+(mem.notes["apst-ev"]||"(no response)")+"\n\n";
  t+=chkText();
  t+="Next steps\n"; TODOS.forEach(function(x,i){t+=(mem.todo[i]?"[x] ":"[ ] ")+x+"\n";});
- t+="\nReview"+(mem.notes["rev-date"]?" (planned for "+mem.notes["rev-date"]+")":"")+"\n"; REVIEW_QS.forEach(function(q,i){ t+=q+"\n"+(mem.notes["rev-"+i]||"(not yet reviewed)")+"\n"; });
  return t;
 }
 
@@ -1167,7 +1158,7 @@ var OCI = [
  ["Prioritise and set goals","Use the progression explorer and the misconception sorter to choose one priority for your students.","prog"],
  ["Plan and implement","Plan a short sequence using the task makeover, the teaching advice and the model for your stage.","wm"],
  ["Monitor and collect evidence","Re-run the quick check, collect work samples and listen for the reasoning described in the makeover.","sorter"],
- ["Reflect and evaluate","Complete the <b>after</b> self-check and your inquiry plan in Reflect and plan, then return in 4–6 weeks to review.","reflect"]
+ ["Reflect and evaluate","Complete the <b>after</b> self-check and plan how you will judge the impact on your students, in Reflect and plan.","reflect"]
 ];
 var CAREER = ["Graduate","Proficient","Highly Accomplished","Lead"];
 /* AITSL, Australian Professional Standards for Teachers: focus area titles and descriptors (Graduate, Proficient, Highly Accomplished, Lead). */
@@ -1207,7 +1198,7 @@ function apstHTML(){
  var h='<h3>Australian Professional Standards for Teachers</h3><p class="lead">Working through this module, and acting on it with your students, can contribute evidence towards these focus areas. Choose a career stage to see its descriptor.</p>';
  h+='<div class="aspects" role="group" aria-label="Career stage">'+CAREER.map(function(n,i){return '<button data-cs="'+i+'" class="'+(i===c?"on":"")+'" aria-pressed="'+(i===c)+'">'+n+'</button>';}).join("")+'</div>';
  h+='<div class="apst">'+APST.map(function(a){var L=APST_LIB[a[0]];return '<div class="apstrow"><div class="apsthd"><code>'+a[0]+'</code><b>'+L.t+'</b></div><div class="apstd"><span class="k">'+CAREER[c]+' descriptor</span>'+L.d[c]+'</div><div class="apstm"><span class="k">In this module</span>'+a[1]+'</div></div>';}).join("")+'</div>';
- h+='<div class="card" style="margin-top:14px"><b>Using this as evidence.</b> <span style="color:var(--ink2)">Your stage reflections, inquiry plan and review (in Reflect and plan) can support your Professional Development Plan and accreditation evidence, as your school and NESA require. Highly Accomplished and Lead teachers can use the module to lead a stage team or staff session and evaluate its impact on student learning.</span></div>';
+ h+='<div class="card" style="margin-top:14px"><b>Using this as evidence.</b> <span style="color:var(--ink2)">Your stage reflections and inquiry plan (in Reflect and plan) can support your Professional Development Plan and accreditation evidence, as your school and NESA require. Highly Accomplished and Lead teachers can use the module to lead a stage team or staff session and evaluate its impact on student learning.</span></div>';
  h+='<p class="note" style="margin-top:10px">Descriptors are quoted from the Australian Professional Standards for Teachers (AITSL). “In this module” notes are additional commentary.</p>';
  return h;
 }
