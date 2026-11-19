@@ -5,57 +5,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maths Module Finder K–6</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1b2333;--ink2:#4a5468;--ink3:#6d778a;--line:#e2e5ec;--bg:#f6f7fa;--navy:#1f2a44;--accent:#c8553d;--good:#2e7d4f;
- --es1:#c8553d;--s1:#b07a1a;--s2:#23897d;--s3:#4b5bbf}
+:root{--dark:#0D2C6B;--aqua:#188296;--gold:#FBAF3F;--silver:#D1D2D4;--black:#231F20;--charcoal:#4C4C4E;
+ --ink:var(--black);--ink2:var(--charcoal);--ink3:#6B6B6E;--line:var(--silver);--bg:#F4F6F9;--panel:#F8FAFC;--navy:var(--dark);--accent:var(--aqua);--good:#2E7D32;
+ --es1:#9A5B00;--s1:#188296;--s2:#5373B6;--s3:#0D2C6B}
 *{box-sizing:border-box}
-body{margin:0;font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
-header{background:var(--navy);color:#fff;padding:30px 24px 26px}
-header .in,main{max-width:1000px;margin:0 auto}
-.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75;font-weight:600}
-h1{font-size:30px;font-weight:800;margin:4px 0 8px}
-header p{margin:0;opacity:.88;max-width:700px}
-main{padding:22px 24px 60px}
-.finder{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-top:-34px;box-shadow:0 6px 20px rgba(20,30,60,.08);position:relative}
-.finder label.big{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
-.search{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px}
-.search:focus{outline:none;border-color:var(--navy)}
-.hint{font-size:13px;color:var(--ink3);margin-top:6px}
-.hint button{background:none;border:0;padding:0;color:var(--navy);text-decoration:underline;font:inherit;cursor:pointer}
+body{margin:0;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;padding:1rem}
+.container{max-width:1100px;margin:0 auto;background:#fff;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08);overflow:hidden}
+header{background:var(--dark);color:#fff;padding:2rem 2rem 3.5rem;border-bottom:5px solid var(--gold)}
+.eyebrow{color:var(--silver);font-size:.9rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem}
+h1{font-size:2rem;font-weight:800;margin:0 0 .6rem;line-height:1.25}
+header p{margin:0;color:#E5E7EB;max-width:720px}
+main{padding:0 2.5rem 2.5rem}
+.finder{background:#fff;border:1px solid var(--line);border-top:4px solid var(--aqua);border-radius:6px;padding:1.4rem 1.6rem;margin-top:-2rem;box-shadow:0 4px 12px rgba(0,0,0,.08);position:relative}
+.finder label.big{display:block;font-weight:700;font-size:1.05rem;margin-bottom:.5rem;color:var(--dark)}
+.search{width:100%;font:inherit;font-size:1rem;padding:.8rem 1rem;border:1px solid var(--line);border-radius:4px}
+.search:focus{outline:3px solid var(--gold);outline-offset:1px}
+.hint{font-size:.85rem;color:var(--ink3);margin-top:6px}
+.hint button{background:none;border:0;padding:0;color:var(--aqua);font-weight:600;text-decoration:underline;font:inherit;cursor:pointer}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
-.row .lab{font-size:13px;font-weight:700;color:var(--ink2);min-width:74px}
-.chip{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:6px 13px;font:inherit;font-weight:600;font-size:14px;color:var(--ink2);cursor:pointer}
-.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.row .lab{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink2);min-width:80px}
+.chip{border:2px solid var(--dark);background:#fff;border-radius:999px;padding:.4rem .9rem;font:inherit;font-weight:700;font-size:.88rem;color:var(--dark);cursor:pointer}
+.chip:hover{background:#E8EAF6}
+.chip.on{background:var(--dark);border-color:var(--dark);color:#fff}
 .chip[data-st="es1"].on{background:var(--es1);border-color:var(--es1)}
 .chip[data-st="s1"].on{background:var(--s1);border-color:var(--s1)}
 .chip[data-st="s2"].on{background:var(--s2);border-color:var(--s2)}
 .chip[data-st="s3"].on{background:var(--s3);border-color:var(--s3)}
-.count{margin:22px 0 10px;font-size:14px;color:var(--ink3)}
-h2{font-size:18px;margin:26px 0 10px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
-.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;border-top:4px solid var(--accent);display:flex;flex-direction:column}
-.card h3{margin:0 0 4px;font-size:17px}
-.card .strand{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
-.card p{margin:6px 0 0;color:var(--ink2);font-size:14.5px}
-.stageinfo{margin-top:10px;font-size:13.5px;border-radius:8px;padding:8px 10px;background:var(--bg)}
-.stageinfo b{display:block}
-.matches{margin:10px 0 0;padding:0;list-style:none;font-size:13.5px}
+.count{margin:1.5rem 0 .6rem;font-size:.9rem;color:var(--ink3)}
+h2{font-size:1.6rem;color:var(--dark);margin:2rem 0 1rem;border-bottom:2px solid var(--silver);padding-bottom:.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem}
+.card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:1.1rem 1.2rem;border-top:4px solid var(--aqua);display:flex;flex-direction:column}
+.card h3{margin:0 0 4px;font-size:1.15rem;color:var(--dark)}
+.card .strand{font-size:.72rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--aqua)}
+.card p{margin:6px 0 0;color:var(--ink2);font-size:.93rem}
+.stageinfo{margin-top:10px;font-size:.88rem;border-radius:4px;padding:8px 10px;background:var(--panel);color:var(--ink2)}
+.stageinfo b{display:block;color:var(--dark)}
+.matches{margin:10px 0 0;padding:0;list-style:none;font-size:.88rem}
 .matches li{padding:6px 0;border-top:1px solid var(--line)}
-.matches .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink3);margin-right:4px}
-.matches a{color:var(--ink);text-decoration:none}
-.matches a:hover{text-decoration:underline}
-mark{background:#fde9a8;color:inherit;padding:0 1px;border-radius:2px}
+.matches .k{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-right:4px}
+.matches a{color:var(--ink)}
+.matches a:hover{color:var(--aqua)}
+mark{background:#FFEFC9;color:#5A3800;padding:0 1px;border-radius:2px}
 .acts{margin-top:auto;padding-top:12px;display:flex;flex-wrap:wrap;gap:8px}
-.btn{display:inline-block;border-radius:9px;padding:8px 14px;font-weight:600;font-size:14px;text-decoration:none;background:var(--navy);color:#fff}
-.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
-.btn:hover{filter:brightness(1.12)}
-.empty{background:#fff;border:1px dashed var(--line);border-radius:12px;padding:20px;color:var(--ink2)}
-footer{text-align:center;font-size:13px;color:var(--ink3);padding:20px}
-@media (max-width:520px){h1{font-size:25px}.row .lab{width:100%}}
+.btn{display:inline-block;border-radius:4px;padding:.6rem 1.1rem;font-weight:700;font-size:.9rem;text-decoration:none;background:var(--aqua);color:#fff}
+.btn:hover{background:var(--dark)}
+.btn.ghost{background:var(--silver);color:var(--black)}
+.btn.ghost:hover{background:#C2C3C6}
+.empty{background:var(--panel);border:2px dashed var(--line);border-radius:6px;padding:20px;color:var(--ink2)}
+footer{background:#EAECEF;text-align:center;font-size:.9rem;color:var(--charcoal);padding:1.5rem;border-top:1px solid var(--silver)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (max-width:720px){body{padding:0}.container{border-radius:0}header{padding:1.5rem 1.5rem 3rem}h1{font-size:1.5rem}main{padding:0 1.2rem 1.5rem}.row .lab{width:100%}}
 </style>
 </head>
 <body>
+<div class="container">
 <header><div class="in">
  <div class="eyebrow">NSW Mathematics K–10 Syllabus (2022)</div>
  <h1>Maths Module Finder K–6</h1>
@@ -77,6 +83,7 @@ footer{text-align:center;font-size:13px;color:var(--ink3);padding:20px}
  <div id="out"></div>
 </main>
 <footer>Built from the NESA <i>Mathematics K–10 Syllabus (2022)</i> and NESA syllabus support teaching advice. Progress, notes and self-checks in each module are saved only in the viewer’s browser.</footer>
+</div>
 
 <script>
 "use strict";

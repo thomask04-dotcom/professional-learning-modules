@@ -5,31 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Three-dimensional Spatial Structure K–6</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../engine/module.css">
 <link rel="stylesheet" href="tools.css">
 </head>
 <body>
+<div class="container">
 
 <header class="top">
   <div class="brand">
     <div class="eyebrow">NSW Mathematics K–10 (2022) · Objects, volume and capacity</div>
     <h1>Three-dimensional Spatial Structure K–6</h1>
   </div>
-  <div class="prog" aria-live="polite">
-    <div class="lab"><span>Your progress</span><span id="progTxt">0 of 0</span></div>
-    <div class="bar"><div class="fill" id="progFill"></div></div>
-  </div>
+  <div class="prog" aria-live="polite"><div class="lab" id="progTxt"></div></div>
 </header>
+
+<div class="progress-bar-container" id="progBar" role="progressbar" aria-label="Module progress" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0">
+  <div class="progress-bar" id="progFill"></div>
+</div>
+
+<nav class="nav-tabs" id="side" aria-label="Module sections"></nav>
 
 <div class="mobnav"><label class="note" for="mobSel">Go to section</label><select id="mobSel"></select></div>
 
-<div class="wrap">
-  <nav class="side" id="side" aria-label="Module sections"></nav>
-  <main><div class="page" id="page"></div></main>
-</div>
+<main><div class="page" id="page"></div></main>
 
 <footer id="foot"></footer>
+</div>
 
 <script src="content.js"></script>
 <script src="tools.js"></script>

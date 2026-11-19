@@ -30,20 +30,20 @@ function $$(s,el){return Array.prototype.slice.call((el||document).querySelector
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 
 function buildNav(){
- var side=$("#side"), h="", g="";
+ var side=$("#side"), h="";
  SECTIONS.forEach(function(s,i){
-  if(s.grp!==g){g=s.grp;h+='<div class="grp">'+g+'</div>';}
-  var dotStyle = s.stage && !mem.done[s.id] ? ' style="border-color:'+STAGES[s.stage].col+'"' : '';
-  h+='<button data-i="'+i+'" class="'+(i===current?"on":"")+'" aria-current="'+(i===current?"page":"false")+'"><span class="dot'+(mem.done[s.id]?" done":"")+'"'+dotStyle+'></span>'+s.label+'</button>';
+  var on=i===current, dot=s.stage?'<span class="sdot" style="background:'+STAGES[s.stage].col+'" aria-hidden="true"></span>':'';
+  h+='<button class="tab-btn'+(on?" active":"")+'" data-i="'+i+'" aria-current="'+(on?"page":"false")+'">'+dot+(i+1)+'. '+s.label+(mem.done[s.id]?' <span class="tick" aria-label="complete">✓</span>':'')+'</button>';
  });
  side.innerHTML=h;
  $$("button",side).forEach(function(b){b.onclick=function(){go(+b.dataset.i);};});
  var sel=$("#mobSel");
- sel.innerHTML=SECTIONS.map(function(s,i){return '<option value="'+i+'"'+(i===current?" selected":"")+'>'+(mem.done[s.id]?"✓ ":"")+s.label+'</option>';}).join("");
+ sel.innerHTML=SECTIONS.map(function(s,i){return '<option value="'+i+'"'+(i===current?" selected":"")+'>'+(i+1)+'. '+s.label+(mem.done[s.id]?" ✓":"")+'</option>';}).join("");
  sel.onchange=function(){go(+sel.value);};
  var n=SECTIONS.filter(function(s){return mem.done[s.id];}).length;
- $("#progTxt").textContent=n+" of "+SECTIONS.length+" sections";
+ $("#progTxt").textContent=n+" of "+SECTIONS.length+" sections complete";
  $("#progFill").style.width=(100*n/SECTIONS.length)+"%";
+ var pb=$("#progBar"); if(pb) pb.setAttribute("aria-valuenow",n);
 }
 
 function go(i){
@@ -60,8 +60,8 @@ function go(i){
 
 function doneBar(s,i){
  var d=!!mem.done[s.id];
- return '<div class="done-bar'+(d?" is-done":"")+'"><div><b>'+(d?"Section complete ✓":"Finished this section?")+'</b><div class="note">'+(d?"You can come back at any time.":"Mark it complete to track your progress.")+'</div></div><div class="nextprev">'+
- (i>0?'<button class="btn ghost" id="prevBtn">← Back</button>':'')+
+ return '<div class="done-bar'+(d?" is-done":"")+'"><div><b>'+(d?"Section complete ✓":"Finished this section?")+'</b><div class="stepc">Section '+(i+1)+' of '+SECTIONS.length+'</div></div><div class="nextprev">'+
+ (i>0?'<button class="btn ghost" id="prevBtn">← Previous</button>':'')+
  '<button class="btn ghost" id="doneBtn">'+(d?"Mark as not done":"Mark complete")+'</button>'+
  (i<SECTIONS.length-1?'<button class="btn" id="nextBtn">Next: '+SECTIONS[i+1].label+' →</button>':'')+'</div></div>';
 }
@@ -188,7 +188,7 @@ function renderModels(){
   var cells="";
   for(var c=0;c<4;c++) cells+='<div class="mc" style="grid-column:'+(c+2)+';grid-row:'+(i+2)+'"></div>';
   var g1=m.s+2, g2=m.e+3;
-  var col = m.hi ? "var(--navy)" : STAGES[ORDER[m.s]].col;
+  var col = m.hi ? "var(--cedow-gold)" : STAGES[ORDER[m.s]].col;
   cells+='<div class="mbar" data-i="'+i+'" style="grid-column:'+g1+'/'+g2+';grid-row:'+(i+2)+';background:'+col+';opacity:'+(m.hi?1:.75)+'" title="'+esc(m.n)+'"></div>';
   h+=cells+'</div>';
  });
