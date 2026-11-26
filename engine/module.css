@@ -296,10 +296,11 @@ footer{background:#EAECEF;padding:1.5rem;text-align:center;font-size:.9rem;color
 
 /* ---------------- Faith, Learning and Wellbeing and APST ---------------- */
 :root{--flw:var(--cedow-gold);--flw-soft:#FFF6E5;--flw-ink:#6B4300}
-.flw{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.flw{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.flw{grid-template-columns:1fr}}
 .flwel{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:0 0 1rem;display:flex;flex-direction:column;gap:8px;overflow:hidden}
-.flwel>*:not(.flwtag){margin-left:1rem!important;margin-right:1rem!important}
-.flwtag{align-self:stretch;background:var(--cedow-dark-blue);color:#fff;font-weight:700;font-size:1rem;padding:.55rem 1rem;border-bottom:4px solid var(--cedow-gold)}
+.flwel>*:not(.flwtag){margin-left:.75rem!important;margin-right:.75rem!important}
+.flwtag{align-self:stretch;background:var(--cedow-dark-blue);color:#fff;font-weight:700;font-size:1rem;padding:.55rem .75rem;border-bottom:4px solid var(--cedow-gold)}
 .flwdef{margin:0;font-size:14px;color:var(--cedow-dark-blue);font-style:italic}
 .flwwe{margin:0;font-size:14px;color:var(--ink2)}
 .flwmod{margin-top:auto;background:var(--panel);border-radius:4px;padding:10px 12px;font-size:15px}
@@ -314,7 +315,7 @@ ol.oci-plan label{display:block;font-weight:400;margin-bottom:8px}
 ol.oci-plan label b{display:inline;margin:0}
 ol.oci-plan textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:4px;padding:10px 12px;font-family:inherit;font-size:15px;resize:vertical}
 .apst{display:grid;gap:12px}
-.apstrow{background:#fff;border:1px solid var(--line);border-left:5px solid var(--cedow-gold);border-radius:var(--r);padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+.apstrow{background:#fff;border:1px solid var(--line);border-left:5px solid var(--cedow-gold);border-radius:var(--r);padding:14px 16px;display:grid;grid-template-columns:1fr;gap:8px}
 .apsthd{grid-column:1/-1;display:flex;gap:10px;align-items:baseline}
 .apsthd code{background:var(--navy);color:#fff;border-radius:3px;padding:2px 8px;font-size:14px;font-weight:700;font-family:inherit;flex:none}
 .apstd,.apstm{font-size:15px;color:var(--ink2)}

@@ -261,10 +261,9 @@ var FLW = {
 };
 /* The 4 main focus areas: [focus area, how this module supports it]. Proficient descriptors are in the engine (APST_LIB). */
 var APST = [
- ["1.2","The progression shows how students move from beliefs and preferences to reasoning about outcomes and probability."],
- ["2.1","Deepen your knowledge of chance, probability and the misconceptions NESA describes, such as the ‘law of averages’."],
- ["2.6","Digital simulators let students run many trials quickly and compare observed and expected results."],
- ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."]
+ ["1.2"],
+ ["2.1"],
+ ["6.2"]
 ];
 
 var WM_ELEMENTS = [

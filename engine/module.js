@@ -322,10 +322,10 @@ function renderLinks(){
  return h;
 }
 function apstHTML(){
- var h='<h3>Australian Professional Standards for Teachers</h3><p class="lead">Working through this module, and acting on it with your students, can contribute evidence towards these focus areas. Each shows the descriptor for the Proficient career stage.</p>';
- h+='<div class="apst">'+APST.map(function(a){var L=APST_LIB[a[0]];return '<div class="apstrow"><div class="apsthd"><code>'+a[0]+'</code><b>'+L.t+'</b></div><div class="apstd"><span class="k">Proficient descriptor</span>'+L.d+'</div><div class="apstm"><span class="k">In this module</span>'+a[1]+'</div></div>';}).join("")+'</div>';
- h+='<div class="card" style="margin-top:14px"><b>Using this as evidence.</b> <span style="color:var(--ink2)">Your stage reflections and inquiry plan (in Reflect and plan) can support your Professional Development Plan and accreditation evidence, as your school and NESA require.</span></div>';
- h+='<p class="note" style="margin-top:10px">Descriptors are quoted from the Australian Professional Standards for Teachers (AITSL). “In this module” notes are additional commentary.</p>';
+ var h='<h3>Australian Professional Standards for Teachers (AITSL)</h3><p class="lead">Working through this module, and acting on it with your students, can contribute evidence towards these focus areas. Each shows the descriptor for the Proficient career stage.</p>';
+ h+='<div class="apst">'+APST.map(function(a){var L=APST_LIB[a[0]];return '<div class="apstrow"><div class="apsthd"><code>'+a[0]+'</code><b>'+L.t+'</b></div><div class="apstd"><span class="k">Proficient descriptor</span>'+L.d+'</div></div>';}).join("")+'</div>';
+ h+='<div class="card" style="margin-top:14px"><span style="color:var(--ink2)">This professional learning module can be added to NESA eTAMS as evidence of professional learning in your Professional Development Log.</span></div>';
+ h+='<p class="note" style="margin-top:10px">Descriptors are quoted from the Australian Professional Standards for Teachers (AITSL).</p>';
  return h;
 }
 

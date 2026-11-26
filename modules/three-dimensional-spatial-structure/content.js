@@ -275,10 +275,9 @@ var FLW = {
 };
 /* The 4 main focus areas: [focus area, how this module supports it]. Proficient descriptors are in the engine (APST_LIB). */
 var APST = [
- ["1.2","The progression shows how students move from comparing containers to the layer structure of volume."],
- ["1.6","NESA notes that visualising isn’t only visual. Plan tactile and verbal ways for students with vision impairment to take part."],
- ["2.1","Deepen your knowledge of 3D objects, nets, capacity and volume, and the language NESA recommends."],
- ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."]
+ ["1.2"],
+ ["2.1"],
+ ["6.2"]
 ];
 
 var WM_ELEMENTS = [

@@ -277,10 +277,9 @@ var FLW = {
 };
 /* The 4 main focus areas: [focus area, how this module supports it]. Proficient descriptors are in the engine (APST_LIB). */
 var APST = [
- ["1.2","The progression shows how students move from prototypes to properties and from covering to the array structure of area."],
- ["1.5","Use the quick checks to target students who rely on prototypes and extend those ready for properties and area formulas."],
- ["2.1","Deepen your knowledge of shape properties, transformations and area, and the language NESA recommends."],
- ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."]
+ ["1.2"],
+ ["2.1"],
+ ["6.2"]
 ];
 
 var WM_ELEMENTS = [
