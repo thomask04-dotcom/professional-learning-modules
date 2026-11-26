@@ -273,10 +273,9 @@ var FLW = {
 };
 /* The 4 main focus areas: [focus area, how this module supports it]. Proficient descriptors are in the engine (APST_LIB). */
 var APST = [
- ["1.2","The progression shows how students move from comparing and sequencing to formal units and elapsed time."],
- ["1.4","The module invites you to explore Aboriginal concepts of time with your local Aboriginal community."],
- ["2.1","Deepen your knowledge of mass and time, including why time regroups in 60s, and the language NESA recommends."],
- ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."]
+ ["1.2"],
+ ["2.1"],
+ ["6.2"]
 ];
 
 var WM_ELEMENTS = [

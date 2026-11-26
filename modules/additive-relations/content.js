@@ -280,10 +280,9 @@ var FLW = {
 };
 /* The 4 main focus areas: [focus area, how this module supports it]. Proficient descriptors are in the engine (APST_LIB). */
 var APST = [
- ["1.2","The progression shows how students move from counting all to part-part-whole reasoning and flexible strategies."],
- ["1.5","Use the quick checks to target students who know bonds but still count by ones, and to extend those ready for algorithms."],
- ["2.1","Deepen your knowledge of addition and subtraction structures, including comparison subtraction, and the empty number line and bar model."],
- ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."]
+ ["1.2"],
+ ["2.1"],
+ ["6.2"]
 ];
 
 var WM_ELEMENTS = [

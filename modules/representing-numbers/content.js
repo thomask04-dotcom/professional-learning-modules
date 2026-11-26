@@ -288,10 +288,9 @@ var FLW = {
 };
 /* The 4 main focus areas: [focus area, how this module supports it]. Proficient descriptors are in the engine (APST_LIB). */
 var APST = [
- ["1.2","The progression and big ideas show how students build composite units and place value, and where misconceptions begin."],
- ["1.5","Use the quick checks and stage content to plan for students who need more time with counting and those ready for decimals."],
- ["2.1","Deepen your content knowledge of place value, rounding and decimals, and the models and language NESA recommends."],
- ["5.1","The quick checks are short diagnostic assessments you can use and repeat to see change."]
+ ["1.2"],
+ ["2.1"],
+ ["6.2"]
 ];
 
 var WM_ELEMENTS = [
